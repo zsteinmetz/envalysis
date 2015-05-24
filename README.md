@@ -8,6 +8,8 @@ Currently, the following functions are available:
 
 * Confidence intervals `CI()`
 * Reporting significant figures `signifig()`
+* Limit of detection (LOD) `lod()`
+* Limit of quantification (LOQ) `loq()`
 * ANOVA on ranks according to Sen and Puri `puri.test()`
 
 ## Installation
