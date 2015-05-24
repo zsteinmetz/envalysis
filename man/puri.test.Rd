@@ -15,7 +15,9 @@ puri.test(formula, data = NULL, ...)
 Performs an analysis of variance (ANOVA) on ranks according to Sen and Puri.
 }
 \examples{
+\dontrun{
 puri.test(yield ~ N + P + K, data = npk)
+}
 }
 \references{
 Puri ML, Sen PK. 1969. A Class of Rank Order Tests for a General Linear Hypothesis.

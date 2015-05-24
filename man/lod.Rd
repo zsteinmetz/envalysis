@@ -21,9 +21,11 @@ quantity of a substance that can be distinguished from the absence of that subst
 (blank value) within a stated confidence level.
 }
 \examples{
+\dontrun{
 data(icp)
 Cal <- lm(Signal ~ Conc, data = icp)
 lod(Cal, Conc)
+}
 }
 \references{
 Currie, LA. 1997. Nomenclature in evaluation of analytical methods including detection

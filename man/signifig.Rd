@@ -23,8 +23,10 @@ This function reports the significant figures of a given \code{mean} together
 with its respective \code{error} term (e.g. confidence interval or standard deviation).
 }
 \examples{
+\dontrun{
 signifig(mean = c(0.28,5), error = c(0.688, 8), method = "par")
 [1] "0.3 (0.7)" "5 (8)"
+}
 }
 \references{
 Taylor JR. 1997. Error analysis: the study of uncertainties in physical measurements.

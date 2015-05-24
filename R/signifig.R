@@ -16,9 +16,11 @@
 #' like "401 (89)".
 #' 
 #' @examples
+#' \dontrun{
 #' signifig(mean = c(0.28,5), error = c(0.688, 8), method = "par")
 #' [1] "0.3 (0.7)" "5 (8)"
-#'
+#' }
+#' 
 #' @references
 #' Taylor JR. 1997. Error analysis: the study of uncertainties in physical measurements.
 #' University Science Books, Sausalito, CA.

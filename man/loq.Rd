@@ -23,9 +23,11 @@ quantity of a substance that can be quantified / distinguished from another samp
 with confidence.
 }
 \examples{
+\dontrun{
 data(icp)
 Cal <- lm(Signal ~ Conc, data = icp)
-lod(Cal, Conc)
+loq(Cal, Conc)
+}
 }
 \references{
 Currie, LA. 1997. Nomenclature in evaluation of analytical methods including detection
