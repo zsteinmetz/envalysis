@@ -7,11 +7,11 @@ envalysis
 Currently, the following functions are available:
 
 * Confidence intervals `CI()`
-* Sen–Puri test `puri.test()`
 * Reporting significant figures `signifig()`
+* ANOVA on ranks according to Sen and Puri `puri.test()`
 
 ## Installation
-`envalysis` is currently only available on github. To install `envalysis` use:
+`envalysis` is available on github. To install the package paste the following code into your R console:
 
 ```r
 if (!'devtools' %in% installed.packages()[,'Package']) install.packages('devtools')
