@@ -9,15 +9,7 @@ testing.R
 # RStudio files
 .Rproj.user
 .RData
-<<<<<<< HEAD
 *.Rproj
-=======
-<<<<<<< HEAD
-*.Rproj
-=======
-.Rproj
->>>>>>> b93fc23e585b186a247db3387f35ebc1bc1c5333
->>>>>>> 1cc501e7aaa5a0acb317b1d49cc4c35f0b6ffc89
 
 # produced vignettes
 vignettes/*.html
