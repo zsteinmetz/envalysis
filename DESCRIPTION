@@ -1,0 +1,9 @@
+Package: envalysis
+Type: Package
+Title: Miscellaneous functions for environmental analyses
+Version: 0.1
+Date: 2015-05-24
+Author: Zacharias Steinmetz
+Maintainer: Zacharias Steinmetz <stei4785@uni-landau>
+Description: Data manipulation tools and functions that may be helpful for data analyses in environmental chemistry and ecotoxicology.
+License: GPL-3
