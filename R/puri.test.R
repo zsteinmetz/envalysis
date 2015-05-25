@@ -1,7 +1,7 @@
 #' @title Sen–Puri test
 #' 
 #' @description
-#' Performs an analysis of variance (ANOVA) on ranks according to Sen and Puri.
+#' Performs an analysis of variance (ANOVA) on ranks according to Sen and Puri (1969).
 #' 
 #' @usage
 #' puri.test(formula, data = NULL, ...)

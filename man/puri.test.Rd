@@ -12,7 +12,7 @@ puri.test(formula, data = NULL, ...)
 \item{data}{data frame in which the variables specified in the formula will be found}
 }
 \description{
-Performs an analysis of variance (ANOVA) on ranks according to Sen and Puri.
+Performs an analysis of variance (ANOVA) on ranks according to Sen and Puri (1969).
 }
 \examples{
 puri.test(yield ~ N + P + K, data = npk)
