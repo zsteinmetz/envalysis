@@ -10,6 +10,7 @@ Currently, the following functions are available:
 * Reporting significant figures `signifig()`
 * Limit of detection (LOD) `lod()`
 * Limit of quantification (LOQ) `loq()`
+* Categorize water drop penetration times according to Bisdom et al. (1993) `bisdom()`
 * ANOVA on ranks according to Sen and Puri `puri.test()`
 
 ## Installation
