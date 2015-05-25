@@ -16,11 +16,9 @@
 #' @param beta the error tolerance for a false negative
 #'  
 #' @examples
-#' \dontrun{
 #' data(icp)
 #' Cal <- lm(Signal ~ Conc, data = icp)
 #' loq(Cal, Conc)
-#' }
 #'
 #' @references
 #' Currie, LA. 1997. Nomenclature in evaluation of analytical methods including detection

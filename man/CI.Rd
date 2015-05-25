@@ -19,9 +19,7 @@ If \code{na.rm} is \code{TRUE}, missing values are removed before the
 computation proceeds.
 }
 \examples{
-\dontrun{
 CI(1:5)
-}
 }
 \seealso{
 \code{\link[stats]{sd}} for the standard deviation.

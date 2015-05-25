@@ -15,11 +15,9 @@
 #' @param alpha the error tolerance for the detection limit (critical value)
 #'  
 #' @examples
-#' \dontrun{
 #' data(icp)
 #' Cal <- lm(Signal ~ Conc, data = icp)
 #' lod(Cal, Conc)
-#' }
 #'
 #' @references
 #' Currie, LA. 1997. Nomenclature in evaluation of analytical methods including detection
