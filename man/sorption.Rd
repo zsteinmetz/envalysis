@@ -25,7 +25,7 @@ after an equilibrium has established at constant temperature given the concentra
 \code{conc} of the dissolved substance.
 }
 \examples{
-sorption(conc = 1:5, Kd = 2.5, type = "linear")
+sorption(conc = 1:5, c(Kd = 2.5), type = "linear")
 sorption(conc = 1:5, c(K = 4, n = 0.6), type = "freundlich")
 sorption(conc = 1:5, c(KL = 2, qmax = 10), type = "langmuir")
 sorption(conc = 1:5, c(K = 50, qmax = 10, Csat = 10), type = "BET")

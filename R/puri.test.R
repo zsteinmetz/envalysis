@@ -13,6 +13,7 @@
 #' \code{\link[stats]{lm}}, \code{\link[stats]{aov}}
 #' 
 #' @examples
+#' data(npk)
 #' puri.test(yield ~ N + P + K, data = npk)
 #'
 #' @references
@@ -24,7 +25,7 @@ puri.test <- function(formula, data, ...) {
   ranked <- as.formula(paste("rank(",as.character(formula)[2],") ~ ",
                              as.character(formula)[3], sep=""))
   # Perform model
-  model <- lm(ranked, ...)
+  model <- lm(ranked, data, ...)
   AOV <- anova(model)
   # Show diagnostics
   par(mfrow=c(2,2))

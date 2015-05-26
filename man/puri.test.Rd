@@ -15,6 +15,7 @@ puri.test(formula, data = NULL, ...)
 Performs an analysis of variance (ANOVA) on ranks according to Sen and Puri (1969).
 }
 \examples{
+data(npk)
 puri.test(yield ~ N + P + K, data = npk)
 }
 \references{

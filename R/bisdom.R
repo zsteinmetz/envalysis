@@ -13,7 +13,7 @@
 #' \code{\link[base]{findInterval}} for the generic function.
 #' 
 #' @examples
-#' wdpt(c(2,6,20,NA,3,385))
+#' bisdom(c(2,6,20,NA,3,385))
 #' 
 #' @references
 #' Bisdom E, Dekker L, Schoute J. 1993. Water Repellency of Sieve Fractions from
