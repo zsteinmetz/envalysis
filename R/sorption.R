@@ -29,29 +29,21 @@
 #' Atkins PW. 2001. Physical chemistry. Oxford Univ. Press, Oxford.
 #' 
 sorption <- function(conc, par, type = "freundlich") {
-  length.check <- function(par, len) {
-    if (class(par) != "numeric" | length(par) != len) stop(paste("par requires a numeric vector of length =", len))
-  }
+  len <- switch(type,
+                linear = 1,
+                freundlich = 2,
+                langmuir = 2,
+                redlich = 2,
+                BET = 3,
+                {stop("Sorption isotherm (type) unknown")})
+  if (class(par) != "numeric" | length(par) != len) stop(paste("par requires a numeric vector of length =", len))
   
-  if (type %in% c("linear", "lin")) {
-    length.check(par, 1)
-    eqn <- conc * par[1]
-  }
-  if (type %in% c("freundlich", "f")) {
-    length.check(par, 2)
-    eqn <- par[1]*(conc^par[2])
-  }
-  if (type %in% c("langmuir", "lang")) {
-    length.check(par, 2)
-    eqn <- (par[1]*par[2]*conc)/(1+par[1]*conc)
-  }
-  if (type %in% c("redlich", "r")) {
-    length.check(par, 2)
-    eqn <- (conc * par[1]) / (1+conc^par[2])
-  }
-  if (type %in% c("BET", "bet")) {
-    length.check(par, 3)
-    eqn <- (par[1]*par[2]*conc)/((par[3] - conc)*(1+(((par[1]-1)*conc)/par[3])))
-  }
+  eqn <- switch(type, 
+         linear = conc*par[1],
+         freundlich = par[1]*(conc^par[2]),
+         langmuir = (par[1]*par[2]*conc)/(1+par[1]*conc),
+         redlich = (conc * par[1]) / (1+conc^par[2]),
+         BET = (par[1]*par[2]*conc)/((par[3] - conc)*(1+(((par[1]-1)*conc)/par[3])))
+  )
   return(eqn)
 }
