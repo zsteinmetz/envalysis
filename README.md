@@ -12,6 +12,7 @@ Currently, the following functions are available:
 * Limit of quantification (LOQ) `loq()`
 * Various sorption isotherms `sorption()`
 * Categorize water drop penetration times according to Bisdom et al. (1993) `bisdom()`
+* Convert frequency data back to raw data `make.raw()`
 * ANOVA on ranks according to Sen and Puri `puri.test()`
 
 ## Installation
