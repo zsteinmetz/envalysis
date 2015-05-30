@@ -19,7 +19,7 @@ bisdom(c(2,6,20,NA,3,385))
 \references{
 Bisdom E, Dekker L, Schoute J. 1993. Water Repellency of Sieve Fractions from
 Sandy Soils and Relationships with Organic Material and Soil Structure. Geoderma.
-56:105–118.
+56:105-118.
 }
 \seealso{
 \code{\link[base]{findInterval}} for the generic function.

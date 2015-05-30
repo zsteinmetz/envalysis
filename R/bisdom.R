@@ -18,7 +18,7 @@
 #' @references
 #' Bisdom E, Dekker L, Schoute J. 1993. Water Repellency of Sieve Fractions from
 #' Sandy Soils and Relationships with Organic Material and Soil Structure. Geoderma.
-#' 56:105–118.
+#' 56:105-118.
 #' 
 bisdom <- function(wdpt) {
   return(findInterval(wdpt, c(0,5,60,600,3600)))

@@ -2,14 +2,17 @@
 % Please edit documentation in R/puri.test.R
 \name{puri.test}
 \alias{puri.test}
-\title{Sen–Puri test}
+\title{Sen-Puri test}
 \usage{
-puri.test(formula, data = NULL, ...)
+puri.test(formula, data, ...)
 }
 \arguments{
 \item{formula}{a formula specifying the model.}
 
 \item{data}{data frame in which the variables specified in the formula will be found}
+
+\item{\dots}{further arguments to be passed to \code{lm}, such as \code{subset} or
+\code{na.action}}
 }
 \description{
 Performs an analysis of variance (ANOVA) on ranks according to Sen and Puri (1969).
@@ -20,7 +23,7 @@ puri.test(yield ~ N + P + K, data = npk)
 }
 \references{
 Puri ML, Sen PK. 1969. A Class of Rank Order Tests for a General Linear Hypothesis.
-The Annals of Mathematical Statistics. 40:1325–1343.
+The Annals of Mathematical Statistics. 40:1325-1343.
 }
 \seealso{
 \code{\link[stats]{lm}}, \code{\link[stats]{aov}}

@@ -38,7 +38,7 @@ signifig <- function(mean, error, data, method = "pm") {
     e <- signif(error[i], 1)
     if (e >= 1) { m <- signif(mean[i], 1)
     } else { m <- round(mean[i], nchar(as.character(e))-2) }
-    if (method == "pm") output <- c(output, paste(m,"±", e))
+    if (method == "pm") output <- c(output, paste(m,"\u00b1", e))
     if (method == "par") output <- c(output, paste(m," (", e,")", sep=""))
   }
   return(output)

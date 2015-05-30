@@ -1,13 +1,15 @@
-#' @title Sen–Puri test
+#' @title Sen-Puri test
 #' 
 #' @description
 #' Performs an analysis of variance (ANOVA) on ranks according to Sen and Puri (1969).
 #' 
 #' @usage
-#' puri.test(formula, data = NULL, ...)
+#' puri.test(formula, data, ...)
 #'
 #' @param formula a formula specifying the model.
 #' @param data data frame in which the variables specified in the formula will be found
+#' @param \dots further arguments to be passed to \code{lm}, such as \code{subset} or
+#' \code{na.action}
 #' 
 #' @seealso
 #' \code{\link[stats]{lm}}, \code{\link[stats]{aov}}
@@ -18,7 +20,7 @@
 #'
 #' @references
 #' Puri ML, Sen PK. 1969. A Class of Rank Order Tests for a General Linear Hypothesis.
-#' The Annals of Mathematical Statistics. 40:1325–1343.
+#' The Annals of Mathematical Statistics. 40:1325-1343.
 #' 
 puri.test <- function(formula, data, ...) {
   # Rank response variable
