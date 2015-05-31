@@ -8,3 +8,6 @@ Maintainer: Zacharias Steinmetz <stei4785@uni-landau>
 Description: Data manipulation tools and functions that may be helpful for data analyses in environmental chemistry and ecotoxicology.
 Encoding: UTF-8
 License: GPL-3
+Imports:
+    ggplot2,
+    grid
