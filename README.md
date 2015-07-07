@@ -1,5 +1,5 @@
 envalysis
-============
+=========
 [![Travis-CI Build Status](https://travis-ci.org/zsteinmetz/envalysis.svg?branch=master)](https://travis-ci.org/zsteinmetz/envalysis)
 
 `envalysis` is a R package containing miscellaneous functions for data analyses in environmental chemistry and ecotoxicology.

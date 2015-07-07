@@ -29,4 +29,7 @@ lod(Cal, Conc)
 Currie, LA. 1997. Nomenclature in evaluation of analytical methods including detection
 and quantification capabilities (IUPAC Recommendations 1995). Analytica Chimica Acta 391:105-126.
 }
+\seealso{
+\code{\link{loq}}
+}
 
