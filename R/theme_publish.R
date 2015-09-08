@@ -34,10 +34,11 @@ theme_publish <- function(base_size = 12, base_family = "") {
       axis.title.y =      element_text(size = base_size, angle = 90, vjust = 1),
       axis.ticks.length = grid::unit(0.25, "lines"),
       axis.ticks.margin = grid::unit(0.2, "lines"),
+      legend.key =        element_blank(),
       legend.key.size =   grid::unit(1.2, "lines"),
       legend.text =       element_text(size = base_size * 0.8, family = "sans"),
       legend.title =      element_text(size = base_size * 0.8, face = "bold", hjust = 0),
-      legend.position =   "right",
+      legend.position =   "bottom",
       
       panel.background =  element_rect(fill = "white"), 
       panel.margin =      grid::unit(0.4, "lines"),
