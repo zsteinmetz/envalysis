@@ -14,7 +14,7 @@ Currently, the following functions are available:
 * Limit of quantification (LOQ) `loq()`
 * Various sorption isotherms `sorption()`
 * Convert frequency data back to raw data `make.raw()`
-* ANOVA on ranks according to Sen and Puri `puri.test()`
+* ANOVA on ranks according to Sen and Puri (also known as Scheirer-Ray-Hare-Test) `puri.test()`
 
 ### Data presentation
 
@@ -27,7 +27,6 @@ Currently, the following functions are available:
 
 ```r
 if (!'devtools' %in% installed.packages()[,'Package']) install.packages('devtools')
-require(devtools)
-install_github('zsteinmetz/envalysis')
+devtools::install_github('zsteinmetz/envalysis')
 require(envalysis)
 ```
