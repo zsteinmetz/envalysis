@@ -41,6 +41,7 @@ theme_publish <- function(base_size = 12, base_family = "") {
       legend.position =   "bottom",
       
       panel.background =  element_rect(fill = "white"), 
+      panel.border = element_rect(color = "black"),
       panel.margin =      grid::unit(0.4, "lines"),
       
       strip.background =  element_rect(fill="white"), 
