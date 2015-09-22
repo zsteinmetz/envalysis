@@ -4,14 +4,13 @@
 \alias{lod}
 \title{Limit of detection (LOD)}
 \usage{
-lod(object, conc, alpha = 0.05)
+lod(object, alpha = 0.05)
 }
 \arguments{
 \item{object}{a univariate model object of class \code{lm} with a model formula
-\code{Signal ~ Conc} or \code{Signal ~ Conc - 1} containing the linear regression of the
-analyte concentrations with respect to the signal intensity recorded}
-
-\item{conc}{the column expression specifying the respective concentrations}
+\code{Signal ~ Concentration} or \code{Signal ~ Concentraion - 1} containing
+the linear regression of the analyte concentrations with respect to the signal
+intensity recorded}
 
 \item{alpha}{the error tolerance for the detection limit (critical value)}
 }
@@ -23,7 +22,7 @@ quantity of a substance that can be distinguished from the absence of that subst
 \examples{
 data(icp)
 Cal <- lm(Signal ~ Conc, data = icp)
-lod(Cal, Conc)
+lod(Cal)
 }
 \references{
 Currie, LA. 1997. Nomenclature in evaluation of analytical methods including detection
