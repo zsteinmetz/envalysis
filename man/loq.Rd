@@ -4,14 +4,13 @@
 \alias{loq}
 \title{Limit of quantification (LOQ)}
 \usage{
-loq(object, conc, alpha = 0.05, beta = 0.5)
+loq(object, alpha = 0.05, beta = 1/3)
 }
 \arguments{
 \item{object}{a univariate model object of class \code{lm} with a model formula
-\code{Signal ~ Conc} or \code{Signal ~ Conc - 1} containing the linear regression of the
-analyte concentrations with respect to the signal intensity recorded}
-
-\item{conc}{the column expression specifying the respective concentrations}
+\code{Signal ~ Concentration} or \code{Signal ~ Concentration - 1} containing
+the linear regression of the analyte concentrations with respect to the signal
+intensity recorded}
 
 \item{alpha}{the error tolerance for the quantification limit (critical value)}
 
@@ -25,7 +24,7 @@ with confidence.
 \examples{
 data(icp)
 Cal <- lm(Signal ~ Conc, data = icp)
-loq(Cal, Conc)
+loq(Cal)
 }
 \references{
 Currie, LA. 1997. Nomenclature in evaluation of analytical methods including detection
