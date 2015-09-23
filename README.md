@@ -10,6 +10,7 @@ Currently, the following functions are available:
 ### Data manipulation and analysis
 
 * Confidence intervals `CI()`
+* Root mean square errors `rmse()`
 * Limit of detection (LOD) `lod()`
 * Limit of quantification (LOQ) `loq()`
 * Various sorption isotherms `sorption()`
