@@ -6,9 +6,10 @@ Date: 2015-05-24
 Author: Zacharias Steinmetz
 Maintainer: Zacharias Steinmetz <stei4785@uni-landau>
 Description: Data manipulation tools and functions that may be helpful for data
-  analyses in environmental chemistry and ecotoxicology.
+    analyses in environmental chemistry and ecotoxicology.
 Encoding: UTF-8
 License: GPL-3
 Imports:
-  ggplot2,
-  grid
+    ggplot2,
+    grid
+RoxygenNote: 5.0.0
