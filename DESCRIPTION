@@ -10,6 +10,5 @@ Description: Data manipulation tools and functions that may be helpful for data
 Encoding: UTF-8
 License: GPL-3
 Imports:
-    ggplot2,
-    grid
-RoxygenNote: 5.0.0
+    ggplot2
+RoxygenNote: 5.0.1

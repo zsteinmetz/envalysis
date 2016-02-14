@@ -1,11 +1,11 @@
 #' @title ggplot2 theme for scientific publications
-#' 
+#'
 #' @description
 #' Themes set the general aspect of the plot such as the color of the
 #' background, gridlines, the size and colour of fonts. This particular theme is
 #' based on the classic dark-on-light ggplot2 \code{theme_bw} and has been used
 #' for scientific publications,
-#' 
+#'
 #' @usage
 #' theme_publish(base_size = 12, base_family = "")
 #'
@@ -14,49 +14,41 @@
 #'
 #' @examples
 #' require(ggplot2)
-#' require(grid)
 #' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
 #'      colour=factor(gear))) + facet_wrap( ~ am)
 #' p
 #' p + theme_publish()
-#' 
+#'
 #' @seealso
 #' \code{\link[ggplot2]{ggtheme}}
-#' 
-theme_publish <- function(base_size = 12, base_family = "") {
-  ggplot2::theme_bw(base_size = base_size, base_family = base_family) %+replace% 
+#'
+theme_publish <- function(base_size = 12, base_family = '') {
+  ggplot2::theme_bw(base_size = base_size, base_family = base_family) %+replace%
     ggplot2::theme(
-      axis.line =         element_blank(),
-      axis.text.x =       element_text(size = base_size * 0.875 , lineheight = 0.9,
-                                       colour = "black", vjust = 1),
-      axis.text.y =       element_text(size = base_size * 0.875, lineheight = 0.9,
-                                       colour = "black", hjust = 1),
-      axis.ticks =        element_line(colour = "black", size = 0.15),
-      axis.title.x =      element_text(size = base_size, vjust = -0.2),
-      axis.title.y =      element_text(size = base_size, angle = 90, vjust = 1.2),
-      axis.ticks.length = grid::unit(0.25, "lines"),
-      axis.ticks.margin = grid::unit(0.2, "lines"),
-      
-      legend.key =        element_blank(),
-      legend.key.size =   grid::unit(1.2, "lines"),
-      legend.text =       element_text(size = base_size, family = "sans"),
-      legend.title =      element_text(size = base_size, face = "bold",
-                                       hjust = 0),
-      legend.position =   "bottom",
-      legend.box = "horizontal",
-      
-      panel.background =  element_rect(fill = NA, colour = "black", size = 0.1),
-      panel.border =      element_blank(),
-      panel.grid.major =  element_blank(),
-      panel.grid.minor =  element_blank(),
-      panel.margin =      grid::unit(0.4, "lines"),
-      
-      strip.background =  element_rect(colour = "black", fill = NA, size = 0.1), 
-      strip.text.x =      element_text(colour = "black", size = base_size),
-      strip.text.y =      element_text(colour = "black", size = base_size,
-                                       angle = -90),
-      
-      plot.title =        element_text(size = base_size * 1.125),
-      plot.margin =       grid::unit(c(1, 1, 0.5, 0.5), "lines")
+      axis.line = element_blank(),
+      axis.text = element_text(colour = 'black', size = 0.875 * base_size,
+                               lineheight = 0.9),
+      axis.text.x = element_text(margin = margin(2.5,2.5,5,2.5,'pt')),
+      axis.text.y = element_text(margin = margin(2.5,2.5,2.5,5,'pt')),
+      axis.ticks = element_line(colour = 'black', size = 0.25),
+      axis.title = element_text(colour = 'black', size = base_size),
+      axis.ticks.length = unit(0.25, 'lines'),
+
+      legend.key = element_blank(),
+      legend.key.size = unit(base_size, 'pt'),
+      legend.text = element_text(size = base_size),
+      legend.title = element_text(size = base_size, face = 'bold'),
+      legend.position = 'bottom',
+      legend.box = 'horizontal',
+
+      panel.background = element_rect(fill = NA, colour = "black", size = 0.125),
+      panel.border = element_blank(),
+      panel.grid = element_blank(),
+      panel.margin = unit(0.25, 'lines'),
+
+      strip.background = element_rect(colour = 'black', fill = NA, size = 0.125),
+      strip.text = element_text(colour = 'black', size = base_size),
+      strip.text.x = element_text(margin = margin(4,0,4,0)),
+      strip.text.y = element_text(margin = margin(0,4,0,4), angle = -90)
     )
 }
