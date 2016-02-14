@@ -36,6 +36,7 @@ theme_publish <- function(base_size = 12, base_family = '') {
 
       legend.key = element_blank(),
       legend.key.size = unit(base_size, 'pt'),
+      legend.key.width = unit(1.5 * base_size, 'pt'),
       legend.text = element_text(size = base_size),
       legend.title = element_text(size = base_size, face = 'bold'),
       legend.position = 'bottom',
