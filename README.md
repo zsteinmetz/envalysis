@@ -21,7 +21,7 @@ Currently, the following functions are available:
 
 * Categorize water drop penetration times according to Bisdom et al. (1993) `bisdom()`
 * Report significant figures `signifig()`
-* Clean, black-and-white ggplot2 theme for scientific publications `theme_publish()`. A demo file is available [here](https://github.com/zsteinmetz/envalysis/blob/master/demo/theme_publish.md).
+* Clean, black-and-white ggplot2 theme for scientific publications `theme_publish()`. A demo file is available [here](./demo/theme_publish.md).
 
 ## Installation
 `envalysis` is available on github. To install the package paste the following code into your R console:
