@@ -12,5 +12,5 @@ tests/*
 *.Rproj
 
 # produced vignettes
-vignettes/*.html
-vignettes/*.pdf
+*.html
+*.pdf
