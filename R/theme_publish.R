@@ -45,7 +45,7 @@ theme_publish <- function(base_size = 12, base_family = '') {
       panel.background = element_rect(fill = NA, colour = "black", size = 0.125),
       panel.border = element_blank(),
       panel.grid = element_blank(),
-      panel.margin = unit(0.25, 'lines'),
+      panel.margin = unit(0.5, 'lines'),
 
       strip.background = element_rect(colour = 'black', fill = NA, size = 0.125),
       strip.text = element_text(colour = 'black', size = base_size),
