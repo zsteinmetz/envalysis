@@ -44,20 +44,13 @@ texture <- function(time, temp, reading, blank, data, conc = 50, Gs = 2.65,
   
   # Retrieve main texture classes
   tex_classes <- function(x, obj) {
-    bounds <- sig(x, obj)
+    bounds <- sigmoid(x, obj)
     
     matrix(
-      c(
-        bounds["estimate", 1],
-        bounds["estimate", 2] - bounds["estimate", 1],
-        1 - bounds["estimate", 2],
-        bounds["st.error", 1],
-        bounds["st.error", 2] +
-          bounds["st.error", 1],
-        bounds["st.error", 2]
-      ),
-      ncol = 3,
-      byrow = T,
+      c(bounds["estimate", 1], bounds["estimate", 2] - bounds["estimate", 1],
+        1 - bounds["estimate", 2], bounds["st.error", 1], bounds["st.error", 2] +
+          bounds["st.error", 1], bounds["st.error", 2]
+      ), ncol = 3, byrow = T,
       dimnames = list(c("Estimate", "Std. Error"),
                       c('Clay', 'Silt', 'Sand'))
     )
@@ -92,16 +85,18 @@ print.texture <- function(obj, ...) {
 plot.texture <- function(obj, main = 'Particle size distribution',
                          xlab = "Particle size", ylab = "Percent passing", ...) {
   plot(perc.passing ~ particle.size, data = obj$dist,
-       main = main, xlab = xlab, ylab = ylab, log = "x")
-  curve(sig(x, obj$model)[1,], add = T)
+       main = main, xlab = xlab, ylab = ylab, log = "x", ...)
+  curve(sigmoid(x, obj$model)[1,], add = T)
 }
 
 # Sigmoid helper function
-sig <- function(x, obj) {
+sigmoid <- function(x, obj) {
   model_est <- summary(obj)$coefficients[,1]
   model_err <- summary(obj)$coefficients[,2]
   estimate <- SSlogis(x, model_est[1], model_est[2], model_est[3])
-  lwr <- SSlogis(x, model_est[1]+model_err[1], model_est[2]+model_err[2], model_est[3]+model_err[3])
-  upr <- SSlogis(x, model_est[1]-model_err[1], model_est[2]-model_err[2], model_est[3]-model_err[3])
+  lwr <- SSlogis(x, model_est[1]+model_err[1], model_est[2]+model_err[2],
+                 model_est[3]+model_err[3])
+  upr <- SSlogis(x, model_est[1]-model_err[1], model_est[2]-model_err[2],
+                 model_est[3]-model_err[3])
   rbind(estimate, st.error = abs(upr - lwr)/2)
 }
