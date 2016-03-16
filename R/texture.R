@@ -1,3 +1,4 @@
+#' @family texture
 #' @title ASTM soil texture analysis
 #' 
 #' @description
@@ -24,6 +25,14 @@
 #' @param hydrometer a character sting specifying the hydrometer used. Accepted
 #' values are \code{"auto"} for auto-detection (default), \code{"151H"}, and \code{"152H"}
 #' @param plot logical; if TRUE the particle size distribution is plotted
+#' 
+#' @return
+#' \code{texture} returns an object of class "texture". The functions
+#' \code{print} and \code{plot} are available to retrieve the soil texture classes
+#' and the particle size distribution, respectively.
+#' 
+#' An object of class "texture" is a list containing the following components:
+#' 
 #' 
 #' @examples
 #' data(clayloam)
@@ -103,30 +112,35 @@ texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
   return(out)
 }
 
-print.texture <- function(obj, ...) {
+#' @family texture
+#' @rdname texture
+print.texture <- function(x, ...) {
   cat(paste0('Soil particle estimation according to ASTM D422-63\n',
-             'Hydrometer model: ', obj$info[1], '\n',
-             'Specific gravity (Gs) = ', obj$info[2], '   Soil extract: ',
-              obj$info[3], ' g/L\n\n',
+             'Hydrometer model: ', x$info[1], '\n',
+             'Specific gravity (Gs) = ', x$info[2], '   Soil extract: ',
+              x$info[3], ' g/L\n\n',
              'Particle size distribution:\n'))
-  names(obj$dist) <- c('Particle size', 'Percent passing')
-  print(obj$dist, digits = 3, row.names = F)
+  names(x$dist) <- c('Particle size', 'Percent passing')
+  print(x$dist, digits = 3, row.names = F)
   cat(paste0('\n',
              'Soil texture classes (DIN):\n'))
-  print(obj$din, digits = 3)
+  print(x$din, digits = 3)
   cat(paste0('\n',
              'Soil texture classes (USDA):\n'))
-  print(obj$usda, digits = 3)
+  print(x$usda, digits = 3)
 }
 
-plot.texture <- function(obj, main = 'Particle size distribution',
+#' @family texture
+#' @rdname texture
+plot.texture <- function(x, main = 'Particle size distribution',
                          xlab = "Particle size", ylab = "Percent passing", ...) {
-  plot(perc.passing ~ particle.size, data = obj$dist,
+  plot(perc.passing ~ particle.size, data = x$dist,
        main = main, xlab = xlab, ylab = ylab, log = "x", ...)
-  curve(sigmoid(x, obj$model)[1,], add = T)
+  curve(sigmoid(x, x$model)[1,], add = T)
 }
 
-# Sigmoid helper function
+#' @family texture
+#' @rdname texture
 sigmoid <- function(x, obj) {
   model_est <- summary(obj)$coefficients[,1]
   model_err <- summary(obj)$coefficients[,2]
