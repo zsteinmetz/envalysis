@@ -49,6 +49,7 @@
 #' of Soils. ASTM International, West Conshohocken, PA. Available from
 #' \url{http://www.astm.org/Standards/D422.htm}
 #' 
+#' @export
 texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
                     hydrometer = "auto", plot = F) {
   # Data preparation

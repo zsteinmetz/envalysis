@@ -27,6 +27,7 @@
 #' @seealso
 #' \code{\link{lod}}
 #' 
+#' @export
 loq <- function(object, alpha = 0.05, beta = 1/3) {
   if (missing(object) | class(object) != "lm") 
     stop("Input object needs to be of class 'lm'")

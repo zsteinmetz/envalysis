@@ -18,6 +18,7 @@
 #' @seealso
 #' \code{\link[graphics]{hist}}
 #' 
+#' @export
 make.raw <- function(data, var.name, freq.name) {
   if (missing(data)) {
     stop("Input data missing, with no default")

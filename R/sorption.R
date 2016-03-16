@@ -28,6 +28,7 @@
 #' @references
 #' Atkins PW. 2001. Physical chemistry. Oxford Univ. Press, Oxford.
 #' 
+#' @export
 sorption <- function(conc, par, type = "freundlich") {
   len <- switch(type,
                 linear = 1,

@@ -22,6 +22,7 @@
 #' @seealso
 #' \code{\link[ggplot2]{ggtheme}}
 #'
+#' @export
 theme_publish <- function(base_size = 12, base_family = '') {
   ggplot2::theme_bw(base_size = base_size, base_family = base_family) %+replace%
     ggplot2::theme(

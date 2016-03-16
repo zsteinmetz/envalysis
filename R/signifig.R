@@ -24,6 +24,7 @@
 #' Taylor JR. 1997. Error analysis: the study of uncertainties in physical measurements.
 #' University Science Books, Sausalito, CA.
 #' 
+#' @export
 signifig <- function(mean, error, data, round.na = 2, method = "pm") {
   if (!missing(data)) {
     mean <- data[, deparse(substitute(mean))]

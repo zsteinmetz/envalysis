@@ -20,6 +20,7 @@
 #' Sandy Soils and Relationships with Organic Material and Soil Structure. Geoderma.
 #' 56:105-118.
 #' 
+#' @export
 bisdom <- function(wdpt) {
   return(findInterval(wdpt, c(0,5,60,600,3600)))
 }
