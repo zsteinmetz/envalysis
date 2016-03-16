@@ -1,4 +1,40 @@
-texture <- function(time, temp, reading, blank, data, conc = 50, Gs = 2.65,
+#' @title ASTM soil texture analysis
+#' 
+#' @description
+#' Calculates the particle size distribution and both DIN and USDA texture
+#' classes from a series of hydrometer readings according to ASTM D422-63(2007)e2. 
+#' 
+#' @usage
+#' texture(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
+#' hydrometer = "auto", plot = F)
+#'
+#' @param time a numeric vector or data frame object containing the time passed
+#' since the beginning of the measurement in minutes
+#' @param reading a numeric vector or data frame object providing the actual hydrometer
+#' readings at the bottom of the meniscus
+#' @param blank a numeric vector or data frame object containing the blank readings
+#' taken in 5 g L-1 sodium hexametaphosphate solution (composite correction)
+#' @param temp a numeric vector or data frame object containing the measured
+#' temperature
+#' @param data a data frame containing the specified columns. If empty, data
+#' need to be given as numeric vectors
+#' @param conc the concentration of the soil solution, default = 50 g L-1 as
+#' proposed in the ASTM guideline
+#' @param Gs specific gravity of the suspension, default = 2.65
+#' @param hydrometer a character sting specifying the hydrometer used. Accepted
+#' values are \code{"auto"} for auto-detection (default), \code{"151H"}, and \code{"152H"}
+#' @param plot logical; if TRUE the particle size distribution is plotted
+#' 
+#' @examples
+#' data(clayloam)
+#' texture(Time, Reading, Blank, Temperature, data = clayloam)
+#'
+#' @references
+#' ASTM D422-63(2007)e2. 2007. Standard Test Method for Particle-Size Analysis
+#' of Soils. ASTM International, West Conshohocken, PA. Available from
+#' http://www.astm.org/Standards/D422.htm
+#' 
+texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
                     hydrometer = "auto", plot = F) {
   # Data preparation
   data <- na.omit(data)
@@ -10,6 +46,7 @@ texture <- function(time, temp, reading, blank, data, conc = 50, Gs = 2.65,
   }
   Gs <- round(Gs, 2)
   temp <- round(temp)
+  data(list = c("d422_k", "d422_ct"))
   
   # Error handling
   if (hydrometer == "auto") {
