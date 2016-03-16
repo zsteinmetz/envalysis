@@ -18,7 +18,7 @@ Currently, the following functions are available:
 * Various sorption isotherms `sorption()`
 * Convert frequency data back to raw data `make.raw()`
 * ANOVA on ranks according to Sen and Puri (also known as Scheirer-Ray-Hare-Test) `puri.test()`
-* Calculate particle size distributions and texture classes obtained by a soil hydrometer according to ASTM D422-63(2007)e2 with `texture()`
+* Determine particle size distributions and soil texture classes measured with a soil hydrometer in accordance with ASTM D422-63(2007)e2 using `texture()`
 
 ### Data presentation
 
