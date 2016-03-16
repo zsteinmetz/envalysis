@@ -25,7 +25,7 @@ since the beginning of the measurement in minutes}
 readings at the bottom of the meniscus}
 
 \item{blank}{a numeric vector or data frame object containing the blank readings
-taken in 5 g L-1 sodium hexametaphosphate solution (composite correction)}
+taken in 5 g/L sodium hexametaphosphate solution (composite correction)}
 
 \item{temp}{a numeric vector or data frame object containing the measured
 temperature}
@@ -33,7 +33,7 @@ temperature}
 \item{data}{a data frame containing the specified columns. If empty, data
 need to be given as numeric vectors}
 
-\item{conc}{the concentration of the soil solution, default = 50 g L-1 as
+\item{conc}{the concentration of the soil solution, default = 50 g/L as
 proposed in the ASTM guideline}
 
 \item{Gs}{specific gravity of the suspension, default = 2.65}
@@ -44,11 +44,18 @@ values are \code{"auto"} for auto-detection (default), \code{"151H"}, and \code{
 \item{plot}{logical; if TRUE the particle size distribution is plotted}
 }
 \value{
-\code{texture} returns an object of class "texture". The functions
+\code{texture} returns an object of \code{\link[base]{class}} "texture". The functions
 \code{print} and \code{plot} are available to retrieve the soil texture classes
 and the particle size distribution, respectively.
 
 An object of class "texture" is a list containing the following components:
+\tabular{ll}{
+\code{meta} \tab Measurement meta data\cr
+\code{dist} \tab \code{data.frame} providing the particle size distribution\cr
+\code{model} \tab information on the fitted \code{\link[stats]{nls}} model\cr
+\code{din} \tab Main DIN texture classes\cr
+\code{usda} \tab Main USDA texture classes\cr
+}
 }
 \description{
 Calculates the particle size distribution and both DIN and USDA texture
@@ -62,6 +69,6 @@ texture(Time, Reading, Blank, Temperature, data = clayloam)
 \references{
 ASTM D422-63(2007)e2. 2007. Standard Test Method for Particle-Size Analysis
 of Soils. ASTM International, West Conshohocken, PA. Available from
-http://www.astm.org/Standards/D422.htm
+\url{http://www.astm.org/Standards/D422.htm}
 }
 
