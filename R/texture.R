@@ -120,6 +120,11 @@ texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
 
 #' @family texture
 #' @rdname texture
+#' 
+#' @param x an object of class "texture"
+#' @param \dots further arguments to be passed to \code{print} or \code{plot}
+#' 
+#' @export
 print.texture <- function(x, ...) {
   cat(paste0("Soil particle estimation according to ASTM D422-63\n",
              "Hydrometer model: ", x$meta[1], "\n",
@@ -138,22 +143,26 @@ print.texture <- function(x, ...) {
 
 #' @family texture
 #' @rdname texture
-plot.texture <- function(x, main = "Particle size distribution",
-                         xlab = "Particle size", ylab = "Percent passing", ...) {
-  plot(perc.passing ~ particle.size, data = x$dist,
-       main = main, xlab = xlab, ylab = ylab, log = "x", ...)
-  curve(sigmoid(var, x$model)[1,], add = T, xname = "var")
+#' 
+#' @export
+plot.texture <- function(x, ...) {
+  plot(perc.passing ~ particle.size, data = x$dist, log = "x", ...)
+  curve(sigmoid(psize, x$model)[1,], add = T, xname = "psize")
 }
 
 #' @family texture
 #' @rdname texture
-sigmoid <- function(x, obj) {
-  model_est <- summary(obj)$coefficients[,1]
-  model_err <- summary(obj)$coefficients[,2]
-  estimate <- SSlogis(x, model_est[1], model_est[2], model_est[3])
-  lwr <- SSlogis(x, model_est[1]+model_err[1], model_est[2]+model_err[2],
+#' 
+#' @param psize Particle size to look up at the fitted sigmoid curve
+#' 
+#' @export
+sigmoid <- function(psize, x) {
+  model_est <- summary(x)$coefficients[,1]
+  model_err <- summary(x)$coefficients[,2]
+  estimate <- SSlogis(psize, model_est[1], model_est[2], model_est[3])
+  lwr <- SSlogis(psize, model_est[1]+model_err[1], model_est[2]+model_err[2],
                  model_est[3]+model_err[3])
-  upr <- SSlogis(x, model_est[1]-model_err[1], model_est[2]-model_err[2],
+  upr <- SSlogis(psize, model_est[1]-model_err[1], model_est[2]-model_err[2],
                  model_est[3]-model_err[3])
   rbind(estimate, st.error = abs(upr - lwr)/2)
 }

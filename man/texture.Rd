@@ -12,10 +12,9 @@ hydrometer = "auto", plot = F)
 
 \method{print}{texture}(x, ...)
 
-\method{plot}{texture}(x, main = "Particle size distribution",
-  xlab = "Particle size", ylab = "Percent passing", ...)
+\method{plot}{texture}(x, ...)
 
-sigmoid(x, obj)
+sigmoid(psize, x)
 }
 \arguments{
 \item{time}{a numeric vector or data frame object containing the time passed
@@ -42,6 +41,12 @@ proposed in the ASTM guideline}
 values are \code{"auto"} for auto-detection (default), \code{"151H"}, and \code{"152H"}}
 
 \item{plot}{logical; if TRUE the particle size distribution is plotted}
+
+\item{x}{an object of class "texture"}
+
+\item{psize}{Particle size to look up at the fitted sigmoid curve}
+
+\item{\dots}{further arguments to be passed to \code{print} or \code{plot}}
 }
 \value{
 \code{texture} returns an object of \code{\link[base]{class}} "texture". The functions
