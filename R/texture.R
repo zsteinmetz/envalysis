@@ -149,6 +149,7 @@ plot.texture <- function(x, ...) {
   plot(perc.passing ~ particle.size, data = x$dist, log = "x", ...)
   curve(sigmoid(psize, x$model)[1,], add = T, xname = "psize")
 }
+globalVariables(c("psize"))
 
 #' @family texture
 #' @rdname texture

@@ -22,10 +22,11 @@
 #' @seealso
 #' \code{\link[ggplot2]{ggtheme}}
 #'
+#' @import ggplot2
 #' @export
 theme_publish <- function(base_size = 12, base_family = '') {
-  ggplot2::theme_bw(base_size = base_size, base_family = base_family) %+replace%
-    ggplot2::theme(
+  theme_bw(base_size = base_size, base_family = base_family) %+replace%
+    theme(
       axis.line = element_blank(),
       axis.text = element_text(colour = 'black', size = 0.875 * base_size,
                                lineheight = 0.9),
