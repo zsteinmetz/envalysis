@@ -6,7 +6,7 @@
 #' 
 #' @details
 #' \tabular{ll}{
-#' Version: \tab 0.2.0\cr
+#' Version: \tab 0.2.1\cr
 #' Licence: \tab GPLv3\cr
 #' }
 #'

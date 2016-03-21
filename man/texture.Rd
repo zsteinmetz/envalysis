@@ -3,7 +3,6 @@
 \name{texture}
 \alias{plot.texture}
 \alias{print.texture}
-\alias{sigmoid}
 \alias{texture}
 \title{ASTM soil texture analysis}
 \usage{
@@ -13,8 +12,6 @@ hydrometer = "auto", plot = F)
 \method{print}{texture}(x, ...)
 
 \method{plot}{texture}(x, ...)
-
-sigmoid(psize, x)
 }
 \arguments{
 \item{time}{a numeric vector or data frame object containing the time passed
@@ -44,8 +41,6 @@ values are \code{"auto"} for auto-detection (default), \code{"151H"}, and \code{
 
 \item{x}{an object of class "texture"}
 
-\item{psize}{Particle size to look up at the fitted sigmoid curve}
-
 \item{\dots}{further arguments to be passed to \code{print} or \code{plot}}
 }
 \value{
@@ -57,7 +52,7 @@ An object of class "texture" is a list containing the following components:
 \tabular{ll}{
 \code{meta} \tab Measurement meta data\cr
 \code{dist} \tab \code{data.frame} providing the particle size distribution\cr
-\code{model} \tab information on the fitted \code{\link[stats]{nls}} model\cr
+\code{model} \tab information on the fitted \code{\link[drc]{drm}} model\cr
 \code{din} \tab Main DIN texture classes\cr
 \code{usda} \tab Main USDA texture classes\cr
 }

@@ -35,7 +35,7 @@
 #' \tabular{ll}{
 #' \code{meta} \tab Measurement meta data\cr
 #' \code{dist} \tab \code{data.frame} providing the particle size distribution\cr
-#' \code{model} \tab information on the fitted \code{\link[stats]{nls}} model\cr
+#' \code{model} \tab information on the fitted \code{\link[drc]{drm}} model\cr
 #' \code{din} \tab Main DIN texture classes\cr
 #' \code{usda} \tab Main USDA texture classes\cr
 #' }
@@ -49,6 +49,7 @@
 #' of Soils. ASTM International, West Conshohocken, PA. Available from
 #' \url{http://www.astm.org/Standards/D422.htm}
 #' 
+#' @import drc MASS
 #' @export
 texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
                     hydrometer = "auto", plot = F) {
@@ -87,21 +88,27 @@ texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
   eff_depth <- (int - sl * corr_val) + 1 / 2 * (14 - (67 / 27.8))
   diam <- d422_k[as.character(temp),as.character(Gs)] * sqrt(eff_depth / time)
   perc_pass <- corr_val*alpha / conc
-
+  
   dist <-  data.frame("particle.size" = diam, "perc.passing" = perc_pass)
   
-  # Fit NLS model
-  fit <- nls(perc.passing ~ SSlogis(particle.size, Asym, xmid, scal),
-             data = dist)
+  # Fit DRC
+  init <- drm(perc.passing ~ particle.size, data=dist, fct=LL.2())
+  fctList <- list(LL.2(), LL.3(), LL.3u(), LL.4(), LL.5(), W1.2(), W1.3(),
+                  W1.4(), W2.2(), W2.3(), W2.4(), BC.4(), BC.5(), LL2.2(),
+                  LL2.3(), LL2.3u(), LL2.4(), LL2.5(), MM.2(), MM.3())
+  opt <- mselect(init, fctList)
+  
+  fit <- drm(perc.passing ~ particle.size, data = dist,
+             fct = eval(call(row.names(opt)[1])))
   
   # Retrieve main texture classes
-  tex_classes <- function(x, obj) {
-    bounds <- sigmoid(x, obj)
-    
+  tex_classes <- function(psize, obj) {
+    bounds <- predict(obj, newdata = data.frame(particle.size = psize), se.fit = T)
+
     matrix(
-      c(bounds["estimate", 1], bounds["estimate", 2] - bounds["estimate", 1],
-        1 - bounds["estimate", 2], bounds["st.error", 1], bounds["st.error", 2] +
-          bounds["st.error", 1], bounds["st.error", 2]
+      c(bounds[1, "Prediction"], bounds[2, "Prediction"] - bounds[1, "Prediction"],
+        1 - bounds[2, "Prediction"], bounds[1, "SE"], bounds[2, "SE"] +
+          bounds[1, "SE"], bounds[2, "SE"]
       ), ncol = 3, byrow = T,
       dimnames = list(c("Estimate", "Std. Error"),
                       c("Clay", "Silt", "Sand"))
@@ -129,12 +136,14 @@ print.texture <- function(x, ...) {
   cat(paste0("Soil particle estimation according to ASTM D422-63\n",
              "Hydrometer model: ", x$meta[1], "\n",
              "Specific gravity (Gs) = ", x$meta[2], "   Soil extract: ",
-              x$meta[3], " g/L\n\n",
+             x$meta[3], " g/L\n\n",
              "Particle size distribution:\n"))
   names(x$dist) <- c("Particle size", "Percent passing")
   print(x$dist, digits = 3, row.names = F)
+  cat("\n")
+  cat(paste0("Fitted with ", x$model$fct$text, " (", x$model$fct$name,")\n"))
   cat(paste0("\n",
-             "Soil texture classes (DIN):\n"))
+             "Soil texture classes (DIN 4022):\n"))
   print(x$din, digits = 3)
   cat(paste0("\n",
              "Soil texture classes (USDA):\n"))
@@ -145,25 +154,4 @@ print.texture <- function(x, ...) {
 #' @rdname texture
 #' 
 #' @export
-plot.texture <- function(x, ...) {
-  plot(perc.passing ~ particle.size, data = x$dist, log = "x", ...)
-  curve(sigmoid(psize, x$model)[1,], add = T, xname = "psize")
-}
-globalVariables(c("psize"))
-
-#' @family texture
-#' @rdname texture
-#' 
-#' @param psize Particle size to look up at the fitted sigmoid curve
-#' 
-#' @export
-sigmoid <- function(psize, x) {
-  model_est <- summary(x)$coefficients[,1]
-  model_err <- summary(x)$coefficients[,2]
-  estimate <- SSlogis(psize, model_est[1], model_est[2], model_est[3])
-  lwr <- SSlogis(psize, model_est[1]+model_err[1], model_est[2]+model_err[2],
-                 model_est[3]+model_err[3])
-  upr <- SSlogis(psize, model_est[1]-model_err[1], model_est[2]-model_err[2],
-                 model_est[3]-model_err[3])
-  rbind(estimate, st.error = abs(upr - lwr)/2)
-}
+plot.texture <- function(x, ...) plot(x$model, log = "x", type = "all", ...)
