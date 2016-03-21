@@ -5,7 +5,7 @@ cache: packages
 sudo: false
 warnings_are_errors: true
 
-before_isntall:
+before_install:
   - Rscript -e 'install.packages("nlme", lib="/home/travis/R-bin/lib/R/library/")'
 
 env:
