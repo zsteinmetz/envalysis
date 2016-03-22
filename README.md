@@ -4,7 +4,7 @@ envalysis
 [![Travis-CI Build Status](https://travis-ci.org/zsteinmetz/envalysis.svg?branch=master)](https://travis-ci.org/zsteinmetz/envalysis)
 [![License](http://img.shields.io/:license-GPL--3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 
-`envalysis` is a R package containing miscellaneous functions for data analyses in environmental chemistry and ecotoxicology.
+`envalysis` is an R package containing miscellaneous functions for data analyses in environmental chemistry and ecotoxicology. Some function of the package require `ggplot2`, `drc`, and `MASS`.
 
 ## Functions
 Currently, the following functions are available:
@@ -18,16 +18,16 @@ Currently, the following functions are available:
 * Various sorption isotherms `sorption()`
 * Convert frequency data back to raw data `make.raw()`
 * ANOVA on ranks according to Sen and Puri (also known as Scheirer-Ray-Hare-Test) `puri.test()`
-* Determine particle size distributions and soil texture classes measured with a soil hydrometer in accordance with ASTM D422-63(2007)e2 using `texture()`
+* Determine particle size distributions and soil texture classes (DIN/USDA) measured with a soil hydrometer in accordance with ASTM D422-63(2007)e2 using `texture()`
 
 ### Data presentation
 
 * Categorize water drop penetration times according to Bisdom et al. (1993) `bisdom()`
-* Report significant figures `signifig()`
+* Report significant figures, i.e. round means and erros to the least significant digit, using `signifig()`
 * Clean, black-and-white ggplot2 theme for scientific publications `theme_publish()`. A demo file is available [here](./demo/theme_publish.md).
 
 ## Installation
-`envalysis` is available on github. To install the package paste the following code into your R console:
+`envalysis` is available on github. To install the package, paste the following code into your R console (requires `devtools`):
 
 ```r
 if (!'devtools' %in% installed.packages()[,'Package']) install.packages('devtools')
