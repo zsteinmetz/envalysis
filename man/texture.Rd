@@ -7,7 +7,7 @@
 \title{ASTM soil texture analysis}
 \usage{
 texture(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
-hydrometer = "auto", plot = F)
+hydrometer = "auto", model = "auto", plot = F)
 
 \method{print}{texture}(x, ...)
 
@@ -37,6 +37,9 @@ proposed in the ASTM guideline}
 \item{hydrometer}{a character sting specifying the hydrometer used. Accepted
 values are \code{"auto"} for auto-detection (default), \code{"151H"}, and \code{"152H"}}
 
+\item{model}{string is passed to \code{\link[drc]{drm}}, "auto" chooses the
+best fitting model automatically}
+
 \item{plot}{logical; if TRUE the particle size distribution is plotted}
 
 \item{x}{an object of class "texture"}
@@ -51,7 +54,8 @@ and the particle size distribution, respectively.
 An object of class "texture" is a list containing the following components:
 \tabular{ll}{
 \code{meta} \tab Measurement meta data\cr
-\code{dist} \tab \code{data.frame} providing the particle size distribution\cr
+\code{distribution} \tab \code{data.frame} providing the particle size
+distribution\cr
 \code{model} \tab information on the fitted \code{\link[drc]{drm}} model\cr
 \code{din} \tab Main DIN texture classes\cr
 \code{usda} \tab Main USDA texture classes\cr
