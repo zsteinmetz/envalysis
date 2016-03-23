@@ -1,4 +1,4 @@
-# Sample .travis.yml for R projects
+# .travis.yml file
 
 language: r
 cache: packages

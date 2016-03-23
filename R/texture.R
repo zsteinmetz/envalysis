@@ -92,19 +92,20 @@ texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
   diam <- d422_k[as.character(temp),as.character(Gs)] * sqrt(eff_depth / time)
   perc_pass <- corr_val*alpha / conc
   
-  distr <<- data.frame(particle.size = diam, perc.passing = perc_pass)
+  assign(".distr", data.frame(particle.size = diam, perc.passing = perc_pass),
+         envir = .GlobalEnv)
   
   # Fit DRC
   if (model == "auto") {
-    init <- drm(perc.passing ~ particle.size, data = distr, fct=LL.2())
+    init <- drm(perc.passing ~ particle.size, data = .distr, fct=LL.2())
     fctList <- list(LL.2(), LL.3(), LL.3u(), LL.4(), LL.5(), W1.2(), W1.3(),
                     W1.4(), W2.2(), W2.3(), W2.4(), BC.4(), BC.5(), LL2.2(),
                     LL2.3(), LL2.3u(), LL2.4(), LL2.5(), MM.2(), MM.3())
     opt <- mselect(init, fctList)
-    fit <- drm(perc.passing ~ particle.size, data = distr,
+    fit <- drm(perc.passing ~ particle.size, data = .distr,
                fct = eval(call(row.names(opt)[1])))
   } else {
-    fit <- drm(perc.passing ~ particle.size, data = distr,
+    fit <- drm(perc.passing ~ particle.size, data = .distr,
                fct = eval(call(model)))
   }
 
@@ -126,12 +127,13 @@ texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
   usda <- tex_classes(c(0.002, 0.05), fit)             
   
   out <- list(meta = c(Hydrometer = hydrometer, Gs = Gs, Conc = conc),
-              distribution = distr, model = fit, din = din, usda = usda)
+              distribution = .distr, model = fit, din = din, usda = usda)
   class(out) <- c(class(out), "texture")
-  rm(distr, envir = .GlobalEnv)
+  rm(.distr, envir = .GlobalEnv)
   if (plot) plot(out)
   return(out)
 }
+globalVariables(".distr")
 
 #' @family texture
 #' @rdname texture
