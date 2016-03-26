@@ -57,8 +57,8 @@
 texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
                     hydrometer = "auto", model = "auto", plot = F) {
   # Data preparation
-  data <- na.omit(data)
   if (!missing(data)) {
+    data <- na.omit(data)
     time <- data[, deparse(substitute(time))]
     temp <- data[, deparse(substitute(temp))]
     reading <- data[, deparse(substitute(reading))]
