@@ -1,0 +1,36 @@
+---
+title: "theme_publish() demo"
+author: "Zacharias Steinmetz"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    fig_height: 5
+    fig_width: 8
+    self_contained: yes
+    keep_md: yes
+vignette: >
+  %\VignetteIndexEntry{theme_publish demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE, 
+  message = FALSE,
+  comment = "# >"
+)
+```
+
+## Sample code
+
+```{r theme_publish}
+require(envalysis)
+require(ggplot2)
+p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
+     colour=factor(gear))) + facet_wrap( ~ am)
+p
+p + theme_publish() + ggsave('theme_publish.png', dpi = 96)
+```

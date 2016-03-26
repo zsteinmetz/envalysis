@@ -2,7 +2,10 @@
 title: "Particle size estimation using the hydrometer method modified from ASTM D422-63(2007)e2 and Bouyoucos (1927)"
 author: "Zacharias Steinmetz"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  html_document: 
+    self_contained: yes
+    keep_md: yes
 vignette: >
   %\VignetteIndexEntry{Particle size estimation}
   %\VignetteEngine{knitr::rmarkdown}
