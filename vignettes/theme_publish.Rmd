@@ -6,7 +6,6 @@ output:
   html_document: 
     fig_height: 5
     fig_width: 8
-    self_contained: yes
     keep_md: yes
 vignette: >
   %\VignetteIndexEntry{theme_publish demo}
