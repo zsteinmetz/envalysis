@@ -109,9 +109,7 @@ respective ASTM guideline (ASTM D422-63(2007)e2, 2007). The
 algorithm has also been implemented into this package using the `texture()` function:
 
 ```{r texture}
-# Install envalysis
-#if (!'devtools' %in% installed.packages()[,'Package']) install.packages('devtools')
-#devtools::install_github('zsteinmetz/envalysis')
+# Load envalysis
 require(envalysis)
 
 # Load and look at sample data

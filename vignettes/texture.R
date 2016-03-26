@@ -7,9 +7,7 @@ knitr::opts_chunk$set(
 )
 
 ## ----texture-------------------------------------------------------------
-# Install envalysis
-#if (!'devtools' %in% installed.packages()[,'Package']) install.packages('devtools')
-#devtools::install_github('zsteinmetz/envalysis')
+# Load envalysis
 require(envalysis)
 
 # Load and look at sample data
