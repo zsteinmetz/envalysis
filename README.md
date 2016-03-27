@@ -18,13 +18,13 @@ Currently, the following functions are available:
 * Various sorption isotherms `sorption()`
 * Convert frequency data back to raw data `make.raw()`
 * ANOVA on ranks according to Sen and Puri (also known as Scheirer-Ray-Hare-Test) `puri.test()`
-* Determine particle size distributions and soil texture classes (DIN/USDA) measured with a soil hydrometer in accordance with ASTM D422-63(2007)e2 using `texture()`; see [vignette](./inst/doc/texture.html) for details
+* Determine particle size distributions and soil texture classes (DIN/USDA) measured with a soil hydrometer in accordance with ASTM D422-63(2007)e2 using `texture()`; see [vignette](./vignettes/texture.md) for details
 
 ### Data presentation
 
 * Categorize water drop penetration times according to Bisdom et al. (1993) `bisdom()`
 * Report significant figures, i.e. round means and erros to the least significant digit, using `signifig()`
-* Clean, black-and-white ggplot2 theme for scientific publications `theme_publish()`; a preview is available [here](./inst/doc/theme_publish.html)
+* Clean, black-and-white ggplot2 theme for scientific publications `theme_publish()`; a preview is available [here](./vignettes/theme_publish.md)
 
 ## Installation
 `envalysis` is available on github. To install the package, paste the following code into your R console (requires `devtools`):
