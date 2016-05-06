@@ -4,12 +4,16 @@
 \alias{theme_publish}
 \title{ggplot2 theme for scientific publications}
 \usage{
-theme_publish(base_size = 12, base_family = "")
+theme_publish(base_size = 12, base_family = "", line_size = 0.25, ...)
 }
 \arguments{
 \item{base_size}{base font size}
 
 \item{base_family}{base font family}
+
+\item{line_size}{base line size for, e.g. for ticks and axes}
+
+\item{\dots}{further arguments to be passed to \code{theme_bw}}
 }
 \description{
 Themes set the general aspect of the plot such as the color of the
