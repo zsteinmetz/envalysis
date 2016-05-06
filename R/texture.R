@@ -52,6 +52,7 @@
 #' of Soils. ASTM International, West Conshohocken, PA. Available from
 #' \url{http://www.astm.org/Standards/D422.htm}
 #' 
+#' @importFrom stats predict na.omit
 #' @import drc
 #' @export
 texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,

@@ -18,7 +18,7 @@
 #' @examples
 #' CI(1:5)
 #' 
-#' @import stats
+#' @importFrom stats qnorm sd
 #' @export
 CI <- function(x, level = 0.95, na.rm = FALSE) {
   qnorm(1-((1-level)/2))*sd(x, na.rm = na.rm)/sqrt(length(x))

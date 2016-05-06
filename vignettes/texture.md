@@ -119,7 +119,7 @@ clayloam
 texture(Time, Reading, Blank, Temperature, data = clayloam, plot = T)
 ```
 
-![](texture_files/figure-html/texture-1.png)
+![](texture_files/figure-html/texture-1.png)<!-- -->
 
 ```
 # > Soil particle estimation according to ASTM D422-63

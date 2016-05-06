@@ -18,6 +18,7 @@
 #' @examples
 #' rmse(c(0.12,0.59,NA), c(0.15,0.63,1.2))
 #'
+#' @importFrom  stats na.omit
 #' @export
 rmse <- function(obs, sim, rel = FALSE, na.rm = TRUE)
 {

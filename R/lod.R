@@ -26,7 +26,7 @@
 #' @seealso
 #' \code{\link{loq}}
 #' 
-#' @import stats
+#' @importFrom stats qt coef
 #' @export
 lod <- function(object, alpha = 0.01) {
   if (!"lm" %in% class(object) | missing(object)) 

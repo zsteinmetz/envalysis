@@ -15,10 +15,10 @@ p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
 p
 ```
 
-![](theme_publish_files/figure-html/theme_publish-1.png)
+![](theme_publish_files/figure-html/theme_publish-1.png)<!-- -->
 
 ```r
 p + theme_publish() + ggsave('theme_publish.png', dpi = 96)
 ```
 
-![](theme_publish_files/figure-html/theme_publish-2.png)
+![](theme_publish_files/figure-html/theme_publish-2.png)<!-- -->
