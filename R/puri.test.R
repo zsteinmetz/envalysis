@@ -22,6 +22,7 @@
 #' Puri ML, Sen PK. 1969. A Class of Rank Order Tests for a General Linear Hypothesis.
 #' The Annals of Mathematical Statistics. 40:1325-1343.
 #' 
+#' @import stats graphics
 #' @export
 puri.test <- function(formula, data, ...) {
   # Rank response variable
