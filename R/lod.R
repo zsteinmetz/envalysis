@@ -6,7 +6,7 @@
 #' (blank value) within a stated confidence level.
 #' 
 #' @usage
-#' lod(object, alpha = 0.05)
+#' lod(object, alpha = 0.01)
 #'
 #' @param object a univariate model object of class \code{lm} with a model formula 
 #' \code{Signal ~ Concentration} or \code{Signal ~ Concentraion - 1} containing
@@ -26,9 +26,10 @@
 #' @seealso
 #' \code{\link{loq}}
 #' 
+#' @import stats
 #' @export
-lod <- function(object, alpha = 0.05) {
-  if (missing(object) | class(object) != "lm") 
+lod <- function(object, alpha = 0.01) {
+  if (!"lm" %in% class(object) | missing(object)) 
     stop("Input object needs to be of class 'lm'")
   
   conc <- object$model[[2]]
@@ -36,11 +37,18 @@ lod <- function(object, alpha = 0.05) {
   n <- length(table(conc))
   m <- unique(table(conc))
   
-  if (length(m) != 1) stop("Measurement replicates of unequal size")
+  if (length(m) != 1) warning("Measurement replicates of unequal size. ",
+                              "LOD estimation might be incorrect.")
   
-  s <- summary(object)$sigma/coef(object)[2]
-  t <- 2*qt(1-alpha, n-summary(object)$df[1])
-  Q <- sum((conc - mean(conc))^2)/m
-  
-  return(s*t*sqrt((1/n)+(1/m)+((mean(conc))^2/Q)))
+  if(0 %in% conc) { # direct method
+    
+    # TODO: Still Missing
+    
+  } else { # indirect method
+    sx0 <- summary(object)$sigma / coef(object)[2]
+    t <- -qt(alpha, n - summary(object)$df[1])
+    Qx <- sum((conc - mean(conc))^2) / m
+    
+    return(sx0 * t * sqrt((1/n) + (1/m) + ((mean(conc))^2/Qx)))
+  }
 }

@@ -4,7 +4,7 @@
 \alias{loq}
 \title{Limit of quantification (LOQ)}
 \usage{
-loq(object, alpha = 0.05, beta = 1/3)
+loq(object, alpha = 0.01, beta = 1/3)
 }
 \arguments{
 \item{object}{a univariate model object of class \code{lm} with a model formula 

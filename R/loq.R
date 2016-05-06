@@ -6,7 +6,7 @@
 #' with confidence.
 #' 
 #' @usage
-#' loq(object, alpha = 0.05, beta = 1/3)
+#' loq(object, alpha = 0.01, beta = 1/3)
 #'
 #' @param object a univariate model object of class \code{lm} with a model formula 
 #' \code{Signal ~ Concentration} or \code{Signal ~ Concentration - 1} containing
@@ -27,8 +27,9 @@
 #' @seealso
 #' \code{\link{lod}}
 #' 
+#' @import stats
 #' @export
-loq <- function(object, alpha = 0.05, beta = 1/3) {
+loq <- function(object, alpha = 0.01, beta = 1/3) {
   if (missing(object) | class(object) != "lm") 
     stop("Input object needs to be of class 'lm'")
   
@@ -41,8 +42,8 @@ loq <- function(object, alpha = 0.05, beta = 1/3) {
   if (length(m) != 1) stop("Measurement replicates of unequal size")
   
   s <- summary(object)$sigma/coef(object)[2]
-  t <- 2*qt(1-alpha, n-summary(object)$df[1])
+  t <- -qt(alpha, n-summary(object)$df[1])
   Q <- sum((conc - mean(conc))^2)/m
-  
+  # TODO: Iterative process
   return(k*s*t*sqrt(1/m+1/n+(k*lod(object, alpha)-mean(conc))^2/Q))
 }

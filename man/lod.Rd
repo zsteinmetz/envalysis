@@ -4,7 +4,7 @@
 \alias{lod}
 \title{Limit of detection (LOD)}
 \usage{
-lod(object, alpha = 0.05)
+lod(object, alpha = 0.01)
 }
 \arguments{
 \item{object}{a univariate model object of class \code{lm} with a model formula 
