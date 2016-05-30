@@ -17,8 +17,11 @@ Replicate: \tab number of the respective replicate\cr
 data(icp)
 }
 \description{
-Data on the calibration of silver ions in four-fold replication using
+Sample data of the calibration of silver ions in four-fold replication using
 inductively coupled plasma atomic emission spectroscopy (ICP-AES).
+}
+\seealso{
+\code{\link{calibration}}
 }
 \keyword{data}
 
