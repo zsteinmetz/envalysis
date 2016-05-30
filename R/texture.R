@@ -126,7 +126,7 @@ texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
   
   out <- list(meta = c(Hydrometer = hydrometer, Gs = Gs, Conc = conc),
               distribution = .distr, model = fit, din = din, usda = usda)
-  class(out) <- c(class(out), "texture")
+  class(out) <- c("texture", class(out))
   rm(.distr, envir = .GlobalEnv)
   if (plot) plot(out)
   return(out)
