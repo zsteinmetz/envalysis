@@ -5,9 +5,6 @@
 #' after an equilibrium has established at constant temperature given the concentration(s)
 #' \code{conc} of the dissolved substance.
 #' 
-#' @usage
-#' sorption(conc, par, type = "freundlich")
-#'
 #' @param conc a numeric vector containing the concentration(s) of the dissolved substance
 #' @param par a numeric vector specifying the function parameters, see examples for
 #' details and correct order
@@ -26,7 +23,8 @@
 #' sorption(conc = 1:5, c(A = 30, B = 0.8), type = "redlich")
 #' 
 #' @references
-#' Atkins PW. 2001. Physical chemistry. Oxford Univ. Press, Oxford.
+#' Atkins, P.W., 2001. Physical chemistry, 6. ed., reprint. ed. Oxford Univ.
+#' Press, Oxford.
 #' 
 #' @export
 sorption <- function(conc, par, type = "freundlich") {

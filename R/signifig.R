@@ -3,9 +3,6 @@
 #' @description
 #' This function reports the significant figures of a given \code{mean} together
 #' with its respective \code{error} term (e.g. confidence interval or standard deviation).
-#' 
-#' @usage
-#' signifig(mean, error, data, round.na = 2, method = "pm")
 #'
 #' @param mean a numeric vector or data frame object containing the averaged values
 #' @param error a numeric vector or data frame object containing the respective error terms
@@ -21,8 +18,8 @@
 #' signifig(mean = c(0.28,5), error = c(0.688, 8), round.na = 2, method = "par")
 #' 
 #' @references
-#' Taylor JR. 1997. Error analysis: the study of uncertainties in physical measurements.
-#' University Science Books, Sausalito, CA.
+#' Taylor, J.R., 1997. Error analysis: the study of uncertainties in physical
+#' measurements. University Science Books, Sausalito, CA.
 #' 
 #' @export
 signifig <- function(mean, error, data, round.na = 2, method = "pm") {

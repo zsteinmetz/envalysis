@@ -4,9 +4,6 @@
 #' This wrapper function categorizes water drop penetration times (WDPT) [s] according to
 #' the scale proposed by Bisdom et al. (1993).
 #' 
-#' @usage
-#' bisdom(wdpt)
-#'
 #' @param wdpt a numeric vector containing WDPT measurement data in seconds
 #' 
 #' @seealso
@@ -16,9 +13,9 @@
 #' bisdom(c(2,6,20,NA,3,385))
 #' 
 #' @references
-#' Bisdom E, Dekker L, Schoute J. 1993. Water Repellency of Sieve Fractions from
-#' Sandy Soils and Relationships with Organic Material and Soil Structure. Geoderma.
-#' 56:105-118.
+#' Bisdom, E., Dekker, L., Schoute, J., 1993. Water Repellency of Sieve 
+#' Fractions from Sandy Soils and Relationships with Organic Material and Soil 
+#' Structure. Geoderma 56, 105–118. doi:10.1016/0016-7061(93)90103-R
 #' 
 #' @export
 bisdom <- function(wdpt) {

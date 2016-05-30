@@ -7,7 +7,7 @@
 \title{ASTM soil texture analysis}
 \usage{
 texture(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
-hydrometer = "auto", model = "auto", plot = F)
+  hydrometer = "auto", model = "auto", plot = F)
 
 \method{print}{texture}(x, ...)
 
@@ -71,8 +71,8 @@ texture(Time, Reading, Blank, Temperature, data = clayloam)
 
 }
 \references{
-ASTM D422-63(2007)e2. 2007. Standard Test Method for Particle-Size Analysis
-of Soils. ASTM International, West Conshohocken, PA. Available from
-\url{http://www.astm.org/Standards/D422.htm}
+ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis
+of Soils (Technical standard). ASTM International, West Conshohocken, PA.
+Available from \url{http://www.astm.org/Standards/D422.htm}
 }
 

@@ -13,9 +13,6 @@ Units: \tab concentration units\cr
 Signal: \tab signal intensity [cps]\cr
 Replicate: \tab number of the respective replicate\cr
 }}
-\usage{
-data(icp)
-}
 \description{
 Sample data of the calibration of silver ions in four-fold replication using
 inductively coupled plasma atomic emission spectroscopy (ICP-AES).

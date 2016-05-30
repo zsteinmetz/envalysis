@@ -9,11 +9,13 @@
 Conc: \tab nominal concentration in mg/L\cr
 Area: \tab measurement signal\cr
 }}
-\usage{
-data(din32645)
-}
 \description{
 Sample data for the calibration of carbon in water.
+}
+\references{
+DIN 32645:2008-11, 2008. Chemical analysis - Decision limit, detection limit
+and determination limit under repeatability conditions - Terms, methods,
+evaluation (Technical standard). Deutsches Institut für Normung, Berlin.
 }
 \seealso{
 \code{\link{calibration}}

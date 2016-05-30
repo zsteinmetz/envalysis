@@ -150,13 +150,12 @@ texture(Time, Reading, Blank, Temperature, data = clayloam, plot = T)
 ```
 
 ## References
-Ashworth, J., Keyes, D., Kirk, R., and Lessard, R. (2001). Standard
-Procedure in the Hydrometer Method for Particle Size Analysis.
-Communications in Soil Science and Plant Analysis, 32(5-6):633–642.
+Ashworth, J., Keyes, D., Kirk, R., Lessard, R., 2001. Standard Procedure in the 
+Hydrometer Method for Particle Size Analysis. Communications in Soil Science and 
+Plant Analysis 32, 633–642. doi:10.1081/CSS-100103897
 
-ASTM D422-63(2007)e2 (2007). Standard Test Method for Particle-
-Size Analysis of Soils. Technical report, ASTM International, West
-Conshohocken, PA.
+ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis of 
+Soils (Technical standard). ASTM International, West Conshohocken, PA.
 
-Bouyoucos, G. J. (1927). The hydrometer as a new method for the
-mechanical analysis of soils. Soil Science, 23(5):343–354.
+Bouyoucos, G.J., 1927. The hydrometer as a new method for the mechanical 
+analysis of soils. Soil Science 23, 343–354.

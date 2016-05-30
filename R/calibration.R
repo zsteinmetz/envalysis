@@ -1,3 +1,5 @@
+#' @family calibration
+#' 
 #' @title Analytical calibration functions
 #'
 #' @description
@@ -19,6 +21,11 @@
 #' @param model model class to be used for fitting; currently, only \code{lm}
 #' is supported
 #' @param \dots further arguments passed to the model environment
+#' 
+#' @return
+#' \code{calibration} returns an object of \code{\link[base]{class}}
+#' "calibration". \code{summary} calls the model summary together with the
+#' respective LOD and LOQ.
 #' 
 #' @examples
 #' data(din32645)

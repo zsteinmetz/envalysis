@@ -12,16 +12,13 @@ Reading: \tab the hydrometer reading at the bottom of the meniscus\cr
 Blank: \tab a blank value obtained in 5 g/L sodium
 hexametaphosphate solution (composite correction)\cr
 }}
-\usage{
-data(clayloam)
-}
 \description{
 Data obtained with an 152H hydrometer in accordance with ASTM D422-63(2007)e2.
 }
 \references{
-ASTM D422-63(2007)e2. 2007. Standard Test Method for Particle-Size Analysis
-of Soils. ASTM International, West Conshohocken, PA. Available from
-\url{http://www.astm.org/Standards/D422.htm}
+ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis
+of Soils (Technical standard). ASTM International, West Conshohocken, PA.
+Available from \url{http://www.astm.org/Standards/D422.htm}
 }
 \seealso{
 \code{\link{texture}}

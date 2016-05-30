@@ -1,12 +1,8 @@
-#' @name icp
 #' @title ICP-AES calibration data
 #' 
 #' @description
 #' Sample data of the calibration of silver ions in four-fold replication using
 #' inductively coupled plasma atomic emission spectroscopy (ICP-AES).
-#' 
-#' @usage
-#' data(icp)
 #' 
 #' @format
 #' A data frame containing 16 rows and 6 columns with information on:
@@ -24,4 +20,5 @@
 #' 
 #' @docType data
 #' @keywords data
+#' @name icp
 NULL

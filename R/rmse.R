@@ -5,9 +5,6 @@
 #' \code{obs} and \code{sim}. \code{rel = FALSE} returns the absolute RMSE,
 #' \code{rel = TRUE} the relative one. If \code{na.rm} is \code{TRUE}, missing
 #' values are omitted before the computation proceeds.
-#' 
-#' @usage
-#' rmse(obs, sim, rel = FALSE, na.rm = TRUE)
 #'
 #' @param obs a numeric vector containing observed values.
 #' @param sim a numeric vector containing simulated values.

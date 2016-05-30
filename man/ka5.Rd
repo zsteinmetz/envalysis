@@ -12,19 +12,15 @@ Sand: \tab the sand fraction in percent\cr
 Group: \tab the respective soil texture group\cr
 Class: \tab the main soil texture class\cr
 }}
-\usage{
-data(ka5)
-}
 \description{
 Soil texture classes for texture triangles as provided by
 \emph{Bodenkundliche Kartieranleitung} (Sponagel et al., 2005)
 }
 \references{
-Sponagel H, Grottenthaler W, Hartmann KJ, Hartwich R, Janetzko P, Joisten H,
-Kühn D, Sabel KJ, Traidl R. 2005. Bodenkundliche Kartieranleitung:
-mit 103 Tabellen und 31 Listen. In Ad-Hoc-Arbeitsgruppe Boden der Staatlichen
-Geologischen Dienste und der Bundesanstalt für Geowissenschaften und Rohstoffe
-and Bundesanstalt für Geowissenschaften und Rohstoffe, eds. Schweizerbart, Stuttgart.
+Sponagel, H., Grottenthaler, W., Hartmann, K.J., Hartwich, R., Janetzko,
+P., Joisten, H., Kühn, D., Sabel, K.J., Traidl, R., 2005. Bodenkundliche
+Kartieranleitung: mit 103 Tabellen und 31 Listen, 5.,  und  erw. Aufl. ed.
+Schweizerbart, Stuttgart.
 }
 \keyword{data}
 

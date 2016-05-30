@@ -34,6 +34,11 @@ with a model formula as shown above}
 
 \item{\dots}{further arguments passed to the model environment}
 }
+\value{
+\code{calibration} returns an object of \code{\link[base]{class}}
+"calibration". \code{summary} calls the model summary together with the
+respective LOD and LOQ.
+}
 \description{
 Defines a \code{calibration} object for the calculation of concentrations
 from measurement signals including estimatations for the limit of detection

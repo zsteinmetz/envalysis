@@ -1,9 +1,8 @@
-#' @name clayloam
 #' @title Hydrometer readings for a clay loam
+#' 
 #' @description
 #' Data obtained with an 152H hydrometer in accordance with ASTM D422-63(2007)e2.
-#' @usage
-#' data(clayloam)
+#' 
 #' @format
 #' A data frame containing 7 rows and 4 columns with information on:
 #' \tabular{ll}{
@@ -15,13 +14,14 @@
 #' }
 #' 
 #' @references
-#' ASTM D422-63(2007)e2. 2007. Standard Test Method for Particle-Size Analysis
-#' of Soils. ASTM International, West Conshohocken, PA. Available from
-#' \url{http://www.astm.org/Standards/D422.htm}
+#' ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis
+#' of Soils (Technical standard). ASTM International, West Conshohocken, PA.
+#' Available from \url{http://www.astm.org/Standards/D422.htm}
 #' 
 #' @seealso 
 #' \code{\link{texture}}
 #' 
 #' @docType data
 #' @keywords data
+#' @name clayloam
 NULL

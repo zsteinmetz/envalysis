@@ -6,9 +6,6 @@
 #' based on the classic dark-on-light ggplot2 \code{theme_bw} and has been used
 #' for scientific publications,
 #'
-#' @usage
-#' theme_publish(base_size = 12, base_family = "", line_size = 0.25, ...)
-#'
 #' @param base_size base font size
 #' @param base_family base font family
 #' @param line_size base line size for, e.g. for ticks and axes

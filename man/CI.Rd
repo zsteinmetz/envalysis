@@ -7,7 +7,8 @@
 CI(x, level = 0.95, na.rm = FALSE)
 }
 \arguments{
-\item{x}{a numeric vector or an \R object which is coercible to one by \code{as.vector(x, "numeric")}.}
+\item{x}{a numeric vector or an \R object which is coercible to one by
+\code{as.vector(x, "numeric")}.}
 
 \item{level}{the confidence level required.}
 

@@ -3,9 +3,6 @@
 #' @description
 #' Convert a data frame or matrix containing summarized frequencies information back
 #' to raw data.
-#' 
-#' @usage
-#' make.raw(data, var.name, freq.name)
 #'
 #' @param data a data frame or matrix containing the frequency information
 #' @param var.name a character string specifying the column with the respective variable

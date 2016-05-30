@@ -1,14 +1,11 @@
 #' @family texture
+#' 
 #' @title ASTM soil texture analysis
 #' 
 #' @description
 #' Calculates the particle size distribution and both DIN and USDA texture
 #' classes from a series of hydrometer readings according to ASTM D422-63(2007)e2. 
 #' 
-#' @usage
-#' texture(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
-#' hydrometer = "auto", model = "auto", plot = F)
-#'
 #' @param time a numeric vector or data frame object containing the time passed
 #' since the beginning of the measurement in minutes
 #' @param reading a numeric vector or data frame object providing the actual hydrometer
@@ -48,9 +45,9 @@
 #' texture(Time, Reading, Blank, Temperature, data = clayloam)
 #'
 #' @references
-#' ASTM D422-63(2007)e2. 2007. Standard Test Method for Particle-Size Analysis
-#' of Soils. ASTM International, West Conshohocken, PA. Available from
-#' \url{http://www.astm.org/Standards/D422.htm}
+#' ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis
+#' of Soils (Technical standard). ASTM International, West Conshohocken, PA.
+#' Available from \url{http://www.astm.org/Standards/D422.htm}
 #' 
 #' @importFrom stats predict na.omit
 #' @import drc
