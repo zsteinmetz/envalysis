@@ -4,16 +4,16 @@
 \alias{calibration}
 \alias{lod}
 \alias{loq}
-\alias{summary.calibration}
+\alias{print.calibration}
 \title{Analytical calibration functions}
 \usage{
 calibration(formula, data, model = "lm", ...)
 
-\method{summary}{calibration}(object, ...)
+\method{print}{calibration}(x, ...)
 
-lod(object, alpha = 0.01)
+lod(x, alpha = 0.01)
 
-loq(object, alpha = 0.01, k = 3)
+loq(x, alpha = 0.01, k = 3)
 }
 \arguments{
 \item{formula}{model formula providing the recorded signal intensities with
@@ -25,8 +25,8 @@ respect to the nominal analyte concentrations in the form of
 \item{model}{model class to be used for fitting; currently, only \code{lm}
 is supported}
 
-\item{object}{a univariate model object of class \code{calibration} or \code{lm}
-with a model formula as shown above}
+\item{x}{an object of class \code{calibration} with a model formula
+as shown above}
 
 \item{alpha}{error tolerance for the detection limit (critical value)}
 
@@ -36,8 +36,9 @@ with a model formula as shown above}
 }
 \value{
 \code{calibration} returns an object of \code{\link[base]{class}}
-"calibration". \code{summary} calls the model summary together with the
-respective LOD and LOQ.
+"calibration". \code{print} calls the function parameters together with the
+respective LOD and LOQ. \code{summary} may be used to retrieve the model
+parameters to be found as a list item called "model".
 }
 \description{
 Defines a \code{calibration} object for the calculation of concentrations
@@ -54,7 +55,8 @@ with respect to a defined confidence level (k).
 \examples{
 data(din32645)
 din <- calibration(Area ~ Conc, data = din32645)
-summary(din)
+din
+summary(din$model)
 
 lod(din)
 

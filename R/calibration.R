@@ -24,13 +24,15 @@
 #' 
 #' @return
 #' \code{calibration} returns an object of \code{\link[base]{class}}
-#' "calibration". \code{summary} calls the model summary together with the
-#' respective LOD and LOQ.
+#' "calibration". \code{print} calls the function parameters together with the
+#' respective LOD and LOQ. \code{summary} may be used to retrieve the model
+#' parameters to be found as a list item called "model".
 #' 
 #' @examples
 #' data(din32645)
 #' din <- calibration(Area ~ Conc, data = din32645)
-#' summary(din)
+#' din
+#' summary(din$model)
 #'
 #' @references
 #' DIN 32645:2008-11, 2008. Chemical analysis - Decision limit, detection limit
@@ -59,63 +61,70 @@ calibration <- function(formula, data, model = "lm", ...) {
   newdata <- data[data[xname] != 0, c(xname, yname)]
   blanks <- data[data[xname] == 0, yname]
 
-  obj <- do.call(model, list(formula = formula, data = newdata, ...))
-  obj$call <- formula
+  model <- do.call(model, list(formula = formula, data = newdata, ...))
+  model$call <- formula
   
-  class(obj) <- c(class(obj), "calibration")
-  obj$calibration$blanks <- blanks
-  obj$calibration$lod <- lod(obj)
-  obj$calibration$loq <- loq(obj)
-  return(obj)
+  cal <- structure(list(), class = "calibration")
+  cal$model <- model
+  cal$blanks <- blanks
+  cal$lod <- lod(cal)
+  cal$loq <- loq(cal)
+  return(cal)
 }
 
 #' @family calibration
 #' @rdname calibration
 #' 
 #' @export
-summary.calibration <- function(object, ...) {
-  print(summary(object, ...))
-  cat(paste0("Limit of detection (LOD): ", signif(object$calibration$lod, 3), '\n'))
-  cat(paste0("Limit of quantification (LOQ): ", signif(object$calibration$loq, 3), '\n\n'))
+print.calibration <- function(x, ...) {
+  print(x$model, ...)
+
+  cat("Blanks:\n")
+  print(x$blanks)
+  cat("\n")
+  cat(paste0("LOD  ", signif(x$lod, 3), '\n'))
+  cat(paste0("LOQ  ", signif(x$loq, 3), '\n\n'))
 }
 
 #' @family calibration
 #' @rdname calibration
-#' @param object a univariate model object of class \code{calibration} or \code{lm}
-#' with a model formula as shown above
+#' @param x an object of class \code{calibration} with a model formula
+#' as shown above
 #' @param alpha error tolerance for the detection limit (critical value)
 
 #' @examples
 #' lod(din)
 #' 
 #' @export
-lod <- function(object, alpha = 0.01) UseMethod("lod")
+lod <- function(x, alpha = 0.01) UseMethod("lod")
 
 #' @export
-lod.default <- lod.lm <- function(object, alpha = 0.01) {
-  stop("Object needs to be of class 'lm' or 'calibration'")
+lod.default <- function(x, alpha = 0.01) {
+  stop("Object needs to be of class 'calibration'")
 }
 
 #' @export
-lod.calibration <- lod.lm <- function(object, alpha = 0.01) {
-  conc <- object$model[[2]]
+lod.calibration <- function(x, alpha = 0.01) {
+  model <- x$model
+  
+  conc <- model$model[[2]]
   n <- length(table(conc))
   m <- unique(table(conc))
 
   if (length(m) != 1) warning("Measurement replicates of unequal size. ",
                               "LOD estimation might be incorrect.")
 
-  t <- -qt(alpha, n - summary(object)$df[1])
-  b <- coef(object)[2]
+  t <- -qt(alpha, n - model$rank)
+  b <- coef(model)[2]
 
-  if (length(object$calibration$blanks) > 0) {
+  if (length(x$blanks) > 0) {
     # Direct method (LOD from blanks)
-    sl <- sd(object$calibration$blanks) / b
+    sl <- sd(x$blanks) / b
     return(sl * t * sqrt(1/n + 1/m))
   } else {
     # Indirect method (LOD from calibration curve)
     message('No blanks provided. LOD is estimated from the calibration line.')
-    sx0 <- summary(object)$sigma / b
+    sx0 <- summary(model)$sigma / b
     Qx <- sum((conc - mean(conc))^2) / m
     return(sx0 * t * sqrt(1/n + 1/m + (mean(conc))^2/Qx))
   }
@@ -130,29 +139,31 @@ lod.calibration <- lod.lm <- function(object, alpha = 0.01) {
 #' loq(din)
 #' 
 #' @export
-loq <- function(object, alpha = 0.01, k = 3) UseMethod("loq")
+loq <- function(x, alpha = 0.01, k = 3) UseMethod("loq")
 
 #' @export
-loq.calibration <- function(object, alpha = 0.01, k = 3) {
-  conc <- object$model[[2]]
+loq.calibration <- function(x, alpha = 0.01, k = 3) {
+  model <- x$model
+  
+  conc <- model$model[[2]]
   n <- length(table(conc))
   m <- unique(table(conc))
   
   if (length(m) != 1) warning("Measurement replicates of unequal size. ",
                               "LOD estimation might be incorrect.")
   
-  t <- -qt(alpha, n - summary(object)$df[1])
-  b <- coef(object)[2]
-  lod <- object$calibration$lod
+  t <- -qt(alpha, n - model$rank)
+  b <- coef(model)[2]
+  lod <- x$lod
   
-  if (length(object$calibration$blanks) > 0) {
+  if (length(x$blanks) > 0) {
     # Direct method (LOD from blanks)
-    sl <- sd(object$calibration$blanks) / b
+    sl <- sd(x$blanks) / b
     return(k * sl * t * sqrt(1/n + 1/m))
   } else {
     # Indirect method (LOD from calibration curve)
     message('No blanks provided. LOQ is estimated from the calibration line.')
-    sx0 <- summary(object)$sigma / b
+    sx0 <- summary(model)$sigma / b
     Qx <- sum((conc - mean(conc))^2) / m
     return(k * sx0 * t * sqrt(1/n + 1/m + (k * lod - mean(conc))^2 / Qx))
   }
