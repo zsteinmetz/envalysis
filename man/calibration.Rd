@@ -4,12 +4,15 @@
 \alias{calibration}
 \alias{lod}
 \alias{loq}
+\alias{plot.calibration}
 \alias{print.calibration}
 \title{Analytical calibration functions}
 \usage{
 calibration(formula, data, model = "lm", ...)
 
 \method{print}{calibration}(x, ...)
+
+\method{plot}{calibration}(x, interval = NULL, level = 0.95, ...)
 
 lod(x, alpha = 0.01)
 
@@ -27,6 +30,12 @@ is supported}
 
 \item{x}{an object of class \code{calibration} with a model formula
 as shown above}
+
+\item{interval}{Type of interval calculation (can be abbreviated); see
+\code{\link[stats]{predict}} for details}
+
+\item{level}{tolerance/confidence level; see \code{\link[stats]{predict}}
+for details}
 
 \item{alpha}{error tolerance for the detection limit (critical value)}
 
@@ -56,6 +65,7 @@ with respect to a defined confidence level (k).
 data(din32645)
 din <- calibration(Area ~ Conc, data = din32645)
 din
+plot(din, interval = "confidence")
 summary(din$model)
 
 lod(din)

@@ -32,6 +32,7 @@
 #' data(din32645)
 #' din <- calibration(Area ~ Conc, data = din32645)
 #' din
+#' plot(din, interval = "confidence")
 #' summary(din$model)
 #'
 #' @references
@@ -91,10 +92,38 @@ print.calibration <- function(x, ...) {
 
 #' @family calibration
 #' @rdname calibration
+#' 
+#' @param interval Type of interval calculation (can be abbreviated); see
+#' \code{\link[stats]{predict}} for details
+#' @param level tolerance/confidence level; see \code{\link[stats]{predict}}
+#' for details
+#' 
+#' @export
+plot.calibration <- function(x, interval = NULL, level = 0.95, ...) {
+  model <- x$model
+  
+  conc <- model$model[[2]]
+  new <- data.frame(conc = seq(min(conc), max(conc), length.out = 100 * length(conc)))
+  names(new) <- names(model$model)[2]
+  pred <- data.frame(new, predict(x$model, new, interval = interval, level = level))
+  
+  plot(model$call, data = model$model, ...)
+  lines(pred[, 2] ~ pred[, 1])
+  
+  tryCatch(
+    {
+    lines(pred[, 3] ~ pred[, 1], lty = 2)
+    lines(pred[, 4] ~ pred[, 1], lty = 2)
+    }, error = function(e) invisible()
+  )
+}
+
+#' @family calibration
+#' @rdname calibration
 #' @param x an object of class \code{calibration} with a model formula
 #' as shown above
 #' @param alpha error tolerance for the detection limit (critical value)
-
+#'
 #' @examples
 #' lod(din)
 #' 
@@ -129,7 +158,7 @@ lod.calibration <- function(x, alpha = 0.01) {
     message('No blanks provided. LOD is estimated from the calibration line.')
     sx0 <- summary(model)$sigma / b
     Qx <- sum((conc - mean(conc))^2) / m
-    return(sx0 * t * sqrt(1/n + 1/m + (mean(conc))^2/Qx))
+    return(sx0 * t * sqrt(1/n + 1/m + (mean(conc))^2 / Qx))
   }
 }
 
@@ -173,3 +202,5 @@ loq.calibration <- function(x, alpha = 0.01, k = 3) {
 }
 
 # TODO: Inverse predict
+# Confidence intervals for LOD/LOQ
+# Check alpha/beta, also to be passed from calibration to lod
