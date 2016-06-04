@@ -66,6 +66,8 @@ calibration <- function(formula, data, model = "lm", ...) {
   
   cal <- structure(list(), class = "calibration")
   cal$model <- model
+  
+  cal$adj.r.squared <- summary(model)$adj.r.squared
   cal$blanks <- blanks
   cal$lod <- lod(cal)
   cal$loq <- loq(cal)
@@ -78,12 +80,13 @@ calibration <- function(formula, data, model = "lm", ...) {
 #' @export
 print.calibration <- function(x, ...) {
   print(x$model, ...)
-
+  
+  cat(paste0("Adjusted R-squared:  ", signif(x$adj.r.squared, 3), "\n"))
+  cat("\n")
   cat("Blanks:\n")
   print(x$blanks)
-  cat("\n")
-  cat(paste0("LOD  ", signif(x$lod, 3), '\n'))
-  cat(paste0("LOQ  ", signif(x$loq, 3), '\n\n'))
+  cat(paste0("LOD:  ", signif(x$lod, 3), ',\t'))
+  cat(paste0("LOQ:  ", signif(x$loq, 3), '\n\n'))
 }
 
 #' @family calibration
