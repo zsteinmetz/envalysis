@@ -20,13 +20,24 @@
 #' @param data an optional data frame containing the variables in the model
 #' @param model model class to be used for fitting; currently, only \code{lm}
 #' is supported
-#' @param \dots further arguments passed to the model environment
+#' @param \dots further arguments passed to the sub method, i.e. the
+#' respective model environment (e.g. \code{lm}), \code{plot}, or \code{print}
+#' 
+#' @details
+#' If the \code{data} supplied to \code{calibration} contain more than one blank
+#' value, i.e. measurements with a nominal concentration of zero, the LOD and
+#' LOQ are calculated from the deviation of the blank samples. This method is
+#' called "blank method" according to DIN 32645:2008-11 and supposed to be more
+#' accurate than the so-called "calibration method" which will be used for the
+#' estimation of LOD and LOQ when \code{data} does not contain zero
+#' concentration measurements.
 #' 
 #' @return
 #' \code{calibration} returns an object of \code{\link[base]{class}}
 #' "calibration". \code{print} calls the function parameters together with the
-#' respective LOD and LOQ. \code{summary} may be used to retrieve the model
-#' parameters to be found as a list item called "model".
+#' respective LOD and LOQ. \code{plot} plots the respective calibration curve
+#' together with the measurement values. \code{summary} may be used to retrieve
+#' the model parameters to be found as a list item called "model".
 #' 
 #' @examples
 #' data(din32645)
@@ -51,7 +62,8 @@
 #' @seealso
 #' \code{\link{icp}}, \code{\link{din32645}}
 #' 
-#' @importFrom stats qt coef
+#' @importFrom stats qt coef qchisq
+#' @importFrom graphics lines
 #' @export
 calibration <- function(formula, data, model = "lm", ...) {
   # Collate names
@@ -86,8 +98,8 @@ print.calibration <- function(x, ...) {
   cat("\n")
   cat("Blanks:\n")
   print(x$blanks)
-  cat(paste0("LOD:  ", signif(x$lod, 3), ',\t'))
-  cat(paste0("LOQ:  ", signif(x$loq, 3), '\n\n'))
+  cat("\n")
+  print(signif(rbind(x$lod, x$loq), 3))
 }
 
 #' @family calibration
@@ -96,7 +108,7 @@ print.calibration <- function(x, ...) {
 #' @param interval Type of interval calculation (can be abbreviated); see
 #' \code{\link[stats]{predict}} for details
 #' @param level tolerance/confidence level; see \code{\link[stats]{predict}}
-#' for details
+#' and \code{\link[stats]{confint}} for details
 #' 
 #' @export
 plot.calibration <- function(x, interval = NULL, level = 0.95, ...) {
@@ -128,15 +140,15 @@ plot.calibration <- function(x, interval = NULL, level = 0.95, ...) {
 #' lod(din)
 #' 
 #' @export
-lod <- function(x, alpha = 0.01) UseMethod("lod")
+lod <- function(x, alpha = 0.01, level = 0.05) UseMethod("lod")
 
 #' @export
-lod.default <- function(x, alpha = 0.01) {
+lod.default <- function(x, alpha = 0.01, level = 0.05) {
   stop("Object needs to be of class 'calibration'")
 }
 
 #' @export
-lod.calibration <- function(x, alpha = 0.01) {
+lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
   model <- x$model
   
   conc <- model$model[[2]]
@@ -149,17 +161,23 @@ lod.calibration <- function(x, alpha = 0.01) {
   t <- -qt(alpha, n - model$rank)
   b <- coef(model)[2]
 
-  if (length(x$blanks) > 0) {
+  if (length(x$blanks) > 1) {
     # Direct method (LOD from blanks)
     sl <- sd(x$blanks) / b
-    return(sl * t * sqrt(1/n + 1/m))
+    val <- sl * t * sqrt(1/n + 1/m)
   } else {
     # Indirect method (LOD from calibration curve)
-    message('No blanks provided. LOD is estimated from the calibration line.')
+    if (length(x$blanks) == 1) {
+      message("Only one blank value supplied. LOD is estimated from the calibration curve.")
+    } else {
+      message("No blanks provided. LOD is estimated from the calibration curve.") 
+    }
     sx0 <- summary(model)$sigma / b
     Qx <- sum((conc - mean(conc))^2) / m
-    return(sx0 * t * sqrt(1/n + 1/m + (mean(conc))^2 / Qx))
+    val <- sx0 * t * sqrt(1/n + 1/m + (mean(conc))^2 / Qx)
   }
+  res <- c(val, conf(n) * val)
+  matrix(res, nrow = 1, dimnames = list("LOD", names(res)))
 }
 
 #' @family calibration
@@ -171,10 +189,15 @@ lod.calibration <- function(x, alpha = 0.01) {
 #' loq(din)
 #' 
 #' @export
-loq <- function(x, alpha = 0.01, k = 3) UseMethod("loq")
+loq <- function(x, alpha = 0.01, k = 3, level = 0.05) UseMethod("loq")
 
 #' @export
-loq.calibration <- function(x, alpha = 0.01, k = 3) {
+loq.default <- function(x, alpha = 0.01, k = 3, level = 0.05) {
+  stop("Object needs to be of class 'calibration'")
+}
+
+#' @export
+loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05) {
   model <- x$model
   
   conc <- model$model[[2]]
@@ -186,21 +209,34 @@ loq.calibration <- function(x, alpha = 0.01, k = 3) {
   
   t <- -qt(alpha, n - model$rank)
   b <- coef(model)[2]
-  lod <- x$lod
+  lod <- x$lod[1]
   
-  if (length(x$blanks) > 0) {
-    # Direct method (LOD from blanks)
+  if (length(x$blanks) > 1) {
+    # Direct method (LOQ from blanks)
     sl <- sd(x$blanks) / b
-    return(k * sl * t * sqrt(1/n + 1/m))
+    val <- k * sl * t * sqrt(1/n + 1/m)
   } else {
-    # Indirect method (LOD from calibration curve)
-    message('No blanks provided. LOQ is estimated from the calibration line.')
+    # Indirect method (LOQ from calibration curve)
+    if (length(x$blanks) == 1) {
+      message("Only one blank value supplied. LOQ is estimated from the calibration curve.")
+    } else {
+      message("No blanks provided. LOQ is estimated from the calibration curve.") 
+    }
     sx0 <- summary(model)$sigma / b
     Qx <- sum((conc - mean(conc))^2) / m
-    return(k * sx0 * t * sqrt(1/n + 1/m + (k * lod - mean(conc))^2 / Qx))
+    val <- k * sx0 * t * sqrt(1/n + 1/m + (k * lod - mean(conc))^2 / Qx)
   }
+  res <- c(val, conf(n) * val)
+  matrix(res, nrow = 1, dimnames = list("LOQ", names(res)))
+}
+
+# auxiliary functions
+conf <- function(n, level = 0.05) {
+  kappa <- sqrt((n - 1) / qchisq(c(1-level/2, level/2), n - 1))
+  names(kappa) <- c('lwr', 'upr')
+  return(kappa)
 }
 
 # TODO: Inverse predict
-# Confidence intervals for LOD/LOQ
 # Check alpha/beta, also to be passed from calibration to lod
+# Check other calibration functions
