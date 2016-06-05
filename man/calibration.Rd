@@ -21,12 +21,15 @@ loq(x, alpha = 0.01, k = 3, level = 0.05)
 \arguments{
 \item{formula}{model formula providing the recorded signal intensities with
 respect to the nominal analyte concentrations in the form of
-\code{signal ~ concentration} or \code{signal ~ concentraion - 1}}
+\code{signal ~ concentration} or \code{signal ~ concentraion - 1}; model
+formulae are currently restricted to those forms, however, the possibility
+to use \code{log} or \code{sqrt} transformed data will be implemented in the
+future}
 
 \item{data}{an optional data frame containing the variables in the model}
 
-\item{model}{model class to be used for fitting; currently, only \code{lm}
-is supported}
+\item{model}{model class to be used for fitting; currently,
+\code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported}
 
 \item{x}{an object of class \code{calibration} with a model formula
 as shown above}

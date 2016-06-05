@@ -16,10 +16,13 @@
 #'
 #' @param formula model formula providing the recorded signal intensities with
 #' respect to the nominal analyte concentrations in the form of
-#' \code{signal ~ concentration} or \code{signal ~ concentraion - 1}
+#' \code{signal ~ concentration} or \code{signal ~ concentraion - 1}; model
+#' formulae are currently restricted to those forms, however, the possibility
+#' to use \code{log} or \code{sqrt} transformed data will be implemented in the
+#' future
 #' @param data an optional data frame containing the variables in the model
-#' @param model model class to be used for fitting; currently, only \code{lm}
-#' is supported
+#' @param model model class to be used for fitting; currently,
+#' \code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported
 #' @param \dots further arguments passed to the sub method, i.e. the
 #' respective model environment (e.g. \code{lm}), \code{plot}, or \code{print}
 #' 
@@ -67,8 +70,8 @@
 #' @export
 calibration <- function(formula, data, model = "lm", ...) {
   # Collate names
-  xname <- paste(formula[3])
-  yname <- paste(formula[2])
+  yname <- all.vars(formula)[1]
+  xname <- all.vars(formula)[2]
 
   # Reorganize data
   newdata <- data[data[xname] != 0, c(xname, yname)]
@@ -81,6 +84,7 @@ calibration <- function(formula, data, model = "lm", ...) {
   cal$model <- model
   
   cal$adj.r.squared <- summary(model)$adj.r.squared
+  if (is.null(cal$adj.r.squared)) cal$adj.r.squared <- NA
   cal$blanks <- blanks
   cal$lod <- lod(cal)
   cal$loq <- loq(cal)
@@ -116,7 +120,7 @@ plot.calibration <- function(x, interval = NULL, level = 0.95, ...) {
   
   conc <- model$model[[2]]
   new <- data.frame(conc = seq(min(conc), max(conc), length.out = 100 * length(conc)))
-  names(new) <- names(model$model)[2]
+  names(new) <- all.vars(model$call)[2]
   pred <- data.frame(new, predict(x$model, new, interval = interval, level = level))
   
   plot(model$call, data = model$model, ...)
