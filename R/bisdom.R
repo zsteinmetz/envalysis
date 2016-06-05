@@ -5,6 +5,7 @@
 #' the scale proposed by Bisdom et al. (1993).
 #' 
 #' @param wdpt a numeric vector containing WDPT measurement data in seconds
+#' @param \dots arguments passed to \code{\link[base]{findInterval}}
 #' 
 #' @seealso
 #' \code{\link[base]{findInterval}} for the generic function.
@@ -18,6 +19,6 @@
 #' Structure. Geoderma 56, 105–118. doi:10.1016/0016-7061(93)90103-R
 #' 
 #' @export
-bisdom <- function(wdpt) {
-  return(findInterval(wdpt, c(0,5,60,600,3600)))
+bisdom <- function(wdpt, ...) {
+  findInterval(wdpt, c(0,5,60,600,3600), ...)
 }

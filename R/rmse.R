@@ -22,10 +22,10 @@ rmse <- function(obs, sim, rel = FALSE, na.rm = TRUE)
   data <- data.frame(obs = obs, sim = sim)
   if (na.rm) data <- na.omit(data)
   
-  abs <- sqrt(mean((data$obs-data$sim)^2))
+  abs <- sqrt(mean((data$obs - data$sim)^2))
 
   if (rel) {
-    return(abs/mean(data$obs))
+    return(abs / mean(data$obs))
   } else {
     return(abs)
   }

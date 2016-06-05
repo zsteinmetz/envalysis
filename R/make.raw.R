@@ -39,10 +39,10 @@ make.raw <- function(data, var.name, freq.name) {
   out <- data.frame()
   for (i in 1:nrow(data)) {
     out <- rbind(out, data.frame(data[i,setdiff(names(data),c(freq.name,var.name))],
-                                 var=rep(data[i,var.name], data[i,freq.name]),
-                                 row.names=NULL),
-                 row.names=NULL)
+                                 var = rep(data[i,var.name], data[i,freq.name]),
+                                 row.names = NULL),
+                 row.names = NULL)
   }
-  names(out)[names(out)=="var"] <- var.name
+  names(out)[names(out) == "var"] <- var.name
   return(out)
 }
