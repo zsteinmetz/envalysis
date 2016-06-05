@@ -4,7 +4,7 @@
 \alias{rmse}
 \title{Root mean square error}
 \usage{
-rmse(obs, sim, rel = FALSE, na.rm = TRUE)
+rmse(obs, sim, rel = F, na.rm = T)
 }
 \arguments{
 \item{obs}{a numeric vector containing observed values.}

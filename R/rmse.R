@@ -17,7 +17,7 @@
 #'
 #' @importFrom  stats na.omit
 #' @export
-rmse <- function(obs, sim, rel = FALSE, na.rm = TRUE)
+rmse <- function(obs, sim, rel = F, na.rm = T)
 {
   data <- data.frame(obs = obs, sim = sim)
   if (na.rm) data <- na.omit(data)

@@ -34,18 +34,18 @@
 puri.test <- function(formula, data, ...) {
   # Rank response variable
   ranked <- as.formula(paste("rank(",as.character(formula)[2],") ~ ",
-                             as.character(formula)[3], sep=""))
+                             as.character(formula)[3], sep = ""))
   # Perform model
   model <- lm(ranked, data, ...)
   AOV <- anova(model)
   # Show diagnostics
-  par(mfrow=c(2,2))
+  par(mfrow = c(2,2))
   plot(model)
-  par(mfrow=c(1,1))
+  par(mfrow = c(1,1))
   # Adjust output
   MS <- AOV[,1:3]
-  MS[,4] <- MS[,2]/(sum(MS[,2])/sum(MS[,1]))
-  MS[,5] <- 1-pchisq(MS[,4],MS[,1])
+  MS[,4] <- MS[,2] / (sum(MS[,2]) / sum(MS[,1]))
+  MS[,5] <- 1 - pchisq(MS[,4],MS[,1])
   colnames(MS)[4:5] <- c("H","Pr(>H)")
   return(MS)
 }

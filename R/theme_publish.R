@@ -25,7 +25,7 @@
 #' @export
 theme_publish <- function(base_size = 12, base_family = "",
                           line_size = 0.25, ...) {
-  half_line <- base_size/2
+  half_line <- base_size / 2
   small_rel <- 0.875
   small_size <- small_rel * base_size
   
