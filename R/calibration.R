@@ -65,20 +65,18 @@
 #' @seealso
 #' \code{\link{icp}}, \code{\link{din32645}}
 #' 
-#' @importFrom stats qt coef qchisq
+#' @importFrom stats qt coef qchisq model.frame
 #' @importFrom graphics lines
 #' @export
-calibration <- function(formula, data, model = "lm", ...) {
-  # Collate names
-  yname <- all.vars(formula)[1]
-  xname <- all.vars(formula)[2]
-
-  # Reorganize data
-  newdata <- data[data[xname] != 0, c(xname, yname)]
-  blanks <- data[data[xname] == 0, yname]
+calibration <- function(formula, data = NULL, model = "lm", ...) {
+  # Collate data
+  mf <- model.frame(formula, data)
+  newdata <- mf[mf[2] != 0, ]
+  blanks <- mf[mf[2] == 0, 1]
 
   model <- do.call(model, list(formula = formula, data = newdata, ...))
-  model$call <- formula
+  model$call <- match.call(expand.dots = F)
+  model$formula <- formula
   
   cal <- structure(list(), class = "calibration")
   cal$model <- model
@@ -118,12 +116,12 @@ print.calibration <- function(x, ...) {
 plot.calibration <- function(x, interval = NULL, level = 0.95, ...) {
   model <- x$model
   
-  conc <- model$model[[2]]
+  conc <- model$model[,2]
   new <- data.frame(conc = seq(min(conc), max(conc), length.out = 100 * length(conc)))
-  names(new) <- all.vars(model$call)[2]
+  names(new) <- all.vars(model$formula)[2]
   pred <- data.frame(new, predict(x$model, new, interval = interval, level = level))
   
-  plot(model$call, data = model$model, ...)
+  plot(model$formula, data = model$model, ...)
   lines(pred[, 2] ~ pred[, 1])
   
   tryCatch(
@@ -155,7 +153,7 @@ lod.default <- function(x, alpha = 0.01, level = 0.05) {
 lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
   model <- x$model
   
-  conc <- model$model[[2]]
+  conc <- model$model[,2]
   n <- length(table(conc))
   m <- unique(table(conc))
 
@@ -204,7 +202,7 @@ loq.default <- function(x, alpha = 0.01, k = 3, level = 0.05) {
 loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05) {
   model <- x$model
   
-  conc <- model$model[[2]]
+  conc <- model$model[,2]
   n <- length(table(conc))
   m <- unique(table(conc))
   
@@ -234,9 +232,9 @@ loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05) {
   matrix(res, nrow = 1, dimnames = list("LOQ", names(res)))
 }
 
-# auxiliary functions
+# Auxiliary function for confidence intervals of LOD/LOQ
 conf <- function(n, level = 0.05) {
-  kappa <- sqrt((n - 1) / qchisq(c(1-level/2, level/2), n - 1))
+  kappa <- sqrt((n - 1) / qchisq(c(1 - level/2, level/2), n - 1))
   names(kappa) <- c('lwr', 'upr')
   return(kappa)
 }

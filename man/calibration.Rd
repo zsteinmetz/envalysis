@@ -8,7 +8,7 @@
 \alias{print.calibration}
 \title{Analytical calibration functions}
 \usage{
-calibration(formula, data, model = "lm", ...)
+calibration(formula, data = NULL, model = "lm", ...)
 
 \method{print}{calibration}(x, ...)
 
