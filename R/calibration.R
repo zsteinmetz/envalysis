@@ -66,7 +66,7 @@
 #' \code{\link{icp}}, \code{\link{din32645}}
 #' 
 #' @importFrom stats qt coef qchisq model.frame
-#' @importFrom graphics lines
+#' @importFrom graphics plot lines
 #' @export
 calibration <- function(formula, data = NULL, model = "lm", ...) {
   # Collate data

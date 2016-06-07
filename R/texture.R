@@ -50,6 +50,7 @@
 #' Available from \url{http://www.astm.org/Standards/D422.htm}
 #' 
 #' @importFrom stats predict na.omit
+#' @importFrom graphics plot
 #' @import drc
 #' @export
 texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,

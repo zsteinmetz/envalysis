@@ -27,6 +27,7 @@ signifig <- function(mean, error, data, round.na = 2, method = "pm") {
     mean <- data[, deparse(substitute(mean))]
     error <- data[, deparse(substitute(error))]
   }
+  
   if (length(mean) != length(error)) stop("Mean and Error term of unequal length")
   if (!method %in% c("pm", "par")) {
     stop("Method unknown, use 'pm' instead")
