@@ -28,24 +28,22 @@
 #' Derived from Completely Randomized Factorial Designs. Biometrics 32,
 #' 429–434. doi:10.2307/2529511
 #' 
-#' @importFrom graphics plot par
+#' @aliases scheirer.test
+#' 
 #' @importFrom stats pchisq lm anova as.formula
 #' @export
-puri.test <- function(formula, data, ...) {
-  # Rank response variable
-  ranked <- as.formula(paste("rank(",as.character(formula)[2],") ~ ",
-                             as.character(formula)[3], sep = ""))
+puri.test <- scheirer.test <- function(formula, data, ...) {
+  mf <- model.frame(formula, data)
+  mf[,1] <- rank(mf[,1])
+
   # Perform model
-  model <- lm(ranked, data, ...)
-  AOV <- anova(model)
-  # Show diagnostics
-  par(mfrow = c(2,2))
-  plot(model)
-  par(mfrow = c(1,1))
+  model <- lm(mf, ...)
+  pt <- anova(model)
+  
   # Adjust output
-  MS <- AOV[,1:3]
-  MS[,4] <- MS[,2] / (sum(MS[,2]) / sum(MS[,1]))
-  MS[,5] <- 1 - pchisq(MS[,4],MS[,1])
-  colnames(MS)[4:5] <- c("H","Pr(>H)")
-  return(MS)
+  pt$`F value` <- pt$`Pr(>F)` <- NULL
+  pt$`H value` <- pt$`Sum Sq` / (sum(pt$`Sum Sq`) / sum(pt$Df))
+  pt$`Pr(>H)` <- 1 - pchisq(pt$`H value`, pt$Df)
+  
+  return(pt)
 }

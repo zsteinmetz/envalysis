@@ -2,6 +2,7 @@
 % Please edit documentation in R/puri.test.R
 \name{puri.test}
 \alias{puri.test}
+\alias{scheirer.test}
 \title{Sen-Puri test}
 \usage{
 puri.test(formula, data, ...)
