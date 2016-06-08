@@ -160,7 +160,12 @@ lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
   if (length(m) != 1) warning("Measurement replicates of unequal size. ",
                               "LOD estimation might be incorrect.")
 
-  t <- -qt(alpha, n - model$rank)
+  t <- tryCatch(-qt(alpha, n - model$rank),
+                warning = function(w) {
+                  w$message <- paste0("Data points less than degrees of freedom; ",
+                                      w$message)
+                  stop(w)
+                })
   b <- coef(model)[2]
 
   if (length(x$blanks) > 1) {
@@ -209,7 +214,12 @@ loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05) {
   if (length(m) != 1) warning("Measurement replicates of unequal size. ",
                               "LOD estimation might be incorrect.")
   
-  t <- -qt(alpha, n - model$rank)
+  t <- tryCatch(-qt(alpha, n - model$rank),
+                warning = function(w) {
+                  w$message <- paste0("Data points less than degrees of freedom; ",
+                                      w$message)
+                  stop(w)
+                })
   b <- coef(model)[2]
   lod <- x$lod[1]
   
