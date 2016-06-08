@@ -4,7 +4,7 @@
 \name{envalysis}
 \alias{envalysis}
 \alias{envalysis-package}
-\title{Miscellaneous functions for environmental analyses}
+\title{Miscellaneous Functions for Environmental Analyses}
 \description{
 Data manipulation tools and functions that may be helpful for data analyses in
 environmental chemistry and ecotoxicology.
