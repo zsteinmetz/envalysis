@@ -4,29 +4,33 @@
 \alias{signifig}
 \title{Print significant figures}
 \usage{
-signifig(mean, error, data, round.na = 2, method = "pm")
+signifig(mean, error, data, signif.na = 2, method = "pm")
 }
 \arguments{
-\item{mean}{a numeric vector or data frame object containing the averaged values}
+\item{mean}{a numeric vector or data frame object containing the averaged
+values}
 
-\item{error}{a numeric vector or data frame object containing the respective error terms}
+\item{error}{a numeric vector or data frame object containing the respective
+error terms}
 
-\item{data}{a data frame containing the specified columns. If empty, \code{mean}
+\item{data}{a data frame containing the specified columns. If empty,
+\code{mean}
 and \code{error} need to be given as numeric vectors}
 
-\item{round.na}{an integer controlling how the mean value should be rounded
-when no error data was given}
+\item{signif.na}{an integer controlling to which significant digit the mean
+value should be rounded when no error data was given}
 
-\item{method}{a string specifying the output method to be used. The default method
-\code{"pm"} reports the results as "3 ± 6", while \code{"par"} results in outputs
-like "401 (89)".}
+\item{method}{a string specifying the output method to be used. The default
+method \code{"pm"} reports the results as "3 ± 6", while \code{"par"} results
+in outputs like "401 (89)".}
 }
 \description{
 This function reports the significant figures of a given \code{mean} together
-with its respective \code{error} term (e.g. confidence interval or standard deviation).
+with its respective \code{error} term (e.g. confidence interval or standard
+deviation).
 }
 \examples{
-signifig(mean = c(0.28,5), error = c(0.688, 8), round.na = 2, method = "par")
+signifig(mean = c(0.28,5), error = c(0.688, 8))
 
 }
 \references{

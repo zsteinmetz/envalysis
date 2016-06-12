@@ -2,43 +2,47 @@
 #' 
 #' @description
 #' This function reports the significant figures of a given \code{mean} together
-#' with its respective \code{error} term (e.g. confidence interval or standard deviation).
+#' with its respective \code{error} term (e.g. confidence interval or standard
+#' deviation).
 #'
-#' @param mean a numeric vector or data frame object containing the averaged values
-#' @param error a numeric vector or data frame object containing the respective error terms
-#' @param data a data frame containing the specified columns. If empty, \code{mean}
+#' @param mean a numeric vector or data frame object containing the averaged
+#' values
+#' @param error a numeric vector or data frame object containing the respective
+#' error terms
+#' @param data a data frame containing the specified columns. If empty,
+#' \code{mean}
 #' and \code{error} need to be given as numeric vectors
-#' @param round.na an integer controlling how the mean value should be rounded
-#' when no error data was given
-#' @param method a string specifying the output method to be used. The default method
-#' \code{"pm"} reports the results as "3 ± 6", while \code{"par"} results in outputs
-#' like "401 (89)".
+#' @param signif.na an integer controlling to which significant digit the mean
+#' value should be rounded when no error data was given
+#' @param method a string specifying the output method to be used. The default
+#' method \code{"pm"} reports the results as "3 ± 6", while \code{"par"} results
+#' in outputs like "401 (89)".
 #' 
 #' @examples
-#' signifig(mean = c(0.28,5), error = c(0.688, 8), round.na = 2, method = "par")
+#' signifig(mean = c(0.28,5), error = c(0.688, 8))
 #' 
 #' @references
 #' Taylor, J.R., 1997. Error analysis: the study of uncertainties in physical
 #' measurements. University Science Books, Sausalito, CA.
 #' 
 #' @export
-signifig <- function(mean, error, data, round.na = 2, method = "pm") {
+signifig <- function(mean, error, data, signif.na = 2, method = "pm") {
   if (!missing(data)) {
     mean <- data[, deparse(substitute(mean))]
     error <- data[, deparse(substitute(error))]
   }
   
-  if (length(mean) != length(error)) stop("Mean and Error term of unequal length")
+  if (length(mean) != length(error)) stop("Mean and error term of unequal size")
   if (!method %in% c("pm", "par")) {
-    stop("Method unknown, use 'pm' instead")
-    mode <- "pm"
+    warning("Method unknown, use 'pm' instead")
+    method <- "pm"
   }
   
   output <- c()
   for (i in 1:length(mean)) {
     e <- signif(error[i], 1)
     if (is.na(e)) {
-      m <- round(mean[i], round.na)
+      m <- signif(mean[i], signif.na)
     } else {
       if (e >= 1) {
         m <- round(mean[i], -nchar(as.character(e))+1)
