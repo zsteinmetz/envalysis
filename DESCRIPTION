@@ -20,5 +20,6 @@ Imports:
 Suggests:
     knitr,
     rmarkdown,
-    MASS
+    MASS,
+    testthat
 RoxygenNote: 5.0.1
