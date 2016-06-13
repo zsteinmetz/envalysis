@@ -9,20 +9,22 @@ make.raw(data, var.name, freq.name)
 \arguments{
 \item{data}{a data frame or matrix containing the frequency information}
 
-\item{var.name}{a character string specifying the column with the respective variable}
+\item{var.name}{a character string specifying the column with the respective
+variable}
 
-\item{freq.name}{a character string specifying the column with the respective frequency information}
+\item{freq.name}{a character string specifying the column with the respective
+frequency information}
 }
 \description{
-Convert a data frame or matrix containing summarized frequencies information back
-to raw data.
+Convert a data frame or matrix containing summarized frequencies information
+back to raw data.
 }
 \examples{
-data <- data.frame(var = c(10.2,15,5), freq=c(7,6,10))
+data <- data.frame(var = c(10.2,15,5), freq = c(7,6,10))
 make.raw(data, "var", "freq")
 
 }
 \seealso{
-\code{\link[graphics]{hist}}
+\code{\link[base]{table}}, \code{\link[graphics]{hist}}
 }
 

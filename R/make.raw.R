@@ -1,19 +1,21 @@
 #' @title Convert frequencies to raw data
 #' 
 #' @description
-#' Convert a data frame or matrix containing summarized frequencies information back
-#' to raw data.
+#' Convert a data frame or matrix containing summarized frequencies information
+#' back to raw data.
 #'
 #' @param data a data frame or matrix containing the frequency information
-#' @param var.name a character string specifying the column with the respective variable
-#' @param freq.name a character string specifying the column with the respective frequency information
+#' @param var.name a character string specifying the column with the respective
+#' variable
+#' @param freq.name a character string specifying the column with the respective
+#' frequency information
 #'
 #' @examples
-#' data <- data.frame(var = c(10.2,15,5), freq=c(7,6,10))
+#' data <- data.frame(var = c(10.2,15,5), freq = c(7,6,10))
 #' make.raw(data, "var", "freq")
 #' 
 #' @seealso
-#' \code{\link[graphics]{hist}}
+#' \code{\link[base]{table}}, \code{\link[graphics]{hist}}
 #' 
 #' @export
 make.raw <- function(data, var.name, freq.name) {
@@ -23,7 +25,7 @@ make.raw <- function(data, var.name, freq.name) {
   if (missing(var.name) | missing(freq.name)) {
     stop("Column names containing the variables and/or frequencies must be specified")
   }
-  if (!class(data) %in% c("data.frame","matrix")) {
+  if (!class(data) %in% c("data.frame", "matrix")) {
     stop("Input data needs to be of class 'data.frame' or 'matrix'")
   }
   else
