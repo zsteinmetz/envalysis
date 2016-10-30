@@ -14,9 +14,10 @@
 #' and \code{error} need to be given as numeric vectors
 #' @param signif.na an integer controlling to which significant digit the mean
 #' value should be rounded when no error data was given
-#' @param method a string specifying the output method to be used. The default
-#' method \code{"pm"} reports the results as "3 ± 6", while \code{"par"} results
-#' in outputs like "401 (89)".
+#' @param style a string specifying the output style to be used. The default
+#' style \code{"pm"} reports the results as "3 ± 6", while \code{"par"} results
+#' in outputs like "0.26 (0.02)". "siunitx" returns "0.26 (2)" which might be
+#' used together with xtable for automated LaTeX table outputs.
 #' 
 #' @examples
 #' signifig(mean = c(0.28,5), error = c(0.688, 8))
@@ -26,21 +27,22 @@
 #' measurements. University Science Books, Sausalito, CA.
 #' 
 #' @export
-signifig <- function(mean, error, data, signif.na = 2, method = "pm") {
+signifig <- function(mean, error, data, signif.na = 2, style = "pm") {
   if (!missing(data)) {
     mean <- data[, deparse(substitute(mean))]
     error <- data[, deparse(substitute(error))]
   }
   
   if (length(mean) != length(error)) stop("Mean and error term of unequal size")
-  if (!method %in% c("pm", "par")) {
-    warning("Method unknown, use 'pm' instead")
-    method <- "pm"
+  if (!style %in% c("pm", "par", "siunitx")) {
+    warning("Style unknown, use 'pm' instead")
+    style <- "pm"
   }
   
   output <- c()
   for (i in 1:length(mean)) {
     e <- signif(error[i], 1)
+    l <- as.numeric(substr(e, nchar(e), nchar(e)))
     if (is.na(e)) {
       m <- signif(mean[i], signif.na)
     } else {
@@ -50,8 +52,9 @@ signifig <- function(mean, error, data, signif.na = 2, method = "pm") {
         m <- round(mean[i], nchar(as.character(e))-2)
       }
     }
-    if (method == "pm") output <- c(output, paste(m,"\u00b1", e))
-    if (method == "par") output <- c(output, paste(m," (", e,")", sep=""))
+    if (style == "pm") output <- c(output, paste(m,"\u00b1", e))
+    if (style == "par") output <- c(output, paste(m," (", e,")", sep=""))
+    if (style == "siunitx") output <- c(output, paste(m," (", l,")", sep=""))
   }
   return(output)
 }
