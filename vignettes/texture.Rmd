@@ -4,14 +4,13 @@ author: "Zacharias Steinmetz"
 date: "`r Sys.Date()`"
 output:
   html_document:
-    keep_md: yes
-    fig_height: 5
     fig_width: 8
+    keep_md: yes
 vignette: >
-  %\VignetteIndexEntry{Particle size estimation}
-  %\VignetteEngine{knitr::rmarkdown}
+  \VignetteIndexEntry{Particle size estimation}
   %\VignetteEncoding{UTF-8}
   \usepackage[utf8]{inputenc}
+  \VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
@@ -114,7 +113,7 @@ algorithm has also been implemented into this package using the `texture()` func
 
 ```{r texture}
 # Load envalysis
-require(envalysis)
+library(envalysis)
 
 # Load and look at sample data
 data(clayloam)
