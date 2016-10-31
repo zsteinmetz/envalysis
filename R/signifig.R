@@ -42,19 +42,20 @@ signifig <- function(mean, error, data, signif.na = 2, style = "pm") {
   output <- c()
   for (i in 1:length(mean)) {
     e <- signif(error[i], 1)
-    l <- as.numeric(substr(e, nchar(e), nchar(e)))
     if (is.na(e)) {
       m <- signif(mean[i], signif.na)
     } else {
       if (e >= 1) {
         m <- round(mean[i], -nchar(as.character(e))+1)
+        l <- e
       } else {
         m <- round(mean[i], nchar(as.character(e))-2)
+        l <- as.numeric(substr(e, nchar(e), nchar(e)))
       }
     }
-    if (style == "pm") output <- c(output, paste(m,"\u00b1", e))
-    if (style == "par") output <- c(output, paste(m," (", e,")", sep=""))
-    if (style == "siunitx") output <- c(output, paste(m," (", l,")", sep=""))
+    if (style == "pm") output <- c(output, paste(m, "\u00b1", e))
+    if (style == "par") output <- c(output, paste0(m," (", e,")"))
+    if (style == "siunitx") output <- c(output, paste0(m,"(", l,")"))
   }
   return(output)
 }
