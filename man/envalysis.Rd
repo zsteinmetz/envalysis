@@ -11,14 +11,13 @@ environmental chemistry and ecotoxicology.
 }
 \details{
 \tabular{ll}{
-Version: \tab 0.2.2\cr
+Version: \tab 0.3.0\cr
 Licence: \tab GPLv3\cr
 }
-}
-\author{
-Zacharias Steinmetz (\email{steinmetz-z@uni-landau.de})
 }
 \references{
 Borcard D, Gillet F, Legendre P. 2011. Numerical ecology with R. Springer, New York.
 }
-
+\author{
+Zacharias Steinmetz (\email{steinmetz-z@uni-landau.de})
+}

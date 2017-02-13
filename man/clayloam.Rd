@@ -24,4 +24,3 @@ Available from \url{http://www.astm.org/Standards/D422.htm}
 \code{\link{texture}}
 }
 \keyword{data}
-

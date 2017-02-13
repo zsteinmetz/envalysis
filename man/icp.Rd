@@ -21,4 +21,3 @@ inductively coupled plasma atomic emission spectroscopy (ICP-AES).
 \code{\link{calibration}}
 }
 \keyword{data}
-

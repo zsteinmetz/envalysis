@@ -2,10 +2,10 @@
 % Please edit documentation in R/calibration.R
 \name{calibration}
 \alias{calibration}
+\alias{print.calibration}
+\alias{plot.calibration}
 \alias{lod}
 \alias{loq}
-\alias{plot.calibration}
-\alias{print.calibration}
 \title{Analytical calibration functions}
 \usage{
 calibration(formula, data = NULL, model = "lm", ...)
@@ -31,6 +31,9 @@ future}
 \item{model}{model class to be used for fitting; currently,
 \code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported}
 
+\item{\dots}{further arguments passed to the sub method, i.e. the
+respective model environment (e.g. \code{lm}), \code{plot}, or \code{print}}
+
 \item{x}{an object of class \code{calibration} with a model formula
 as shown above}
 
@@ -43,9 +46,6 @@ and \code{\link[stats]{confint}} for details}
 \item{alpha}{error tolerance for the detection limit (critical value)}
 
 \item{k}{relative uncertainty for the limit of quantification (1/beta)}
-
-\item{\dots}{further arguments passed to the sub method, i.e. the
-respective model environment (e.g. \code{lm}), \code{plot}, or \code{print}}
 }
 \value{
 \code{calibration} returns an object of \code{\link[base]{class}}
@@ -103,4 +103,3 @@ Part A. Elsevier Science Inc.
 \seealso{
 \code{\link{icp}}, \code{\link{din32645}}
 }
-

@@ -21,4 +21,3 @@ evaluation (Technical standard). Deutsches Institut für Normung, Berlin.
 \code{\link{calibration}}
 }
 \keyword{data}
-

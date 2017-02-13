@@ -26,4 +26,3 @@ values are omitted before the computation proceeds.
 rmse(c(0.12,0.59,NA), c(0.15,0.63,1.2))
 
 }
-

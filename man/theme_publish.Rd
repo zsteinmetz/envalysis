@@ -32,4 +32,3 @@ p + theme_publish()
 \seealso{
 \code{\link[ggplot2]{ggtheme}}
 }
-

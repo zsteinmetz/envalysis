@@ -27,4 +27,3 @@ make.raw(data, "var", "freq")
 \seealso{
 \code{\link[base]{table}}, \code{\link[graphics]{hist}}
 }
-

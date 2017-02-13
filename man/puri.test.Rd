@@ -36,4 +36,3 @@ Derived from Completely Randomized Factorial Designs. Biometrics 32,
 \seealso{
 \code{\link[stats]{lm}}, \code{\link[stats]{aov}}
 }
-

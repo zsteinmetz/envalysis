@@ -23,4 +23,3 @@ Kartieranleitung: mit 103 Tabellen und 31 Listen, 5.,  und  erw. Aufl. ed.
 Schweizerbart, Stuttgart.
 }
 \keyword{data}
-

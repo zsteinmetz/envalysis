@@ -36,4 +36,3 @@ sorption(conc = 1:5, c(A = 30, B = 0.8), type = "redlich")
 Atkins, P.W., 2001. Physical chemistry, 6. ed., reprint. ed. Oxford Univ.
 Press, Oxford.
 }
-

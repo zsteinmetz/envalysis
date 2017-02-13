@@ -27,4 +27,3 @@ Structure. Geoderma 56, 105–118. doi:10.1016/0016-7061(93)90103-R
 \seealso{
 \code{\link[base]{findInterval}} for the generic function.
 }
-
