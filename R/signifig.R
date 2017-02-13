@@ -39,6 +39,7 @@ signifig <- function(mean, error, data, signif.na = 2, style = "pm") {
     style <- "pm"
   }
   
+  # TODO: Replace for loop by lapply
   output <- c()
   for (i in 1:length(mean)) {
     e <- signif(error[i], 1)
@@ -49,7 +50,8 @@ signifig <- function(mean, error, data, signif.na = 2, style = "pm") {
         m <- round(mean[i], -nchar(as.character(e))+1)
         l <- e
       } else {
-        m <- round(mean[i], nchar(as.character(e))-2)
+        n <- nchar(as.character(e))-2
+        m <- format(round(mean[i], n), nsmall = n)
         l <- as.numeric(substr(e, nchar(e), nchar(e)))
       }
     }
