@@ -43,7 +43,7 @@ signifig <- function(mean, error, data, signif.na = 2, style = "pm") {
   output <- c()
   for (i in 1:length(mean)) {
     e <- signif(error[i], 1)
-    if (is.na(e)) {
+    if (is.na(e) | e == 0) {
       m <- signif(mean[i], signif.na)
     } else {
       if (e >= 1) {
