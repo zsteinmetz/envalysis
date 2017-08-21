@@ -51,6 +51,7 @@ theme_publish <- function(base_size = 12, base_family = "",
       axis.ticks = element_line(colour = "black", size = line_size),
       axis.ticks.length = unit(0.25, 'lines'),
       
+      axis.line = element_line(colour = "black", size = line_size),
       axis.line.x = element_line(colour = "black", size = line_size), 
       axis.line.y = element_line(colour = "black", size = line_size), 
       
