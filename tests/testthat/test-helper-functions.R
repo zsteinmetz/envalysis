@@ -27,4 +27,3 @@ test_that("Root mean square errors (RMSE) give proper results", {
   expect_equal(round(rmse(c(0.12,0.59,NA), c(0.15,0.63,1.2)), 4), 0.0354)
   expect_true(is.na(rmse(NA, NA)))
 })
-
