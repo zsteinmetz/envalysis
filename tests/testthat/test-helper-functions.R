@@ -13,16 +13,6 @@ test_that("Confidence intervals give proper results", {
   expect_true(is.na(CI(NA)))
 })
 
-test_that("Convert frequencies to raw data", {
-  df <- data.frame(var = c("a", "b", "c"), freq = as.integer(c(7,6,10)))
-  raws <- make.raw(df, "var", "freq")
-  tab <- table(raws)
-  
-  test <- data.frame(tab)
-  names(test) <- c("var", "freq")
-  expect_identical(df, test)
-})
-
 test_that("Root mean square errors (RMSE) give proper results", {
   expect_equal(round(rmse(c(0.12,0.59,NA), c(0.15,0.63,1.2)), 4), 0.0354)
   expect_true(is.na(rmse(NA, NA)))

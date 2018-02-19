@@ -16,7 +16,6 @@ Currently, the following functions are available:
 * Limit of detection (LOD) `lod()` and limit of quantification (LOQ) `loq()` as
 part of the `calibration` class to make linear calibration curves
 * Various sorption isotherms `sorption()`
-* Convert frequency data back to raw data `make.raw()`
 * Determine particle size distributions and soil texture classes (DIN/USDA) measured with a soil hydrometer in accordance with ASTM D422-63(2007)e2 using `texture()`; see [vignette](./vignettes/texture.md) for details
 
 ### Data presentation
