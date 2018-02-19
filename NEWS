@@ -1,3 +1,24 @@
+envalysis 0.3
+======================
+
+NEW FEATURES
+* Starting with testthat
+
+MINOR IMPROVEMENTS
+* `signifig()` supports 'siunitx' LaTeX output
+* Better data handling in `calibration()`
+* Updated man pages
+
+BUG FIXES
+* `theme_publish()` updated to work with current ggplot2 versions
+* `signifig()` can handle zeros better
+
+DEPRECATED FUNCTIONS
+
+DEFUNCT FUNCTIONS
+* `puri.test()`, use lmer on ranks (lme4) with Type II-ANOVA (car) instead
+
+
 envalysis 0.2.2
 ======================
 

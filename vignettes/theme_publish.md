@@ -1,6 +1,18 @@
-# theme_publish() demo
-Zacharias Steinmetz  
-`r Sys.Date()`  
+---
+title: "theme_publish() demo"
+author: "Zacharias Steinmetz"
+date: "2018-02-19"
+output:
+  html_document:
+    keep_md: yes
+    fig_height: 5
+    fig_width: 8
+vignette: >
+  %\VignetteIndexEntry{theme_publish demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  \usepackage[utf8]{inputenc}
+---
 
 
 
