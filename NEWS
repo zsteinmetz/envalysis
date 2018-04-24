@@ -1,4 +1,22 @@
-envalysis 0.3
+envalysis 0.3.1
+======================
+
+NEW FEATURES
+
+MINOR IMPROVEMENTS
+* `loq()` now uses iterations instead of estimating the value from `lod()`
+
+BUG FIXES
+* Better handling of unbalanced designs in `calibration()`
+
+DEPRECATED FUNCTIONS
+
+DEFUNCT FUNCTIONS
+* `make.raw()`, use `rep()` instead ;-)
+
+
+
+envalysis 0.3.0
 ======================
 
 NEW FEATURES
@@ -17,6 +35,7 @@ DEPRECATED FUNCTIONS
 
 DEFUNCT FUNCTIONS
 * `puri.test()`, use lmer on ranks (lme4) with Type II-ANOVA (car) instead
+
 
 
 envalysis 0.2.2

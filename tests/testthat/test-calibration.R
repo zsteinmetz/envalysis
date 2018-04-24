@@ -8,8 +8,8 @@ test_that("R squared", {
 })
 
 test_that("LOD/LOQ", {
-  expect_equal(round(lod(din)[1], 3), 0.054)
-  expect_equal(round(loq(din)[1], 3), 0.162)
+  expect_equal(round(lod(din)[1], 3), 0.053)
+  expect_equal(round(loq(din)[1], 3), 0.212)
 })
 
 test_that("Blank method vs. estimation", {
@@ -17,4 +17,11 @@ test_that("Blank method vs. estimation", {
     alt <- calibration(Area ~ Conc, data = din32645[din32645$Conc != 0, ])
   )
   expect_false(identical(din, alt))
+  expect_equal(loq(din), loq(alt))
+})
+
+test_that("Unbalanced design", {
+  expect_warning(
+    calibration(Area ~ Conc, data = rbind(din32645, din32645[15,]))
+  )
 })

@@ -154,24 +154,19 @@ lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
   model <- x$model
   
   conc <- model$model[,2]
-  n <- length(table(conc))
-  m <- unique(table(conc))
+  n <- length(conc)
+  m <- mean(table(conc))
 
-  if (length(m) != 1) warning("Measurement replicates of unequal size. ",
-                              "LOD estimation might be incorrect.")
+  if (m != round(m)) warning("Measurement replicates of unequal size. ",
+                             "LOD estimation might be incorrect.")
+  if (n <= model$rank) stop("Data points less than degrees of freedom.")
 
-  t <- tryCatch(-qt(alpha, n - model$rank),
-                warning = function(w) {
-                  w$message <- paste0("Data points less than degrees of freedom; ",
-                                      w$message)
-                  stop(w)
-                })
   b <- coef(model)[2]
 
   if (length(x$blanks) > 1) {
     # Direct method (LOD from blanks)
     sl <- sd(x$blanks) / b
-    val <- sl * t * sqrt(1/n + 1/m)
+    val <- sl * -qt(alpha, n - 1) * sqrt(1/n + 1/m)
   } else {
     # Indirect method (LOD from calibration curve)
     if (length(x$blanks) == 1) {
@@ -181,9 +176,9 @@ lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
     }
     sx0 <- summary(model)$sigma / b
     Qx <- sum((conc - mean(conc))^2) / m
-    val <- sx0 * t * sqrt(1/n + 1/m + (mean(conc))^2 / Qx)
+    val <- sx0 * -qt(alpha, n - model$rank) * sqrt(1/n + 1/m + (mean(conc))^2 / Qx)
   }
-  res <- c(val, conf(n) * val)
+  res <- c(val, conf(n, level) * val)
   matrix(res, nrow = 1, dimnames = list("LOD", names(res)))
 }
 
@@ -191,54 +186,45 @@ lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
 #' @rdname calibration
 #' 
 #' @param k relative uncertainty for the limit of quantification (1/beta)
+#' @param maxiter a positive integer specifying the maximum number of iterations
+#' to calculate the LOQ
 #' 
 #' @examples
 #' loq(din)
 #' 
 #' @export
-loq <- function(x, alpha = 0.01, k = 3, level = 0.05) UseMethod("loq")
+loq <- function(x, alpha = 0.01, k = 3, level = 0.05, maxiter = 10)
+  UseMethod("loq")
 
 #' @export
-loq.default <- function(x, alpha = 0.01, k = 3, level = 0.05) {
+loq.default <- function(x, alpha = 0.01, k = 3, level = 0.05,
+                        maxiter = 10) {
   stop("Object needs to be of class 'calibration'")
 }
 
 #' @export
-loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05) {
+loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05,
+                            maxiter = 10) {
   model <- x$model
   
   conc <- model$model[,2]
-  n <- length(table(conc))
-  m <- unique(table(conc))
+  n <- length(conc)
+  m <- mean(table(conc))
   
-  if (length(m) != 1) warning("Measurement replicates of unequal size. ",
-                              "LOD estimation might be incorrect.")
+  if (m != round(m)) warning("Measurement replicates of unequal size. ",
+                             "LOQ estimation might be incorrect.")
+  if (n <= model$rank) stop("Data points less than degrees of freedom.")
   
-  t <- tryCatch(-qt(alpha, n - model$rank),
-                warning = function(w) {
-                  w$message <- paste0("Data points less than degrees of freedom; ",
-                                      w$message)
-                  stop(w)
-                })
   b <- coef(model)[2]
-  lod <- x$lod[1]
   
-  if (length(x$blanks) > 1) {
-    # Direct method (LOQ from blanks)
-    sl <- sd(x$blanks) / b
-    val <- k * sl * t * sqrt(1/n + 1/m)
-  } else {
-    # Indirect method (LOQ from calibration curve)
-    if (length(x$blanks) == 1) {
-      message("Only one blank value supplied. LOQ is estimated from the calibration curve.")
-    } else {
-      message("No blanks provided. LOQ is estimated from the calibration curve.") 
-    }
-    sx0 <- summary(model)$sigma / b
-    Qx <- sum((conc - mean(conc))^2) / m
-    val <- k * sx0 * t * sqrt(1/n + 1/m + (k * lod - mean(conc))^2 / Qx)
-  }
-  res <- c(val, conf(n) * val)
+  sx0 <- summary(model)$sigma / b
+  Qx <- sum((conc - mean(conc))^2) / m
+  
+  val <- k * x$lod[1]
+  for (i in 1:maxiter) val <- k * sx0 * -qt(alpha/2, n - model$rank) * 
+    sqrt(1/n + 1/m + (val - mean(conc))^2 / Qx)
+  
+  res <- c(val, conf(n, level) * val)
   matrix(res, nrow = 1, dimnames = list("LOQ", names(res)))
 }
 
@@ -249,6 +235,6 @@ conf <- function(n, level = 0.05) {
   return(kappa)
 }
 
-# TODO: Inverse predict
-# Check alpha/beta, also to be passed from calibration to lod
-# Check other calibration functions
+# TODO: Inverse predict?
+# TODO: Add "Erfassungsgrenze"
+# TODO: Check alpha/beta, also to be passed from calibration to lod

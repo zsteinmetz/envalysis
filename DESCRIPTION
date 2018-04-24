@@ -1,8 +1,8 @@
 Package: envalysis
 Type: Package
 Title: Miscellaneous Functions for Environmental Analyses
-Version: 0.3
-Date: 2018-02-19
+Version: 0.3.1
+Date: 2018-04-24
 Author: Zacharias Steinmetz
 Maintainer: Zacharias Steinmetz <steinmetz-z@uni-landau>
 Description: Data manipulation tools and functions that may be helpful for data

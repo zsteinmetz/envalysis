@@ -16,7 +16,7 @@ calibration(formula, data = NULL, model = "lm", ...)
 
 lod(x, alpha = 0.01, level = 0.05)
 
-loq(x, alpha = 0.01, k = 3, level = 0.05)
+loq(x, alpha = 0.01, k = 3, level = 0.05, maxiter = 10)
 }
 \arguments{
 \item{formula}{model formula providing the recorded signal intensities with
@@ -46,6 +46,9 @@ and \code{\link[stats]{confint}} for details}
 \item{alpha}{error tolerance for the detection limit (critical value)}
 
 \item{k}{relative uncertainty for the limit of quantification (1/beta)}
+
+\item{maxiter}{a positive integer specifying the maximum number of iterations
+to calculate the LOQ}
 }
 \value{
 \code{calibration} returns an object of \code{\link[base]{class}}
