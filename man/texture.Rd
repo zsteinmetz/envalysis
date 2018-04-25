@@ -17,13 +17,13 @@ texture(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
 \item{time}{a numeric vector or data frame object containing the time passed
 since the beginning of the measurement in minutes}
 
-\item{reading}{a numeric vector or data frame object providing the actual hydrometer
-readings at the bottom of the meniscus}
+\item{reading}{a numeric vector or data frame object providing the actual
+hydrometer readings at the bottom of the meniscus}
 
-\item{blank}{a numeric vector or data frame object containing the blank readings
-taken in 5 g/L sodium hexametaphosphate solution (composite correction)}
+\item{blank}{a numeric vector or data frame object containing the blank
+readings taken in 5 g/L sodium hexametaphosphate solution (composite correction)}
 
-\item{temp}{a numeric vector or data frame object containing the measured
+\item{temp}{an integer vector or data frame object containing the measured
 temperature}
 
 \item{data}{a data frame containing the specified columns. If empty, data

@@ -8,11 +8,11 @@
 #' 
 #' @param time a numeric vector or data frame object containing the time passed
 #' since the beginning of the measurement in minutes
-#' @param reading a numeric vector or data frame object providing the actual hydrometer
-#' readings at the bottom of the meniscus
-#' @param blank a numeric vector or data frame object containing the blank readings
-#' taken in 5 g/L sodium hexametaphosphate solution (composite correction)
-#' @param temp a numeric vector or data frame object containing the measured
+#' @param reading a numeric vector or data frame object providing the actual
+#' hydrometer readings at the bottom of the meniscus
+#' @param blank a numeric vector or data frame object containing the blank
+#' readings taken in 5 g/L sodium hexametaphosphate solution (composite correction)
+#' @param temp an integer vector or data frame object containing the measured
 #' temperature
 #' @param data a data frame containing the specified columns. If empty, data
 #' need to be given as numeric vectors
@@ -64,14 +64,14 @@ texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
     blank <- data[, deparse(substitute(blank))]
   }
   Gs <- round(Gs, 2)
-  temp <- round(temp)
+  temp <- as.integer(round(temp))
   
   # Error handling
   if (hydrometer == "auto") {
-    if (class(reading) == "integer" & all(reading %in% 0:60)) {
+    if (all(reading == round(reading)) & all(reading %in% 0:60)) {
       hydrometer <- "152H"
     } else {
-      if (class(reading) == "numeric" & all(reading %in% 1:1.038)) {
+      if (all(reading != round(reading)) & all(reading %in% 1:1.038)) {
         hydrometer <- "151H"
       } else {
         stop("Automatic detection failed. Specify the hydrometer used.")
@@ -90,49 +90,33 @@ texture <- function(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
   eff_depth <- (int - sl * corr_val) + 1 / 2 * (14 - (67 / 27.8))
   diam <- d422_k[as.character(temp),as.character(Gs)] * sqrt(eff_depth / time)
   perc_pass <- corr_val*alpha / conc
-  
-  assign(".distr", data.frame(particle.size = diam, perc.passing = perc_pass),
-         envir = .GlobalEnv)
-  
+
+  distr <- data.frame(particle.size = diam, perc.passing = perc_pass)
+
   # Fit DRC
   if (model == "auto") {
-    init <- drm(perc.passing ~ particle.size, data = .distr, fct=LL.2())
+    init <- drm(perc.passing ~ particle.size, data = distr, fct = LL.2())
     fctList <- list(LL.2(), LL.3(), LL.3u(), LL.4(), LL.5(), W1.2(), W1.3(),
                     W1.4(), W2.2(), W2.3(), W2.4(), BC.4(), BC.5(), LL2.2(),
                     LL2.3(), LL2.3u(), LL2.4(), LL2.5(), MM.2(), MM.3())
-    opt <- mselect(init, fctList)
-    fit <- drm(perc.passing ~ particle.size, data = .distr,
+    opt <- envalysis::mselect(init, fctList)
+    fit <- drm(perc.passing ~ particle.size, data = distr,
                fct = eval(call(row.names(opt)[1])))
   } else {
-    fit <- drm(perc.passing ~ particle.size, data = .distr,
+    fit <- drm(perc.passing ~ particle.size, data = distr,
                fct = eval(call(model)))
-  }
-
-  # Retrieve main texture classes
-  tex_classes <- function(psize, obj) {
-    bounds <- predict(obj, newdata = data.frame(particle.size = psize), se.fit = T)
-
-    matrix(
-      c(bounds[1, "Prediction"], bounds[2, "Prediction"] - bounds[1, "Prediction"],
-        1 - bounds[2, "Prediction"], bounds[1, "SE"], bounds[2, "SE"] +
-          bounds[1, "SE"], bounds[2, "SE"]
-      ), ncol = 3, byrow = T,
-      dimnames = list(c("Estimate", "Std. Error"),
-                      c("Clay", "Silt", "Sand"))
-    )
   }
   
   din <- tex_classes(c(0.002, 0.063), fit)
   usda <- tex_classes(c(0.002, 0.05), fit)             
   
   out <- list(meta = c(Hydrometer = hydrometer, Gs = Gs, Conc = conc),
-              distribution = .distr, model = fit, din = din, usda = usda)
+              distribution = distr, model = fit, din = din, usda = usda)
   class(out) <- c("texture", class(out))
-  rm(.distr, envir = .GlobalEnv)
+  
   if (plot) plot(out)
   return(out)
 }
-globalVariables(".distr")
 
 #' @family texture
 #' @rdname texture
@@ -164,3 +148,17 @@ print.texture <- function(x, ...) {
 #'
 #' @export
 plot.texture <- function(x, ...) plot(x$model, log = "x", type = "all", ...)
+
+# Auxiliary function for retrieving main texture classes
+tex_classes <- function(psize, obj) {
+  bounds <- predict(obj, newdata = data.frame(particle.size = psize), se.fit = T)
+  
+  matrix(
+    c(bounds[1, "Prediction"], bounds[2, "Prediction"] - bounds[1, "Prediction"],
+      1 - bounds[2, "Prediction"], bounds[1, "SE"], bounds[2, "SE"] +
+        bounds[1, "SE"], bounds[2, "SE"]
+    ), ncol = 3, byrow = T,
+    dimnames = list(c("Estimate", "Std. Error"),
+                    c("Clay", "Silt", "Sand"))
+  )
+}
