@@ -1,3 +1,19 @@
+envalysis 0.3.2
+======================
+
+NEW FEATURES
+
+MINOR IMPROVEMENTS
+
+BUG FIXES
+* Reimplementation of drc's `mselect()` for `texture()` to get rid of global variables
+
+DEPRECATED FUNCTIONS
+
+DEFUNCT FUNCTIONS
+
+
+
 envalysis 0.3.1
 ======================
 
@@ -13,7 +29,6 @@ DEPRECATED FUNCTIONS
 
 DEFUNCT FUNCTIONS
 * `make.raw()`, use `rep()` instead ;-)
-
 
 
 envalysis 0.3.0
@@ -35,7 +50,6 @@ DEPRECATED FUNCTIONS
 
 DEFUNCT FUNCTIONS
 * `puri.test()`, use lmer on ranks (lme4) with Type II-ANOVA (car) instead
-
 
 
 envalysis 0.2.2
