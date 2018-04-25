@@ -1,6 +1,17 @@
-# Particle size estimation using the hydrometer method modified from ASTM D422-63(2007)e2 and Bouyoucos (1927)
-Zacharias Steinmetz  
-`r Sys.Date()`  
+---
+title: "Particle size estimation using the hydrometer method modified from ASTM D422-63(2007)e2 and Bouyoucos (1927)"
+author: "Zacharias Steinmetz"
+date: "2018-04-25"
+output:
+  html_document:
+    fig_width: 8
+    keep_md: yes
+vignette: >
+  %\VignetteIndexEntry{Particle size estimation}
+  %\VignetteEncoding{UTF-8}
+  %\usepackage[utf8]{inputenc}
+  %\VignetteEngine{knitr::rmarkdown}
+---
 
 
 
@@ -96,7 +107,7 @@ algorithm has also been implemented into this package using the `texture()` func
 
 ```r
 # Load envalysis
-require(envalysis)
+library(envalysis)
 
 # Load and look at sample data
 data(clayloam)
@@ -152,7 +163,7 @@ texture(Time, Reading, Blank, Temperature, data = clayloam, plot = T)
 ## References
 Ashworth, J., Keyes, D., Kirk, R., Lessard, R., 2001. Standard Procedure in the 
 Hydrometer Method for Particle Size Analysis. Communications in Soil Science and 
-Plant Analysis 32, 633–642. doi:10.1081/CSS-100103897
+Plant Analysis 32, 633–642. <doi:10.1081/CSS-100103897>
 
 ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis of 
 Soils (Technical standard). ASTM International, West Conshohocken, PA.

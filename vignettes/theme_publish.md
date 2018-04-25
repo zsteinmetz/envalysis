@@ -1,7 +1,7 @@
 ---
 title: "theme_publish() demo"
 author: "Zacharias Steinmetz"
-date: "2018-02-19"
+date: "2018-04-25"
 output:
   html_document:
     keep_md: yes
