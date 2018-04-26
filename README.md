@@ -4,7 +4,12 @@ envalysis
 [![Travis-CI Build Status](https://travis-ci.org/zsteinmetz/envalysis.svg?branch=master)](https://travis-ci.org/zsteinmetz/envalysis)
 [![License](http://img.shields.io/:license-GPL--3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 
-`envalysis` is an R package containing miscellaneous functions for data analyses in environmental chemistry and ecotoxicology. Some functions of the package require `ggplot2` or `drc`.
+`envalysis` is an R package containing miscellaneous functions for data analyses
+in environmental chemistry and ecotoxicology. Provides, e.g., calibration() to
+calculate calibration curves and corresponding limits of detection (LODs) and
+quantification (LOQs) according to German DIN 32645:2008-11. texture() makes it
+easy to estimate soil particle size distributions from hydrometer measurements
+(ASTM D422-63(2007)e2). Some functions of the package require `ggplot2` or `drc`.
 
 ## Functions
 Currently, the following functions are available:
