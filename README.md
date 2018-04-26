@@ -14,7 +14,8 @@ Currently, the following functions are available:
 * Confidence intervals `CI()`
 * Root mean square errors `rmse()`
 * Limit of detection (LOD) `lod()` and limit of quantification (LOQ) `loq()` as
-part of the `calibration` class to make linear calibration curves
+part of the `calibration` class to make linear calibration curves according to
+German DIN 32645:2008-11
 * Various sorption isotherms `sorption()`
 * Determine particle size distributions and soil texture classes (DIN/USDA) measured with a soil hydrometer in accordance with ASTM D422-63(2007)e2 using `texture()`; see [vignette](./vignettes/texture.md) for details
 

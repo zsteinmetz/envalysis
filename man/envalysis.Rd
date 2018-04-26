@@ -6,17 +6,21 @@
 \alias{envalysis-package}
 \title{Miscellaneous Functions for Environmental Analyses}
 \description{
-Data manipulation tools and functions that may be helpful for data analyses in
-environmental chemistry and ecotoxicology.
+Small toolbox for data analyses in environmental chemistry and ecotoxicology.
+Provides, e.g., calibration() to calculate calibration curves and
+corresponding limits of detection (LODs) and quantification (LOQs) according
+to German DIN 32645:2008-11. texture() makes it easy to estimate soil
+particle size distributions from hydrometer measurements ASTM D422-63(2007)e2.
 }
 \details{
 \tabular{ll}{
-Version: \tab 0.3.2\cr
+Version: \tab 0.3.3\cr
 Licence: \tab GPLv3\cr
 }
 }
 \references{
-Borcard D, Gillet F, Legendre P. 2011. Numerical ecology with R. Springer, New York.
+Borcard D, Gillet F, Legendre P. 2011. Numerical ecology with R. Springer,
+New York.
 }
 \author{
 Zacharias Steinmetz (\email{steinmetz-z@uni-landau.de})
