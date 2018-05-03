@@ -7,13 +7,13 @@ envalysis
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/envalysis)](https://CRAN.R-project.org/package=envalysis)
 [![DOI](https://zenodo.org/badge/36175149.svg)](https://zenodo.org/badge/latestdoi/36175149)
 
-`envalysis` is an R package containing miscellaneous functions for data analyses
+**envalysis** is an R package containing miscellaneous functions for data analyses
 in environmental chemistry and ecotoxicology. Provides, e.g., `calibration()` to
 calculate calibration curves and corresponding limits of detection (LODs) and
 quantification (LOQs) according to German DIN 32645:2008-11. `texture()` makes
 it easy to estimate soil particle size distributions from hydrometer
 measurements (ASTM D422-63(2007)e2).
-Some functions of the package require `ggplot2` or `drc`.
+Some functions of the package require **ggplot2** or **drc**.
 
 ## Functions
 Currently, the following functions are available:
@@ -35,7 +35,7 @@ to German DIN 32645:2008-11
 * Clean, black-and-white ggplot2 theme for scientific publications `theme_publish()`; a preview is available [here](./vignettes/theme_publish.md)
 
 ## Installation
-`envalysis` is available on CRAN and GitHub.
+**envalysis** is available on CRAN and GitHub.
 
 ### Install from CRAN (stable version)
 
@@ -46,7 +46,7 @@ install.packages("envalysis")
 ### Install from GitHub (development version)
 
 To install the package, paste the following code into your R console
-(requires `devtools`):
+(requires **devtools**):
 
 ```r
 if (!'devtools' %in% installed.packages()[,'Package']) install.packages('devtools')

@@ -92,7 +92,7 @@ envalysis 0.2.1
 NEW FEATURES
 
 MINOR IMPROVEMENTS
-* Switch to `drc` package for texture curve fitting
+* Switch to drc package for texture curve fitting
 
 BUG FIXES
 
