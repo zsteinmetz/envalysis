@@ -5,6 +5,7 @@ envalysis
 [![Travis-CI Build Status](https://travis-ci.org/zsteinmetz/envalysis.svg?branch=master)](https://travis-ci.org/zsteinmetz/envalysis)
 [![License](http://img.shields.io/:license-GPL--3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html) 
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/envalysis)](https://CRAN.R-project.org/package=envalysis)
+[![DOI](https://zenodo.org/badge/36175149.svg)](https://zenodo.org/badge/latestdoi/36175149)
 
 `envalysis` is an R package containing miscellaneous functions for data analyses
 in environmental chemistry and ecotoxicology. Provides, e.g., `calibration()` to
