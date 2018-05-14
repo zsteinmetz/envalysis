@@ -156,6 +156,7 @@ lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
   conc <- model$model[,2]
   n <- length(conc)
   m <- mean(table(conc))
+  digs <- max(nchar(gsub("(.*\\.)|([0]*$)", "", as.character(conc)))) + 1
 
   if (m != round(m)) warning("Measurement replicates of unequal size. ",
                              "LOD estimation might be incorrect.")
@@ -179,7 +180,7 @@ lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
     val <- sx0 * -qt(alpha, n - model$rank) * sqrt(1/n + 1/m + (mean(conc))^2 / Qx)
   }
   res <- c(val, conf(n, level) * val)
-  matrix(res, nrow = 1, dimnames = list("LOD", names(res)))
+  matrix(round(res, digs), nrow = 1, dimnames = list("LOD", names(res)))
 }
 
 #' @family calibration
@@ -210,6 +211,7 @@ loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05,
   conc <- model$model[,2]
   n <- length(conc)
   m <- mean(table(conc))
+  digs <- max(nchar(gsub("(.*\\.)|([0]*$)", "", as.character(conc)))) + 1
   
   if (m != round(m)) warning("Measurement replicates of unequal size. ",
                              "LOQ estimation might be incorrect.")
@@ -221,11 +223,15 @@ loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05,
   Qx <- sum((conc - mean(conc))^2) / m
   
   val <- k * x$lod[1]
-  for (i in 1:maxiter) val <- k * sx0 * -qt(alpha/2, n - model$rank) * 
-    sqrt(1/n + 1/m + (val - mean(conc))^2 / Qx)
+  for (i in 1:maxiter) {
+    prval <- val
+    val <- k * sx0 * -qt(alpha/2, n - model$rank) *
+      sqrt(1/n + 1/m + (val - mean(conc))^2 / Qx)
+    if (round(prval, digs) == round(val, digs)) break
+  }
   
   res <- c(val, conf(n, level) * val)
-  matrix(res, nrow = 1, dimnames = list("LOQ", names(res)))
+  matrix(round(res, digs), nrow = 1, dimnames = list("LOQ", names(res)))
 }
 
 # Auxiliary function for confidence intervals of LOD/LOQ

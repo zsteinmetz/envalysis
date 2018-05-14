@@ -1,3 +1,19 @@
+envalysis 0.3.x
+======================
+
+NEW FEATURES
+
+MINOR IMPROVEMENTS
+* `loq()` iterates only until significant digits won't change anymore
+
+BUG FIXES
+
+DEPRECATED FUNCTIONS
+
+DEFUNCT FUNCTIONS
+
+
+
 envalysis 0.3.3
 ======================
 
