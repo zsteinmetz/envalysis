@@ -7,6 +7,7 @@ MINOR IMPROVEMENTS
 * `loq()` iterates only until significant digits won't change anymore
 
 BUG FIXES
+* Force percentage bounds for `texture()` to 0 and 100
 
 DEPRECATED FUNCTIONS
 

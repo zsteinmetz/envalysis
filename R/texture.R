@@ -150,14 +150,14 @@ print.texture <- function(x, ...) {
 plot.texture <- function(x, ...) plot(x$model, log = "x", type = "all", ...)
 
 # Auxiliary function for retrieving main texture classes
-tex_classes <- function(psize, obj) {
-  bounds <- predict(obj, newdata = data.frame(particle.size = psize), se.fit = T)
+tex_classes <- function(psize, object) {
+  bounds <- predict(object, newdata = data.frame(particle.size = psize), se.fit = T)
+  if (bounds[1, 1] < 0) bounds[1, 1] <- 0
+  if (bounds[2, 1] > 1) bounds[2, 1] <- 1
   
   matrix(
-    c(bounds[1, "Prediction"], bounds[2, "Prediction"] - bounds[1, "Prediction"],
-      1 - bounds[2, "Prediction"], bounds[1, "SE"], bounds[2, "SE"] +
-        bounds[1, "SE"], bounds[2, "SE"]
-    ), ncol = 3, byrow = T,
+    c(bounds[1, 1], bounds[2, 1] - bounds[1, 1], 1 - bounds[2, 1], bounds[1, 2],
+      bounds[2, 2] + bounds[1, 2], bounds[2, 2]), ncol = 3, byrow = T,
     dimnames = list(c("Estimate", "Std. Error"),
                     c("Clay", "Silt", "Sand"))
   )
