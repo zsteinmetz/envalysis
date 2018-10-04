@@ -49,7 +49,7 @@ To install the package, paste the following code into your R console
 (requires **devtools**):
 
 ```r
-if (!'devtools' %in% installed.packages()[,'Package']) install.packages('devtools')
-devtools::install_github('zsteinmetz/envalysis')
+if (!require(devtools)) install.packages("devtools")
+devtools::install_github("zsteinmetz/envalysis")
 library(envalysis)
 ```
