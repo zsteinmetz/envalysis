@@ -2,59 +2,78 @@
 % Please edit documentation in R/texture.R
 \name{texture}
 \alias{texture}
+\alias{texture.formula}
+\alias{texture.default}
 \alias{print.texture}
 \alias{plot.texture}
 \title{ASTM soil texture analysis}
 \usage{
-texture(time, reading, blank, temp, data, conc = 50, Gs = 2.65,
-  hydrometer = "auto", model = "auto", plot = F)
+texture(reading, ...)
+
+\method{texture}{formula}(formula, data, ...)
+
+\method{texture}{default}(
+  reading,
+  blank,
+  time,
+  temp,
+  conc = 50,
+  Gs = 2.65,
+  hydrometer = "auto",
+  model = "auto",
+  plot = F,
+  ...
+)
 
 \method{print}{texture}(x, ...)
 
 \method{plot}{texture}(x, ...)
 }
 \arguments{
-\item{time}{a numeric vector or data frame object containing the time passed
-since the beginning of the measurement in minutes}
+\item{reading}{a numeric vector of data values providing the hydrometer
+readings at the bottom of the meniscus.}
 
-\item{reading}{a numeric vector or data frame object providing the actual
-hydrometer readings at the bottom of the meniscus}
+\item{\dots}{further arguments to be passed to \code{texture} (currently not
+used), \code{print}, or \code{plot}.}
 
-\item{blank}{a numeric vector or data frame object containing the blank
-readings taken in 5 g/L sodium hexametaphosphate solution (composite correction)}
+\item{formula}{an object of class '\code{\link[stats]{formula}}' of the form
+\code{reading ~ blank + time + temp}.}
 
-\item{temp}{an integer vector or data frame object containing the measured
-temperature}
+\item{data}{a data frame containing the variables in \code{formula}.}
 
-\item{data}{a data frame containing the specified columns. If empty, data
-need to be given as numeric vectors}
+\item{blank}{a numeric vector containing the blank readings taken in 5 g/L
+sodium hexametaphosphate solution (composite correction).}
 
-\item{conc}{the concentration of the soil solution, default = 50 g/L as
-proposed in the ASTM guideline}
+\item{time}{a numeric vector containing the time passed since the beginning
+of the measurement in minutes.}
 
-\item{Gs}{specific gravity of the suspension, default = 2.65}
+\item{temp}{an integer vector containing the measured temperature.}
 
-\item{hydrometer}{a character sting specifying the hydrometer used. Accepted
-values are \code{"auto"} for auto-detection (default), \code{"151H"}, and \code{"152H"}}
+\item{conc}{the concentration of the soil solution, default is 50 g/L as
+proposed in the ASTM guideline.}
+
+\item{Gs}{specific gravity of the suspension.}
+
+\item{hydrometer}{a character string specifying the hydrometer used; accepted
+values are \code{"auto"} for auto-detection (default), \code{"151H"}, and
+\code{"152H"}.}
 
 \item{model}{string is passed to \code{\link[drc]{drm}}, "auto" chooses the
-best fitting model automatically}
+best fitting model automatically.}
 
-\item{plot}{logical; if TRUE the particle size distribution is plotted}
+\item{plot}{logical; if \code{TRUE} the particle size distribution is plotted.}
 
-\item{x}{an object of class "texture"}
-
-\item{\dots}{further arguments to be passed to \code{print} or \code{plot}}
+\item{x}{an object of class "texture".}
 }
 \value{
-\code{texture} returns an object of \code{\link[base]{class}} "texture". The functions
-\code{print} and \code{plot} are available to retrieve the soil texture classes
-and the particle size distribution, respectively.
+\code{texture} returns an object of \code{\link[base]{class}} "texture". The
+functions \code{print} and \code{plot} are available to retrieve the soil
+texture classes and the particle size distribution, respectively.
 
 An object of class "texture" is a list containing the following components:
 \tabular{ll}{
 \code{meta} \tab Measurement meta data\cr
-\code{distribution} \tab \code{data.frame} providing the particle size
+\code{distribution} \tab data frame providing the particle size
 distribution\cr
 \code{model} \tab information on the fitted \code{\link[drc]{drm}} model\cr
 \code{din} \tab Main DIN texture classes\cr
@@ -63,11 +82,19 @@ distribution\cr
 }
 \description{
 Calculates the particle size distribution and both DIN and USDA texture
-classes from a series of hydrometer readings according to ASTM D422-63(2007)e2.
+classes from a series of hydrometer readings according to
+ASTM D422-63(2007)e2.
 }
 \examples{
 data(clayloam)
-texture(Time, Reading, Blank, Temperature, data = clayloam)
+
+## Default method
+attach(clayloam)
+texture(reading, blank, time, temperature)
+detach(clayloam)
+
+## Formula interface
+texture(reading ~ blank + time + temperature, clayloam)
 
 }
 \references{
@@ -75,3 +102,4 @@ ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis
 of Soils (Technical standard). ASTM International, West Conshohocken, PA.
 Available from \url{http://www.astm.org/Standards/D422.htm}
 }
+\concept{texture}

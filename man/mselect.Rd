@@ -8,20 +8,20 @@ mselect(object, fctList = NULL, nested = FALSE,
 sorted = c("IC", "Res var", "Lack of fit", "no"), linreg = FALSE, icfct = AIC)
 }
 \arguments{
-\item{object}{an object of class \code{drc}}
+\item{object}{an object of class \code{drc}.}
 
-\item{fctList}{a list of dose-response functions to be compared}
+\item{fctList}{a list of dose-response functions to be compared.}
 
 \item{nested}{logical; \code{TRUE} results in F tests between adjacent models
-(in \code{fctList}; only sensible for nested models}
+(in \code{fctList}; only sensible for nested models.}
 
 \item{sorted}{character string determining according to which criterion the
-model fits are ranked}
+model fits are ranked.}
 
 \item{linreg}{logical indicating whether or not additionally polynomial
 regression models (linear, quadratic, and cubic models) should be fitted
 (they could be useful for a kind of informal lack-of-test consideration for
-the models specified,  capturing unexpected departures)}
+the models specified,  capturing unexpected departures).}
 
 \item{icfct}{function for supplying the information criterion to be used.
 \code{\link{AIC}} and \code{\link{BIC}} are two options.}

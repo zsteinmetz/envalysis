@@ -120,7 +120,7 @@ data(clayloam)
 clayloam
 
 # Calculate the particle size distribution
-texture(Time, Reading, Blank, Temperature, data = clayloam, plot = T)
+texture(reading ~ blank + time + temperature, clayloam, plot = T)
 ```
 
 ## References

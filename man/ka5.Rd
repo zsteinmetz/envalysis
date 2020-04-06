@@ -4,14 +4,16 @@
 \name{ka5}
 \alias{ka5}
 \title{KA5 soil texture classes}
-\format{A data frame containing 71 rows and 5 columns with information on:
+\format{
+A data frame containing 71 rows and 5 columns with information on:
 \tabular{ll}{
 Clay: \tab the clay fraction in percent\cr
 Silt: \tab the silt fraction in percent\cr
 Sand: \tab the sand fraction in percent\cr
 Group: \tab the respective soil texture group\cr
 Class: \tab the main soil texture class\cr
-}}
+}
+}
 \description{
 Soil texture classes for texture triangles as provided by
 \emph{Bodenkundliche Kartieranleitung} (Sponagel et al., 2005)

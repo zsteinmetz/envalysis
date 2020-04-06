@@ -4,16 +4,18 @@
 \name{clayloam}
 \alias{clayloam}
 \title{Hydrometer readings for a clay loam}
-\format{A data frame containing 7 rows and 4 columns with information on:
+\format{
+A data frame containing 7 rows and 4 columns with information on:
 \tabular{ll}{
-Time: \tab the measurement time in minutes\cr
-Temperature: \tab the temperature of the soil suspension\cr
-Reading: \tab the hydrometer reading at the bottom of the meniscus\cr
-Blank: \tab a blank value obtained in 5 g/L sodium
+time: \tab the measurement time in minutes\cr
+temperature: \tab the temperature of the soil suspension\cr
+reading: \tab the hydrometer reading at the bottom of the meniscus\cr
+blank: \tab a blank value obtained in 5 g/L sodium
 hexametaphosphate solution (composite correction)\cr
-}}
+}
+}
 \description{
-Data obtained with an 152H hydrometer in accordance with ASTM D422-63(2007)e2.
+Data obtained with a 152H hydrometer in accordance with ASTM D422-63(2007)e2.
 }
 \references{
 ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis

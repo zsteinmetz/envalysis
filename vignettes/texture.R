@@ -1,4 +1,4 @@
-## ----setup, include=FALSE, echo=FALSE------------------------------------
+## ----setup, include=FALSE, echo=FALSE-----------------------------------------
 knitr::opts_chunk$set(
   echo = TRUE,
   warning = FALSE, 
@@ -6,7 +6,7 @@ knitr::opts_chunk$set(
   comment = "# >"
 )
 
-## ----texture-------------------------------------------------------------
+## ----texture------------------------------------------------------------------
 # Load envalysis
 library(envalysis)
 
@@ -15,5 +15,5 @@ data(clayloam)
 clayloam
 
 # Calculate the particle size distribution
-texture(Time, Reading, Blank, Temperature, data = clayloam, plot = T)
+texture(reading ~ blank + time + temperature, clayloam, plot = T)
 

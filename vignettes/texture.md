@@ -1,7 +1,7 @@
 ---
 title: "Particle size estimation using the hydrometer method modified from ASTM D422-63(2007)e2 and Bouyoucos (1927)"
 author: "Zacharias Steinmetz"
-date: "2018-04-26"
+date: "2020-04-06"
 output:
   html_document:
     fig_width: 8
@@ -115,7 +115,7 @@ clayloam
 ```
 
 ```
-# >     Time Temperature Reading Blank
+# >     time temperature reading blank
 # > 1   0.66          23      39     2
 # > 2   2.00          23      33     2
 # > 3   5.00          23      29     2
@@ -127,10 +127,10 @@ clayloam
 
 ```r
 # Calculate the particle size distribution
-texture(Time, Reading, Blank, Temperature, data = clayloam, plot = T)
+texture(reading ~ blank + time + temperature, clayloam, plot = T)
 ```
 
-![](texture_files/figure-html/texture-1.png)<!-- -->
+![](/home/steinmetz-z/Documents/PhD/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png)<!-- -->
 
 ```
 # > Soil particle estimation according to ASTM D422-63
