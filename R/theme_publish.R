@@ -26,7 +26,7 @@
 theme_publish <- function(base_size = 12, base_family = "",
                           line_size = 0.25, ...) {
   half_line <- base_size / 2
-  small_rel <- 0.875
+  small_rel <- 0.8
   small_size <- small_rel * base_size
   
   theme_bw(base_size = base_size, base_family = base_family, ...) %+replace%
@@ -79,9 +79,10 @@ theme_publish <- function(base_size = 12, base_family = "",
                                   margin = ggplot2::margin(l = small_size/2,
                                                            r = small_size/4)),
       
-      plot.margin = unit(c(5,2.5,0,0), "pt"),
+      plot.margin = unit(c(5,5,0,0), "pt"),
       plot.background = element_blank(),
-      plot.title = element_text(face = "bold", size = 1.125 * base_size, 
-                                margin = ggplot2::margin(b = half_line))
+      plot.title = element_text(face = "bold", size = 1.2 * base_size, 
+                                margin = ggplot2::margin(b = half_line),
+                                hjust = 0)
     )
 }
