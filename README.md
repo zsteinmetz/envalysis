@@ -20,7 +20,7 @@ Currently, the following functions are available:
 
 ### Data manipulation and analysis
 
-* Confidence intervals `CI()`
+* Confidence intervals `CI()` and standard errors `se()`
 * Root mean square errors `rmse()`
 * Limit of detection (LOD) `lod()` and limit of quantification (LOQ) `loq()` as
 part of the `calibration` class to produce linear calibration curves according
