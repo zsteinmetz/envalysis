@@ -1,13 +1,16 @@
-envalysis 0.3.x
+envalysis 0.4
 ======================
 
 NEW FEATURES
 
 MINOR IMPROVEMENTS
+* `texture()` now takes data as formula
+* tibble support for `texture()`
 * `loq()` iterates only until significant digits won't change anymore
 
 BUG FIXES
 * Force percentage bounds for `texture()` to 0 and 100
+* Increased margins for `theme_publish()`
 
 DEPRECATED FUNCTIONS
 

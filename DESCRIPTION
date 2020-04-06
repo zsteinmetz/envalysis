@@ -1,8 +1,8 @@
 Package: envalysis
 Type: Package
 Title: Miscellaneous Functions for Environmental Analyses
-Version: 0.3.3
-Date: 2018-04-26
+Version: 0.4
+Date: 2020-04-06
 Authors@R: c(person("Zacharias", "Steinmetz", role = c("aut", "cre"),
     email = "steinmetz-z@uni-landau.de",
     comment = c(ORCID = "0000-0001-6675-5033")))
@@ -20,6 +20,8 @@ License: GPL-3
 LazyLoad: yes
 LazyData: yes
 VignetteBuilder: knitr
+Depends:
+    R (>= 3.5.0)
 Imports:
     drc,
     ggplot2
@@ -27,5 +29,7 @@ Suggests:
     knitr,
     rmarkdown,
     MASS,
-    testthat
-RoxygenNote: 6.1.0
+    testthat,
+    data.table,
+    tibble
+RoxygenNote: 7.1.0
