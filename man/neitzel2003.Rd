@@ -4,11 +4,13 @@
 \name{neitzel2003}
 \alias{neitzel2003}
 \title{Calibration data from Neitzel, 2003}
-\format{A data frame containing 20 rows and 2 columns with information on:
+\format{
+A data frame containing 20 rows and 2 columns with information on:
 \tabular{ll}{
 Conc: \tab nominal concentration\cr
 Meas: \tab measurement signal\cr
-}}
+}
+}
 \description{
 Artificial sample data for the verification of quantification limits.
 }

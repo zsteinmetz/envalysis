@@ -4,8 +4,8 @@
 #' This wrapper function categorizes water drop penetration times (WDPT) [s] according to
 #' the scale proposed by Bisdom et al. (1993).
 #' 
-#' @param wdpt a numeric vector containing WDPT measurement data in seconds
-#' @param \dots arguments passed to \code{\link[base]{findInterval}}
+#' @param wdpt a numeric vector containing WDPT measurement data in seconds.
+#' @param \dots arguments passed to \code{\link[base]{findInterval}}.
 #' 
 #' @seealso
 #' \code{\link[base]{findInterval}} for the generic function.

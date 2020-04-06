@@ -3,7 +3,6 @@
 \docType{package}
 \name{envalysis}
 \alias{envalysis}
-\alias{envalysis-package}
 \title{Miscellaneous Functions for Environmental Analyses}
 \description{
 Small toolbox for data analyses in environmental chemistry and ecotoxicology.
@@ -15,7 +14,7 @@ D422-63(2007)e2).
 }
 \details{
 \tabular{ll}{
-Version: \tab 0.3.3\cr
+Version: \tab 0.4\cr
 Licence: \tab GPLv3\cr
 }
 }

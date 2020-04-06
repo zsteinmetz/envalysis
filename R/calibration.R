@@ -19,12 +19,12 @@
 #' \code{signal ~ concentration} or \code{signal ~ concentraion - 1}; model
 #' formulae are currently restricted to those forms, however, the possibility
 #' to use \code{log} or \code{sqrt} transformed data will be implemented in the
-#' future
-#' @param data an optional data frame containing the variables in the model
+#' future.
+#' @param data an optional data frame containing the variables in the model.
 #' @param model model class to be used for fitting; currently,
-#' \code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported
+#' \code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported.
 #' @param \dots further arguments passed to the sub method, i.e. the
-#' respective model environment (e.g. \code{lm}), \code{plot}, or \code{print}
+#' respective model environment (e.g. \code{lm}), \code{plot}, or \code{print}.
 #' 
 #' @details
 #' If the \code{data} supplied to \code{calibration} contain more than one blank
@@ -108,12 +108,12 @@ print.calibration <- function(x, ...) {
 #' @rdname calibration
 #' 
 #' @param interval Type of interval calculation (can be abbreviated); see
-#' \code{\link[stats]{predict}} for details
+#' \code{\link[stats]{predict}} for details.
 #' @param level tolerance/confidence level; see \code{\link[stats]{predict}}
-#' and \code{\link[stats]{confint}} for details
+#' and \code{\link[stats]{confint}} for details.
 #' 
 #' @export
-plot.calibration <- function(x, interval = NULL, level = 0.95, ...) {
+plot.calibration <- function(x, interval = "conf", level = 0.95, ...) {
   model <- x$model
   
   conc <- model$model[,2]
@@ -135,22 +135,26 @@ plot.calibration <- function(x, interval = NULL, level = 0.95, ...) {
 #' @family calibration
 #' @rdname calibration
 #' @param x an object of class \code{calibration} with a model formula
-#' as shown above
-#' @param alpha error tolerance for the detection limit (critical value)
+#' as shown above.
+#' @param alpha error tolerance for the detection limit (critical value).
 #'
 #' @examples
 #' lod(din)
 #' 
 #' @export
-lod <- function(x, alpha = 0.01, level = 0.05) UseMethod("lod")
-
-#' @export
-lod.default <- function(x, alpha = 0.01, level = 0.05) {
-  stop("Object needs to be of class 'calibration'")
+lod <- function(x, ...) {
+  UseMethod("lod")
 }
 
 #' @export
-lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
+lod.default <- function(x, ...) {
+  stop("object needs to be of class 'calibration'")
+}
+
+#' @rdname calibration
+#' 
+#' @export
+lod.calibration <- function(x, alpha = 0.01, level = 0.05, ...) {
   model <- x$model
   
   conc <- model$model[,2]
@@ -158,9 +162,9 @@ lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
   m <- mean(table(conc))
   digs <- max(nchar(gsub("(.*\\.)|([0]*$)", "", as.character(conc)))) + 1
 
-  if (m != round(m)) warning("Measurement replicates of unequal size. ",
-                             "LOD estimation might be incorrect.")
-  if (n <= model$rank) stop("Data points less than degrees of freedom.")
+  if (m != round(m)) warning("measurement replicates of unequal size; ",
+                             "LOD estimation might be incorrect")
+  if (n <= model$rank) stop("data points less than degrees of freedom")
 
   b <- coef(model)[2]
 
@@ -171,41 +175,42 @@ lod.calibration <- function(x, alpha = 0.01, level = 0.05) {
   } else {
     # Indirect method (LOD from calibration curve)
     if (length(x$blanks) == 1) {
-      message("Only one blank value supplied. LOD is estimated from the calibration curve.")
+      message("only one blank value supplied; LOD is estimated from the calibration curve")
     } else {
-      message("No blanks provided. LOD is estimated from the calibration curve.") 
+      message("no blanks provided; LOD is estimated from the calibration curve") 
     }
     sx0 <- summary(model)$sigma / b
     Qx <- sum((conc - mean(conc))^2) / m
     val <- sx0 * -qt(alpha, n - model$rank) * sqrt(1/n + 1/m + (mean(conc))^2 / Qx)
   }
-  res <- c(val, conf(n, level) * val)
+  res <- c(val, .conf(n, level) * val)
   matrix(round(res, digs), nrow = 1, dimnames = list("LOD", names(res)))
 }
 
 #' @family calibration
 #' @rdname calibration
 #' 
-#' @param k relative uncertainty for the limit of quantification (1/beta)
+#' @param k relative uncertainty for the limit of quantification (1/beta).
 #' @param maxiter a positive integer specifying the maximum number of iterations
-#' to calculate the LOQ
+#' to calculate the LOQ.
 #' 
 #' @examples
 #' loq(din)
 #' 
 #' @export
-loq <- function(x, alpha = 0.01, k = 3, level = 0.05, maxiter = 10)
+loq <- function(x, ...)
   UseMethod("loq")
 
 #' @export
-loq.default <- function(x, alpha = 0.01, k = 3, level = 0.05,
-                        maxiter = 10) {
-  stop("Object needs to be of class 'calibration'")
+loq.default <- function(x, ...) {
+  stop("object needs to be of class 'calibration'")
 }
 
+#' @rdname calibration
+#' 
 #' @export
 loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05,
-                            maxiter = 10) {
+                            maxiter = 10, ...) {
   model <- x$model
   
   conc <- model$model[,2]
@@ -213,9 +218,9 @@ loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05,
   m <- mean(table(conc))
   digs <- max(nchar(gsub("(.*\\.)|([0]*$)", "", as.character(conc)))) + 1
   
-  if (m != round(m)) warning("Measurement replicates of unequal size. ",
-                             "LOQ estimation might be incorrect.")
-  if (n <= model$rank) stop("Data points less than degrees of freedom.")
+  if (m != round(m)) warning("measurement replicates of unequal size; ",
+                             "LOQ estimation might be incorrect")
+  if (n <= model$rank) stop("data points less than degrees of freedom")
   
   b <- coef(model)[2]
   
@@ -230,12 +235,12 @@ loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05,
     if (round(prval, digs) == round(val, digs)) break
   }
   
-  res <- c(val, conf(n, level) * val)
+  res <- c(val, .conf(n, level) * val)
   matrix(round(res, digs), nrow = 1, dimnames = list("LOQ", names(res)))
 }
 
 # Auxiliary function for confidence intervals of LOD/LOQ
-conf <- function(n, level = 0.05) {
+.conf <- function(n, level = 0.05) {
   kappa <- sqrt((n - 1) / qchisq(c(1 - level/2, level/2), n - 1))
   names(kappa) <- c('lwr', 'upr')
   return(kappa)

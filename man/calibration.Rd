@@ -5,18 +5,24 @@
 \alias{print.calibration}
 \alias{plot.calibration}
 \alias{lod}
+\alias{lod.calibration}
 \alias{loq}
+\alias{loq.calibration}
 \title{Analytical calibration functions}
 \usage{
 calibration(formula, data = NULL, model = "lm", ...)
 
 \method{print}{calibration}(x, ...)
 
-\method{plot}{calibration}(x, interval = NULL, level = 0.95, ...)
+\method{plot}{calibration}(x, interval = "conf", level = 0.95, ...)
 
-lod(x, alpha = 0.01, level = 0.05)
+lod(x, ...)
 
-loq(x, alpha = 0.01, k = 3, level = 0.05, maxiter = 10)
+\method{lod}{calibration}(x, alpha = 0.01, level = 0.05, ...)
+
+loq(x, ...)
+
+\method{loq}{calibration}(x, alpha = 0.01, k = 3, level = 0.05, maxiter = 10, ...)
 }
 \arguments{
 \item{formula}{model formula providing the recorded signal intensities with
@@ -24,31 +30,31 @@ respect to the nominal analyte concentrations in the form of
 \code{signal ~ concentration} or \code{signal ~ concentraion - 1}; model
 formulae are currently restricted to those forms, however, the possibility
 to use \code{log} or \code{sqrt} transformed data will be implemented in the
-future}
+future.}
 
-\item{data}{an optional data frame containing the variables in the model}
+\item{data}{an optional data frame containing the variables in the model.}
 
 \item{model}{model class to be used for fitting; currently,
-\code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported}
+\code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported.}
 
 \item{\dots}{further arguments passed to the sub method, i.e. the
-respective model environment (e.g. \code{lm}), \code{plot}, or \code{print}}
+respective model environment (e.g. \code{lm}), \code{plot}, or \code{print}.}
 
 \item{x}{an object of class \code{calibration} with a model formula
-as shown above}
+as shown above.}
 
 \item{interval}{Type of interval calculation (can be abbreviated); see
-\code{\link[stats]{predict}} for details}
+\code{\link[stats]{predict}} for details.}
 
 \item{level}{tolerance/confidence level; see \code{\link[stats]{predict}}
-and \code{\link[stats]{confint}} for details}
+and \code{\link[stats]{confint}} for details.}
 
-\item{alpha}{error tolerance for the detection limit (critical value)}
+\item{alpha}{error tolerance for the detection limit (critical value).}
 
-\item{k}{relative uncertainty for the limit of quantification (1/beta)}
+\item{k}{relative uncertainty for the limit of quantification (1/beta).}
 
 \item{maxiter}{a positive integer specifying the maximum number of iterations
-to calculate the LOQ}
+to calculate the LOQ.}
 }
 \value{
 \code{calibration} returns an object of \code{\link[base]{class}}
@@ -106,3 +112,4 @@ Part A. Elsevier Science Inc.
 \seealso{
 \code{\link{icp}}, \code{\link{din32645}}
 }
+\concept{calibration}

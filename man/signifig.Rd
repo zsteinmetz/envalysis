@@ -8,17 +8,16 @@ signifig(mean, error, data, signif.na = 2, style = "pm")
 }
 \arguments{
 \item{mean}{a numeric vector or data frame object containing the averaged
-values}
+values.}
 
 \item{error}{a numeric vector or data frame object containing the respective
-error terms}
+error terms.}
 
 \item{data}{a data frame containing the specified columns. If empty,
-\code{mean}
-and \code{error} need to be given as numeric vectors}
+\code{mean} and \code{error} need to be given as numeric vectors.}
 
 \item{signif.na}{an integer controlling to which significant digit the mean
-value should be rounded when no error data was given}
+value should be rounded when no error data was given.}
 
 \item{style}{a string specifying the output style to be used. The default
 style \code{"pm"} reports the results as "3 ± 6", while \code{"par"} results

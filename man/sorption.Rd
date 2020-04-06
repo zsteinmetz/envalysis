@@ -7,17 +7,18 @@
 sorption(conc, par, type = "freundlich")
 }
 \arguments{
-\item{conc}{a numeric vector containing the concentration(s) of the dissolved substance}
+\item{conc}{a numeric vector containing the concentration(s) of the dissolved
+substance.}
 
-\item{par}{a numeric vector specifying the function parameters, see examples for
-details and correct order}
+\item{par}{a numeric vector specifying the function parameters, see examples
+for details and correct order.}
 
 \item{type}{a character string indicating the type of sorption isotherm to be used:
 \code{"linear"} for the linear type,
 \code{"freundlich"} for the Freundlich isotherm,
 \code{"langmuir"} for the Langmuir isotherm,
 \code{"BET"} for the BET model according to Brunauer, Emmet, and Teller
-\code{"redlich"} for the Redlich-Peterson isotherm,}
+\code{"redlich"} for the Redlich-Peterson isotherm.}
 }
 \description{
 This function returns the concentration of a substance sorbed to a surface boundary

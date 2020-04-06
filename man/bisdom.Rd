@@ -7,9 +7,9 @@
 bisdom(wdpt, ...)
 }
 \arguments{
-\item{wdpt}{a numeric vector containing WDPT measurement data in seconds}
+\item{wdpt}{a numeric vector containing WDPT measurement data in seconds.}
 
-\item{\dots}{arguments passed to \code{\link[base]{findInterval}}}
+\item{\dots}{arguments passed to \code{\link[base]{findInterval}}.}
 }
 \description{
 This wrapper function categorizes water drop penetration times (WDPT) [s] according to

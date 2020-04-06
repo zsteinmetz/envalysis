@@ -5,15 +5,16 @@
 #' after an equilibrium has established at constant temperature given the concentration(s)
 #' \code{conc} of the dissolved substance.
 #' 
-#' @param conc a numeric vector containing the concentration(s) of the dissolved substance
-#' @param par a numeric vector specifying the function parameters, see examples for
-#' details and correct order
+#' @param conc a numeric vector containing the concentration(s) of the dissolved
+#' substance.
+#' @param par a numeric vector specifying the function parameters, see examples
+#' for details and correct order.
 #' @param type a character string indicating the type of sorption isotherm to be used:
 #' \code{"linear"} for the linear type,
 #' \code{"freundlich"} for the Freundlich isotherm,
 #' \code{"langmuir"} for the Langmuir isotherm,
 #' \code{"BET"} for the BET model according to Brunauer, Emmet, and Teller
-#' \code{"redlich"} for the Redlich-Peterson isotherm,
+#' \code{"redlich"} for the Redlich-Peterson isotherm.
 #' 
 #' @examples
 #' sorption(conc = 1:5, c(Kd = 2.5), type = "linear")
