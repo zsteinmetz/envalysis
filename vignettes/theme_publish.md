@@ -1,7 +1,7 @@
 ---
 title: "theme_publish() demo"
 author: "Zacharias Steinmetz"
-date: "2018-04-26"
+date: "2020-04-07"
 output:
   html_document:
     keep_md: yes
@@ -27,10 +27,10 @@ p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
 p
 ```
 
-![](theme_publish_files/figure-html/theme_publish-1.png)<!-- -->
+![](/home/steinmetz-z/Documents/PhD/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_publish-1.png)<!-- -->
 
 ```r
-p + theme_publish() + ggsave('theme_publish.png', dpi = 96)
+p + theme_publish()
 ```
 
-![](theme_publish_files/figure-html/theme_publish-2.png)<!-- -->
+![](/home/steinmetz-z/Documents/PhD/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_publish-2.png)<!-- -->
