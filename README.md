@@ -7,12 +7,12 @@ envalysis
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/envalysis)](https://CRAN.R-project.org/package=envalysis)
 [![DOI](https://zenodo.org/badge/36175149.svg)](https://zenodo.org/badge/latestdoi/36175149)
 
-**envalysis** is an R package containing miscellaneous functions for data analyses
-in environmental chemistry and ecotoxicology. Provides, e.g., `calibration()` to
-calculate calibration curves and corresponding limits of detection (LODs) and
-quantification (LOQs) according to German DIN 32645:2008-11. `texture()` makes
-it easy to estimate soil particle size distributions from hydrometer
-measurements (ASTM D422-63(2007)e2).
+**envalysis** is an R package containing miscellaneous functions for data
+analyses in environmental chemistry and ecotoxicology. Provides, for example,
+`calibration()` to calculate calibration curves and corresponding limits of
+detection (LODs) and quantification (LOQs) according to German DIN
+32645:2008-11. `texture()` makes it easy to estimate soil particle size
+distributions from hydrometer measurements (ASTM D422-63(2007)e2).
 Some functions of the package require **ggplot2** or **drc**.
 
 ## Functions
@@ -26,13 +26,21 @@ Currently, the following functions are available:
 part of the `calibration` class to produce linear calibration curves according
 to German DIN 32645:2008-11
 * Various sorption isotherms `sorption()`
-* Determine particle size distributions and soil texture classes (DIN/USDA) measured with a soil hydrometer in accordance with ASTM D422-63(2007)e2 using `texture()`; see [vignette](./vignettes/texture.md) for details
+* Determine particle size distributions and soil texture classes (DIN/USDA)
+measured with a soil hydrometer in accordance with ASTM D422-63(2007)e2 using
+`texture()`; see
+[vignette](https://htmlpreview.github.io/?https://github.com/zsteinmetz/envalysis/blob/master/vignettes/texture.html)
+for details
 
 ### Data presentation
 
-* Categorize water drop penetration times according to Bisdom et al. (1993) `bisdom()`
-* Report significant figures, i.e. round means and erros to the least significant digit, using `signifig()`
-* Clean, black-and-white ggplot2 theme for scientific publications `theme_publish()`; a preview is available [here](./vignettes/theme_publish.md)
+* Categorize water drop penetration times according to Bisdom et al. (1993)
+`bisdom()`
+* Report significant figures, i.e. round means and erros to the least
+significant digit, using `signifig()`
+* Clean, black-and-white ggplot2 theme for scientific publications
+`theme_publish()`; a preview is available
+[here](https://htmlpreview.github.io/?https://github.com/zsteinmetz/envalysis/blob/master/vignettes/theme_publish.html)
 
 ## Installation
 **envalysis** is available on CRAN and GitHub.
