@@ -1,6 +1,6 @@
 context("Helper functions")
 
-test_that("Bisdom scaled WDPTs work as expected", {
+test_that("Bisdom scaled WDPTs", {
   expect_equal(bisdom(c(2,6,20,3,385)), c(1, 2, 2, 1, 3))
   expect_warning(bisdom("a string"))
   expect_true(is.na(bisdom(NA)))
@@ -8,12 +8,12 @@ test_that("Bisdom scaled WDPTs work as expected", {
   expect_identical(bisdom(3600), bisdom(4000))
 })
 
-test_that("Confidence intervals give proper results", {
+test_that("Confidence intervals", {
   expect_equal(round(CI(1:5), 2), 1.39)
   expect_true(is.na(CI(NA)))
 })
 
-test_that("Root mean square errors (RMSE) give proper results", {
+test_that("Root mean square errors (RMSE)", {
   expect_equal(round(rmse(c(0.12,0.59,NA), c(0.15,0.63,1.2)), 4), 0.0354)
   expect_true(is.na(rmse(NA, NA)))
 })

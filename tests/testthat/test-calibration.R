@@ -23,7 +23,7 @@ test_that("LOQ calculations", {
   expect_equal(round(loq(neitzel, k = 2, alpha = 0.01)[1], 3), 0.059)
 })
 
-test_that("Blank method vs. estimation", {
+test_that("Blank method vs. estimation from calibration curve", {
   expect_message(
     alt <- calibration(Area ~ Conc, data = din32645[din32645$Conc != 0, ])
   )

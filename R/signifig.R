@@ -32,9 +32,9 @@ signifig <- function(mean, error, data, signif.na = 2, style = "pm") {
     error <- data[, deparse(substitute(error))]
   }
   
-  if (length(mean) != length(error)) stop("Mean and error term of unequal size")
+  if (length(mean) != length(error)) stop("mean and error term of unequal size")
   if (!style %in% c("pm", "par", "siunitx")) {
-    warning("Style unknown, use 'pm' instead")
+    warning("style unknown, use 'pm' instead")
     style <- "pm"
   }
   
