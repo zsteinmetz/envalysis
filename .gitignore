@@ -21,8 +21,7 @@
 .Rproj.user/
 *.Rproj
 
-# produced vignettes and docs
-vignettes/*.html
+# produced PDF vignettes and docs
 vignettes/*.pdf
 inst/doc
 
