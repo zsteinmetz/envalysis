@@ -28,8 +28,9 @@ Imports:
 Suggests:
     knitr,
     rmarkdown,
-    MASS,
     testthat,
+    MASS,
     data.table,
-    tibble
+    tibble,
+    soiltexture
 RoxygenNote: 7.1.0

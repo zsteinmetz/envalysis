@@ -147,8 +147,8 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
                fct = eval(call(model)))
   }
   
-  din <- .texture_class(c(0.002, 0.063), fit)
-  usda <- .texture_class(c(0.002, 0.05), fit)             
+  din <- .textureclass(c(0.002, 0.063), fit)
+  usda <- .textureclass(c(0.002, 0.05), fit)             
   
   out <- list(meta = c(Hydrometer = hydrometer, Gs = Gs, Conc = conc),
               distribution = distr, model = fit, din = din, usda = usda)
@@ -191,7 +191,7 @@ print.texture <- function(x, ...) {
 plot.texture <- function(x, ...) plot(x$model, log = "x", type = "all", ...)
 
 # Auxiliary function for retrieving main texture classes
-.texture_class <- function(psize, object) {
+.textureclass <- function(psize, object) {
   bounds <- predict(object, newdata = data.frame(particle.size = psize), se.fit = T)
   if (bounds[1, 1] < 0) bounds[1, 1] <- 0
   if (bounds[2, 1] > 1) bounds[2, 1] <- 1
