@@ -147,7 +147,7 @@ TT.points.in.classes(germansoil, class.sys = "DE.BK94.TT")
 TT.points.in.classes(ussoil, class.sys = "USDA.TT")
 ```
 
-The analyzed soil is a clay loam (german: "Toniger Lehm", Lt2).
+The analyzed soil is a clay loam (German: "Toniger Lehm", Lt2).
 
 ## References
 Ashworth, J., Keyes, D., Kirk, R., Lessard, R., 2001. Standard Procedure in the 
