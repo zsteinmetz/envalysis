@@ -10,7 +10,7 @@
 \usage{
 texture(reading, ...)
 
-\method{texture}{formula}(formula, data, ...)
+\method{texture}{formula}(formula, data = NULL, ...)
 
 \method{texture}{default}(
   reading,

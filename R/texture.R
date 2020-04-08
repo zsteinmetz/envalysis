@@ -70,19 +70,12 @@ texture <- function(reading, ...) {
 #' @rdname texture
 #' 
 #' @export
-texture.formula <- function(formula, data, ...) {
+texture.formula <- function(formula, data = NULL, ...) {
   if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]), 
                                                                   "term.labels")) != 3L))
     stop("'formula' missing or incorrect")
   
-  cl <- match.call()
-  mf <- match.call(expand.dots = F)
-  m <- match(c("formula", "data"), names(mf), 0L)
-  mf <- mf[c(1L, m)]
-  mf$drop.unused.levels <- T
-  mf[[1L]] <- quote(stats::model.frame)
-  mf <- eval(mf, parent.frame())
-  
+  mf <- model.frame(formula, data)
   lst <- as.list(mf)
   names(lst) <- c("reading", "blank", "time", "temp")
 
