@@ -1,17 +1,17 @@
 Package: envalysis
 Type: Package
 Title: Miscellaneous Functions for Environmental Analyses
-Version: 0.4
-Date: 2020-04-06
+Version: 0.4.0
+Date: 2020-04-17
 Authors@R: c(person("Zacharias", "Steinmetz", role = c("aut", "cre"),
     email = "steinmetz-z@uni-landau.de",
     comment = c(ORCID = "0000-0001-6675-5033")))
 Maintainer: Zacharias Steinmetz <steinmetz-z@uni-landau.de>
 Description: Small toolbox for data analyses in environmental chemistry and
-    ecotoxicology. Provides, e.g., calibration() to calculate calibration curves
-    and corresponding limits of detection (LODs) and quantification (LOQs)
-    according to German DIN 32645:2008-11. texture() makes it easy to estimate
-    soil particle size distributions from hydrometer measurements (ASTM
+    ecotoxicology. Provides, for example, calibration() to calculate calibration
+    curves and corresponding limits of detection (LODs) and quantification
+    (LOQs) according to German DIN 32645:2008-11. texture() makes it easy to
+    estimate soil particle size distributions from hydrometer measurements (ASTM
     D422-63(2007)e2).
 URL: https://github.com/zsteinmetz/envalysis
 BugReports: https://github.com/zsteinmetz/envalysis/issues
