@@ -1,0 +1,20 @@
+{
+    "creators": [
+        {
+            "affiliation": "iES Landau, University of Koblenz-Landau",
+            "name": "Steinmetz, Zacharias",
+            "orcid": "0000-0001-6675-5033"
+        }
+    ],
+    "access_right": "open",
+    "upload_type": "software",
+    "license": "GPL-3",
+    "keywords": [
+      "environment",
+      "soil",
+      "chemistry",
+      "ecotoxicology",
+      "analytics"
+    ]
+}
+
