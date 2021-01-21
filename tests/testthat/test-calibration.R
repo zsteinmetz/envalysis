@@ -23,17 +23,24 @@ test_that("LOQ calculations", {
   expect_equal(round(loq(neitzel, k = 2, alpha = 0.01)[1], 3), 0.059)
 })
 
+cal <- calibration(Area ~ Conc, data = din32645[din32645$Conc != 0,])
+lm <- lm(Area ~ Conc, data = din32645[din32645$Conc != 0,])
+
+test_that("calibration() and lm() give equal results for non-zero concentrations", {
+  expect_equal(cal$model$coefficients, lm$coefficients)
+})
+
 test_that("Blank method vs. estimation from calibration curve", {
-  expect_message(
-    alt <- calibration(Area ~ Conc, data = din32645[din32645$Conc != 0, ])
-  )
+  expect_message(alt <- calibration(Area ~ Conc, data = din32645[din32645$Conc != 0, ]))
   expect_false(identical(din, alt))
   expect_equal(loq(din), loq(alt))
 })
 
 test_that("Unbalanced design gives warning", {
-  expect_warning(
-    calibration(Area ~ Conc, data = rbind(din32645, din32645[15,]))
-  )
+  expect_warning(calibration(Area ~ Conc, data = rbind(din32645, din32645[15,])))
+})
+
+test_that("Weightings", {
+  expect_error(calibration(Area ~ Conc, data = din32645, weights = 1/din32645$Area^2))
 })
 

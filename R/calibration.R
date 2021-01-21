@@ -21,10 +21,15 @@
 #' to use \code{log} or \code{sqrt} transformed data will be implemented in the
 #' future.
 #' @param data an optional data frame containing the variables in the model.
+#' @param weights an optional character string containing one or more model
+#' variables, for example, in the form of "1/\code{concentration}^0.5" or
+#' "1/\code{signal}" which is internally converted to a numeric vector and
+#' passed to the fitting process of the selected model.
 #' @param model model class to be used for fitting; currently,
 #' \code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported.
-#' @param \dots further arguments passed to the sub method, i.e. the
-#' respective model environment (e.g. \code{lm}), \code{plot}, or \code{print}.
+#' @param \dots further arguments passed to the submethod, namely the
+#' respective model environment such as \code{lm}), \code{plot}, or
+#' \code{print}.
 #' 
 #' @details
 #' If the \code{data} supplied to \code{calibration} contain more than one blank
@@ -46,7 +51,7 @@
 #' data(din32645)
 #' din <- calibration(Area ~ Conc, data = din32645)
 #' din
-#' plot(din, interval = "confidence")
+#' plot(din)
 #' summary(din$model)
 #'
 #' @references
@@ -68,13 +73,19 @@
 #' @importFrom stats qt coef qchisq model.frame
 #' @importFrom graphics plot lines
 #' @export
-calibration <- function(formula, data = NULL, model = "lm", ...) {
+calibration <- function(formula, data = NULL, weights = NULL, model = "lm", ...) {
+  if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]), 
+                                                                  "term.labels")) != 1L))
+    stop("'formula' missing or incorrect")
+  
   # Collate data
   mf <- model.frame(formula, data)
-  newdata <- mf[mf[2] != 0, ]
-  blanks <- mf[mf[2] == 0, 1]
+  newdata <- mf[mf[2L] != 0, ]
+  blanks <- mf[mf[2L] == 0, 1]
+  
+  if (!is.null(weights)) weights <- with(newdata, eval(parse(text = weights)))
 
-  model <- do.call(model, list(formula = formula, data = newdata, ...))
+  model <- do.call(model, list(formula = formula, data = newdata, weights = weights, ...))
   model$call <- match.call(expand.dots = F)
   model$formula <- formula
   

@@ -10,7 +10,7 @@
 \alias{loq.calibration}
 \title{Analytical calibration functions}
 \usage{
-calibration(formula, data = NULL, model = "lm", ...)
+calibration(formula, data = NULL, weights = NULL, model = "lm", ...)
 
 \method{print}{calibration}(x, ...)
 
@@ -34,11 +34,17 @@ future.}
 
 \item{data}{an optional data frame containing the variables in the model.}
 
+\item{weights}{an optional character string containing one or more model
+variables, for example, in the form of "1/\code{concentration}^0.5" or
+"1/\code{signal}" which is internally converted to a numeric vector and
+passed to the fitting process of the selected model.}
+
 \item{model}{model class to be used for fitting; currently,
 \code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported.}
 
-\item{\dots}{further arguments passed to the sub method, i.e. the
-respective model environment (e.g. \code{lm}), \code{plot}, or \code{print}.}
+\item{\dots}{further arguments passed to the submethod, namely the
+respective model environment such as \code{lm}), \code{plot}, or
+\code{print}.}
 
 \item{x}{an object of class \code{calibration} with a model formula
 as shown above.}
@@ -88,7 +94,7 @@ concentration measurements.
 data(din32645)
 din <- calibration(Area ~ Conc, data = din32645)
 din
-plot(din, interval = "confidence")
+plot(din)
 summary(din$model)
 
 lod(din)
