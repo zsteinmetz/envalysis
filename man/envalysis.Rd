@@ -14,7 +14,7 @@ D422-63(2007)e2).
 }
 \details{
 \tabular{ll}{
-Version: \tab 0.4.0\cr
+Version: \tab 0.4.1\cr
 Licence: \tab GPLv3\cr
 }
 }

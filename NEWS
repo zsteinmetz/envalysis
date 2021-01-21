@@ -1,4 +1,22 @@
-envalysis 0.4
+envalysis 0.4.1
+======================
+
+NEW FEATURES
+* First preparations for weights support in `calibration()`
+
+MINOR IMPROVEMENTS
+* Rename master branch to main
+
+BUG FIXES
+* Update `testthat::expect_equal()` calls to keep compatibility with R 4.1.0
+
+DEPRECATED FUNCTIONS
+
+DEFUNCT FUNCTIONS
+
+
+
+envalysis 0.4.0
 ======================
 
 NEW FEATURES
