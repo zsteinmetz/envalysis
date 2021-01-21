@@ -10,7 +10,7 @@ test_that("Bisdom scaled WDPTs", {
 
 test_that("Confidence intervals", {
   expect_equal(round(CI(1:5), 2), 1.39)
-  expect_true(is.na(CI(NA)))
+  expect_warning(CI(NA))
 })
 
 test_that("Root mean square errors (RMSE)", {

@@ -21,7 +21,7 @@ test_that("USDA", {
 })
 
 test_that("Methods giving equal results", {
-  expect_equal(tex, f)
+  expect_equal(tex, f, check.environment = F)
 })
 
 fct <- "W1.2"
