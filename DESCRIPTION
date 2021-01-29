@@ -16,7 +16,7 @@ Description: Small toolbox for data analyses in environmental chemistry and
 URL: https://github.com/zsteinmetz/envalysis
 BugReports: https://github.com/zsteinmetz/envalysis/issues
 Encoding: UTF-8
-License: GPL-3
+License: GPL (>= 3)
 LazyLoad: yes
 LazyData: yes
 VignetteBuilder: knitr
