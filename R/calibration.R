@@ -83,9 +83,18 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm", ...)
   newdata <- mf[mf[2L] != 0, ]
   blanks <- mf[mf[2L] == 0, 1]
   
-  if (!is.null(weights)) weights <- with(newdata, eval(parse(text = weights)))
+  if (!is.null(weights) & length(weights) == 1 & is.character(weights)) {
+    newweights <- with(newdata, eval(parse(text = weights)))
+  } else {
+    if (is.null(weights) | length(weights) == nrow(newdata)) {
+      newweights <- weights
+    } else {
+      stop("'weights' needs to be a single character value or a numeric vector ",
+           "of the same length as non-zero concentration data (without blanks)")
+    }
+  }
 
-  model <- do.call(model, list(formula = formula, data = newdata, weights = weights, ...))
+  model <- do.call(model, list(formula = formula, data = newdata, weights = newweights, ...))
   model$call <- match.call(expand.dots = F)
   model$formula <- formula
   

@@ -27,7 +27,7 @@ cal <- calibration(Area ~ Conc, data = din32645[din32645$Conc != 0,])
 lm <- lm(Area ~ Conc, data = din32645[din32645$Conc != 0,])
 
 test_that("calibration() and lm() give equal results for non-zero concentrations", {
-  expect_equal(cal$model$coefficients, lm$coefficients)
+  expect_equal(coef(cal$model), coef(lm))
 })
 
 test_that("Blank method vs. estimation from calibration curve", {
@@ -40,7 +40,16 @@ test_that("Unbalanced design gives warning", {
   expect_warning(calibration(Area ~ Conc, data = rbind(din32645, din32645[15,])))
 })
 
-test_that("Weightings", {
+w1 <- calibration(Area ~ Conc, data = din32645, weights = "1/Area^2")
+w2 <- calibration(Area ~ Conc, data = din32645,
+                  weights = 1/din32645[din32645$Conc != 0, ]$Area^2)
+wlm <- lm(Area ~ Conc, data = din32645[din32645$Conc != 0,],
+          weights = 1/din32645[din32645$Conc != 0, ]$Area^2)
+
+test_that("Weights", {
   expect_error(calibration(Area ~ Conc, data = din32645, weights = 1/din32645$Area^2))
+  
+  expect_equal(coef(w1$model), coef(w2$model))
+  expect_equal(coef(w2$model), coef(wlm))
 })
 
