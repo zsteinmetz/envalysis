@@ -1,5 +1,22 @@
+envalysis 0.4.2
+===============
+
+NEW FEATURES
+
+MINOR IMPROVEMENTS
+* Move to testthat 3rd edition
+
+BUG FIXES
+* Fix regression when using weights in `calibration()`
+
+DEPRECATED FUNCTIONS
+
+DEFUNCT FUNCTIONS
+
+
+
 envalysis 0.4.1
-======================
+===============
 
 NEW FEATURES
 * First preparations for weights support in `calibration()`
@@ -17,7 +34,7 @@ DEFUNCT FUNCTIONS
 
 
 envalysis 0.4.0
-======================
+===============
 
 NEW FEATURES
 
@@ -37,7 +54,7 @@ DEFUNCT FUNCTIONS
 
 
 envalysis 0.3.3
-======================
+===============
 
 NEW FEATURES
 
@@ -54,7 +71,7 @@ DEFUNCT FUNCTIONS
 
 
 envalysis 0.3.2
-======================
+===============
 
 NEW FEATURES
 
@@ -70,7 +87,7 @@ DEFUNCT FUNCTIONS
 
 
 envalysis 0.3.1
-======================
+===============
 
 NEW FEATURES
 
@@ -87,7 +104,7 @@ DEFUNCT FUNCTIONS
 
 
 envalysis 0.3.0
-======================
+===============
 
 NEW FEATURES
 * Starting with testthat
@@ -108,7 +125,7 @@ DEFUNCT FUNCTIONS
 
 
 envalysis 0.2.2
-======================
+===============
 
 NEW FEATURES
 
@@ -125,7 +142,7 @@ DEFUNCT FUNCTIONS
 
 
 envalysis 0.2.1
-======================
+===============
 
 NEW FEATURES
 
@@ -141,7 +158,7 @@ DEFUNCT FUNCTIONS
 
 
 envalysis 0.2.0
-======================
+===============
 
 NEW FEATURES
 * `texture` class for automatic determination of particle size distribution using a hydrometer in accordance with ASTM D422-63(2007)e2
@@ -159,7 +176,7 @@ DEFUNCT FUNCTIONS
 
 
 envalysis 0.1.0
-======================
+===============
 
 INITIAL FEATURE SET
 * Confidence intervals CI()

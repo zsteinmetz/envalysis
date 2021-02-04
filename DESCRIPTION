@@ -1,8 +1,8 @@
 Package: envalysis
 Type: Package
 Title: Miscellaneous Functions for Environmental Analyses
-Version: 0.4.1
-Date: 2021-01-21
+Version: 0.4.2
+Date: 2021-02-04
 Authors@R: c(person("Zacharias", "Steinmetz", role = c("aut", "cre"),
     email = "steinmetz-z@uni-landau.de",
     comment = c(ORCID = "0000-0001-6675-5033")))
