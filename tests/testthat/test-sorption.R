@@ -1,6 +1,4 @@
-context("Sorption isotherms")
-
-test_that("Correct output", {
+test_that("Output is correct", {
   expect_equal(
     sorption(conc = 1:5, c(Kd = 2.5), type = "linear"),
     c(2.5, 5.0, 7.5, 10.0, 12.5)
@@ -23,7 +21,7 @@ test_that("Correct output", {
   )
 })
 
-test_that("Error handling", {
+test_that("Wrong number of arguments throws error", {
   expect_error(sorption(conc = 1:5, c(K = 4)))
 })
 

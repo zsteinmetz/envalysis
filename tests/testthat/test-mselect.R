@@ -1,5 +1,3 @@
-context("mselect")
-
 library(drc)
 ryegrass_mod <- drm(rootl ~ conc, data = ryegrass, fct = LL.4())
 

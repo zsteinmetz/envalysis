@@ -1,27 +1,25 @@
-context("Texture")
-
 data(clayloam)
 tex <- texture(clayloam$reading, clayloam$blank, clayloam$time, clayloam$temperature)
 f <- texture(reading ~ blank + time + temperature, clayloam)
 
-test_that("Function type", {
+test_that("Correct function type", {
   expect_equal(tex$model$fct$name, "LL2.3u")
 })
 
-test_that("DIN 4022", {
+test_that("DIN computed correctly", {
   din <- tex$din[1,]
-  expect_equivalent(sum(din), 1)
-  expect_equivalent(round(din, 3), c(0.318, 0.476, 0.207))
+  expect_equal(sum(din), 1, ignore_attr = T)
+  expect_equal(round(din, 3), c(0.318, 0.476, 0.207), ignore_attr = T)
 })
 
-test_that("USDA", {
+test_that("USDA computed correctly", {
   usda <- tex$usda[1,]
-  expect_equivalent(sum(usda), 1)
-  expect_equivalent(round(usda, 3), c(0.318, 0.429, 0.254))
+  expect_equal(sum(usda), 1, ignore_attr = T)
+  expect_equal(round(usda, 3), c(0.318, 0.429, 0.254), ignore_attr = T)
 })
 
-test_that("Methods giving equal results", {
-  expect_equal(tex, f, check.environment = F)
+test_that("Different input methods giving equal results", {
+  expect_equal(tex$din, f$din)
 })
 
 fct <- "W1.2"
