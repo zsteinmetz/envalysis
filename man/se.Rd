@@ -18,7 +18,7 @@ CI(x, level = 0.95, na.rm = FALSE)
 \item{level}{the confidence level required.}
 }
 \description{
-This wrapper function computes the standard error (SE) or the confidence
+These wrapper functions compute the standard error (SE) or the confidence
 interval (CI) of the values in \code{x}. If \code{na.rm} is \code{TRUE},
 missing values are removed before the computation proceeds.
 }
