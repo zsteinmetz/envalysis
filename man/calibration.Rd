@@ -3,6 +3,7 @@
 \name{calibration}
 \alias{calibration}
 \alias{print.calibration}
+\alias{summary.calibration}
 \alias{plot.calibration}
 \alias{lod}
 \alias{lod.calibration}
@@ -22,6 +23,8 @@ calibration(
 )
 
 \method{print}{calibration}(x, ...)
+
+\method{summary}{calibration}(object, ...)
 
 \method{plot}{calibration}(x, interval = "conf", level = 0.95, ...)
 
@@ -63,7 +66,7 @@ homoscedasticity of model residuals using and \code{\link[stats]{shapiro.test}}
 respective model environment such as \code{lm}), \code{plot}, or
 \code{print}.}
 
-\item{x}{an object of class \code{calibration} with a model formula
+\item{x, object}{an object of class \code{calibration} with a model formula
 as shown above.}
 
 \item{interval}{Type of interval calculation (can be abbreviated); see

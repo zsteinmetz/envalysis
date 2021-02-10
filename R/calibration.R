@@ -148,6 +148,14 @@ print.calibration <- function(x, ...) {
 
 #' @family calibration
 #' @rdname calibration
+#'
+#' @export
+summary.calibration <- function(object, ...) {
+  summary(object$model, ...)
+}
+
+#' @family calibration
+#' @rdname calibration
 #' 
 #' @param interval Type of interval calculation (can be abbreviated); see
 #' \code{\link[stats]{predict}} for details.
@@ -176,7 +184,7 @@ plot.calibration <- function(x, interval = "conf", level = 0.95, ...) {
 
 #' @family calibration
 #' @rdname calibration
-#' @param x an object of class \code{calibration} with a model formula
+#' @param x,object an object of class \code{calibration} with a model formula
 #' as shown above.
 #' @param alpha error tolerance for the detection limit (critical value).
 #'
