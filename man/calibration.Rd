@@ -133,6 +133,7 @@ Part A. Elsevier Science Inc.
 \code{\link{icp}}, \code{\link{din32645}}
 
 Other calibration: 
-\code{\link{relerr}()}
+\code{\link{matrix_effect}()},
+\code{\link{weight_select}()}
 }
 \concept{calibration}

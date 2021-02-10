@@ -1,39 +1,16 @@
 #' @family calibration
-#' @rdname weighted-calibration
 #' 
-#' @title Tools for weighted calibrations
+#' @title Assess matrix effects and matrix-matched calibrations
 #' 
-#' @param object an object of class \code{\link[envalysis]{calibration}}.
-#' @param \dots additional objects of the same type.
+#' @param object an object of class \code{\link[envalysis]{calibration}}
+#' obtained by analyzing standard solutions.
+#' @param \dots additional objects of the same type obtained from
+#' matrix matched calibrations.
 #' 
 #' @examples
 #' data(din32645)
 #' din <- calibration(Area ~ Conc, data = din32645)
 #' 
-#' relerr(din)
-#' 
-#' @export
-relerr <- function(object)
-  UseMethod("relerr")
-
-#' @export
-relerr.default <- function(object) {
-  stop("object needs to be of class 'calibration'")
-}
-
-#' @rdname weighted-calibration
-#' 
-#' @export
-relerr.calibration <- function(object) {
-  model <- object$model
-  
-  (((model$model[,1] - object$model$coefficients[1]) /
-      object$model$coefficients[2]) - model$model[,2]) / model$model[,2]
-}
-
-#' @rdname weighted-calibration
-#' 
-#' @examples
 #' m32645 <- din32645
 #' m32645$Area <- din32645$Area * 1.5
 #' matrix <- calibration(Area ~ Conc, data = m32645)
