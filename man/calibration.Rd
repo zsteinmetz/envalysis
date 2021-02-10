@@ -9,8 +9,6 @@
 \alias{lod.calibration}
 \alias{loq}
 \alias{loq.calibration}
-\alias{relerr}
-\alias{relerr.calibration}
 \title{Analytical calibration functions}
 \usage{
 calibration(
@@ -28,17 +26,13 @@ calibration(
 
 \method{plot}{calibration}(x, interval = "conf", level = 0.95, ...)
 
-lod(x, ...)
+lod(object, ...)
 
-\method{lod}{calibration}(x, alpha = 0.01, level = 0.05, ...)
+\method{lod}{calibration}(object, alpha = 0.01, level = 0.05, ...)
 
-loq(x, ...)
+loq(object, ...)
 
-\method{loq}{calibration}(x, alpha = 0.01, k = 3, level = 0.05, maxiter = 10, ...)
-
-relerr(x, ...)
-
-\method{relerr}{calibration}(x, ...)
+\method{loq}{calibration}(object, alpha = 0.01, k = 3, level = 0.05, maxiter = 10, ...)
 }
 \arguments{
 \item{formula}{model formula providing the recorded signal intensities with
@@ -115,13 +109,11 @@ data(din32645)
 din <- calibration(Area ~ Conc, data = din32645)
 din
 plot(din)
-summary(din$model)
+summary(din)
 
 lod(din)
 
 loq(din)
-
-relerr(din)
 
 }
 \references{
@@ -139,5 +131,23 @@ Part A. Elsevier Science Inc.
 }
 \seealso{
 \code{\link{icp}}, \code{\link{din32645}}
+
+Other calibration: 
+\code{\link{relerr}()}
+
+Other calibration: 
+\code{\link{relerr}()}
+
+Other calibration: 
+\code{\link{relerr}()}
+
+Other calibration: 
+\code{\link{relerr}()}
+
+Other calibration: 
+\code{\link{relerr}()}
+
+Other calibration: 
+\code{\link{relerr}()}
 }
 \concept{calibration}

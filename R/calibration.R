@@ -1,4 +1,5 @@
 #' @family calibration
+#' @rdname calibration
 #' 
 #' @title Analytical calibration functions
 #'
@@ -55,7 +56,7 @@
 #' din <- calibration(Area ~ Conc, data = din32645)
 #' din
 #' plot(din)
-#' summary(din$model)
+#' summary(din)
 #'
 #' @references
 #' DIN 32645:2008-11, 2008. Chemical analysis - Decision limit, detection limit
@@ -113,8 +114,8 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm",
     print(bpt)
     
     if (swt$p.value < 0.05 || bpt$p.value < 0.05)
-      warning("Model assumptions may not be met. Double check graphically and ",
-              "consider using weighted model instead.")
+      warning("model assumptions may not be met; double check graphically and ",
+              "consider using a weighted model instead")
   }
   
   cal <- structure(list(), class = "calibration")
@@ -184,6 +185,7 @@ plot.calibration <- function(x, interval = "conf", level = 0.95, ...) {
 
 #' @family calibration
 #' @rdname calibration
+#' 
 #' @param x,object an object of class \code{calibration} with a model formula
 #' as shown above.
 #' @param alpha error tolerance for the detection limit (critical value).
@@ -192,20 +194,20 @@ plot.calibration <- function(x, interval = "conf", level = 0.95, ...) {
 #' lod(din)
 #' 
 #' @export
-lod <- function(x, ...) {
+lod <- function(object, ...) {
   UseMethod("lod")
 }
 
 #' @export
-lod.default <- function(x, ...) {
+lod.default <- function(object, ...) {
   stop("object needs to be of class 'calibration'")
 }
 
 #' @rdname calibration
 #' 
 #' @export
-lod.calibration <- function(x, alpha = 0.01, level = 0.05, ...) {
-  model <- x$model
+lod.calibration <- function(object, alpha = 0.01, level = 0.05, ...) {
+  model <- object$model
   
   conc <- model$model[,2]
   n <- length(conc)
@@ -218,13 +220,13 @@ lod.calibration <- function(x, alpha = 0.01, level = 0.05, ...) {
 
   b <- coef(model)[2]
 
-  if (length(x$blanks) > 1) {
+  if (length(object$blanks) > 1) {
     # Direct method (LOD from blanks)
-    sl <- sd(x$blanks) / b
+    sl <- sd(object$blanks) / b
     val <- sl * -qt(alpha, n - 1) * sqrt(1/n + 1/m)
   } else {
     # Indirect method (LOD from calibration curve)
-    if (length(x$blanks) == 1) {
+    if (length(object$blanks) == 1) {
       message("only one blank value supplied; LOD is estimated from the calibration curve")
     } else {
       message("no blanks provided; LOD is estimated from the calibration curve") 
@@ -248,20 +250,20 @@ lod.calibration <- function(x, alpha = 0.01, level = 0.05, ...) {
 #' loq(din)
 #' 
 #' @export
-loq <- function(x, ...)
+loq <- function(object, ...)
   UseMethod("loq")
 
 #' @export
-loq.default <- function(x, ...) {
+loq.default <- function(object, ...) {
   stop("object needs to be of class 'calibration'")
 }
 
 #' @rdname calibration
 #' 
 #' @export
-loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05,
+loq.calibration <- function(object, alpha = 0.01, k = 3, level = 0.05,
                             maxiter = 10, ...) {
-  model <- x$model
+  model <- object$model
   
   conc <- model$model[,2]
   n <- length(conc)
@@ -277,7 +279,7 @@ loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05,
   sx0 <- summary(model)$sigma / b
   Qx <- sum((conc - mean(conc))^2) / m
   
-  val <- k * x$lod[1]
+  val <- k * object$lod[1]
   for (i in 1:maxiter) {
     prval <- val
     val <- k * sx0 * -qt(alpha/2, n - model$rank) *
@@ -287,31 +289,6 @@ loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05,
   
   res <- c(val, .conf(n, level) * val)
   matrix(round(res, digs), nrow = 1, dimnames = list("LOQ", names(res)))
-}
-
-#' @family calibration
-#' @rdname calibration
-#' 
-#' @examples
-#' relerr(din)
-#' 
-#' @export
-relerr <- function(x, ...)
-  UseMethod("relerr")
-
-#' @export
-relerr.default <- function(x, ...) {
-  stop("object needs to be of class 'calibration'")
-}
-
-#' @rdname calibration
-#' 
-#' @export
-relerr.calibration <- function(x, ...) {
-  model <- x$model
-
-  (((model$model[,1] - x$model$coefficients[1]) /
-      x$model$coefficients[2]) - model$model[,2]) / model$model[,2]
 }
 
 # Auxiliary function for confidence intervals of LOD/LOQ
