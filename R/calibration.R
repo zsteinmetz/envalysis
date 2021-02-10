@@ -5,7 +5,7 @@
 #'
 #' @description
 #' Defines a \code{calibration} object for the calculation of concentrations
-#' from measurement signals including estimatations for the limit of detection
+#' from measurement signals including estimations for the limit of detection
 #' (LOD) and limit of quantification (LOQ) in accordance with DIN
 #' 32645:2008-11.
 #' 
@@ -18,7 +18,7 @@
 #' @param formula model formula providing the recorded signal intensities with
 #' respect to the nominal analyte concentrations in the form of
 #' \code{signal ~ concentration} or \code{signal ~ concentraion - 1}; model
-#' formulae are currently restricted to those forms, however, the possibility
+#' formulas are currently restricted to those forms, however, the possibility
 #' to use \code{log} or \code{sqrt} transformed data will be implemented in the
 #' future.
 #' @param data an optional data frame containing the variables in the model.
@@ -131,7 +131,6 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm",
   return(cal)
 }
 
-#' @family calibration
 #' @rdname calibration
 #' 
 #' @export
@@ -147,7 +146,6 @@ print.calibration <- function(x, ...) {
   print(signif(rbind(x$lod, x$loq), 3))
 }
 
-#' @family calibration
 #' @rdname calibration
 #'
 #' @export
@@ -155,7 +153,6 @@ summary.calibration <- function(object, ...) {
   summary(object$model, ...)
 }
 
-#' @family calibration
 #' @rdname calibration
 #' 
 #' @param interval Type of interval calculation (can be abbreviated); see
@@ -183,7 +180,6 @@ plot.calibration <- function(x, interval = "conf", level = 0.95, ...) {
   )
 }
 
-#' @family calibration
 #' @rdname calibration
 #' 
 #' @param x,object an object of class \code{calibration} with a model formula
@@ -239,7 +235,6 @@ lod.calibration <- function(object, alpha = 0.01, level = 0.05, ...) {
   matrix(round(res, digs), nrow = 1, dimnames = list("LOD", names(res)))
 }
 
-#' @family calibration
 #' @rdname calibration
 #' 
 #' @param k relative uncertainty for the limit of quantification (1/beta).

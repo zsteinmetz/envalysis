@@ -38,7 +38,7 @@ loq(object, ...)
 \item{formula}{model formula providing the recorded signal intensities with
 respect to the nominal analyte concentrations in the form of
 \code{signal ~ concentration} or \code{signal ~ concentraion - 1}; model
-formulae are currently restricted to those forms, however, the possibility
+formulas are currently restricted to those forms, however, the possibility
 to use \code{log} or \code{sqrt} transformed data will be implemented in the
 future.}
 
@@ -85,7 +85,7 @@ the model parameters to be found as a list item called "model".
 }
 \description{
 Defines a \code{calibration} object for the calculation of concentrations
-from measurement signals including estimatations for the limit of detection
+from measurement signals including estimations for the limit of detection
 (LOD) and limit of quantification (LOQ) in accordance with DIN
 32645:2008-11.
 
@@ -131,21 +131,6 @@ Part A. Elsevier Science Inc.
 }
 \seealso{
 \code{\link{icp}}, \code{\link{din32645}}
-
-Other calibration: 
-\code{\link{relerr}()}
-
-Other calibration: 
-\code{\link{relerr}()}
-
-Other calibration: 
-\code{\link{relerr}()}
-
-Other calibration: 
-\code{\link{relerr}()}
-
-Other calibration: 
-\code{\link{relerr}()}
 
 Other calibration: 
 \code{\link{relerr}()}
