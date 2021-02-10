@@ -106,6 +106,7 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm", ...)
   cal$blanks <- blanks
   cal$lod <- lod(cal)
   cal$loq <- loq(cal)
+  cal$relerr <- relerr(cal)
   return(cal)
 }
 
@@ -116,7 +117,8 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm", ...)
 print.calibration <- function(x, ...) {
   print(x$model, ...)
   
-  cat(paste0("Adjusted R-squared:  ", signif(x$adj.r.squared, 3), "\n"))
+  cat(paste0("Adjusted R-squared:  ", signif(x$adj.r.squared, 4), "\n"))
+  cat(paste0("Sum relative error:  ", signif(sum(abs(x$relerr)), 4), "\n"))
   cat("\n")
   cat("Blanks:\n")
   print(x$blanks)
@@ -257,6 +259,31 @@ loq.calibration <- function(x, alpha = 0.01, k = 3, level = 0.05,
   
   res <- c(val, .conf(n, level) * val)
   matrix(round(res, digs), nrow = 1, dimnames = list("LOQ", names(res)))
+}
+
+#' @family calibration
+#' @rdname calibration
+#' 
+#' @examples
+#' relerr(din)
+#' 
+#' @export
+relerr <- function(x, ...)
+  UseMethod("relerr")
+
+#' @export
+relerr.default <- function(x, ...) {
+  stop("object needs to be of class 'calibration'")
+}
+
+#' @rdname calibration
+#' 
+#' @export
+relerr.calibration <- function(x, ...) {
+  model <- x$model
+
+  (((model$model[,1] - x$model$coefficients[1]) /
+      x$model$coefficients[2]) - model$model[,2]) / model$model[,2]
 }
 
 # Auxiliary function for confidence intervals of LOD/LOQ

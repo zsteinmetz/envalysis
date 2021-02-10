@@ -8,6 +8,8 @@
 \alias{lod.calibration}
 \alias{loq}
 \alias{loq.calibration}
+\alias{relerr}
+\alias{relerr.calibration}
 \title{Analytical calibration functions}
 \usage{
 calibration(formula, data = NULL, weights = NULL, model = "lm", ...)
@@ -23,6 +25,10 @@ lod(x, ...)
 loq(x, ...)
 
 \method{loq}{calibration}(x, alpha = 0.01, k = 3, level = 0.05, maxiter = 10, ...)
+
+relerr(x, ...)
+
+\method{relerr}{calibration}(x, ...)
 }
 \arguments{
 \item{formula}{model formula providing the recorded signal intensities with
@@ -100,6 +106,8 @@ summary(din$model)
 lod(din)
 
 loq(din)
+
+relerr(din)
 
 }
 \references{
