@@ -12,7 +12,14 @@
 \alias{relerr.calibration}
 \title{Analytical calibration functions}
 \usage{
-calibration(formula, data = NULL, weights = NULL, model = "lm", ...)
+calibration(
+  formula,
+  data = NULL,
+  weights = NULL,
+  model = "lm",
+  check_assumptions = FALSE,
+  ...
+)
 
 \method{print}{calibration}(x, ...)
 
@@ -47,6 +54,10 @@ passed to the fitting process of the selected model.}
 
 \item{model}{model class to be used for fitting; currently,
 \code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported.}
+
+\item{check_assumptions}{automatically check for normality and
+homoscedasticity of model residuals using and \code{\link[stats]{shapiro.test}}
+\code{\link[lmtest]{bptest}}) respectively.}
 
 \item{\dots}{further arguments passed to the submethod, namely the
 respective model environment such as \code{lm}), \code{plot}, or

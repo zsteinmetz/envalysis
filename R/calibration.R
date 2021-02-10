@@ -27,6 +27,9 @@
 #' passed to the fitting process of the selected model.
 #' @param model model class to be used for fitting; currently,
 #' \code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported.
+#' @param check_assumptions automatically check for normality and
+#' homoscedasticity of model residuals using and \code{\link[stats]{shapiro.test}}
+#' \code{\link[lmtest]{bptest}}) respectively.
 #' @param \dots further arguments passed to the submethod, namely the
 #' respective model environment such as \code{lm}), \code{plot}, or
 #' \code{print}.
@@ -70,10 +73,12 @@
 #' @seealso
 #' \code{\link{icp}}, \code{\link{din32645}}
 #' 
-#' @importFrom stats qt coef qchisq model.frame
+#' @importFrom stats qt coef qchisq model.frame shapiro.test
 #' @importFrom graphics plot lines
+#' @importFrom lmtest bptest
 #' @export
-calibration <- function(formula, data = NULL, weights = NULL, model = "lm", ...) {
+calibration <- function(formula, data = NULL, weights = NULL, model = "lm",
+                        check_assumptions = FALSE, ...) {
   if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]), 
                                                                   "term.labels")) != 1L))
     stop("'formula' missing or incorrect")
@@ -98,6 +103,20 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm", ...)
   model$call <- match.call(expand.dots = F)
   model$formula <- formula
   
+  if (check_assumptions) {
+    swt <- shapiro.test(model$residuals)
+    bpt <- bptest(model)
+    
+    cat("Check for normality of residuals\n")
+    print(swt)
+    cat("Check for homoscedasticity of residuals\n")
+    print(bpt)
+    
+    if (swt$p.value < 0.05 || bpt$p.value < 0.05)
+      warning("Model assumptions may not be met. Double check graphically and ",
+              "consider using weighted model instead.")
+  }
+  
   cal <- structure(list(), class = "calibration")
   cal$model <- model
   
@@ -107,6 +126,7 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm", ...)
   cal$lod <- lod(cal)
   cal$loq <- loq(cal)
   cal$relerr <- relerr(cal)
+  
   return(cal)
 }
 
