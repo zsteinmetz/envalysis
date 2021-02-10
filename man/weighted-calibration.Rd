@@ -2,23 +2,38 @@
 % Please edit documentation in R/weighted-calibration.R
 \name{relerr}
 \alias{relerr}
-\title{Functions for weighted calibrations}
+\alias{relerr.calibration}
+\alias{matrix_effect}
+\alias{matrix_effect.calibration}
+\title{Tools for weighted calibrations}
 \usage{
-relerr(object, ...)
+relerr(object)
+
+\method{relerr}{calibration}(object)
+
+matrix_effect(object, ...)
+
+\method{matrix_effect}{calibration}(object, ...)
 }
 \arguments{
 \item{object}{an object of class \code{\link[envalysis]{calibration}}.}
 
-\item{\dots}{currently not used.}
+\item{\dots}{additional objects of the same type.}
 }
 \description{
-ff
+Tools for weighted calibrations
 }
 \examples{
 data(din32645)
 din <- calibration(Area ~ Conc, data = din32645)
 
 relerr(din)
+
+m32645 <- din32645
+m32645$Area <- din32645$Area * 1.5
+matrix <- calibration(Area ~ Conc, data = m32645)
+
+matrix_effect(din, matrix)
 
 }
 \seealso{
