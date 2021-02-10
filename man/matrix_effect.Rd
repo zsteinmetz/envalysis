@@ -2,9 +2,12 @@
 % Please edit documentation in R/matrix_effect.R
 \name{matrix_effect}
 \alias{matrix_effect}
+\alias{matrix_effect.calibration}
 \title{Assess matrix effects and matrix-matched calibrations}
 \usage{
 matrix_effect(object, ...)
+
+\method{matrix_effect}{calibration}(object, ...)
 }
 \arguments{
 \item{object}{an object of class \code{\link[envalysis]{calibration}}

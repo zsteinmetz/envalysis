@@ -26,7 +26,7 @@ matrix_effect.default <- function(object, ...) {
   stop("object needs to be of class 'calibration'")
 }
 
-#' @rdname weighted-calibration
+#' @rdname matrix_effect
 #' 
 #' @export
 matrix_effect.calibration <- function(object, ...) {

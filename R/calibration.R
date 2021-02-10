@@ -123,6 +123,8 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm",
   
   cal$adj.r.squared <- summary(model)$adj.r.squared
   if (is.null(cal$adj.r.squared)) cal$adj.r.squared <- NA
+  
+  cal$data <- data
   cal$blanks <- blanks
   cal$lod <- lod(cal)
   cal$loq <- loq(cal)

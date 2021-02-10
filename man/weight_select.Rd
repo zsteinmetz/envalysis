@@ -7,9 +7,9 @@
 \alias{relerr.calibration}
 \title{Tools for weighted calibrations}
 \usage{
-weight_select(object, weights)
+weight_select(object, add_weights, ...)
 
-\method{weight_select}{calibration}(object, weights)
+\method{weight_select}{calibration}(object, add_weights = NULL, ...)
 
 relerr(object)
 
@@ -18,7 +18,9 @@ relerr(object)
 \arguments{
 \item{object}{an object of class \code{\link[envalysis]{calibration}}.}
 
-\item{weights}{a list of weights.}
+\item{add_weights}{a list of weights.}
+
+\item{\dots}{further arguments passed to \code{\link[envalysis]{calibration}}.}
 }
 \description{
 Tools for weighted calibrations
