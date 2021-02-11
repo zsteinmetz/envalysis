@@ -16,7 +16,7 @@ calibration(
   data = NULL,
   weights = NULL,
   model = "lm",
-  check_assumptions = FALSE,
+  check_assumptions = TRUE,
   ...
 )
 
@@ -53,8 +53,9 @@ passed to the fitting process of the selected model.}
 \code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported.}
 
 \item{check_assumptions}{automatically check for normality and
-homoscedasticity of model residuals using and \code{\link[stats]{shapiro.test}}
-\code{\link[lmtest]{bptest}}) respectively.}
+homoscedasticity of model residuals using \code{\link[stats]{shapiro.test}}
+and \code{\link[lmtest]{bptest}}, respectively; only done if
+\code{weights == NULL}.}
 
 \item{\dots}{further arguments passed to the submethod, namely the
 respective model environment such as \code{lm}), \code{plot}, or
