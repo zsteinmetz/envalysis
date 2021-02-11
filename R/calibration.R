@@ -104,20 +104,6 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm",
   model$call <- match.call(expand.dots = F)
   model$formula <- formula
   
-  if (check_assumptions) {
-    swt <- shapiro.test(model$residuals)
-    bpt <- bptest(model)
-    
-    cat("Check for normality of residuals\n")
-    print(swt)
-    cat("Check for homoscedasticity of residuals\n")
-    print(bpt)
-    
-    if (swt$p.value < 0.05 || bpt$p.value < 0.05)
-      warning("model assumptions may not be met; double check graphically and ",
-              "consider using a weighted model instead")
-  }
-  
   cal <- structure(list(), class = "calibration")
   cal$model <- model
   
@@ -131,6 +117,20 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm",
   cal$relerr <- relerr(cal)
   
   return(cal)
+  
+  if (is.null(weights) & check_assumptions) {
+    swt <- shapiro.test(model$residuals)
+    bpt <- bptest(model)
+    
+    cat("Check for normality of residuals\n")
+    print(swt)
+    cat("Check for homoscedasticity of residuals\n")
+    print(bpt)
+    
+    if (swt$p.value < 0.05 || bpt$p.value < 0.05)
+      warning("model assumptions may not be met; double check graphically and ",
+              "consider using a weighted model instead")
+  }
 }
 
 #' @rdname calibration

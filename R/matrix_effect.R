@@ -30,16 +30,16 @@ matrix_effect.default <- function(object, ...) {
 #' 
 #' @export
 matrix_effect.calibration <- function(object, ...) {
-  others <- list(...)
+  fo <- list(...)
   
-  obj_name <- match.call()[2L]
-  arg_names <- match.call(expand.dots = FALSE)$...
+  arg1 <- match.call()[2L]
+  arg2 <- match.call(expand.dots = FALSE)$...
   
-  if (!all(sapply(others, class) == "calibration"))
+  if (!all(sapply(fo, class) == "calibration"))
     stop("object needs to be of class 'calibration'")
   
-  res <- unlist(sapply(others, .slopedev, object))
-  names(res) <- paste(obj_name, arg_names, sep = " - ")
+  res <- unlist(sapply(fo, .slopedev, object))
+  names(res) <- paste(arg1, arg2, sep = " - ")
   
   return(res)
 }

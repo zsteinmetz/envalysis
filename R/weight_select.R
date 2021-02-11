@@ -24,28 +24,31 @@ weight_select.default <- function(object, add_weights, ...) {
 #' @export
 weight_select.calibration <- function(object, add_weights = NULL, ...) {
   model <- object$model
-  objname <- as.character(match.call()[2L])
+  arg <- as.character(match.call()[2L])
   
-  stdweights <- apply(expand.grid("1/", all.vars(model$formula), "^",
-                                  c(0.5, 1, 2)), 1, paste, collapse = "")
-  allweights <- c(stdweights, add_weights)
+  stdw <- apply(expand.grid("1/", all.vars(model$formula), "^", c(0.5, 1, 2)),
+                1, paste, collapse = "")
+  allw <- c(stdw, add_weights)
   
-  nullweight <- calibration(model$formula, object$data, weights = NULL, ...)
-  weighted <- lapply(allweights, function(x) {calibration(model$formula,
-                                                          object$data, weights = x, ...)})
+  nw <- calibration(model$formula, object$data, weights = NULL, ...)
+  w <- lapply(allw, function(x) {calibration(model$formula, object$data,
+                                             weights = x, ...)})
   
-  models <- c(list(object), list(nullweight), weighted)
-  names(models) <- c(objname, "NULL", allweights)
+  m <- c(list(object), list(nw), w)
+  names(m) <- c(arg, "NULL", allw)
   
-  sumrelerr <- unlist(lapply(models, function(x) {sum(abs(x$relerr))}))
-  Rsq <- unlist(lapply(models, function(x) {x$adj.r.squared}))
-  pr <- data.frame(names(models), sumrelerr, Rsq)
-  names(pr) <- c("Weights", "Sum relative error", "Adjusted R-squared")
+  srelerr <- unlist(lapply(m, function(x) {sum(abs(x$relerr))}))
+  Rsq <- unlist(lapply(m, function(x) {x$adj.r.squared}))
+  int <- unlist(lapply(m, function(x) {x$model$coef[1]}))
+  sl <- unlist(lapply(m, function(x) {x$model$coef[2]}))
+  sum <- data.frame(names(m), srelerr, Rsq, int, sl)
+  names(sum) <- c("Weights", "Sum relative error", "Adjusted R-squared",
+                  "Intercept", "Slope")
   
-  po <- pr[order(pr$`Sum relative error`),]
-  print(po, row.names = F)
+  sum <- sum[order(sum$`Sum relative error`),]
+  print(sum[,1:3], row.names = F)
   
-  out <- list(models = models, best = po[1,1])
+  list(models = m, summary = sum, best = sum[1,1])
 }
 
 #' @examples
