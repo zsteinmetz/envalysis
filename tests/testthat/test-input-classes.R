@@ -3,8 +3,10 @@ library(data.table)
 
 data(din32645)
 test_that("calibration() handles data.tables and tibbles well", {
-  expect_silent(calibration(Area ~ Conc, data = as_tibble(din32645)))
-  expect_silent(calibration(Area ~ Conc, data = data.table(din32645)))
+  expect_silent(calibration(Area ~ Conc, data = as_tibble(din32645),
+                            check_assumptions = F))
+  expect_silent(calibration(Area ~ Conc, data = data.table(din32645),
+                            check_assumptions = F))
 })
 
 data(clayloam)

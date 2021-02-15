@@ -117,8 +117,6 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm",
   cal$loq <- loq(cal)
   cal$relerr <- relerr(cal)
   
-  return(cal)
-  
   if (is.null(weights) & check_assumptions) {
     swt <- shapiro.test(model$residuals)
     bpt <- bptest(model)
@@ -132,6 +130,8 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm",
       warning("model assumptions may not be met; double check graphically and ",
               "consider using a weighted model instead")
   }
+  
+  return(cal)
 }
 
 #' @rdname calibration
