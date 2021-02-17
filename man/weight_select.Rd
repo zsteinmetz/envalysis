@@ -18,23 +18,56 @@ relerr(object)
 \arguments{
 \item{object}{an object of class \code{\link[envalysis]{calibration}}.}
 
-\item{add_weights}{a list of weights.}
+\item{add_weights}{a list of weights to be added to the default weights to be
+checked. These are \code{1/concentration^0.5}, \code{1/concentration^1},
+\code{1/concentration^2}, \code{1/signal^0.5}, \code{1/signal^1}, and
+\code{1/signal^2}.}
 
 \item{\dots}{further arguments passed to \code{\link[envalysis]{calibration}}.}
 }
+\value{
+\code{weight_select} produces a matrix with differently weighted
+\code{calibration} models ordered by sum relative errors.
+\code{relerr} compares the nominal concentrations with those predicted by
+the \code{\link[envalysis]{calibration}} model.
+}
 \description{
-Tools for weighted calibrations
+Selecting optimum model weights by comparing sum relative errors
+(\code{relerr}) of weighted \code{\link[envalysis]{calibration}} models as
+suggested by Almeida et al. (2002).
+}
+\details{
+If calibration data is not homoscedastic, a weighted least squares linear
+calibration model may be applied to counteract the influence of high
+concentrations on the regression model. This, in turn, typically improves the
+accuracy at the lower end of the calibration curve (Almeida et al., 2002).
+\code{weight_select} uses sum relative errors (\code{relerr}) to
+find the best weight as suggested by Almeida et al. (2002). Predefined
+weights include \code{1/concentration^0.5}, \code{1/concentration^1},
+\code{1/concentration^2}, \code{1/signal^0.5}, \code{1/signal^1}, and
+\code{1/signal^2} (see \code{\link[envalysis]{calibration}} for details).
 }
 \examples{
 data(din32645)
 din <- calibration(Area ~ Conc, data = din32645)
 
+weight_select(din)
+
 relerr(din)
 
+}
+\references{
+Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
+regression for calibration lines revisited: weighting schemes for
+bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
+215-222. DOI: \href{https://doi.org/10.1016/S1570-0232(02)00244-1}{10.1016/S1570-0232(02)00244-1}
 }
 \seealso{
 Other calibration: 
 \code{\link{calibration}()},
 \code{\link{matrix_effect}()}
+}
+\author{
+Julius Albert, Kilian Kenngott
 }
 \concept{calibration}
