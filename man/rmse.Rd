@@ -11,8 +11,8 @@ rmse(obs, sim, rel = F, na.rm = T)
 
 \item{sim}{a numeric vector containing simulated values.}
 
-\item{rel}{logical. If TRUE, the relative RMSE is calculated, if FALSE the
-absolute RMSE is returned.}
+\item{rel}{logical. If \code{TRUE}, the relative RMSE is calculated, if
+\code{FALSE} the absolute RMSE is returned.}
 
 \item{na.rm}{logical. Should missing values be removed?}
 }

@@ -1,5 +1,4 @@
 #' @family calibration
-#' @rdname calibration
 #' 
 #' @title Analytical calibration functions
 #'
@@ -26,14 +25,14 @@
 #' "\code{1/signal}" which is internally converted to a numeric vector and
 #' passed to the fitting process of the selected model.
 #' @param model model class to be used for fitting; currently,
-#' \code{\link[stats]{lm}} and \code{\link[MASS]{rlm}} are supported.
+#' \code{\link[stats]{lm}()} and \code{\link[MASS]{rlm}()} are supported.
 #' @param check_assumptions automatically check for normality and
-#' homoscedasticity of model residuals using \code{\link[stats]{shapiro.test}}
-#' and \code{\link[lmtest]{bptest}}, respectively; only executed if
+#' homoscedasticity of model residuals using \code{\link[stats]{shapiro.test}()}
+#' and \code{\link[lmtest]{bptest}()}, respectively; only executed if
 #' \code{weights == NULL}.
 #' @param \dots further arguments passed to the submethod, namely the
-#' respective model environment such as \code{lm}, \code{plot}, or
-#' \code{print}.
+#' respective model environment such as \code{lm}(), \code{plot}(), or
+#' \code{print}().
 #' 
 #' @details
 #' If the \code{data} supplied to \code{calibration} contain more than one blank
@@ -46,7 +45,7 @@
 #' 
 #' @return
 #' \code{calibration} returns an object of \code{\link[base]{class}}
-#' "calibration". \code{print} calls the function parameters together with the
+#' '\code{calibration}'. \code{print} calls the function parameters together with the
 #' respective LOD and LOQ. \code{plot} plots the respective calibration curve
 #' together with the measurement values. \code{summary} may be used to retrieve
 #' the summary of the underlying model.
@@ -166,9 +165,9 @@ summary.calibration <- function(object, ...) {
 #' @rdname calibration
 #' 
 #' @param interval Type of interval calculation (can be abbreviated); see
-#' \code{\link[stats]{predict}} for details.
-#' @param level tolerance/confidence level; see \code{\link[stats]{predict}}
-#' and \code{\link[stats]{confint}} for details.
+#' \code{\link[stats]{predict}()} for details.
+#' @param level tolerance/confidence level; see \code{\link[stats]{predict}()}
+#' and \code{\link[stats]{confint}()} for details.
 #' 
 #' @export
 plot.calibration <- function(x, interval = "conf", level = 0.95, ...) {
@@ -192,7 +191,7 @@ plot.calibration <- function(x, interval = "conf", level = 0.95, ...) {
 
 #' @rdname calibration
 #' 
-#' @param x,object an object of class \code{calibration} with a model formula
+#' @param x,object an object of class '\code{calibration}' with a model formula
 #' as shown above.
 #' @param alpha error tolerance for the detection limit (critical value).
 #'
@@ -247,7 +246,8 @@ lod.calibration <- function(object, alpha = 0.01, level = 0.05, ...) {
 
 #' @rdname calibration
 #' 
-#' @param k relative uncertainty for the limit of quantification (1/beta).
+#' @param k relative uncertainty for the limit of quantification
+#' (\code{1/beta}).
 #' @param maxiter a positive integer specifying the maximum number of iterations
 #' to calculate the LOQ.
 #' 

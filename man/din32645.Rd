@@ -20,9 +20,15 @@ and determination limit under repeatability conditions - Terms, methods,
 evaluation}. Technical standard. Deutsches Institut für Normung, Berlin.
 }
 \seealso{
-\code{\link{calibration}}
+Other calibration: 
+\code{\link{calibration}()},
+\code{\link{icp}},
+\code{\link{matrix_effect}()},
+\code{\link{neitzel2003}},
+\code{\link{weight_select}()}
 }
 \author{
 Deutsches Institut für Normung
 }
+\concept{calibration}
 \keyword{data}

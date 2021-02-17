@@ -7,7 +7,7 @@
 #' calibration curve with one or more matrix-matched calibration. The matrix
 #' effect is expressed as signal suppression/enhancement ratio.
 #' 
-#' @param object an object of class \code{\link[envalysis]{calibration}}
+#' @param object an object of class '\code{\link{calibration}}'
 #' obtained from analyzing standard solutions of different concentration
 #' (solvent calibration data).
 #' @param \dots additional objects of the same type obtained from

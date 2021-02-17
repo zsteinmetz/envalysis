@@ -20,9 +20,15 @@ Sample data of the calibration of silver ions in four-fold replication using
 inductively coupled plasma atomic emission spectroscopy (ICP-AES).
 }
 \seealso{
-\code{\link{calibration}}
+Other calibration: 
+\code{\link{calibration}()},
+\code{\link{din32645}},
+\code{\link{matrix_effect}()},
+\code{\link{neitzel2003}},
+\code{\link{weight_select}()}
 }
 \author{
 Zacharias Steinmetz
 }
+\concept{calibration}
 \keyword{data}

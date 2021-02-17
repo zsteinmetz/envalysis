@@ -9,11 +9,11 @@ bisdom(wdpt, ...)
 \arguments{
 \item{wdpt}{a numeric vector containing WDPT measurement data in seconds.}
 
-\item{\dots}{arguments passed to \code{\link[base]{findInterval}}.}
+\item{\dots}{arguments passed to \code{\link[base]{findInterval}()}.}
 }
 \description{
-This wrapper function categorizes water drop penetration times (WDPT) [s] according to
-the scale proposed by Bisdom et al. (1993).
+This wrapper function categorizes water drop penetration times (WDPT) in
+seconds according to the scale proposed by Bisdom et al. (1993).
 }
 \examples{
 bisdom(c(2,6,20,NA,3,385))
@@ -26,7 +26,7 @@ Structure. \emph{Geoderma} \bold{56}, 105-118. DOI:
 \href{https://doi.org/10.1016/0016-7061(93)90103-R}{10.1016/0016-7061(93)90103-R}
 }
 \seealso{
-\code{\link[base]{findInterval}} for the generic function.
+\code{\link[base]{findInterval}()} for the generic function.
 }
 \author{
 Zacharias Steinmetz

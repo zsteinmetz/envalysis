@@ -16,24 +16,24 @@ relerr(object)
 \method{relerr}{calibration}(object)
 }
 \arguments{
-\item{object}{an object of class \code{\link[envalysis]{calibration}}.}
+\item{object}{an object of class '\code{\link{calibration}}'.}
 
 \item{add_weights}{a list of weights to be added to the default weights to be
 checked. These are \code{1/concentration^0.5}, \code{1/concentration^1},
 \code{1/concentration^2}, \code{1/signal^0.5}, \code{1/signal^1}, and
 \code{1/signal^2}.}
 
-\item{\dots}{further arguments passed to \code{\link[envalysis]{calibration}}.}
+\item{\dots}{further arguments passed to \code{\link{calibration}()}.}
 }
 \value{
 \code{weight_select} produces a matrix with differently weighted
 \code{calibration} models ordered by sum relative errors.
 \code{relerr} compares the nominal concentrations with those predicted by
-the \code{\link[envalysis]{calibration}} model.
+the \code{\link{calibration}} model.
 }
 \description{
 Selecting optimum model weights by comparing sum relative errors
-(\code{relerr}) of weighted \code{\link[envalysis]{calibration}} models as
+(\code{relerr()}) of weighted \code{\link{calibration}} models as
 suggested by Almeida et al. (2002).
 }
 \details{
@@ -65,7 +65,10 @@ bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
 \seealso{
 Other calibration: 
 \code{\link{calibration}()},
-\code{\link{matrix_effect}()}
+\code{\link{din32645}},
+\code{\link{icp}},
+\code{\link{matrix_effect}()},
+\code{\link{neitzel2003}}
 }
 \author{
 Julius Albert, Kilian Kenngott, Zacharias Steinmetz

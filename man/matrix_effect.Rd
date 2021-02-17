@@ -10,7 +10,7 @@ matrix_effect(object, ...)
 \method{matrix_effect}{calibration}(object, ...)
 }
 \arguments{
-\item{object}{an object of class \code{\link[envalysis]{calibration}}
+\item{object}{an object of class '\code{\link{calibration}}'
 obtained from analyzing standard solutions of different concentration
 (solvent calibration data).}
 
@@ -51,6 +51,9 @@ matrix_effect(din, matrix)
 \seealso{
 Other calibration: 
 \code{\link{calibration}()},
+\code{\link{din32645}},
+\code{\link{icp}},
+\code{\link{neitzel2003}},
 \code{\link{weight_select}()}
 }
 \author{

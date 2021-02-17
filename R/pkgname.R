@@ -2,9 +2,9 @@
 #'
 #' @description
 #' Small toolbox for data analyses in environmental chemistry and
-#' ecotoxicology. Provides, for example, calibration() to calculate calibration
+#' ecotoxicology. Provides, for example, \code{\link{calibration}()} to calculate calibration
 #' curves and corresponding limits of detection (LODs) and quantification
-#' (LOQs) according to German DIN 32645:2008-11. texture() makes it easy to
+#' (LOQs) according to German DIN 32645 (2008). \code{\link{texture}()} makes it easy to
 #' estimate soil particle size distributions from hydrometer measurements (ASTM
 #' D422-63, 2007).
 #' 

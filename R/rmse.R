@@ -8,8 +8,8 @@
 #'
 #' @param obs a numeric vector containing observed values.
 #' @param sim a numeric vector containing simulated values.
-#' @param rel logical. If TRUE, the relative RMSE is calculated, if FALSE the
-#' absolute RMSE is returned.
+#' @param rel logical. If \code{TRUE}, the relative RMSE is calculated, if
+#' \code{FALSE} the absolute RMSE is returned.
 #' @param na.rm logical. Should missing values be removed?
 #' 
 #' @author 
@@ -18,7 +18,7 @@
 #' @examples
 #' rmse(c(0.12,0.59,NA), c(0.15,0.63,1.2))
 #'
-#' @importFrom  stats na.omit
+#' @importFrom stats na.omit
 #' @export
 rmse <- function(obs, sim, rel = F, na.rm = T)
 {

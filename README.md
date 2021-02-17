@@ -13,8 +13,8 @@ Miscellaneous Functions for Environmental Analyses
 analyses in environmental chemistry and ecotoxicology. Provides, for example,
 `calibration()` to calculate calibration curves and corresponding limits of
 detection (LODs) and quantification (LOQs) according to German DIN
-32645:2008-11. `texture()` makes it easy to estimate soil particle size
-distributions from hydrometer measurements (ASTM D422-63(2007)e2).
+32645 (2008). `texture()` makes it easy to estimate soil particle size
+distributions from hydrometer measurements (ASTM D422-63, 2007).
 Some functions of the package require **ggplot2** or **drc**.
 
 ## Functions
@@ -22,17 +22,17 @@ Currently, the following functions are available:
 
 ### Data manipulation and analysis
 
-* Confidence intervals `CI()` and standard errors `se()`
-* Root mean square errors `rmse()`
 * Limit of detection (LOD) `lod()` and limit of quantification (LOQ) `loq()` as
 part of the `calibration` class to produce linear calibration curves according
-to German DIN 32645:2008-11
-* Various sorption isotherms `sorption()`
+to German DIN 32645 (2008)
 * Determine particle size distributions and soil texture classes (DIN/USDA)
-measured with a soil hydrometer in accordance with ASTM D422-63(2007)e2 using
+measured with a soil hydrometer in accordance with ASTM D422-63 (2007) using
 `texture()`; see
 [vignette](https://htmlpreview.github.io/?https://github.com/zsteinmetz/envalysis/blob/master/vignettes/texture.html)
 for details
+* Confidence intervals `CI()` and standard errors `se()`
+* Root mean square errors `rmse()`
+* Various sorption isotherms `sorption()`
 
 ### Data presentation
 

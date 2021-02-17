@@ -23,16 +23,18 @@
 #' @param hydrometer a character string specifying the hydrometer used; accepted
 #' values are \code{"auto"} for auto-detection (default), \code{"151H"}, and
 #' \code{"152H"}.
-#' @param model string is passed to \code{\link[drc]{drm}}, "auto" chooses the
+#' @param model string is passed to \code{\link[drc]{drm}()}, "auto" chooses the
 #' best fitting model automatically.
 #' @param plot logical; if \code{TRUE} the particle size distribution is plotted.
 #' 
 #' @return
-#' \code{texture} returns an object of \code{\link[base]{class}} "texture". The
-#' functions \code{print} and \code{plot} are available to retrieve the soil
-#' texture classes and the particle size distribution, respectively.
+#' \code{texture} returns an object of \code{\link[base]{class}} '\code{texture}.
+#' The functions \code{print}() and \code{plot}() are available to retrieve the
+#' soil texture classes and the particle size distribution, respectively.
 #' 
-#' An object of class "texture" is a list containing the following components:
+#' An object of class '\code{texture}' is a list containing the following
+#' components:
+#' 
 #' \tabular{ll}{
 #' \code{meta} \tab Measurement meta data\cr
 #' \code{distribution} \tab data frame providing the particle size
@@ -157,9 +159,9 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
 #' @family texture
 #' @rdname texture
 #' 
-#' @param x an object of class "texture".
-#' @param \dots further arguments to be passed to \code{texture} (currently not
-#' used), \code{print}, or \code{plot}.
+#' @param x an object of class '\code{texture}'.
+#' @param \dots further arguments to be passed to \code{texture}() (currently not
+#' used), \code{print}(), or \code{plot}().
 #' 
 #' @export
 print.texture <- function(x, ...) {

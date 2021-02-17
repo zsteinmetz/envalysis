@@ -1,3 +1,5 @@
+#' @family calibration
+#' 
 #' @title Calibration data from Neitzel, 2003
 #' 
 #' @description
@@ -17,9 +19,6 @@
 #' Neitzel, V. (2003). Kalibrierung bei Analysenverfahren - Bestimmungsgrenze ist
 #' nicht gleich Bestimmungsgrenze. \emph{CLB Chemie in Labor und Biotechnik},
 #' \bold{54}(7), 242-246
-#' 
-#' @seealso
-#' \code{\link{calibration}}
 #' 
 #' @docType data
 #' @keywords data

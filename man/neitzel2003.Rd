@@ -20,9 +20,15 @@ nicht gleich Bestimmungsgrenze. \emph{CLB Chemie in Labor und Biotechnik},
 \bold{54}(7), 242-246
 }
 \seealso{
-\code{\link{calibration}}
+Other calibration: 
+\code{\link{calibration}()},
+\code{\link{din32645}},
+\code{\link{icp}},
+\code{\link{matrix_effect}()},
+\code{\link{weight_select}()}
 }
 \author{
 Volkmar Neitzel
 }
+\concept{calibration}
 \keyword{data}

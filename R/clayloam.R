@@ -1,3 +1,5 @@
+#' @family texture
+#' 
 #' @title Hydrometer readings for a clay loam
 #' 
 #' @description
@@ -20,9 +22,6 @@
 #' ASTM D422-63 (2007). \emph{Standard Test Method for Particle-Size Analysis
 #' of Soils}. Technical standard. ASTM International, West Conshohocken, PA.
 #' Available from \url{http://www.astm.org/Standards/D422.htm}.
-#' 
-#' @seealso 
-#' \code{\link{texture}}
 #' 
 #' @docType data
 #' @keywords data

@@ -11,7 +11,7 @@
 #' @param na.rm logical. Should missing values be removed?
 #' 
 #' @seealso
-#' \code{\link[stats]{sd}} for the standard deviation.
+#' \code{\link[stats]{sd}()} for the standard deviation.
 #' 
 #' @author 
 #' Zacharias Steinmetz

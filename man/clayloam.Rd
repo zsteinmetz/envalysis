@@ -23,9 +23,11 @@ of Soils}. Technical standard. ASTM International, West Conshohocken, PA.
 Available from \url{http://www.astm.org/Standards/D422.htm}.
 }
 \seealso{
-\code{\link{texture}}
+Other texture: 
+\code{\link{texture}()}
 }
 \author{
 ASTM International
 }
+\concept{texture}
 \keyword{data}

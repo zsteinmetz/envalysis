@@ -2,8 +2,8 @@
 #' 
 #' @description
 #' This function reports the significant figures of a given \code{mean} together
-#' with its respective \code{error} term (e.g. confidence interval or standard
-#' deviation).
+#' with its respective \code{error} term (for instance confidence interval or
+#' standard deviation).
 #'
 #' @param mean a numeric vector or data frame object containing the averaged
 #' values.

@@ -1,3 +1,5 @@
+#' @family calibration
+#' 
 #' @title ICP-AES calibration data
 #' 
 #' @description
@@ -17,9 +19,6 @@
 #' 
 #' @author
 #' Zacharias Steinmetz
-#' 
-#' @seealso
-#' \code{\link{calibration}}
 #' 
 #' @docType data
 #' @keywords data
