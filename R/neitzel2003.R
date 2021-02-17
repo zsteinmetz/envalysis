@@ -10,10 +10,13 @@
 #' Meas: \tab measurement signal\cr
 #' }
 #' 
+#' @author
+#' Volkmar Neitzel
+#' 
 #' @references 
-#' Neitzel, V., 2003. Kalibrierung bei Analysenverfahren - Bestimmungsgrenze ist
-#' nicht gleich Bestimmungsgrenze. CLB Chemie in Labor und Biotechnik, 54(7),
-#' 242–246
+#' Neitzel, V. (2003). Kalibrierung bei Analysenverfahren - Bestimmungsgrenze ist
+#' nicht gleich Bestimmungsgrenze. \emph{CLB Chemie in Labor und Biotechnik},
+#' \bold{54}(7), 242-246
 #' 
 #' @seealso
 #' \code{\link{calibration}}

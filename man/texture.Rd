@@ -83,7 +83,7 @@ distribution\cr
 \description{
 Calculates the particle size distribution and both DIN and USDA texture
 classes from a series of hydrometer readings according to
-ASTM D422-63(2007)e2.
+ASTM D422-63 (2007).
 }
 \examples{
 data(clayloam)
@@ -98,8 +98,11 @@ texture(reading ~ blank + time + temperature, clayloam)
 
 }
 \references{
-ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis
-of Soils (Technical standard). ASTM International, West Conshohocken, PA.
+ASTM D422-63 (2007). \emph{Standard Test Method for Particle-Size Analysis
+of Soils}. Technical standard. ASTM International, West Conshohocken, PA.
 Available from \url{http://www.astm.org/Standards/D422.htm}
+}
+\author{
+Zacharias Steinmetz
 }
 \concept{texture}

@@ -21,9 +21,12 @@
 #' @examples
 #' signifig(mean = c(0.28,5), error = c(0.688, 8))
 #' 
+#' @author 
+#' Zacharias Steinmetz
+#' 
 #' @references
-#' Taylor, J.R., 1997. Error analysis: the study of uncertainties in physical
-#' measurements. University Science Books, Sausalito, CA.
+#' Taylor, J.R. (1997). \emph{Error analysis: the study of uncertainties in physical
+#' measurements}. University Science Books, Sausalito, CA.
 #' 
 #' @export
 signifig <- function(mean, error, data, signif.na = 2, style = "pm") {

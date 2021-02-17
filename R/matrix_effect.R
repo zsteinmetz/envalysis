@@ -27,7 +27,7 @@
 #' signal suppression/enhancement ratios are close to measurement repeatability. 
 #' 
 #' @author
-#' Julius Albert
+#' Julius Albert, Zacharias Steinmetz
 #' 
 #' @examples
 #' data(din32645)

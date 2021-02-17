@@ -15,14 +15,17 @@ hexametaphosphate solution (composite correction)\cr
 }
 }
 \description{
-Data obtained with a 152H hydrometer in accordance with ASTM D422-63(2007)e2.
+Data obtained with a 152H hydrometer in accordance with ASTM D422-63 (2007).
 }
 \references{
-ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis
-of Soils (Technical standard). ASTM International, West Conshohocken, PA.
-Available from \url{http://www.astm.org/Standards/D422.htm}
+ASTM D422-63 (2007). \emph{Standard Test Method for Particle-Size Analysis
+of Soils}. Technical standard. ASTM International, West Conshohocken, PA.
+Available from \url{http://www.astm.org/Standards/D422.htm}.
 }
 \seealso{
 \code{\link{texture}}
+}
+\author{
+ASTM International
 }
 \keyword{data}

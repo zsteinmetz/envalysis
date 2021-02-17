@@ -16,6 +16,9 @@
 #' \code{"BET"} for the BET model according to Brunauer, Emmet, and Teller
 #' \code{"redlich"} for the Redlich-Peterson isotherm.
 #' 
+#' @author
+#' Zacharias Steinmetz
+#' 
 #' @examples
 #' sorption(conc = 1:5, c(Kd = 2.5), type = "linear")
 #' sorption(conc = 1:5, c(K = 4, n = 0.6), type = "freundlich")
@@ -24,8 +27,7 @@
 #' sorption(conc = 1:5, c(A = 30, B = 0.8), type = "redlich")
 #' 
 #' @references
-#' Atkins, P.W., 2001. Physical chemistry, 6. ed., reprint. ed. Oxford Univ.
-#' Press, Oxford.
+#' Atkins, P.W. (2001). \emph{Physical chemistry}, Oxford University Press, Oxford.
 #' 
 #' @export
 sorption <- function(conc, par, type = "freundlich") {

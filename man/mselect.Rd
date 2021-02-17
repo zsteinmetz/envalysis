@@ -31,9 +31,9 @@ A matrix with one row for each model and one column for each criterion.
 }
 \description{
 This function should behave just like \code{\link[drc]{drm}} from \code{drc},
-with the main difference being that model objects are passed through the
+with the main difference that model objects are passed through the
 function instead of requiring the data to be present in \code{.GlobalEnv}. If
-you have trouble with this function, you can use \code{drc::mselect()}
+you have trouble with this function, you can use \code{drc::mselect}
 instead.
 }
 \details{
@@ -51,4 +51,7 @@ library(drc)
 ryegrass.m1 <- drm(rootl ~ conc, data = ryegrass, fct = LL.4())
 mselect(ryegrass.m1, list(LL.3(), LL.5(), W1.3(), W1.4(), W2.4(), baro5()))
 
+}
+\author{
+Christian Ritz
 }

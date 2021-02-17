@@ -13,13 +13,13 @@ theme_publish(base_size = 12, base_family = "", line_size = 0.25, ...)
 
 \item{line_size}{base line size for, e.g. for ticks and axes}
 
-\item{\dots}{further arguments to be passed to \code{theme_bw}}
+\item{\dots}{further arguments to be passed to \code{\link[ggplot2]{theme_bw}}}
 }
 \description{
 Themes set the general aspect of the plot such as the color of the
-background, gridlines, the size and colour of fonts. This particular theme is
-based on the classic dark-on-light ggplot2 \code{theme_bw} and has been used
-for scientific publications,
+background, grid lines, the size and color of fonts. This particular theme is
+based on the classic dark-on-light ggplot2 \code{\link[ggplot2]{theme_bw}}
+and has been used for scientific publications.
 }
 \examples{
 require(ggplot2)
@@ -31,4 +31,8 @@ p + theme_publish()
 }
 \seealso{
 \code{\link[ggplot2]{ggtheme}}
+\code{\link[ggplot2]{theme_bw}}
+}
+\author{
+Zacharias Steinmetz
 }

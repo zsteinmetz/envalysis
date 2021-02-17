@@ -2,15 +2,18 @@
 #'
 #' @description
 #' Themes set the general aspect of the plot such as the color of the
-#' background, gridlines, the size and colour of fonts. This particular theme is
-#' based on the classic dark-on-light ggplot2 \code{theme_bw} and has been used
-#' for scientific publications,
+#' background, grid lines, the size and color of fonts. This particular theme is
+#' based on the classic dark-on-light ggplot2 \code{\link[ggplot2]{theme_bw}}
+#' and has been used for scientific publications.
 #'
 #' @param base_size base font size
 #' @param base_family base font family
 #' @param line_size base line size for, e.g. for ticks and axes
-#' @param \dots further arguments to be passed to \code{theme_bw}
+#' @param \dots further arguments to be passed to \code{\link[ggplot2]{theme_bw}}
 #'
+#' @author 
+#' Zacharias Steinmetz
+#' 
 #' @examples
 #' require(ggplot2)
 #' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
@@ -20,6 +23,7 @@
 #'
 #' @seealso
 #' \code{\link[ggplot2]{ggtheme}}
+#' \code{\link[ggplot2]{theme_bw}}
 #'
 #' @import ggplot2
 #' @export

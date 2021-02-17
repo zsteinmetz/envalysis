@@ -15,11 +15,14 @@ Area: \tab measurement signal\cr
 Sample data for the calibration of carbon in water.
 }
 \references{
-DIN 32645:2008-11, 2008. Chemical analysis - Decision limit, detection limit
+DIN 32645 (2008). \emph{Chemical analysis - Decision limit, detection limit
 and determination limit under repeatability conditions - Terms, methods,
-evaluation (Technical standard). Deutsches Institut für Normung, Berlin.
+evaluation}. Technical standard. Deutsches Institut für Normung, Berlin.
 }
 \seealso{
 \code{\link{calibration}}
+}
+\author{
+Deutsches Institut für Normung
 }
 \keyword{data}

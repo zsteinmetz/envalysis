@@ -30,3 +30,6 @@ CI(1:5)
 \seealso{
 \code{\link[stats]{sd}} for the standard deviation.
 }
+\author{
+Zacharias Steinmetz
+}

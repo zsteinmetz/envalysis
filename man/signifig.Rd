@@ -34,6 +34,9 @@ signifig(mean = c(0.28,5), error = c(0.688, 8))
 
 }
 \references{
-Taylor, J.R., 1997. Error analysis: the study of uncertainties in physical
-measurements. University Science Books, Sausalito, CA.
+Taylor, J.R. (1997). \emph{Error analysis: the study of uncertainties in physical
+measurements}. University Science Books, Sausalito, CA.
+}
+\author{
+Zacharias Steinmetz
 }

@@ -12,6 +12,9 @@
 #' absolute RMSE is returned.
 #' @param na.rm logical. Should missing values be removed?
 #' 
+#' @author 
+#' Zacharias Steinmetz
+#' 
 #' @examples
 #' rmse(c(0.12,0.59,NA), c(0.15,0.63,1.2))
 #'

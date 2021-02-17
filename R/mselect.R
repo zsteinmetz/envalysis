@@ -2,9 +2,9 @@
 #' 
 #' @description
 #' This function should behave just like \code{\link[drc]{drm}} from \code{drc},
-#' with the main difference being that model objects are passed through the
+#' with the main difference that model objects are passed through the
 #' function instead of requiring the data to be present in \code{.GlobalEnv}. If
-#' you have trouble with this function, you can use \code{drc::mselect()}
+#' you have trouble with this function, you can use \code{drc::mselect}
 #' instead.
 #' 
 #' @usage
@@ -35,6 +35,9 @@
 #' 
 #' @return
 #' A matrix with one row for each model and one column for each criterion.
+#' 
+#' @author
+#' Christian Ritz
 #' 
 #' @examples
 #' library(drc)

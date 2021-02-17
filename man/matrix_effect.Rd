@@ -54,6 +54,6 @@ Other calibration:
 \code{\link{weight_select}()}
 }
 \author{
-Julius Albert
+Julius Albert, Zacharias Steinmetz
 }
 \concept{calibration}

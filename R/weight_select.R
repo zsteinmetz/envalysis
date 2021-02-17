@@ -32,7 +32,7 @@
 #' \code{1/signal^2} (see \code{\link[envalysis]{calibration}} for details).
 #' 
 #' @author
-#' Julius Albert, Kilian Kenngott
+#' Julius Albert, Kilian Kenngott, Zacharias Steinmetz
 #' 
 #' @examples
 #' data(din32645)
@@ -44,7 +44,7 @@
 #' Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
 #' regression for calibration lines revisited: weighting schemes for
 #' bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
-#' 215-222. DOI: \href{https://doi.org/10.1016/S1570-0232(02)00244-1}{10.1016/S1570-0232(02)00244-1}
+#' 215-222. DOI: \href{https://doi.org/10.1016/S1570-0232(02)00244-1}{10.1016/S1570-0232(02)00244-1}.
 #' 
 #' @export
 weight_select <- function(object, add_weights, ...)

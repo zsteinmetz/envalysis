@@ -22,4 +22,7 @@ inductively coupled plasma atomic emission spectroscopy (ICP-AES).
 \seealso{
 \code{\link{calibration}}
 }
+\author{
+Zacharias Steinmetz
+}
 \keyword{data}

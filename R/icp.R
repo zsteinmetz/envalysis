@@ -15,6 +15,9 @@
 #' Replicate: \tab number of the respective replicate\cr
 #' }
 #' 
+#' @author
+#' Zacharias Steinmetz
+#' 
 #' @seealso
 #' \code{\link{calibration}}
 #' 
