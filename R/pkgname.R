@@ -6,19 +6,31 @@
 #' curves and corresponding limits of detection (LODs) and quantification
 #' (LOQs) according to German DIN 32645:2008-11. texture() makes it easy to
 #' estimate soil particle size distributions from hydrometer measurements (ASTM
-#' D422-63(2007)e2).
+#' D422-63, 2007).
 #' 
 #' @details
 #' \tabular{ll}{
-#' Version: \tab 0.4.2\cr
+#' Version: \tab 0.5.0\cr
 #' Licence: \tab GPLv3\cr
 #' }
 #'
-#' @author Zacharias Steinmetz (\email{steinmetz-z@@uni-landau.de})
+#' @author
+#' Zacharias Steinmetz (\email{steinmetz-z@@uni-landau.de}),
+#' Julius Albert (\email{albert.j@@uni-landau.de}),
+#' Kilian Kenngott (\email{kenngott@@uni-landau.de})
 #' 
 #' @references
-#' Borcard D, Gillet F, Legendre P. 2011. Numerical ecology with R. Springer,
-#' New York.
+#' Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
+#' regression for calibration lines revisited: weighting schemes for
+#' bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
+#' 215-222. DOI: \href{https://doi.org/10.1016/S1570-0232(02)00244-1}{10.1016/S1570-0232(02)00244-1}.
+#' 
+#' ASTM D422-63 (2007). \emph{Standard Test Method for Particle-Size Analysis
+#' of Soils}. Technical standard. ASTM International, West Conshohocken, PA.
+#' Available from \url{http://www.astm.org/Standards/D422.htm}
+#' 
+#' Borcard D, Gillet F, & Legendre P. (2011). \emph{Numerical ecology with R}.
+#' Springer, New York.
 #'
 #' @docType package
 #' @name envalysis

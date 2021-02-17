@@ -1,11 +1,17 @@
 Package: envalysis
 Type: Package
 Title: Miscellaneous Functions for Environmental Analyses
-Version: 0.4.2
-Date: 2021-02-04
+Version: 0.5.0
+Date: 2021-02-10
 Authors@R: c(person("Zacharias", "Steinmetz", role = c("aut", "cre"),
     email = "steinmetz-z@uni-landau.de",
-    comment = c(ORCID = "0000-0001-6675-5033")))
+    comment = c(ORCID = "0000-0001-6675-5033")),
+    person("Julius", "Albert", role = c("ctb"),
+    email = "albert.j@uni-landau.de",
+    comment = c(ORCID = "0000-0001-5468-6069")),
+    person("Kilian", "Kenngott", role = c("ctb"),
+    email = "kenngott@uni-landau.de",
+    comment = c(ORCID = "0000-0002-9600-4502")))
 Maintainer: Zacharias Steinmetz <steinmetz-z@uni-landau.de>
 Description: Small toolbox for data analyses in environmental chemistry and
     ecotoxicology. Provides, for example, calibration() to calculate calibration
