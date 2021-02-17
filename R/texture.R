@@ -71,7 +71,6 @@ texture <- function(reading, ...) {
   UseMethod("texture")
 }
 
-#' @family texture
 #' @rdname texture
 #' 
 #' @export
@@ -87,7 +86,6 @@ texture.formula <- function(formula, data = NULL, ...) {
   do.call("texture", c(lst, list(...)))
 }
 
-#' @family texture
 #' @rdname texture
 #' 
 #' @export
@@ -156,7 +154,6 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
   return(out)
 }
 
-#' @family texture
 #' @rdname texture
 #' 
 #' @param x an object of class '\code{texture}'.
@@ -182,7 +179,6 @@ print.texture <- function(x, ...) {
   print(x$usda, digits = 3)
 }
 
-#' @family texture
 #' @rdname texture
 #'
 #' @export

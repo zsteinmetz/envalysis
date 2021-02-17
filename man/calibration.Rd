@@ -136,8 +136,6 @@ Smeyers-Verbeke, J. (1997). \emph{Handbook of chemometrics and qualimetrics:
 Part A}. Elsevier Science Inc.
 }
 \seealso{
-\code{\link{icp}}, \code{\link{din32645}}
-
 Other calibration: 
 \code{\link{din32645}},
 \code{\link{icp}},

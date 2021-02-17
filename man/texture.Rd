@@ -107,18 +107,6 @@ Available from \url{http://www.astm.org/Standards/D422.htm}
 \seealso{
 Other texture: 
 \code{\link{clayloam}}
-
-Other texture: 
-\code{\link{clayloam}}
-
-Other texture: 
-\code{\link{clayloam}}
-
-Other texture: 
-\code{\link{clayloam}}
-
-Other texture: 
-\code{\link{clayloam}}
 }
 \author{
 Zacharias Steinmetz
