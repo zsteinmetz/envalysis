@@ -2,10 +2,32 @@
 #' 
 #' @title Assess matrix effects and matrix-matched calibrations
 #' 
+#' @details
+#' Calculate the matrix effect by comparing the slope of a solvent-based
+#' calibration curve with one or more matrix-matched calibration. The matrix
+#' effect is expressed as signal suppression/enhancement ratio.
+#' 
 #' @param object an object of class \code{\link[envalysis]{calibration}}
-#' obtained by analyzing standard solutions.
+#' obtained from analyzing standard solutions of different concentration
+#' (solvent calibration data).
 #' @param \dots additional objects of the same type obtained from
-#' matrix matched calibrations.
+#' matrix-matched calibration data.
+#' 
+#' @return
+#' The magnitude of a matrix effect is estimated by subtracting the slope of a
+#' matrix-matched calibration from that of the solvent-based calibration. The
+#' difference is divided by the slope of the solvent-based calibration.
+#' 
+#' @details
+#' Matrix effects or signal suppression/enhancement ratios should be evaluated
+#' during analytical method development to avoid over- or underestimation of
+#' sample concentrations. In addition, signal suppression/enhancement ratios may
+#' help to justify the validity of a regular solvent calibration as opposed to
+#' matrix-matched calibrations. This is the case if matrix effects or
+#' signal suppression/enhancement ratios are close to measurement repeatability. 
+#' 
+#' @author
+#' Julius Albert
 #' 
 #' @examples
 #' data(din32645)
