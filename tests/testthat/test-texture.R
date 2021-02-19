@@ -1,6 +1,25 @@
+# Helper function for expect_snapshot_file()
+save_png <- function(code, width = 600, height = 400) {
+  path <- tempfile(fileext = ".png")
+  png(path, width = width, height = height)
+  on.exit(dev.off())
+  code
+  
+  path
+}
+
 data(clayloam)
 tex <- texture(clayloam$reading, clayloam$blank, clayloam$time, clayloam$temperature)
 f <- texture(reading ~ blank + time + temperature, clayloam)
+
+test_that("print() and plot() work", {
+  expect_output(print(tex))
+})
+
+test_that("Snapshot output consistent", {
+  expect_snapshot_output(print(tex))
+  expect_snapshot_file(save_png(plot(tex)), "plot.png")
+})
 
 test_that("Correct function type", {
   expect_equal(tex$model$fct$name, "LL2.3u")

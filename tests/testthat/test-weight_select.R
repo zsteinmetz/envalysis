@@ -7,6 +7,7 @@ test_that("Sum relative error computes correctly", {
 
 test_that("Weight selection works", {
   expect_silent(ws <- weight_select(din))
+  expect_snapshot_output(ws)
   expect_equal(round(ws[1,], 4), c(0.6109, 0.9841), ignore_attr = T)
   expect_equal(rownames(ws)[1], "1/Conc^2.0")
 })

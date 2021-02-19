@@ -1,8 +1,30 @@
+# Helper function for expect_snapshot_file()
+save_png <- function(code, width = 600, height = 400) {
+  path <- tempfile(fileext = ".png")
+  png(path, width = width, height = height)
+  on.exit(dev.off())
+  code
+  
+  path
+}
+
 data(din32645)
 din <- calibration(Area ~ Conc, data = din32645)
 
 data(neitzel2003)
 neitzel <- calibration(Meas ~ Conc, data = neitzel2003)
+
+test_that("print(), summary(), and plot() work", {
+  expect_output(print(din))
+  expect_output(print(summary(din)))
+  expect_silent(plot(din))
+})
+
+test_that("Snapshot output consistent", {
+  expect_snapshot_output(print(din))
+  expect_snapshot_output(print(neitzel))
+  expect_snapshot_file(save_png(plot(din)), "plot.png")
+})
 
 test_that("Correct R squared computed correctly", {
   expect_equal(round(din$adj.r.squared, 3), 0.983)
