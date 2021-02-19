@@ -23,6 +23,7 @@ test_that("print(), summary(), and plot() work", {
 test_that("Snapshot output consistent", {
   expect_snapshot_output(print(din))
   expect_snapshot_output(print(neitzel))
+  skip_on_ci()
   expect_snapshot_file(save_png(plot(din)), "plot.png")
 })
 

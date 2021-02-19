@@ -5,7 +5,7 @@ test_that("Sum relative error computes correctly", {
   expect_equal(round(sum(abs(relerr(din))), 4), 0.7978)
 })
 
-test_that("Weight selection works", {
+test_that("Weight selection works and produces consistent output", {
   expect_silent(ws <- weight_select(din))
   expect_snapshot_output(ws)
   expect_equal(round(ws[1,], 4), c(0.6109, 0.9841), ignore_attr = T)

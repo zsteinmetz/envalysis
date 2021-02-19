@@ -14,10 +14,12 @@ f <- texture(reading ~ blank + time + temperature, clayloam)
 
 test_that("print() and plot() work", {
   expect_output(print(tex))
+  expect_silent(plot(tex))
 })
 
 test_that("Snapshot output consistent", {
   expect_snapshot_output(print(tex))
+  skip_on_ci()
   expect_snapshot_file(save_png(plot(tex)), "plot.png")
 })
 
