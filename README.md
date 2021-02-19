@@ -25,6 +25,8 @@ Currently, the following functions are available:
 * Limit of detection (LOD) `lod()` and limit of quantification (LOQ) `loq()` as
 part of the `calibration` class to produce linear calibration curves according
 to German DIN 32645 (2008)
+* Finding optimum weights for weighted calibrations using `weight_select()`
+* Calculating matrix effects (signal suppression/enhancement) with `matrix_effect()`
 * Determine particle size distributions and soil texture classes (DIN/USDA)
 measured with a soil hydrometer in accordance with ASTM D422-63 (2007) using
 `texture()`; see

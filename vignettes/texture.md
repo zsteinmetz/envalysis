@@ -1,7 +1,7 @@
 ---
-title: "Particle size estimation using the hydrometer method modified from ASTM D422-63(2007)e2 and Bouyoucos (1927)"
+title: "Particle size estimation using the hydrometer method modified from ASTM D422-63 (2007) and Bouyoucos (1927)"
 author: "Zacharias Steinmetz"
-date: "2020-04-07"
+date: "2021-02-19"
 output:
   html_document:
     fig_width: 8
@@ -35,7 +35,7 @@ vignette: >
 
 ### Specimen
 
-* Soil samples sieved to 2 mm
+* Soil samples, dried and sieved to 2 mm
 
 ## Method
 
@@ -101,7 +101,7 @@ The following table may serve as a sample template to record the data
 
 A complete description of how to calculate the particle size
 distribution from the recorded hydrometer readings is available in the
-respective ASTM guideline (ASTM D422-63(2007)e2, 2007). The
+respective ASTM guideline (ASTM D422-63, 2007). The
 algorithm has also been implemented into this package using the `texture()`
 function:
 
@@ -131,7 +131,7 @@ clayloam
 tex <- texture(reading ~ blank + time + temperature, clayloam, plot = T)
 ```
 
-![](/home/steinmetz-z/Documents/PhD/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png)<!-- -->
+![](/home/zacharias/Dokumente/PhD/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png)<!-- -->
 
 ```r
 tex
@@ -165,7 +165,7 @@ tex
 # > Std. Error 0.0131 0.0226 0.00954
 ```
 
-Further soil classification and plotting may be done with the `soiltexture`
+Further soil classification and plotting may be done with the **soiltexture**
 package.
 
 
@@ -205,16 +205,16 @@ TT.points.in.classes(ussoil, class.sys = "USDA.TT")
 The analyzed soil is a clay loam (German: "Toniger Lehm", Lt2).
 
 ## References
-Ashworth, J., Keyes, D., Kirk, R., Lessard, R., 2001. Standard Procedure in the 
-Hydrometer Method for Particle Size Analysis. Communications in Soil Science and 
-Plant Analysis 32, 633–642. \doi{10.1081/CSS-100103897}
+Ashworth, J., Keyes, D., Kirk, R., & Lessard, R. (2001). Standard Procedure in the 
+Hydrometer Method for Particle Size Analysis. *Communications in Soil Science and 
+Plant Analysis* **32**, 633-642. DOI: [10.1081/CSS-100103897](https://doi.org/10.1081/CSS-100103897).
 
-ASTM D422-63(2007)e2, 2007. Standard Test Method for Particle-Size Analysis of 
-Soils (Technical standard). ASTM International, West Conshohocken, PA.
+ASTM D422-63 (2007). *Standard Test Method for Particle-Size Analysis of 
+Soils*. Technical standard. ASTM International, West Conshohocken, PA.
 
-Bouyoucos, G.J., 1927. The hydrometer as a new method for the mechanical 
+Bouyoucos, G.J., (1927). The hydrometer as a new method for the mechanical 
 analysis of soils. Soil Science 23, 343–354.
 
 Moeys, J., Shangguan, W., Petzold, R., Minasny, B., Rosca, B., Jelinski, N.,
-Zelazny, W., Souza, R.M.S., Safanelli, J.L., ten Caten, A., 2018. soiltexture:
-Functions for Soil Texture Plot, Classification and Transformation. \url{https://CRAN.R-project.org/package=soiltexture}
+Zelazny, W., Souza, R.M.S., Safanelli, J.L., & ten Caten, A. (2018). *soiltexture:
+Functions for Soil Texture Plot, Classification and Transformation*. URL: [https://CRAN.R-project.org/package=soiltexture](https://CRAN.R-project.org/package=soiltexture).
