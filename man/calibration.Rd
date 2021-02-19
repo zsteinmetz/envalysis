@@ -14,6 +14,7 @@
 calibration(
   formula,
   data = NULL,
+  blanks = NULL,
   weights = NULL,
   model = "lm",
   check_assumptions = TRUE,
@@ -28,11 +29,19 @@ calibration(
 
 lod(object, ...)
 
-\method{lod}{calibration}(object, alpha = 0.01, level = 0.05, ...)
+\method{lod}{calibration}(object, blanks = NULL, alpha = 0.01, level = 0.05, ...)
 
 loq(object, ...)
 
-\method{loq}{calibration}(object, alpha = 0.01, k = 3, level = 0.05, maxiter = 10, ...)
+\method{loq}{calibration}(
+  object,
+  blanks = NULL,
+  alpha = 0.01,
+  k = 3,
+  level = 0.05,
+  maxiter = 10,
+  ...
+)
 }
 \arguments{
 \item{formula}{model formula providing the recorded signal intensities with
@@ -43,6 +52,9 @@ to use \code{log} or \code{sqrt} transformed data will be implemented in the
 future.}
 
 \item{data}{an optional data frame containing the variables in the model.}
+
+\item{blanks}{a vector of numeric blank values overriding those automatically
+retrieved from calibration data.}
 
 \item{weights}{an optional character string containing one or more model
 variables, for example, in the form of "\code{1/concentration^0.5}" or

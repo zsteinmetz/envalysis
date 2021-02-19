@@ -20,6 +20,8 @@
 #' to use \code{log} or \code{sqrt} transformed data will be implemented in the
 #' future.
 #' @param data an optional data frame containing the variables in the model.
+#' @param blanks a vector of numeric blank values overriding those automatically
+#' retrieved from calibration data.
 #' @param weights an optional character string containing one or more model
 #' variables, for example, in the form of "\code{1/concentration^0.5}" or
 #' "\code{1/signal}" which is internally converted to a numeric vector and
@@ -82,8 +84,8 @@
 #' @importFrom graphics plot lines
 #' @importFrom lmtest bptest
 #' @export
-calibration <- function(formula, data = NULL, weights = NULL, model = "lm",
-                        check_assumptions = TRUE, ...) {
+calibration <- function(formula, data = NULL, blanks = NULL, weights = NULL,
+                        model = "lm", check_assumptions = TRUE, ...) {
   if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]), 
                                                                   "term.labels")) != 1L))
     stop("'formula' missing or incorrect")
@@ -91,7 +93,7 @@ calibration <- function(formula, data = NULL, weights = NULL, model = "lm",
   # Collate data
   mf <- model.frame(formula, data)
   newdata <- mf[mf[2L] != 0, ]
-  blanks <- mf[mf[2L] == 0, 1]
+  if (is.null(blanks)) blanks <- mf[mf[2L] == 0, 1]
   
   if (!is.null(weights) & length(weights) == 1 & is.character(weights)) {
     newweights <- with(newdata, eval(parse(text = weights)))
@@ -201,14 +203,15 @@ lod <- function(object, ...) {
 }
 
 #' @export
-lod.default <- function(object, ...) {
+lod.default <- function(object,  ...) {
   stop("object needs to be of class 'calibration'")
 }
 
 #' @rdname calibration
 #' 
 #' @export
-lod.calibration <- function(object, alpha = 0.01, level = 0.05, ...) {
+lod.calibration <- function(object, blanks = NULL, alpha = 0.01, level = 0.05,
+                            ...) {
   model <- object$model
   
   conc <- model$model[,2]
@@ -222,13 +225,15 @@ lod.calibration <- function(object, alpha = 0.01, level = 0.05, ...) {
 
   b <- coef(model)[2]
 
-  if (length(object$blanks) > 1) {
+  if (is.null(blanks)) blanks <- object$blanks
+  
+  if (length(blanks) > 1) {
     # Direct method (LOD from blanks)
-    sl <- sd(object$blanks) / b
+    sl <- sd(blanks) / b
     val <- sl * -qt(alpha, n - 1) * sqrt(1/n + 1/m)
   } else {
     # Indirect method (LOD from calibration curve)
-    if (length(object$blanks) == 1) {
+    if (length(blanks) == 1) {
       message("only one blank value supplied; LOD is estimated from the calibration curve")
     } else {
       message("no blanks provided; LOD is estimated from the calibration curve") 
@@ -263,8 +268,8 @@ loq.default <- function(object, ...) {
 #' @rdname calibration
 #' 
 #' @export
-loq.calibration <- function(object, alpha = 0.01, k = 3, level = 0.05,
-                            maxiter = 10, ...) {
+loq.calibration <- function(object, blanks = NULL, alpha = 0.01, k = 3,
+                            level = 0.05, maxiter = 10, ...) {
   model <- object$model
   
   conc <- model$model[,2]
@@ -281,7 +286,9 @@ loq.calibration <- function(object, alpha = 0.01, k = 3, level = 0.05,
   sx0 <- summary(model)$sigma / b
   Qx <- sum((conc - mean(conc))^2) / m
   
-  val <- k * object$lod[1]
+  if (is.null(blanks)) blanks <- object$blanks
+  
+  val <- k * lod(object, blanks, alpha, level)[1]
   for (i in 1:maxiter) {
     prval <- val
     val <- k * sx0 * -qt(alpha/2, n - model$rank) *
@@ -302,4 +309,3 @@ loq.calibration <- function(object, alpha = 0.01, k = 3, level = 0.05,
 
 # TODO: Inverse predict?
 # TODO: Add "Erfassungsgrenze"
-# TODO: Check alpha/beta, also to be passed from calibration to lod
