@@ -10,9 +10,9 @@ Miscellaneous Functions for Environmental Analyses
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1240304.svg)](https://doi.org/10.5281/zenodo.1240304)
 
 **envalysis** is an R package containing miscellaneous functions for data
-analyses in environmental chemistry and ecotoxicology. Provides, for example,
+analysis in environmental chemistry and ecotoxicology. Provides, for example,
 `calibration()` to calculate calibration curves and corresponding limits of
-detection (LODs) and quantification (LOQs) according to German DIN
+detection (LODs) and limits of quantification (LOQs) according to German DIN
 32645 (2008). `texture()` makes it easy to estimate soil particle size
 distributions from hydrometer measurements (ASTM D422-63, 2007).
 Some functions of the package require **ggplot2** or **drc**.
