@@ -7,7 +7,7 @@ Miscellaneous Functions for Environmental Analyses
 ![R-CMD-check](https://github.com/zsteinmetz/envalysis/workflows/R-CMD-check/badge.svg)
 [![License](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/envalysis)](https://CRAN.R-project.org/package=envalysis)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1240304.svg)](https://doi.org/10.5281/zenodo.1240304)
+[![DOI](https://img.shields.io/badge/shortDOI-10/ft9p-blue.svg)](https://doi.org/ft9p)
 
 **envalysis** is an R package containing miscellaneous functions for data
 analysis in environmental chemistry and ecotoxicology. Provides, for example,
