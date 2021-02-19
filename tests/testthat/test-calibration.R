@@ -35,7 +35,12 @@ test_that("Difference between blank method and estimation from calibration curve
 })
 
 test_that("Unbalanced design gives warning", {
-  expect_warning(calibration(Area ~ Conc, data = rbind(din32645, din32645[15,])))
+  suppressWarnings(
+    ublcd <- calibration(Area ~ Conc, data = rbind(din32645, din32645[15,]),
+                       check_assumptions = F)
+    )
+  expect_warning(lod(ublcd))
+  expect_warning(loq(ublcd))
 })
 
 w1 <- calibration(Area ~ Conc, data = din32645, weights = "1/Area^2")
