@@ -41,25 +41,17 @@ signifig <- function(mean, error, data, signif.na = 2, style = "pm") {
     style <- "pm"
   }
   
-  # TODO: Replace for loop by lapply
-  output <- c()
-  for (i in 1:length(mean)) {
-    e <- signif(error[i], 1)
-    if (is.na(e) | e == 0) {
-      m <- signif(mean[i], signif.na)
-    } else {
-      if (e >= 1) {
-        m <- round(mean[i], -nchar(as.character(e))+1)
-        l <- e
-      } else {
-        n <- nchar(as.character(e))-2
-        m <- format(round(mean[i], n), nsmall = n)
-        l <- as.numeric(substr(e, nchar(e), nchar(e)))
-      }
-    }
-    if (style == "pm") output <- c(output, paste(m, "\u00b1", e))
-    if (style == "par") output <- c(output, paste0(m," (", e,")"))
-    if (style == "siunitx") output <- c(output, paste0(m,"(", l,")"))
-  }
+  e <- signif(error, 1)
+  m <- ifelse(is.na(e) | e == 0, signif(mean, signif.na),
+              ifelse(e >= 1, round(mean, -nchar(as.character(e)) + 1),
+                     format(round(mean, nchar(as.character(e)) - 2),
+                            nsmall = nchar(as.character(e)) - 2))
+              )
+  l <- as.numeric(substr(e, nchar(e), nchar(e)))
+
+  if (style == "pm") output <- paste(m, "\u00b1", e)
+  if (style == "par") output <- paste0(m," (", e,")")
+  if (style == "siunitx") output <- paste0(m,"(", l,")")
+
   return(output)
 }

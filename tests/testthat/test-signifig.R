@@ -1,6 +1,8 @@
 test_that("Correct output", {
   expect_equal(signifig(mean = c(0.28,5), error = c(0.688, 8)),
                c("0.3 ± 0.7", "5 ± 8"))
+  expect_equal(signifig(mean = c(0.28,5), error = c(0.688, 8), style = "siunitx"),
+               c("0.3(7)", "5(8)"))
 })
 
 test_that("Correct NA handling", {
