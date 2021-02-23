@@ -47,9 +47,9 @@
 #' 
 #' @return
 #' \code{calibration} returns an object of \code{\link[base]{class}}
-#' '\code{calibration}'. \code{print} calls the function parameters together with the
-#' respective LOD and LOQ. \code{plot} plots the respective calibration curve
-#' together with the measurement values. \code{summary} may be used to retrieve
+#' '\code{calibration}'. \code{print()} calls the function parameters together with the
+#' respective LOD and LOQ. \code{plot()} plots the respective calibration curve
+#' together with the measurement values. \code{summary()} may be used to retrieve
 #' the summary of the underlying model.
 #' 
 #' @author 
