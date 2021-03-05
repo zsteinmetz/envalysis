@@ -67,5 +67,4 @@ into your R console (requires **devtools**):
 ```r
 if (!require(devtools)) install.packages("devtools")
 devtools::install_github("zsteinmetz/envalysis")
-library(envalysis)
 ```

@@ -15,7 +15,7 @@ distributions from hydrometer measurements (ASTM D422-63, 2007).
 \details{
 \tabular{ll}{
 Version: \tab 0.5.0\cr
-Licence: \tab GPLv3\cr
+Licence: \tab GPL (>= 3)\cr
 }
 }
 \references{

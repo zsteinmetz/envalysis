@@ -9,7 +9,7 @@ NEW FEATURES
 MINOR IMPROVEMENTS
 * Additional "blanks" parameter introduced to `calibration()`, `lod()`, and `loq()`
 * Snapshot testing
-* Better and more consistent documentation
+* Improved and more consistent documentation
 
 BUG FIXES
 
