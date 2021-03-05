@@ -10,7 +10,7 @@
 #' 
 #' @details
 #' \tabular{ll}{
-#' Version: \tab 0.5.0\cr
+#' Version: \tab 0.5.1\cr
 #' Licence: \tab GPL (>= 3)\cr
 #' }
 #'
@@ -23,7 +23,7 @@
 #' Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
 #' regression for calibration lines revisited: weighting schemes for
 #' bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
-#' 215-222. DOI: \href{https://doi.org/10.1016/S1570-0232(02)00244-1}{10.1016/S1570-0232(02)00244-1}.
+#' 215-222. \doi{10.1016/S1570-0232(02)00244-1}.
 #' 
 #' ASTM D422-63 (2007). \emph{Standard Test Method for Particle-Size Analysis
 #' of Soils}. Technical standard. ASTM International, West Conshohocken, PA.

@@ -66,7 +66,7 @@
 #' Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
 #' regression for calibration lines revisited: weighting schemes for
 #' bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
-#' 215-222. DOI: \href{https://doi.org/10.1016/S1570-0232(02)00244-1}{10.1016/S1570-0232(02)00244-1}.
+#' 215-222. \doi{10.1016/S1570-0232(02)00244-1}.
 #' 
 #' Currie, L.A. (1999). Nomenclature in evaluation of analytical methods
 #' including detection and quantification capabilities:
