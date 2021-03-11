@@ -49,13 +49,6 @@
 #' 
 #' @examples
 #' data(clayloam)
-#' 
-#' ## Default method
-#' attach(clayloam)
-#' texture(reading, blank, time, temperature)
-#' detach(clayloam)
-#' 
-#' ## Formula interface
 #' texture(reading ~ blank + time + temperature, clayloam)
 #'
 #' @references
@@ -97,18 +90,18 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
   
   # Error handling
   if (length(Gs) != 1L) stop("'Gs' must be a single number")
-  if (any(is.na(c(reading - blank, time, temp)))) warning("input data contains NAs")
+  if (any(is.na(c(reading - blank, time, temp))))
+    warning("input data contains NAs")
   
   if (hydrometer == "auto") {
     if (all(reading == round(reading), na.rm = T) & all(reading %in% c(0:60, NA))) {
       hydrometer <- "152H"
-    } else {
-      if (all(reading != round(reading), na.rm = T) & all(reading %in% c(1:1.038, NA))) {
+    } else if (all(reading != round(reading), na.rm = T) &
+          all(reading %in% c(seq(1, 1.038, by = 0.001), NA))) {
         hydrometer <- "151H"
       } else {
         stop("automatic detection failed; specify the hydrometer used")
       }
-    }
   }
   if (hydrometer == "152H") {
     int <- 10.5; sl <- 0.164

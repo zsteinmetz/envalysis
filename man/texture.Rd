@@ -89,13 +89,6 @@ ASTM D422-63 (2007).
 }
 \examples{
 data(clayloam)
-
-## Default method
-attach(clayloam)
-texture(reading, blank, time, temperature)
-detach(clayloam)
-
-## Formula interface
 texture(reading ~ blank + time + temperature, clayloam)
 
 }
