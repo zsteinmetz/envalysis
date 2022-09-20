@@ -95,7 +95,7 @@ texture(reading ~ blank + time + temperature, clayloam)
 \references{
 ASTM D422-63 (2007). \emph{Standard Test Method for Particle-Size Analysis
 of Soils}. Technical standard. ASTM International, West Conshohocken, PA.
-Available from \url{http://www.astm.org/Standards/D422.htm}
+Available from \url{https://www.astm.org/standards/d422}.
 }
 \seealso{
 Other texture: 

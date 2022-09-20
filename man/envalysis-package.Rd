@@ -6,12 +6,7 @@
 \alias{envalysis-package}
 \title{envalysis: Miscellaneous Functions for Environmental Analyses}
 \description{
-Small toolbox for data analyses in environmental chemistry and
-    ecotoxicology. Provides, for example, calibration() to calculate calibration
-    curves and corresponding limits of detection (LODs) and  limits of 
-    quantification (LOQs) according to German DIN 32645 (2008). texture() makes
-    it easy to estimate soil particle size distributions from hydrometer
-    measurements (ASTM D422-63, 2007).
+Small toolbox for data analyses in environmental chemistry and ecotoxicology. Provides, for example, calibration() to calculate calibration curves and corresponding limits of detection (LODs) and limits of quantification (LOQs) according to German DIN 32645 (2008). texture() makes it easy to estimate soil particle size distributions from hydrometer measurements (ASTM D422-63, 2007).
 }
 \references{
 Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
@@ -21,7 +16,7 @@ bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
 
 ASTM D422-63 (2007). \emph{Standard Test Method for Particle-Size Analysis
 of Soils}. Technical standard. ASTM International, West Conshohocken, PA.
-Available from \url{http://www.astm.org/Standards/D422.htm}
+Available from \url{https://www.astm.org/standards/d422}.
 
 Borcard D, Gillet F, & Legendre P. (2011). \emph{Numerical ecology with R}.
 Springer, New York.
