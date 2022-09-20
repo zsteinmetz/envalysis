@@ -1,8 +1,8 @@
 Package: envalysis
 Type: Package
 Title: Miscellaneous Functions for Environmental Analyses
-Version: 0.5.1
-Date: 2021-03-05
+Version: 0.5.2
+Date: 2022-09-20
 Authors@R: c(person("Zacharias", "Steinmetz", role = c("aut", "cre"),
       email = "steinmetz-z@uni-landau.de",
       comment = c(ORCID = "0000-0001-6675-5033")),
@@ -40,5 +40,5 @@ Suggests:
     data.table,
     tibble,
     soiltexture
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Config/testthat/edition: 3

@@ -4,13 +4,13 @@
 \alias{sorption}
 \title{Sorption isotherms}
 \usage{
-sorption(conc, par, type = "freundlich")
+sorption(conc, pars, type = "freundlich")
 }
 \arguments{
 \item{conc}{a numeric vector containing the concentration(s) of the dissolved
 substance.}
 
-\item{par}{a numeric vector specifying the function parameters, see examples
+\item{pars}{a numeric vector specifying the function parameters, see examples
 for details and correct order.}
 
 \item{type}{a character string indicating the type of sorption isotherm to be used:
@@ -26,11 +26,11 @@ after an equilibrium has established at constant temperature given the concentra
 \code{conc} of the dissolved substance.
 }
 \examples{
-sorption(conc = 1:5, c(Kd = 2.5), type = "linear")
-sorption(conc = 1:5, c(K = 4, n = 0.6), type = "freundlich")
-sorption(conc = 1:5, c(KL = 2, qmax = 10), type = "langmuir")
-sorption(conc = 1:5, c(K = 50, qmax = 10, Csat = 10), type = "BET")
-sorption(conc = 1:5, c(A = 30, B = 0.8), type = "redlich")
+sorption(conc = 1:5, pars = c(Kd = 2.5), type = "linear")
+sorption(conc = 1:5, pars = c(K = 4, n = 0.6), type = "freundlich")
+sorption(conc = 1:5, pars = c(KL = 2, qmax = 10), type = "langmuir")
+sorption(conc = 1:5, pars = c(K = 50, qmax = 10, Csat = 10), type = "BET")
+sorption(conc = 1:5, pars = c(A = 30, B = 0.8), type = "redlich")
 
 }
 \references{
