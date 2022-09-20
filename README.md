@@ -18,6 +18,7 @@ distributions from hydrometer measurements (ASTM D422-63, 2007).
 Some functions of the package require **ggplot2** or **drc**.
 
 ## Functions
+
 Currently, the following functions are available:
 
 ### Data manipulation and analysis
