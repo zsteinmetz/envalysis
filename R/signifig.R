@@ -11,15 +11,17 @@
 #' error terms.
 #' @param data a data frame containing the specified columns. If empty,
 #' \code{mean} and \code{error} need to be given as numeric vectors.
-#' @param signif.na an integer controlling to which significant digit the mean
-#' value should be rounded when no error data was given.
 #' @param style a string specifying the output style to be used. The default
 #' style \code{"pm"} reports the results as "3 ± 6", while \code{"par"} results
 #' in outputs like "0.26 (0.02)". "siunitx" returns "0.26 (2)" which might be
 #' used together with xtable for automated LaTeX table outputs.
+#' @param na.digit an integer controlling to which significant digit the mean
+#' value should be rounded if the error is zero or no error data was provided.
+#' @param \dots arguments passed to \code{prettyNum}().
 #' 
 #' @examples
-#' signifig(mean = c(0.28,5), error = c(0.688, 8))
+#' signifig(mean = c(0.28, 5, -31.6, 2.6, 2, NA, 27.1),
+#'          error = c(0.688, 0.8, 11.6, 9.6, NA, 1.6, 0))
 #' 
 #' @author 
 #' Zacharias Steinmetz
@@ -29,29 +31,49 @@
 #' measurements}. University Science Books, Sausalito, CA.
 #' 
 #' @export
-signifig <- function(mean, error, data, signif.na = 2, style = "pm") {
+signifig <- function(mean, error, data, style = "pm", na.digit = 2, ...) {
   if (!missing(data)) {
     mean <- data[, deparse(substitute(mean))]
     error <- data[, deparse(substitute(error))]
   }
-  
-  if (length(mean) != length(error)) stop("mean and error term of unequal size")
+  if (length(mean) != length(error))
+    stop("mean and error terms of unequal size")
+  if (any(error[!is.na(error)] < 0))
+    stop("error term contains one or more negative values")
   if (!style %in% c("pm", "par", "siunitx")) {
     warning("style unknown, use 'pm' instead")
     style <- "pm"
   }
   
   e <- signif(error, 1)
-  m <- ifelse(is.na(e) | e == 0, signif(mean, signif.na),
-              ifelse(e >= 1, round(mean, -nchar(as.character(e)) + 1),
-                     format(round(mean, nchar(as.character(e)) - 2),
-                            nsmall = nchar(as.character(e)) - 2))
-              )
-  l <- as.numeric(substr(e, nchar(e), nchar(e)))
+  eo <- prettyNum(e, ...)
+  
+  m <- mean
+  
+  if (any(e >= 1 & !is.na(e))) {
+    m[e >= 1 & !is.na(e)] <- sprintf(
+      round(mean[e >= 1 & !is.na(e)],
+            -nchar(eo[e >= 1 & !is.na(e)]) + 1),
+      fmt = "%1.0f")
+  }
+  if (any(e < 1 & !is.na(e))) {
+    m[e < 1 & !is.na(e)] <- sprintf(
+      round(mean[e < 1 & !is.na(e)],
+            nchar(eo[e < 1 & !is.na(e)]) - 2),
+      fmt = paste0("%1.", nchar(eo[e < 1 & !is.na(e)]) - 2, "f"))
+  }
+  if (any(is.na(e) | e == 0)) {
+    m[is.na(e) | e == 0] <- round(mean[is.na(e) | e == 0], na.digit) 
+  }
+  
+  mo <- prettyNum(m, ...)
 
-  if (style == "pm") output <- paste(m, "\u00b1", e)
-  if (style == "par") output <- paste0(m," (", e,")")
-  if (style == "siunitx") output <- paste0(m,"(", l,")")
+  if (style == "pm") out <- paste(mo, "\u00b1", eo)
+  if (style == "par") out <- paste0(mo," (", eo,")")
+  if (style == "siunitx") {
+    out <- paste0(suppressWarnings(as.numeric(m)),
+                  "(", gsub("0.", "", e),")")
+  } 
 
-  return(output)
+  return(out)
 }

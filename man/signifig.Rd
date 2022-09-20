@@ -4,7 +4,7 @@
 \alias{signifig}
 \title{Print significant figures}
 \usage{
-signifig(mean, error, data, signif.na = 2, style = "pm")
+signifig(mean, error, data, style = "pm", na.digit = 2, ...)
 }
 \arguments{
 \item{mean}{a numeric vector or data frame object containing the averaged
@@ -16,13 +16,15 @@ error terms.}
 \item{data}{a data frame containing the specified columns. If empty,
 \code{mean} and \code{error} need to be given as numeric vectors.}
 
-\item{signif.na}{an integer controlling to which significant digit the mean
-value should be rounded when no error data was given.}
-
 \item{style}{a string specifying the output style to be used. The default
 style \code{"pm"} reports the results as "3 ± 6", while \code{"par"} results
 in outputs like "0.26 (0.02)". "siunitx" returns "0.26 (2)" which might be
 used together with xtable for automated LaTeX table outputs.}
+
+\item{na.digit}{an integer controlling to which significant digit the mean
+value should be rounded if the error is zero or no error data was provided.}
+
+\item{\dots}{arguments passed to \code{prettyNum}().}
 }
 \description{
 This function reports the significant figures of a given \code{mean} together
@@ -30,7 +32,8 @@ with its respective \code{error} term (for instance confidence interval or
 standard deviation).
 }
 \examples{
-signifig(mean = c(0.28,5), error = c(0.688, 8))
+signifig(mean = c(0.28, 5, -31.6, 2.6, 2, NA, 27.1),
+         error = c(0.688, 0.8, 11.6, 9.6, NA, 1.6, 0))
 
 }
 \references{
