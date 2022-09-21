@@ -1,3 +1,10 @@
+# envalysis 0.5.3
+
+## Bug Fixes
+
+- Fixed moved URLs
+
+
 # envalysis 0.5.2
 
 ## Minor Improvements

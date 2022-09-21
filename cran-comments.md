@@ -14,4 +14,6 @@
 
 ## Comments
 
+Fixed moved URL.
+
 For further details, please see NEWS file

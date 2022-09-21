@@ -5,5 +5,6 @@ p <- ggplot(mtcars) +
                  colour = factor(gear))) + facet_wrap( ~ am)
 
 test_that("Plotting works without warnings", {
-  expect_silent(p + theme_publish())
+  expect_silent(print(p))
+  expect_silent(print(p + theme_publish()))
 })
