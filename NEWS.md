@@ -1,3 +1,10 @@
+# envalysis 0.5.4
+
+## Bug Fixes
+
+- skip tests for ggplot2 v3.4.0 due to deprecation warnings; replace `size` argument in ggplot2::`element_rect()` with `linewidth` later
+
+
 # envalysis 0.5.3
 
 ## Bug Fixes

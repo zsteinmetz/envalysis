@@ -4,14 +4,14 @@
 \alias{theme_publish}
 \title{ggplot2 theme for scientific publications}
 \usage{
-theme_publish(base_size = 12, base_family = "", line_size = 0.25, ...)
+theme_publish(base_size = 12, base_family = "", base_line_size = 0.25, ...)
 }
 \arguments{
 \item{base_size}{base font size}
 
 \item{base_family}{base font family}
 
-\item{line_size}{base line size for, e.g. for ticks and axes}
+\item{base_line_size}{base line size for, e.g. for ticks and axes}
 
 \item{\dots}{further arguments to be passed to \code{\link[ggplot2]{theme_bw}}}
 }
