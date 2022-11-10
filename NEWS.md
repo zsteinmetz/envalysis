@@ -1,3 +1,10 @@
+# envalysis 0.5.5
+
+## Minor Improvements
+
+- Update SOP for particle size estimations using `texture()`
+
+
 # envalysis 0.5.4
 
 ## Bug Fixes

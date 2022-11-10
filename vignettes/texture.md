@@ -1,7 +1,7 @@
 ---
 title: "Particle size estimation using the hydrometer method modified from ASTM D422-63 (2007) and Bouyoucos (1927)"
 author: "Zacharias Steinmetz"
-date: "2021-02-19"
+date: "2022-11-10"
 output:
   html_document:
     fig_width: 8
@@ -22,6 +22,7 @@ vignette: >
 * Balance
 * Horizontal shaker
 * 151H or 152H hydrometer
+* 1 L volumetric flask
 * 1 L volumetric cylinders for sedimentation
 * 500 mL jars with a screw cap
 * Squirt bottle
@@ -31,56 +32,66 @@ vignette: >
 ### Chemicals
 
 * Sodium hexametaphosphate (SHMP)
-* Deionized water
+* Deionized water conditioned at ambient temperature
 
 ### Specimen
 
-* Soil samples, dried and sieved to 2 mm
+* Soil samples, dried, and sieved to 2 mm
 
 ## Method
 
 ### Dispersing solution
 
-Dissolve 40 g of SHMP in 1 L of deionized water. Use an ultrasonic bath
-to ensure complete dissolution. The solution is stable for approximately
-one month.
+Dissolve 40 g of SHMP in 1 L of deionized water.
+To facilitate complete dissolution, fill a 1 L volumetric flask with about
+500 mL of deionized water and add the SHMP step-by-step
+while stirring the solution with a magnetic stirrer.
+The solution is stable for at least one month.
 
 ### Calibration
 
 Hydrometers are graduated to be read at the bottom of the meniscus.
-However, readings must be taken at the top of the meniscus in opaque
+However, readings may need be taken at the top of the meniscus in opaque
 soil suspensions.
 
-Lower the hydrometer into a 1 L cylinder filled with 125 mL of SHMP
-solution and 875 mL of deionized water. When stabilized (after 20 s),
-record both the reading at the bottom (zero or composite correction
-factor) and at the top of the meniscus (meniscus correction factor).
+Lower the hydrometer into a 1 L cylinder filled with 125 mL of SHMP solution
+and 875 mL of deionized water.
+When stabilized (after about 20 s), record both the reading at the bottom (zero
+or composite correction factor) and at the top of the meniscus
+(meniscus correction factor).
 
 ### Sample pretreatment
 
 If the soil sample contains primarily clay or silt, weigh out 50 g of
-soil (accuracy ±0.01 g) in a 500 mL screw bottle (in 3-fold
-replication). If the sample is sandy, take 100 g each. Add 125 mL SHMP
-to the soil. Agitate the mixture for 16 h in a horizontal shaker.
+soil (accuracy ± 0.01 g) in a 500 mL screw bottle (in 3-fold
+replication). If the sample is sandy, take 100 g each. Add 125 mL SHMP solution
+to the soil. Agitate the mixture for 16 h (or overnight) in a horizontal shaker.
 
-Completely transfer the soil solution into the sedimentation cylinder
-using the squirt bottle. Fill up to the 1 L mark with deionized water.
-Cap the cylinder with parafilm. Agitate the solution by turning the
-cylinder upside down and back 30 times during 1 min.
+Completely transfer the soil slurry into the 1 L sedimentation cylinder
+using a squirt bottle. Fill up to the 1 L mark with deionized water.
+Cap the cylinder with parafilm (ensure tightness).
+Agitate the slurry by turning the cylinder upside down and back 30 times
+during 1 min.
 
 ### Measurement
 
 Place the sedimentation cylinder at a bench where it can stand
-undisturbed for the next 4 to 6 h.
+undisturbed for the next 4–6 h.
 
 Insert the hydrometer into the soil solution as soon as possible and
-take the first reading the latest after 40 s at top of the meniscus.
+take the first reading the latest after 40 s.
 Measure the temperature of the slurry. Repeat this measurement at 2, 5,
 15, 30, 60, 120, 240, and 360 min. In any case, record the exact reading
 time. The measurements may be reduced to an initial reading after 40 s
-and a second one after 240 or 360 min (Ashworth et al., 2001). Rinse
-the hydrometer after each measurement. If the ambient temperature
-changes, recalibrate the hydrometer.
+and a second one after 240 or 360 min (Ashworth et al., 2001).
+Remove the hydrometer after each measurement, in order not to disturb the 
+sedimentation process, and rinse the hydrometer with deionized water.
+
+If the ambient temperature changes, recalibrate the hydrometer.
+In case foam obscures the hydrometer reading, use another point on the
+hydrometer scale as reference and mark its position with a permanent marker on
+the outside of the glass cylinder. The exact readings may be recorded at the
+end of the measurement by reinserting the hydrometer at the previous position.
 
 ### Data recording
 
@@ -131,7 +142,7 @@ clayloam
 tex <- texture(reading ~ blank + time + temperature, clayloam, plot = T)
 ```
 
-![](/home/zacharias/Dokumente/PhD/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png)<!-- -->
+![](/home/steinmetz-z/Documents/PhD/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png)<!-- -->
 
 ```r
 tex
@@ -205,6 +216,7 @@ TT.points.in.classes(ussoil, class.sys = "USDA.TT")
 The analyzed soil is a clay loam (German: "Toniger Lehm", Lt2).
 
 ## References
+
 Ashworth, J., Keyes, D., Kirk, R., & Lessard, R. (2001). Standard Procedure in the 
 Hydrometer Method for Particle Size Analysis. *Communications in Soil Science and 
 Plant Analysis* **32**, 633-642. DOI: [10.1081/CSS-100103897](https://doi.org/10.1081/CSS-100103897).
