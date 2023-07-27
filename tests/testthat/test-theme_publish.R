@@ -6,7 +6,5 @@ p <- ggplot(mtcars) +
 
 test_that("Plotting works without warnings", {
   expect_silent(print(p))
-  
-  skip_if(packageVersion("ggplot2")>="3.3.6.9000")
   expect_silent(print(p + theme_publish()))
 })

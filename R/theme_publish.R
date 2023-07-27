@@ -8,7 +8,7 @@
 #'
 #' @param base_size base font size
 #' @param base_family base font family
-#' @param base_line_size base line size for, e.g. for ticks and axes
+#' @param base_linewidth base line width for ticks and axes
 #' @param \dots further arguments to be passed to \code{\link[ggplot2]{theme_bw}}
 #'
 #' @author 
@@ -28,16 +28,15 @@
 #' @import ggplot2
 #' @export
 theme_publish <- function(base_size = 12, base_family = "",
-                          base_line_size = 0.25, ...) {
+                          base_linewidth = 0.25, ...) {
   half_line <- base_size / 2
   small_rel <- 0.8
   small_size <- small_rel * base_size
   
-  # TODO: replace size with linewidth in `element_rect()`
   theme_bw(base_size = base_size, base_family = base_family, ...) %+replace%
     theme(
       rect = element_rect(fill = "transparent", colour = NA, color = NA,
-                          size = 0, linetype = 0),
+                          linewidth = 0, linetype = 0),
       text = element_text(family = base_family, face = "plain",
                           colour = "black", size = base_size, hjust = 0.5,
                           vjust = 0.5, angle = 0, lineheight = 0.9,
@@ -53,12 +52,12 @@ theme_publish <- function(base_size = 12, base_family = "",
       axis.title.y = element_text(angle = 90,
                                   margin = ggplot2::margin(r = small_size,
                                                            l = small_size/4)),
-      axis.ticks = element_line(colour = "black", size = base_line_size),
+      axis.ticks = element_line(colour = "black", linewidth = base_linewidth),
       axis.ticks.length = unit(0.25, 'lines'),
       
-      axis.line = element_line(colour = "black", size = base_line_size),
-      axis.line.x = element_line(colour = "black", size = base_line_size), 
-      axis.line.y = element_line(colour = "black", size = base_line_size), 
+      axis.line = element_line(colour = "black", linewidth = base_linewidth),
+      axis.line.x = element_line(colour = "black", linewidth = base_linewidth), 
+      axis.line.y = element_line(colour = "black", linewidth = base_linewidth), 
       
       legend.spacing = unit(base_size/4, "pt"),
       legend.key = element_blank(),
@@ -77,7 +76,7 @@ theme_publish <- function(base_size = 12, base_family = "",
       
       strip.text = element_text(size = base_size),
       strip.background = element_rect(fill = NA, colour = "black",
-                                      size = 0.125),
+                                      linewidth = 0.125),
       strip.text.x = element_text(face = 'bold', hjust = 0,
                                   margin = ggplot2::margin(b = small_size/2,
                                                            t = small_size/4)),
