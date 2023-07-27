@@ -123,15 +123,12 @@ calibration <- function(formula, data = NULL, blanks = NULL, weights = NULL,
   cal$relerr <- relerr(cal)
   
   if (is.null(weights) & check_assumptions) {
-    swt <- shapiro.test(model$residuals)
-    bpt <- bptest(model)
+    cal$shapiro.test <- shapiro.test(model$residuals)
+    cal$shapiro.test$data.name <- paste0("residuals(", deparse(model$call), ")")
+    cal$bptest <- bptest(model)
+    cal$bptest$data.name <- deparse(formula)
     
-    cat("Check for normality of residuals\n")
-    print(swt)
-    cat("Check for homoscedasticity of residuals\n")
-    print(bpt)
-    
-    if (swt$p.value < 0.05 || bpt$p.value < 0.05)
+    if (cal$shapiro.test$p.value < 0.05 || cal$bptest$p.value < 0.05)
       warning("model assumptions may not be met; double check graphically and ",
               "consider using a weighted model instead")
   }
@@ -152,6 +149,11 @@ print.calibration <- function(x, ...) {
   print(x$blanks)
   cat("\n")
   print(signif(rbind(x$lod, x$loq), 3))
+  cat("\n")
+  cat("Check for normality of residuals\n")
+  print(x$shapiro.test)
+  cat("Check for homoscedasticity of residuals\n")
+  print(x$bptest)
 }
 
 #' @rdname calibration
