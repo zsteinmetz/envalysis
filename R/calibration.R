@@ -15,7 +15,7 @@
 #'
 #' @param formula model formula providing the recorded signal intensities with
 #' respect to the nominal analyte concentrations in the form of
-#' \code{signal ~ concentration} or \code{signal ~ concentraion - 1}; model
+#' \code{signal ~ concentration} or \code{signal ~ concentration - 1}; model
 #' formulas are currently restricted to those forms, however, the possibility
 #' to use \code{log} or \code{sqrt} transformed data will be implemented in the
 #' future.
