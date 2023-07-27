@@ -2,7 +2,11 @@
 
 ## Minor Improvements
 
+- The `check_assumptions` argument in `calibration()` is now less verbose; test results may be retrieved by calling `print()`
+- Replaced `size` argument in ggplot2::`element_rect()` and ggplot2::`element_line()` with `linewidth`
 - Update SOP for particle size estimations using `texture()`
+- Changed maintainer email address
+- Corrected typos
 
 
 # envalysis 0.5.4

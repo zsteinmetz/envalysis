@@ -30,12 +30,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Zacharias Steinmetz \email{steinmetz-z@uni-landau.de} (\href{https://orcid.org/0000-0001-6675-5033}{ORCID})
+\strong{Maintainer}: Zacharias Steinmetz \email{z.steinmetz@rptu.de} (\href{https://orcid.org/0000-0001-6675-5033}{ORCID})
 
 Other contributors:
 \itemize{
-  \item Julius Albert \email{albert.j@uni-landau.de} (\href{https://orcid.org/0000-0001-5468-6069}{ORCID}) [contributor]
-  \item Kilian Kenngott \email{kenngott@uni-landau.de} (\href{https://orcid.org/0000-0002-9600-4502}{ORCID}) [contributor]
+  \item Julius Albert (\href{https://orcid.org/0000-0001-5468-6069}{ORCID}) [contributor]
+  \item Kilian Kenngott (\href{https://orcid.org/0000-0002-9600-4502}{ORCID}) [contributor]
 }
 
 }

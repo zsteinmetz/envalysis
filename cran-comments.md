@@ -1,6 +1,6 @@
 ## Test environments
 
-* manjaro linux 5.19.13-1 (local), R-4.2.1
+* manjaro linux 6.3.13-1 (local), R-4.3.1
 * ubuntu latest (via GitHub Actions), R-devel
 * ubuntu latest (via GitHub Actions), R-release
 * ubuntu latest (via GitHub Actions), R-oldrel
@@ -9,9 +9,12 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 note
+0 errors | 0 warnings | 1 note
 
 
 ## Comments
 
-For further details, please see NEWS file
+The maintainer's email address has changed from <steinmetz-z@uni-landau.de> to
+<z.steinmetz@rptu.de>.
+
+For further details, please see NEWS file.

@@ -1,7 +1,7 @@
 ---
 title: "Particle size estimation using the hydrometer method modified from ASTM D422-63 (2007) and Bouyoucos (1927)"
 author: "Zacharias Steinmetz"
-date: "2022-11-10"
+date: "2023-07-27"
 output:
   html_document:
     fig_width: 8
@@ -142,7 +142,7 @@ clayloam
 tex <- texture(reading ~ blank + time + temperature, clayloam, plot = T)
 ```
 
-![](/home/steinmetz-z/Documents/PhD/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png)<!-- -->
+![](/home/steinmetz-z/Documents/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png)<!-- -->
 
 ```r
 tex
