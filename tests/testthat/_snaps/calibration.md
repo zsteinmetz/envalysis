@@ -18,14 +18,14 @@
     LOD 0.053 0.036 0.096
     LOQ 0.212 0.146 0.387
     
-    Check for normality of residuals
+    Check for normality of residuals:
     
     	Shapiro-Wilk normality test
     
     data:  residuals(calibration(formula = Area ~ Conc, data = din32645))
     W = 0.90059, p-value = 0.2224
     
-    Check for homoscedasticity of residuals
+    Check for homoscedasticity of residuals:
     
     	studentized Breusch-Pagan test
     
@@ -53,14 +53,14 @@
     LOD 0.009 0.006 0.016
     LOQ 0.086 0.059 0.157
     
-    Check for normality of residuals
+    Check for normality of residuals:
     
     	Shapiro-Wilk normality test
     
     data:  residuals(calibration(formula = Meas ~ Conc, data = neitzel2003))
     W = 0.85678, p-value = 0.06991
     
-    Check for homoscedasticity of residuals
+    Check for homoscedasticity of residuals:
     
     	studentized Breusch-Pagan test
     

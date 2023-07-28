@@ -149,11 +149,13 @@ print.calibration <- function(x, ...) {
   print(x$blanks)
   cat("\n")
   print(signif(rbind(x$lod, x$loq), 3))
-  cat("\n")
-  cat("Check for normality of residuals\n")
-  print(x$shapiro.test)
-  cat("Check for homoscedasticity of residuals\n")
-  print(x$bptest)
+  if (!is.null(x$shapiro.test) & !is.null(x$bptest)) {
+    cat("\n")
+    cat("Check for normality of residuals:\n")
+    print(x$shapiro.test)
+    cat("Check for homoscedasticity of residuals:\n")
+    print(x$bptest)
+  }
 }
 
 #' @rdname calibration
