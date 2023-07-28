@@ -10,6 +10,7 @@ save_png <- function(code, width = 600, height = 400) {
 
 data(din32645)
 din <- calibration(Area ~ Conc, data = din32645)
+din_woa <- calibration(Area ~ Conc, data = din32645, check_assumptions = F)
 
 data(neitzel2003)
 neitzel <- calibration(Meas ~ Conc, data = neitzel2003)
@@ -22,6 +23,7 @@ test_that("print(), summary(), and plot() work", {
 
 test_that("Snapshot output consistent", {
   expect_snapshot_output(print(din))
+  expect_snapshot_output(print(din_woa))
   expect_snapshot_output(print(neitzel))
   skip_on_ci()
   expect_snapshot_file(save_png(plot(din)), "plot.png")
@@ -52,7 +54,8 @@ test_that("calibration() and lm() give equal results for non-zero concentrations
 })
 
 test_that("Difference between blank method and estimation from calibration curve", {
-  expect_message(alt <- calibration(Area ~ Conc, data = din32645[din32645$Conc != 0, ]))
+  expect_message(alt <- calibration(Area ~ Conc,
+                                    data = din32645[din32645$Conc != 0, ]))
   expect_false(identical(din, alt))
   expect_equal(loq(din), loq(alt))
 })
@@ -73,7 +76,8 @@ wlm <- lm(Area ~ Conc, data = din32645[din32645$Conc != 0,],
           weights = 1/din32645[din32645$Conc != 0, ]$Area^2)
 
 test_that("Weights work correctly", {
-  expect_error(calibration(Area ~ Conc, data = din32645, weights = 1/din32645$Area^2))
+  expect_error(calibration(Area ~ Conc, data = din32645,
+                           weights = 1/din32645$Area^2))
   
   expect_equal(coef(w1$model), coef(w2$model))
   expect_equal(coef(w2$model), coef(wlm))
