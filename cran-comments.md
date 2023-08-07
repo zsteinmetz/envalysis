@@ -12,6 +12,13 @@
 0 errors | 0 warnings | 1 note
 
 
+## revdepcheck results
+
+OK: 0
+BROKEN: 0
+Total time: <1 min
+
+
 ## Comments
 
 The maintainer's email address has changed from <steinmetz-z@uni-landau.de> to
