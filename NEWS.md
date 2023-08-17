@@ -1,3 +1,11 @@
+# envalysis 0.5.6
+
+## Minor Improvements
+
+- Added code coverage
+- Added GitHub Actions for macOS
+
+
 # envalysis 0.5.5
 
 ## Minor Improvements

@@ -6,6 +6,7 @@ Miscellaneous Functions for Environmental Analyses
 [![CRAN version](https://www.r-pkg.org/badges/version/envalysis)](https://CRAN.R-project.org/package=envalysis) 
 [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/zsteinmetz/envalysis/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/zsteinmetz/envalysis/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/zsteinmetz/envalysis/branch/main/graph/badge.svg)](https://app.codecov.io/gh/zsteinmetz/envalysis?branch=main)
 [![License](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/envalysis)](https://CRAN.R-project.org/package=envalysis)
 [![DOI](https://img.shields.io/badge/shortDOI-10/ft9p-blue.svg)](https://doi.org/10.5281/ZENODO.1240304)
