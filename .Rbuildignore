@@ -9,3 +9,6 @@
 ^CRAN-SUBMISSION$
 ^revdep$
 ^codecov\.yml$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
