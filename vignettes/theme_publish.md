@@ -1,5 +1,5 @@
 ---
-title: "`theme_publish()` showcase"
+title: "theme_publish() showcase"
 author: "Zacharias Steinmetz"
 date: "2023-09-05"
 output:

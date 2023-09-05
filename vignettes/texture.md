@@ -1,5 +1,5 @@
 ---
-title: "Particle size estimation with `texture()`"
+title: "Particle size estimation with texture()"
 subtitle: > 
   Based on the hydrometer method by ASTM D422-63 (2007) and Bouyoucos (1927)
 author: "Zacharias Steinmetz"
