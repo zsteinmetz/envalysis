@@ -1,5 +1,5 @@
 ---
-title: "theme_publish() demo"
+title: "`theme_publish()` showcase"
 author: "Zacharias Steinmetz"
 date: "`r Sys.Date()`"
 output:
@@ -23,13 +23,26 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Sample code
+First, we require **ggplot2**.
+
+```{r packages}
+library(envalysis)
+library(ggplot2)
+```
+
+We use the `mtcars` sample data set for plotting with the default **ggplot2**
+theme.
+
+```{r default_theme}
+data("mtcars")
+
+p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
+     color = factor(gear))) + facet_wrap( ~ am)
+p
+```
+
+Adding `theme_publish()` applies the custom theme.
 
 ```{r theme_publish}
-require(envalysis)
-require(ggplot2)
-p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-     colour=factor(gear))) + facet_wrap( ~ am)
-p
 p + theme_publish()
 ```

@@ -1,7 +1,7 @@
 ---
-title: "theme_publish() demo"
+title: "`theme_publish()` showcase"
 author: "Zacharias Steinmetz"
-date: "2020-04-07"
+date: "2023-09-05"
 output:
   html_document:
     keep_md: yes
@@ -16,21 +16,33 @@ vignette: >
 
 
 
-## Sample code
+First, we require **ggplot2**.
 
 
 ```r
-require(envalysis)
-require(ggplot2)
+library(envalysis)
+library(ggplot2)
+```
+
+We use the `mtcars` sample data set for plotting with the default **ggplot2**
+theme.
+
+
+```r
+data("mtcars")
+
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-     colour=factor(gear))) + facet_wrap( ~ am)
+     color = factor(gear))) + facet_wrap( ~ am)
 p
 ```
 
-![](/home/steinmetz-z/Documents/PhD/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_publish-1.png)<!-- -->
+![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/default_theme-1.png)<!-- -->
+
+Adding `theme_publish()` applies the custom theme.
+
 
 ```r
 p + theme_publish()
 ```
 
-![](/home/steinmetz-z/Documents/PhD/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_publish-2.png)<!-- -->
+![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_publish-1.png)<!-- -->

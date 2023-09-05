@@ -17,12 +17,12 @@ analysis in environmental chemistry and ecotoxicology. Provides, for example,
 `calibration()` to calculate calibration curves and corresponding limits of
 detection (LODs) and limits of quantification (LOQs) according to German DIN
 32645 (2008). `texture()` makes it easy to estimate soil particle size
-distributions from hydrometer measurements (ASTM D422-63, 2007).
-Some functions of the package require **ggplot2** or **drc**.
+distributions from hydrometer measurements (ASTM D422-63, 2007). Some functions
+of the package require **ggplot2** or **drc**.
 
 ## Functions
 
-Currently, the following functions are available:
+The following functions are available:
 
 ### Data manipulation and analysis
 
@@ -34,8 +34,7 @@ Currently, the following functions are available:
 * Determine particle size distributions and soil texture classes (DIN/USDA)
   measured with a soil hydrometer in accordance with ASTM D422-63 (2007) using
   `texture()`; see
-  [vignette](https://htmlpreview.github.io/?https://github.com/zsteinmetz/envalysis/blob/master/vignettes/texture.html)
-  for details
+  [vignette](https://zsteinmetz.de/envalysis/articles/texture.html) for details
 * Confidence intervals `CI()`, standard errors `se()`, and root mean square
   errors `rmse()`
 * Various sorption isotherms `sorption()`
@@ -48,7 +47,7 @@ Currently, the following functions are available:
   significant digit, using `signifig()`
 * Clean, black-and-white ggplot2 theme for scientific publications
   `theme_publish()`; a preview is available
-  [here](https://htmlpreview.github.io/?https://github.com/zsteinmetz/envalysis/blob/master/vignettes/theme_publish.html)
+  [here](https://zsteinmetz.de/envalysis/articles/theme_publish.html)
 
 ## Installation
 
@@ -57,7 +56,7 @@ Currently, the following functions are available:
 ### Install from CRAN (stable version)
 
 You can install the released version of **envalysis** from
-[CRAN](https://CRAN.R-project.org) with:
+[CRAN](https://cran.r-project.org/package=envalysis) with:
 
 ```r
 install.packages("envalysis")

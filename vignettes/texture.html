@@ -11,9 +11,9 @@
 
 <meta name="author" content="Zacharias Steinmetz" />
 
-<meta name="date" content="2023-07-27" />
+<meta name="date" content="2023-09-05" />
 
-<title>Particle size estimation using the hydrometer method modified from ASTM D422-63 (2007) and Bouyoucos (1927)</title>
+<title>Particle size estimation with texture()</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,11 +350,12 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Particle size estimation using the
-hydrometer method modified from ASTM D422-63 (2007) and Bouyoucos
-(1927)</h1>
+<h1 class="title toc-ignore">Particle size estimation with
+<code>texture()</code></h1>
+<h3 class="subtitle"><p>Based on the hydrometer method by ASTM D422-63
+(2007) and Bouyoucos (1927)</p></h3>
 <h4 class="author">Zacharias Steinmetz</h4>
-<h4 class="date">2023-07-27</h4>
+<h4 class="date">2023-09-05</h4>
 
 </div>
 
@@ -528,7 +529,7 @@ data</p>
 distribution from the recorded hydrometer readings is available in the
 respective ASTM guideline (ASTM D422-63, 2007). The algorithm has also
 been implemented into this package using the <code>texture()</code>
-function:</p>
+function.</p>
 <pre class="r"><code># Load envalysis
 library(envalysis)
 
@@ -574,8 +575,7 @@ tex &lt;- texture(reading ~ blank + time + temperature, clayloam, plot = T)</cod
 # &gt; Std. Error 0.0131 0.0226 0.00954</code></pre>
 <p>Further soil classification and plotting may be done with the
 <strong>soiltexture</strong> package.</p>
-<pre class="r"><code># Load soiltexture
-library(soiltexture)
+<pre class="r"><code>library(soiltexture)
 
 # Prepare data
 germansoil &lt;- data.frame(t(tex$din[&quot;Estimate&quot;,] * 100))

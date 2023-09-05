@@ -1,5 +1,7 @@
 ---
-title: "Particle size estimation using the hydrometer method modified from ASTM D422-63 (2007) and Bouyoucos (1927)"
+title: "Particle size estimation with `texture()`"
+subtitle: > 
+  Based on the hydrometer method by ASTM D422-63 (2007) and Bouyoucos (1927)
 author: "Zacharias Steinmetz"
 date: "`r Sys.Date()`"
 output:
@@ -49,36 +51,33 @@ knitr::opts_chunk$set(
 
 ### Dispersing solution
 
-Dissolve 40 g of SHMP in 1 L of deionized water.
-To facilitate complete dissolution, fill a 1 L volumetric flask with about
-500 mL of deionized water and add the SHMP step-by-step
-while stirring the solution with a magnetic stirrer.
-The solution is stable for at least one month.
+Dissolve 40 g of SHMP in 1 L of deionized water. To facilitate complete
+dissolution, fill a 1 L volumetric flask with about 500 mL of deionized water
+and add the SHMP step-by-step while stirring the solution with a magnetic
+stirrer. The solution is stable for at least one month.
 
 ### Calibration
 
-Hydrometers are graduated to be read at the bottom of the meniscus.
-However, readings may need be taken at the top of the meniscus in opaque
-soil suspensions.
+Hydrometers are graduated to be read at the bottom of the meniscus. However,
+readings may need be taken at the top of the meniscus in opaque soil
+suspensions.
 
-Lower the hydrometer into a 1 L cylinder filled with 125 mL of SHMP solution
-and 875 mL of deionized water.
-When stabilized (after about 20 s), record both the reading at the bottom (zero
-or composite correction factor) and at the top of the meniscus
-(meniscus correction factor).
+Lower the hydrometer into a 1 L cylinder filled with 125 mL of SHMP solution and
+875 mL of deionized water. When stabilized (after about 20 s), record both the
+reading at the bottom (zero or composite correction factor) and at the top of
+the meniscus (meniscus correction factor).
 
 ### Sample pretreatment
 
-If the soil sample contains primarily clay or silt, weigh out 50 g of
-soil (accuracy ± 0.01 g) in a 500 mL screw bottle (in 3-fold
-replication). If the sample is sandy, take 100 g each. Add 125 mL SHMP solution
-to the soil. Agitate the mixture for 16 h (or overnight) in a horizontal shaker.
+If the soil sample contains primarily clay or silt, weigh out 50 g of soil
+(accuracy ± 0.01 g) in a 500 mL screw bottle (in 3-fold replication). If the
+sample is sandy, take 100 g each. Add 125 mL SHMP solution to the soil. Agitate
+the mixture for 16 h (or overnight) in a horizontal shaker.
 
-Completely transfer the soil slurry into the 1 L sedimentation cylinder
-using a squirt bottle. Fill up to the 1 L mark with deionized water.
-Cap the cylinder with parafilm (ensure tightness).
-Agitate the slurry by turning the cylinder upside down and back 30 times
-during 1 min.
+Completely transfer the soil slurry into the 1 L sedimentation cylinder using a
+squirt bottle. Fill up to the 1 L mark with deionized water. Cap the cylinder
+with parafilm (ensure tightness). Agitate the slurry by turning the cylinder
+upside down and back 30 times during 1 min.
 
 ### Measurement
 
@@ -117,11 +116,10 @@ The following table may serve as a sample template to record the data
 
 ### Data evaluation
 
-A complete description of how to calculate the particle size
-distribution from the recorded hydrometer readings is available in the
-respective ASTM guideline (ASTM D422-63, 2007). The
-algorithm has also been implemented into this package using the `texture()`
-function:
+A complete description of how to calculate the particle size distribution from
+the recorded hydrometer readings is available in the respective ASTM guideline
+(ASTM D422-63, 2007). The algorithm has also been implemented into this package
+using the `texture()` function.
 
 ```{r texture}
 # Load envalysis
@@ -140,7 +138,6 @@ Further soil classification and plotting may be done with the **soiltexture**
 package.
 
 ```{r classify}
-# Load soiltexture
 library(soiltexture)
 
 # Prepare data
@@ -162,16 +159,19 @@ The analyzed soil is a clay loam (German: "Toniger Lehm", Lt2).
 
 ## References
 
-Ashworth, J., Keyes, D., Kirk, R., & Lessard, R. (2001). Standard Procedure in the 
-Hydrometer Method for Particle Size Analysis. *Communications in Soil Science and 
-Plant Analysis* **32**, 633-642. DOI: [10.1081/CSS-100103897](https://doi.org/10.1081/CSS-100103897).
+Ashworth, J., Keyes, D., Kirk, R., & Lessard, R. (2001). Standard Procedure in
+the Hydrometer Method for Particle Size Analysis. *Communications in Soil
+Science and Plant Analysis* **32**, 633-642. DOI:
+[10.1081/CSS-100103897](https://doi.org/10.1081/CSS-100103897).
 
-ASTM D422-63 (2007). *Standard Test Method for Particle-Size Analysis of 
-Soils*. Technical standard. ASTM International, West Conshohocken, PA.
+ASTM D422-63 (2007). *Standard Test Method for Particle-Size Analysis of Soils*.
+Technical standard. ASTM International, West Conshohocken, PA.
 
-Bouyoucos, G.J., (1927). The hydrometer as a new method for the mechanical 
+Bouyoucos, G.J., (1927). The hydrometer as a new method for the mechanical
 analysis of soils. Soil Science 23, 343–354.
 
 Moeys, J., Shangguan, W., Petzold, R., Minasny, B., Rosca, B., Jelinski, N.,
-Zelazny, W., Souza, R.M.S., Safanelli, J.L., & ten Caten, A. (2018). *soiltexture:
-Functions for Soil Texture Plot, Classification and Transformation*. URL: [https://CRAN.R-project.org/package=soiltexture](https://CRAN.R-project.org/package=soiltexture).
+Zelazny, W., Souza, R.M.S., Safanelli, J.L., & ten Caten, A. (2018).
+*soiltexture: Functions for Soil Texture Plot, Classification and
+Transformation*. URL:
+[https://CRAN.R-project.org/package=soiltexture](https://CRAN.R-project.org/package=soiltexture).

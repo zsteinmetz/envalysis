@@ -22,9 +22,9 @@ based on the classic dark-on-light ggplot2 \code{\link[ggplot2]{theme_bw}}
 and has been used for scientific publications.
 }
 \examples{
-require(ggplot2)
+library(ggplot2)
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-     colour=factor(gear))) + facet_wrap( ~ am)
+     colour = factor(gear))) + facet_wrap( ~ am)
 p
 p + theme_publish()
 

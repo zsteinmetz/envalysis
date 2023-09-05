@@ -92,10 +92,10 @@ to calculate the LOQ.}
 }
 \value{
 \code{calibration} returns an object of \code{\link[base]{class}}
-'\code{calibration}'. \code{print()} calls the function parameters together with the
-respective LOD and LOQ. \code{plot()} plots the respective calibration curve
-together with the measurement values. \code{summary()} may be used to retrieve
-the summary of the underlying model.
+'\code{calibration}'. \code{print()} calls the function parameters together
+with the respective LOD and LOQ. \code{plot()} plots the respective
+calibration curve together with the measurement values. \code{summary()} may
+be used to retrieve the summary of the underlying model.
 }
 \description{
 Defines a \code{calibration} object for the calculation of concentrations
@@ -103,8 +103,8 @@ from measurement signals including estimations for the limit of detection
 (LOD) and limit of quantification (LOQ) in accordance with DIN 32645 (2008).
 
 The LOD is defined as the lowest quantity of a substance that can be
-distinguished from the absence of that substance (blank value) within a
-given confidence level (\code{alpha}). The LOQ is defined as the lowest quantity of
+distinguished from the absence of that substance (blank value) within a given
+confidence level (\code{alpha}). The LOQ is defined as the lowest quantity of
 a substance that can be quantified/distinguished from another sample given
 with respect to a defined confidence level (\code{k}).
 }
@@ -136,8 +136,8 @@ bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
 215-222. \doi{10.1016/S1570-0232(02)00244-1}.
 
 Currie, L.A. (1999). Nomenclature in evaluation of analytical methods
-including detection and quantification capabilities:
-(IUPAC Recommendations 1995). \emph{Analytica Chimica Acta} \bold{391}, 105-126.
+including detection and quantification capabilities: (IUPAC Recommendations
+1995). \emph{Analytica Chimica Acta} \bold{391}, 105-126.
 
 DIN 32645 (2008). \emph{Chemical analysis - Decision limit, detection limit
 and determination limit under repeatability conditions - Terms, methods,

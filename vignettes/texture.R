@@ -19,7 +19,6 @@ tex <- texture(reading ~ blank + time + temperature, clayloam, plot = T)
 tex
 
 ## ----classify-----------------------------------------------------------------
-# Load soiltexture
 library(soiltexture)
 
 # Prepare data

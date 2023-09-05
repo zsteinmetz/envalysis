@@ -6,11 +6,17 @@ knitr::opts_chunk$set(
   comment = "# >"
 )
 
-## ----theme_publish------------------------------------------------------------
-require(envalysis)
-require(ggplot2)
+## ----packages-----------------------------------------------------------------
+library(envalysis)
+library(ggplot2)
+
+## ----default_theme------------------------------------------------------------
+data("mtcars")
+
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-     colour=factor(gear))) + facet_wrap( ~ am)
+     color = factor(gear))) + facet_wrap( ~ am)
 p
+
+## ----theme_publish------------------------------------------------------------
 p + theme_publish()
 

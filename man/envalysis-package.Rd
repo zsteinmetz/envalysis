@@ -25,6 +25,7 @@ Springer, New York.
 Useful links:
 \itemize{
   \item \url{https://github.com/zsteinmetz/envalysis}
+  \item \url{https://zsteinmetz.de/envalysis/}
   \item Report bugs at \url{https://github.com/zsteinmetz/envalysis/issues}
 }
 
