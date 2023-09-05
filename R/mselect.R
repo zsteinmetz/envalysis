@@ -1,59 +1,12 @@
-#' @title envalysis reimplementation of mselect
-#' 
-#' @description
-#' This function should behave just like \code{\link[drc]{mselect}()}, with the
-#' main difference that model objects are passed through the function instead of
-#' requiring the data to be present in \code{.GlobalEnv}. If you have trouble
-#' with this function, you can use \code{\link[drc]{mselect}()} instead.
-#' 
-#' @usage
-#' mselect(object, fctList = NULL, nested = FALSE, 
-#' sorted = c("IC", "Res var", "Lack of fit", "no"), linreg = FALSE, icfct = AIC)
-#' 
-#' @param object an object of class \code{drc}.
-#' @param fctList a list of dose-response functions to be compared.
-#' @param nested logical; \code{TRUE} results in F tests between adjacent models
-#' (in \code{fctList}; only sensible for nested models.
-#' @param sorted character string determining according to which criterion the
-#' model fits are ranked.
-#' @param linreg logical indicating whether or not additionally polynomial
-#' regression models (linear, quadratic, and cubic models) should be fitted
-#' (they could be useful for a kind of informal lack-of-test consideration for
-#' the models specified,  capturing unexpected departures).
-#' @param icfct function for supplying the information criterion to be used.
-#' \code{\link{AIC}} and \code{\link{BIC}} are two options.
-#' 
-#' @details
-#' For Akaike's information criterion and the residual standard error: the
-#' smaller the better and for lack-of-fit test (against a one-way ANOVA model): 
-#' the larger (the p-value) the better. Note that the residual standard error is
-#' only available for continuous dose-response data.
-#' 
-#' Log likelihood values cannot be used for comparison unless the models are
-#' nested.
-#' 
-#' @return
-#' A matrix with one row for each model and one column for each criterion.
-#' 
-#' @author
-#' Christian Ritz, Zacharias Steinmetz
-#' 
-#' @examples
-#' library(drc)
-#' 
-#' ryegrass.m1 <- drm(rootl ~ conc, data = ryegrass, fct = LL.4())
-#' mselect(ryegrass.m1, list(LL.3(), LL.5(), W1.3(), W1.4(), W2.4(), baro5()))
-#' 
 #' @importFrom stats AIC logLik anova lm
-#' @import drc
-#' @export
-mselect <- function(object, fctList = NULL, nested = FALSE,
+#' @importFrom drc modelFit
+.mselect <- function(object, fctList = NULL, nested = FALSE,
                     sorted = c("IC", "Res var", "Lack of fit", "no"),
                     linreg = FALSE, icfct = AIC) {
   sorted <- match.arg(sorted)
-  if (!is.logical(nested)) {
+  if (!is.logical(nested))
     stop("'nested' argument takes only the values: FALSE, TRUE")
-  }
+  
   contData <- identical(object$type, "continuous")
   nestedInd <- 3 + contData + nested
   mc <- match.call()
@@ -62,6 +15,7 @@ mselect <- function(object, fctList = NULL, nested = FALSE,
   retMat[1, 1] <- logLik(object)
   retMat[1, 2] <- icfct(object)
   retMat[1, 3] <- modelFit(object)[2, 5]
+  
   if (contData) {
     tryRV <- try(summary(object)$resVar, silent = TRUE)
     if (!inherits("tryRV", "try-error")) {
@@ -74,8 +28,10 @@ mselect <- function(object, fctList = NULL, nested = FALSE,
   if (nested) {
     retMat[1, nestedInd] <- NA
   }
+  
   fctList2 <- rep("", lenFL + 1)
   fctList2[1] <- object$fct$name
+  
   if (!is.null(fctList)) {
     prevObj <- object
     for (i in 1:lenFL) {
@@ -107,6 +63,7 @@ mselect <- function(object, fctList = NULL, nested = FALSE,
       prevObj <- tempObj
     }
   }
+  
   rownames(retMat) <- as.vector(unlist(fctList2))
   cnames <- c("logLik", "IC", "Lack of fit")
   if (contData) {

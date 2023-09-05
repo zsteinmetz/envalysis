@@ -1,17 +1,24 @@
-# envalysis 0.5.6
+# envalysis 0.6.0
+
+## New Features
+
+- Added pkgdown
 
 ## Minor Improvements
 
 - Added code coverage
 - Added GitHub Actions for macOS
+- Don't export `mselect()` fork anymore; use drc::`mselect()` instead
 
 
 # envalysis 0.5.5
 
 ## Minor Improvements
 
-- The `check_assumptions` argument in `calibration()` is now less verbose; test results may be retrieved by calling `print()`
-- Replaced `size` argument in ggplot2::`element_rect()` and ggplot2::`element_line()` with `linewidth`
+- The `check_assumptions` argument in `calibration()` is now less verbose;
+  test results may be retrieved by calling `print()`
+- Replaced `size` argument in ggplot2::`element_rect()` and
+  ggplot2::`element_line()` with `linewidth`
 - Update SOP for particle size estimations using `texture()`
 - Changed maintainer email address
 - Corrected typos
@@ -21,7 +28,8 @@
 
 ## Bug Fixes
 
-- skip tests for ggplot2 v3.4.0 due to deprecation warnings; replace `size` argument in ggplot2::`element_rect()` with `linewidth` later
+- skip tests for ggplot2 v3.4.0 due to deprecation warnings; replace `size`
+  argument in ggplot2::`element_rect()` with `linewidth` later
 
 
 # envalysis 0.5.3
@@ -40,7 +48,8 @@
 
 ## Bug Fixes
 
-- Fix 'invalid nsmall argument' error when using `signifig()` with certain value combinations
+- Fix 'invalid nsmall argument' error when using `signifig()` with certain value
+  combinations
 
 
 # envalysis 0.5.1
@@ -48,12 +57,14 @@
 ## New Features
 
 - Finding optimum weights for weighted calibrations using `weight_select()`
-- Calculating matrix effects (signal suppression/enhancement) with `matrix_effect()`
+- Calculating matrix effects (signal suppression/enhancement) with
+  `matrix_effect()`
 - `calibration()` now checks for model assumptions
 
 ## Minor Improvements
 
-- Additional "blanks" parameter introduced to `calibration()`, `lod()`, and `loq()`
+- Additional "blanks" parameter introduced to `calibration()`, `lod()`, and
+  `loq()`
 - Snapshot testing
 - Improved and more consistent documentation
 
@@ -110,7 +121,8 @@
 
 ## Bug Fixes
 
-- Reimplementation of drc's `mselect()` for `texture()` to get rid of global variables
+- Reimplementation of drc's `mselect()` for `texture()` to get rid of global
+  variables
 
 
 # envalysis 0.3.1
@@ -169,7 +181,8 @@
 
 ## New Features
 
-- `texture` class for automatic determination of particle size distribution using a hydrometer in accordance with ASTM D422-63(2007)e2
+- `texture` class for automatic determination of particle size distribution
+  using a hydrometer in accordance with ASTM D422-63(2007)e2
 
 ## Minor Improvements
 
@@ -187,7 +200,11 @@
 - Limit of quantification (LOQ) `loq()`
 - Various sorption isotherms `sorption()`
 - Convert frequency data back to raw data `make.raw()`
-- ANOVA on ranks according to Sen and Puri (also known as Scheirer-Ray-Hare-Test) `puri.test()`
-- Categorize water drop penetration times according to Bisdom et al. (1993) `bisdom()`
-- Report significant figures, i.e. round means and erros to the least significant digit, using `signifig()`
-- Clean, black-and-white ggplot2 theme for scientific publications `theme_publish()`
+- ANOVA on ranks according to Sen and Puri (also known as
+  Scheirer-Ray-Hare-Test) `puri.test()`
+- Categorize water drop penetration times according to Bisdom et al. (1993)
+  `bisdom()`
+- Report significant figures, i.e. round means and erros to the least
+  significant digit, using `signifig()`
+- Clean, black-and-white ggplot2 theme for scientific publications
+  `theme_publish()`

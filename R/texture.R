@@ -58,7 +58,7 @@
 #' 
 #' @importFrom stats terms predict na.omit
 #' @importFrom graphics plot
-#' @import drc
+#' @importFrom drc drm LL.2 LL.3 LL.3u LL.4 LL.5 W1.2 W1.3 W1.4 W2.2 W2.3 W2.4 BC.4 BC.5 LL2.2 LL2.3 LL2.3u LL2.4 LL2.5 MM.2 MM.3
 #' @export
 texture <- function(reading, ...) {
   UseMethod("texture")
@@ -128,7 +128,7 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
     fctList <- list(LL.2(), LL.3(), LL.3u(), LL.4(), LL.5(), W1.2(), W1.3(),
                     W1.4(), W2.2(), W2.3(), W2.4(), BC.4(), BC.5(), LL2.2(),
                     LL2.3(), LL2.3u(), LL2.4(), LL2.5(), MM.2(), MM.3())
-    opt <- envalysis::mselect(init, fctList)
+    opt <- .mselect(init, fctList)
     fit <- drm(perc.passing ~ particle.size, data = distr,
                fct = eval(call(row.names(opt)[1])))
   } else {
@@ -175,7 +175,9 @@ print.texture <- function(x, ...) {
 #' @rdname texture
 #'
 #' @export
-plot.texture <- function(x, ...) plot(x$model, log = "x", type = "all", ...)
+plot.texture <- function(x, ...) {
+  plot(x$model, log = "x", type = "all", ...)
+}
 
 # Auxiliary function for retrieving main texture classes
 .textureclass <- function(psize, object) {
