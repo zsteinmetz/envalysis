@@ -49,8 +49,10 @@
 #' \code{calibration} returns an object of \code{\link[base]{class}}
 #' '\code{calibration}'. \code{print()} calls the function parameters together
 #' with the respective LOD and LOQ. \code{plot()} plots the respective
-#' calibration curve together with the measurement values. \code{summary()} may
-#' be used to retrieve the summary of the underlying model.
+#' calibration curve together with the measurement values. \code{inv_predict()}
+#' predicts analyte concentrations from signal intensities.
+#' \code{summary()} may be used to retrieve the summary of the underlying model.
+#' \code{as.list()} returns a named list.
 #' 
 #' @author 
 #' Zacharias Steinmetz
@@ -59,8 +61,10 @@
 #' data(din32645)
 #' din <- calibration(Area ~ Conc, data = din32645)
 #' din
+#' 
 #' plot(din)
 #' summary(din)
+#' as.list(din)
 #'
 #' @references
 #' Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
@@ -86,8 +90,8 @@
 #' @export
 calibration <- function(formula, data = NULL, blanks = NULL, weights = NULL,
                         model = "lm", check_assumptions = TRUE, ...) {
-  if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]), 
-                                                                  "term.labels")) != 1L))
+  if (missing(formula) || (length(formula) != 3L) || 
+      (length(attr(terms(formula[-2L]), "term.labels")) != 1L))
     stop("'formula' missing or incorrect")
   
   # Collate data
@@ -197,6 +201,26 @@ plot.calibration <- function(x, interval = "conf", level = 0.95, ...) {
 
 #' @rdname calibration
 #' 
+#' @param which character vector indicating the parameters to export; defaults 
+#' to \code{c("coef", "Radj", "lod", "loq", "blanks")}.
+#' 
+#' @export
+as.list.calibration <- function(x, which = c("coef", "Radj", "lod", "loq", 
+                                             "blanks"), ...) {
+  res <- list()
+  
+  if("coef" %in% which) res <- c(res, as.list(x$model$coefficients))
+  if("Radj" %in% which) res <- c(res, Radj = x$adj.r.squared)
+  if("lod" %in% which) res <- c(res, lod = x$lod[1])
+  if("loq" %in% which) res <- c(res, loq = x$loq[1])
+  if("blanks" %in% which) res <- c(res, blank_mean = mean(x$blanks),
+                                   blank_sd = sd(x$blanks))
+  
+  return(res)
+}
+
+#' @rdname calibration
+#' 
 #' @param x,object an object of class '\code{calibration}' with a model formula
 #' as shown above.
 #' @param alpha error tolerance for the detection limit (critical value).
@@ -241,13 +265,15 @@ lod.calibration <- function(object, blanks = NULL, alpha = 0.01, level = 0.05,
   } else {
     # Indirect method (LOD from calibration curve)
     if (length(blanks) == 1) {
-      message("only one blank value supplied; LOD is estimated from the calibration curve")
+      message("only one blank value supplied; LOD is estimated from the ",
+              "calibration curve")
     } else {
       message("no blanks provided; LOD is estimated from the calibration curve") 
     }
     sx0 <- summary(model)$sigma / b
     Qx <- sum((conc - mean(conc))^2) / m
-    val <- sx0 * -qt(alpha, n - model$rank) * sqrt(1/n + 1/m + (mean(conc))^2 / Qx)
+    val <- sx0 * -qt(alpha, n - model$rank) * sqrt(1/n + 1/m + (mean(conc))^2 /
+                                                     Qx)
   }
   res <- c(val, .conf(n, level) * val)
   matrix(round(res, digs), nrow = 1, dimnames = list("LOD", names(res)))
@@ -264,8 +290,9 @@ lod.calibration <- function(object, blanks = NULL, alpha = 0.01, level = 0.05,
 #' loq(din)
 #' 
 #' @export
-loq <- function(object, ...)
+loq <- function(object, ...) {
   UseMethod("loq")
+}
 
 #' @export
 loq.default <- function(object, ...) {
@@ -307,6 +334,29 @@ loq.calibration <- function(object, blanks = NULL, alpha = 0.01, k = 3,
   matrix(round(res, digs), nrow = 1, dimnames = list("LOQ", names(res)))
 }
 
+#' @rdname calibration
+#' 
+#' @param y0 numeric; the value to inverse predict.
+#' 
+#' @seealso
+#' \code{\link[investr]{invest}()}
+#' 
+#' @examples
+#' inv_predict(din, 5000)
+#' 
+#' @export
+inv_predict <- function(object, ...) {
+  UseMethod("inv_predict")
+}
+
+#' @rdname calibration
+#' 
+#' @importFrom investr invest
+#' @export
+inv_predict.calibration <- function(object, y0, ...) {
+  invest(object$model, y0, ...)
+}
+
 # Auxiliary function for confidence intervals of LOD/LOQ
 .conf <- function(n, level = 0.05) {
   kappa <- sqrt((n - 1) / qchisq(c(1 - level/2, level/2), n - 1))
@@ -314,5 +364,4 @@ loq.calibration <- function(object, blanks = NULL, alpha = 0.01, k = 3,
   return(kappa)
 }
 
-# TODO: Inverse predict?
 # TODO: Add "Erfassungsgrenze"

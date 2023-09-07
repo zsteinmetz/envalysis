@@ -25,8 +25,9 @@ LazyLoad: yes
 LazyData: yes
 VignetteBuilder: knitr
 Depends:
-    R (>= 4.0.0)
+    R (>= 4.1.0)
 Imports:
+    investr,
     drc,
     lmtest,
     ggplot2 (>= 3.4.0)

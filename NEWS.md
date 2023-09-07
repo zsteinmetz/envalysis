@@ -2,12 +2,15 @@
 
 ## New Features
 
-- Added pkgdown
+- Inverse predict concentrations from calibration curves using an `invest()`
+  wrapper
+- `as.list()` method for class '`calibration`'
+- pkgdown documentation
 
 ## Minor Improvements
 
-- Added code coverage
-- Added GitHub Actions for macOS
+- Code coverage
+- GitHub Actions for macOS
 - Don't export `mselect()` fork anymore; use drc::`mselect()` instead
 
 

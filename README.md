@@ -29,9 +29,10 @@ The following functions are available:
 * Calculating limits of detection `lod()` and limits of quantification `loq()`
   as part of the `calibration` class to produce linear calibration curves
   in accordance with German DIN 32645 (2008)
+* Calculating concentrations from calibration curves using `inv_predict()`
 * Finding optimum weights for weighted calibrations using `weight_select()`
 * Estimating matrix effects (signal suppression/enhancement) with `matrix_effect()`
-* Determine particle size distributions and soil texture classes (DIN/USDA)
+* Determining particle size distributions and soil texture classes (DIN/USDA)
   measured with a soil hydrometer in accordance with ASTM D422-63 (2007) using
   `texture()`; see
   [vignette](https://zsteinmetz.de/envalysis/articles/texture.html) for details

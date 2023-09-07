@@ -5,10 +5,13 @@
 \alias{print.calibration}
 \alias{summary.calibration}
 \alias{plot.calibration}
+\alias{as.list.calibration}
 \alias{lod}
 \alias{lod.calibration}
 \alias{loq}
 \alias{loq.calibration}
+\alias{inv_predict}
+\alias{inv_predict.calibration}
 \title{Analytical calibration functions}
 \usage{
 calibration(
@@ -27,6 +30,8 @@ calibration(
 
 \method{plot}{calibration}(x, interval = "conf", level = 0.95, ...)
 
+\method{as.list}{calibration}(x, which = c("coef", "Radj", "lod", "loq", "blanks"), ...)
+
 lod(object, ...)
 
 \method{lod}{calibration}(object, blanks = NULL, alpha = 0.01, level = 0.05, ...)
@@ -42,6 +47,10 @@ loq(object, ...)
   maxiter = 10,
   ...
 )
+
+inv_predict(object, ...)
+
+\method{inv_predict}{calibration}(object, y0, ...)
 }
 \arguments{
 \item{formula}{model formula providing the recorded signal intensities with
@@ -82,6 +91,9 @@ as shown above.}
 \item{level}{tolerance/confidence level; see \code{\link[stats]{predict}()}
 and \code{\link[stats]{confint}()} for details.}
 
+\item{which}{character vector indicating the parameters to export; defaults 
+to \code{c("coef", "Radj", "lod", "loq", "blanks")}.}
+
 \item{alpha}{error tolerance for the detection limit (critical value).}
 
 \item{k}{relative uncertainty for the limit of quantification
@@ -89,13 +101,17 @@ and \code{\link[stats]{confint}()} for details.}
 
 \item{maxiter}{a positive integer specifying the maximum number of iterations
 to calculate the LOQ.}
+
+\item{y0}{numeric; the value to inverse predict.}
 }
 \value{
 \code{calibration} returns an object of \code{\link[base]{class}}
 '\code{calibration}'. \code{print()} calls the function parameters together
 with the respective LOD and LOQ. \code{plot()} plots the respective
-calibration curve together with the measurement values. \code{summary()} may
-be used to retrieve the summary of the underlying model.
+calibration curve together with the measurement values. \code{inv_predict()}
+predicts analyte concentrations from signal intensities.
+\code{summary()} may be used to retrieve the summary of the underlying model.
+\code{as.list()} returns a named list.
 }
 \description{
 Defines a \code{calibration} object for the calculation of concentrations
@@ -121,12 +137,16 @@ concentration measurements.
 data(din32645)
 din <- calibration(Area ~ Conc, data = din32645)
 din
+
 plot(din)
 summary(din)
+as.list(din)
 
 lod(din)
 
 loq(din)
+
+inv_predict(din, 5000)
 
 }
 \references{
@@ -148,6 +168,8 @@ Smeyers-Verbeke, J. (1997). \emph{Handbook of chemometrics and qualimetrics:
 Part A}. Elsevier Science Inc.
 }
 \seealso{
+\code{\link[investr]{invest}()}
+
 Other calibration: 
 \code{\link{din32645}},
 \code{\link{icp}},
