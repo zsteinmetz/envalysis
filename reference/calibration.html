@@ -38,8 +38,8 @@ with respect to a defined confidence level (k)."><!-- mathjax --><script src="ht
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/texture.html">Particle size estimation with texture()</a>
-    <a class="dropdown-item" href="../articles/theme_publish.html">theme_publish() showcase</a>
+    <a class="dropdown-item" href="../articles/texture.html">Particle size estimation</a>
+    <a class="dropdown-item" href="../articles/theme_publish.html">ggplot2 theme for scientific publications</a>
   </div>
 </li>
 <li class="nav-item">
@@ -98,6 +98,9 @@ with respect to a defined confidence level (<code>k</code>).</p>
 <span><span class="co"># S3 method for calibration</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, interval <span class="op">=</span> <span class="st">"conf"</span>, level <span class="op">=</span> <span class="fl">0.95</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># S3 method for calibration</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">x</span>, which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"coef"</span>, <span class="st">"Radj"</span>, <span class="st">"lod"</span>, <span class="st">"loq"</span>, <span class="st">"blanks"</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu">lod</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for calibration</span></span>
@@ -114,7 +117,12 @@ with respect to a defined confidence level (<code>k</code>).</p>
 <span>  level <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  maxiter <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">inv_predict</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for calibration</span></span>
+<span><span class="fu">inv_predict</span><span class="op">(</span><span class="va">object</span>, <span class="va">y0</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -177,6 +185,11 @@ as shown above.</p></dd>
 and <code><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a>()</code> for details.</p></dd>
 
 
+<dt>which</dt>
+<dd><p>character vector indicating the parameters to export; defaults 
+to <code>c("coef", "Radj", "lod", "loq", "blanks")</code>.</p></dd>
+
+
 <dt>alpha</dt>
 <dd><p>error tolerance for the detection limit (critical value).</p></dd>
 
@@ -190,6 +203,10 @@ and <code><a href="https://rdrr.io/r/stats/confint.html" class="external-link">c
 <dd><p>a positive integer specifying the maximum number of iterations
 to calculate the LOQ.</p></dd>
 
+
+<dt>y0</dt>
+<dd><p>numeric; the value to inverse predict.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -200,8 +217,12 @@ to calculate the LOQ.</p></dd>
 
 <p>'<code>calibration</code>'. <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> calls the function parameters together
 with the respective LOD and LOQ. <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> plots the respective
-calibration curve together with the measurement values. <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> may
-be used to retrieve the summary of the underlying model.</p>
+calibration curve together with the measurement values. <code>inv_predict()</code></p>
+
+
+<p>predicts analyte concentrations from signal intensities.
+<code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> may be used to retrieve the summary of the underlying model.
+<code><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list()</a></code> returns a named list.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -232,7 +253,8 @@ Part A</em>. Elsevier Science Inc.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>Other calibration: 
+    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/investr/man/invest.html" class="external-link">invest</a>()</code></p>
+<p>Other calibration: 
 <code><a href="din32645.html">din32645</a></code>,
 <code><a href="icp.html">icp</a></code>,
 <code><a href="matrix_effect.html">matrix_effect</a>()</code>,
@@ -281,6 +303,7 @@ Part A</em>. Elsevier Science Inc.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  Area ~ Conc</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> BP = 1.6198, df = 1, p-value = 0.2031</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">din</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="calibration-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">din</span><span class="op">)</span></span></span>
@@ -303,6 +326,28 @@ Part A</em>. Elsevier Science Inc.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Multiple R-squared:  0.9849,	Adjusted R-squared:  0.983 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> F-statistic: 520.7 on 1 and 8 DF,  p-value: 1.442e-08</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">din</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`(Intercept)`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2480.867</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conc</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9661.939</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Radj</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9829773</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lod</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.053</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $loq</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.212</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $blank_mean</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2080.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $blank_sd</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 172.2581</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">lod</span><span class="op">(</span><span class="va">din</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Conc   lwr   upr</span>
@@ -311,6 +356,10 @@ Part A</em>. Elsevier Science Inc.</p>
 <span class="r-in"><span><span class="fu">loq</span><span class="op">(</span><span class="va">din</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Conc   lwr   upr</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LOQ 0.212 0.146 0.387</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">inv_predict</span><span class="op">(</span><span class="va">din</span>, <span class="fl">5000</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  estimate     lower     upper </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.2607275 0.2121646 0.3090115 </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
