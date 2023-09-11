@@ -1,14 +1,14 @@
 ---
-title: "theme_publish() showcase"
+title: "ggplot2 theme for scientific publications"
 author: "Zacharias Steinmetz"
-date: "2023-09-05"
+date: "2023-09-11"
 output:
   html_document:
     keep_md: yes
-    fig_height: 5
     fig_width: 8
+    fig_height: 5
 vignette: >
-  %\VignetteIndexEntry{theme_publish demo}
+  %\VignetteIndexEntry{ggplot2 theme for scientific publications}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
   \usepackage[utf8]{inputenc}
@@ -16,7 +16,7 @@ vignette: >
 
 
 
-First, we require **ggplot2**.
+First, load **ggplot2** alongside **envalysis**.
 
 
 ```r
@@ -24,15 +24,25 @@ library(envalysis)
 library(ggplot2)
 ```
 
-We use the `mtcars` sample data set for plotting with the default **ggplot2**
-theme.
+The following code chunk plots the **ggplot2** `mtcars` sample data set with the
+default **ggplot2** theme.
 
 
 ```r
 data("mtcars")
 
-p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-     color = factor(gear))) + facet_wrap( ~ am)
+p <- ggplot(mtcars) +
+  geom_point(aes(x = wt, y = mpg, color = factor(gear))) +
+  labs(
+    title = "Fuel economy declines as weight increases",
+    subtitle = "(1973-74)",
+    caption = "Data from the 1974 Motor Trend US magazine.",
+    x = "Weight (1000 lbs)",
+    y = "Fuel economy (mpg)",
+    colour = "Gears"
+  ) +
+  facet_wrap( ~ am, labeller = labeller(am = c("0" = "Automatic",
+                                               "1" = "Manual")))
 p
 ```
 
@@ -46,3 +56,13 @@ p + theme_publish()
 ```
 
 ![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_publish-1.png)<!-- -->
+
+`theme_publish()` allows for changing the base font face, font size, and
+line widths. More arguments may be passed to **ggplot2**'s `theme_bw()`
+
+
+```r
+p + theme_publish(base_size = 16, base_family = "Times", base_linewidth = 0.7)
+```
+
+![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_arguments-1.png)<!-- -->

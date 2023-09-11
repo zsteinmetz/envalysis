@@ -4,8 +4,8 @@
 #' 
 #' @description
 #' Calculates the particle size distribution and both DIN and USDA texture
-#' classes from a series of hydrometer readings according to
-#' ASTM D422-63 (2007). 
+#' classes from a series of hydrometer readings in accordance with ASTM D422-63
+#' (2007). 
 #' 
 #' @param formula an object of class '\code{\link[stats]{formula}}' of the form
 #' \code{reading ~ blank + time + temp}.
@@ -177,6 +177,37 @@ print.texture <- function(x, ...) {
 #' @export
 plot.texture <- function(x, ...) {
   plot(x$model, log = "x", type = "all", ...)
+}
+
+#' @rdname texture
+#' 
+#' @param which character value indicating the soil texture classification
+#' system to export; accepts \code{"din"} or \code{"usda"}.
+#' 
+#' @export
+as_tridata <- function(x, ...) {
+  UseMethod("as_tridata")
+}
+
+#' @rdname texture
+#' 
+#' @export
+as_tridata.default <- function(x, ...) {
+  stop("object 'x' needs to be of class 'texture'")
+}
+
+#' @rdname texture
+#' 
+#' @export
+as_tridata.texture <- function(x, which = NULL, ...) {
+  if(length(which) != 1L) stop("'which' must be a single character value")
+  if(!(which %in% c("din", "usda")))
+    stop("'which' needs to be either 'din' or 'usda'")
+  
+  df <- data.frame(t(x[[which]]["Estimate",] * 100))
+  names(df) <- toupper(names(df))
+  
+  return(df)
 }
 
 # Auxiliary function for retrieving main texture classes

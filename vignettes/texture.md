@@ -1,18 +1,18 @@
 ---
-title: "Particle size estimation with texture()"
+title: "Particle size estimation"
 subtitle: > 
   Based on the hydrometer method by ASTM D422-63 (2007) and Bouyoucos (1927)
 author: "Zacharias Steinmetz"
-date: "2023-09-05"
+date: "2023-09-11"
 output:
   html_document:
-    fig_width: 8
     keep_md: yes
+    fig_width: 8
 vignette: >
   %\VignetteIndexEntry{Particle size estimation}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
   %\usepackage[utf8]{inputenc}
-  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 
@@ -114,12 +114,13 @@ the recorded hydrometer readings is available in the respective ASTM guideline
 (ASTM D422-63, 2007). The algorithm has also been implemented into this package
 using the `texture()` function.
 
+After loading **envalysis**, the `texture()` function is applied to the
+`clayloam` sample data set coming with this package.
+
 
 ```r
-# Load envalysis
 library(envalysis)
 
-# Load and look at sample data
 data(clayloam)
 clayloam
 ```
@@ -136,14 +137,9 @@ clayloam
 ```
 
 ```r
-# Calculate the particle size distribution
-tex <- texture(reading ~ blank + time + temperature, clayloam, plot = T)
-```
+tex <- texture(reading ~ blank + time + temperature, data = clayloam)
 
-![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png)<!-- -->
-
-```r
-tex
+print(tex)
 ```
 
 ```
@@ -174,22 +170,34 @@ tex
 # > Std. Error 0.0131 0.0226 0.00954
 ```
 
-Further soil classification and plotting may be done with the **soiltexture**
-package.
+```r
+plot(tex)
+```
+
+![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png)<!-- -->
+
+Further soil classification and plotting may be performed using the
+**soiltexture** package.
 
 
 ```r
 library(soiltexture)
+```
 
-# Prepare data
-germansoil <- data.frame(t(tex$din["Estimate",] * 100))
-names(germansoil) <- toupper(names(germansoil))
+For that, the soil texture data needs to be converted into a special
+`data.frame`.
 
-ussoil <- data.frame(t(tex$usda["Estimate",] * 100))
-names(ussoil) <- toupper(names(ussoil))
 
-# Get texture class, for example, in accordance with the German
-# "Bodenartendiagramm" (DE.BK94.TT)
+```r
+germansoil <- as_tridata(tex, which = "din")
+ussoil <- as_tridata(tex, which = "usda")
+```
+
+Now, texture classes are determined, for example, in accordance with the German
+"Bodenartendiagramm" (DE.BK94.TT) or USDA (USDA.TT).
+
+
+```r
 TT.points.in.classes(germansoil, class.sys = "DE.BK94.TT")
 ```
 
@@ -201,7 +209,6 @@ TT.points.in.classes(germansoil, class.sys = "DE.BK94.TT")
 ```
 
 ```r
-# Get USDA texture class (USDA.TT)
 TT.points.in.classes(ussoil, class.sys = "USDA.TT")
 ```
 
@@ -210,7 +217,18 @@ TT.points.in.classes(ussoil, class.sys = "USDA.TT")
 # > [1,]  0    0    0    1      0      0  0    0    0  0    0  0
 ```
 
-The analyzed soil is a clay loam (German: "Toniger Lehm", Lt2).
+The analyzed soil is a clay loam (German: "Toniger Lehm", Lt2), which may be
+plotted as follows.
+
+
+```r
+TT.plot(class.sys = "DE.BK94.TT", tri.data = germansoil)
+```
+
+![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/soiltexture_plot-1.png)<!-- -->
+
+For further details, see the **soiltexture** package vignette on
+[CRAN](https://cran.r-project.org/package=soiltexture).
 
 ## References
 

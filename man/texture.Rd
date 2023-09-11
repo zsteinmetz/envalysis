@@ -6,6 +6,9 @@
 \alias{texture.default}
 \alias{print.texture}
 \alias{plot.texture}
+\alias{as_tridata}
+\alias{as_tridata.default}
+\alias{as_tridata.texture}
 \title{ASTM soil texture analysis}
 \usage{
 texture(reading, ...)
@@ -28,6 +31,12 @@ texture(reading, ...)
 \method{print}{texture}(x, ...)
 
 \method{plot}{texture}(x, ...)
+
+as_tridata(x, ...)
+
+\method{as_tridata}{default}(x, ...)
+
+\method{as_tridata}{texture}(x, which = NULL, ...)
 }
 \arguments{
 \item{reading}{a numeric vector of data values providing the hydrometer
@@ -64,6 +73,9 @@ best fitting model automatically.}
 \item{plot}{logical; if \code{TRUE} the particle size distribution is plotted.}
 
 \item{x}{an object of class '\code{texture}'.}
+
+\item{which}{character value indicating the soil texture classification
+system to export; accepts \code{"din"} or \code{"usda"}.}
 }
 \value{
 \code{texture} returns an object of \code{\link[base]{class}} '\code{texture}.
@@ -84,8 +96,8 @@ distribution\cr
 }
 \description{
 Calculates the particle size distribution and both DIN and USDA texture
-classes from a series of hydrometer readings according to
-ASTM D422-63 (2007).
+classes from a series of hydrometer readings in accordance with ASTM D422-63
+(2007).
 }
 \examples{
 data(clayloam)
