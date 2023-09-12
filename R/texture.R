@@ -28,7 +28,7 @@
 #' @param plot logical; if \code{TRUE} the particle size distribution is plotted.
 #' 
 #' @return
-#' \code{texture} returns an object of \code{\link[base]{class}} '\code{texture}.
+#' \code{texture} returns an object of \code{\link[base]{class}} '\code{texture}'.
 #' The functions \code{print}() and \code{plot}() are available to retrieve the
 #' soil texture classes and the particle size distribution, respectively.
 #' 
@@ -44,12 +44,15 @@
 #' \code{usda} \tab Main USDA texture classes\cr
 #' }
 #' 
+#' \code{as_tridata} converts '\code{texture}' to data.frames of a specific
+#' structure require for \code{\link[soiltexture]{soiltexture-package}}.
+#' 
 #' @author
 #' Zacharias Steinmetz
 #' 
 #' @examples
 #' data(clayloam)
-#' texture(reading ~ blank + time + temperature, clayloam)
+#' texture(reading ~ blank + time + temperature, data = clayloam)
 #'
 #' @references
 #' ASTM D422-63 (2007). \emph{Standard Test Method for Particle-Size Analysis
@@ -150,8 +153,8 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
 #' @rdname texture
 #' 
 #' @param x an object of class '\code{texture}'.
-#' @param \dots further arguments to be passed to \code{texture}() (currently not
-#' used), \code{print}(), or \code{plot}().
+#' @param \dots further arguments to be passed to \code{texture}() (currently
+#' not used), \code{print}(), or \code{plot}().
 #' 
 #' @export
 print.texture <- function(x, ...) {

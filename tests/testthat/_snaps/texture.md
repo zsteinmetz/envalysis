@@ -1,4 +1,4 @@
-# Snapshot output consistent
+# print() and plot() produce consistent output
 
     Soil particle estimation according to ASTM D422-63
     Hydrometer model: 152H

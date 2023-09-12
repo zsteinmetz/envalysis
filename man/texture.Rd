@@ -42,8 +42,8 @@ as_tridata(x, ...)
 \item{reading}{a numeric vector of data values providing the hydrometer
 readings at the bottom of the meniscus.}
 
-\item{\dots}{further arguments to be passed to \code{texture}() (currently not
-used), \code{print}(), or \code{plot}().}
+\item{\dots}{further arguments to be passed to \code{texture}() (currently
+not used), \code{print}(), or \code{plot}().}
 
 \item{formula}{an object of class '\code{\link[stats]{formula}}' of the form
 \code{reading ~ blank + time + temp}.}
@@ -78,7 +78,7 @@ best fitting model automatically.}
 system to export; accepts \code{"din"} or \code{"usda"}.}
 }
 \value{
-\code{texture} returns an object of \code{\link[base]{class}} '\code{texture}.
+\code{texture} returns an object of \code{\link[base]{class}} '\code{texture}'.
 The functions \code{print}() and \code{plot}() are available to retrieve the
 soil texture classes and the particle size distribution, respectively.
 
@@ -93,6 +93,9 @@ distribution\cr
 \code{din} \tab Main DIN texture classes\cr
 \code{usda} \tab Main USDA texture classes\cr
 }
+
+\code{as_tridata} converts '\code{texture}' to data.frames of a specific
+structure require for \code{\link[soiltexture]{soiltexture-package}}.
 }
 \description{
 Calculates the particle size distribution and both DIN and USDA texture
@@ -101,7 +104,7 @@ classes from a series of hydrometer readings in accordance with ASTM D422-63
 }
 \examples{
 data(clayloam)
-texture(reading ~ blank + time + temperature, clayloam)
+texture(reading ~ blank + time + temperature, data = clayloam)
 
 }
 \references{

@@ -1,4 +1,4 @@
-# Weight selection works and produces consistent output
+# weight_select() produces consistent output
 
                Sum relative error Adj. R-squared
     1/Conc^2.0          0.6109420      0.9841021

@@ -250,27 +250,24 @@ lod.calibration <- function(object, blanks = NULL, alpha = 0.01, level = 0.05,
   m <- mean(table(conc))
   digs <- max(nchar(gsub("(.*\\.)|([0]*$)", "", as.character(conc)))) + 1
 
-  if (m != round(m)) warning("measurement replicates of unequal size; ",
+  if(m != round(m)) warning("measurement replicates of unequal size; ",
                              "LOD estimation might be incorrect")
-  if (n <= model$rank) stop("data points less than degrees of freedom")
+  if(n <= model$rank) stop("data points less than degrees of freedom")
 
   b <- coef(model)[2]
 
-  if (is.null(blanks)) blanks <- object$blanks
+  if(is.null(blanks)) blanks <- object$blanks
   
-  if (length(blanks) > 1) {
+  if(length(blanks) > 1) {
     # Direct method (LOD from blanks)
     sl <- sd(blanks) / b
     val <- sl * -qt(alpha, n - 1) * sqrt(1/n + 1/m)
   } else {
     # Indirect method (LOD from calibration curve)
-    if (length(blanks) == 1) {
-      message("only one blank value supplied; LOD is estimated from the ",
-              "calibration curve")
-    } else {
-      message("no blanks provided; LOD is estimated from the calibration curve") 
-    }
-    sx0 <- summary(model)$sigma / b
+    message("number of blank values <= 1; LOD is estimated from the ",
+            "calibration curve")
+
+        sx0 <- summary(model)$sigma / b
     Qx <- sum((conc - mean(conc))^2) / m
     val <- sx0 * -qt(alpha, n - model$rank) * sqrt(1/n + 1/m + (mean(conc))^2 /
                                                      Qx)

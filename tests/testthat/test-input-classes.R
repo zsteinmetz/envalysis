@@ -16,4 +16,3 @@ test_that("texture() handles data.tables and tibbles well", {
   expect_silent(texture(reading ~ blank + time + temperature, data.frame(clayloam),
                         model = "W1.2"))
 })
-
