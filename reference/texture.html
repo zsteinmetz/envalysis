@@ -106,8 +106,8 @@ readings at the bottom of the meniscus.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>further arguments to be passed to <code>texture</code>() (currently not
-used), <code>print</code>(), or <code>plot</code>().</p></dd>
+<dd><p>further arguments to be passed to <code>texture</code>() (currently
+not used), <code>print</code>(), or <code>plot</code>().</p></dd>
 
 
 <dt>formula</dt>
@@ -170,7 +170,7 @@ system to export; accepts <code>"din"</code> or <code>"usda"</code>.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p><code>texture</code> returns an object of <code><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></code> '<code>texture</code>.
+<p><code>texture</code> returns an object of <code><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></code> '<code>texture</code>'.
 The functions <code>print</code>() and <code>plot</code>() are available to retrieve the
 soil texture classes and the particle size distribution, respectively.</p>
 
@@ -180,7 +180,9 @@ components:</p>
 
 
 <table class="table table"><tr><td><code>meta</code></td><td>Measurement meta data</td></tr><tr><td><code>distribution</code></td><td>data frame providing the particle size
-distribution</td></tr><tr><td><code>model</code></td><td>information on the fitted <code><a href="https://rdrr.io/pkg/drc/man/drm.html" class="external-link">drm</a></code> model</td></tr><tr><td><code>din</code></td><td>Main DIN texture classes</td></tr><tr><td><code>usda</code></td><td>Main USDA texture classes</td></tr></table></div>
+distribution</td></tr><tr><td><code>model</code></td><td>information on the fitted <code><a href="https://rdrr.io/pkg/drc/man/drm.html" class="external-link">drm</a></code> model</td></tr><tr><td><code>din</code></td><td>Main DIN texture classes</td></tr><tr><td><code>usda</code></td><td>Main USDA texture classes</td></tr></table><p><code>as_tridata</code> converts '<code>texture</code>' to data.frames of a specific
+structure require for <code><a href="https://rdrr.io/pkg/soiltexture/man/soiltexture-package.html" class="external-link">soiltexture-package</a></code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>ASTM D422-63 (2007). <em>Standard Test Method for Particle-Size Analysis
@@ -200,7 +202,7 @@ Available from <a href="https://www.astm.org/standards/d422" class="external-lin
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">clayloam</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">texture</span><span class="op">(</span><span class="va">reading</span> <span class="op">~</span> <span class="va">blank</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">temperature</span>, <span class="va">clayloam</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">texture</span><span class="op">(</span><span class="va">reading</span> <span class="op">~</span> <span class="va">blank</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">temperature</span>, data <span class="op">=</span> <span class="va">clayloam</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Soil particle estimation according to ASTM D422-63</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Hydrometer model: 152H</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Specific gravity (Gs) = 2.65   Soil extract: 50 g/L</span>
