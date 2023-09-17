@@ -3,7 +3,7 @@ title: "Particle size estimation"
 subtitle: > 
   Based on the hydrometer method by ASTM D422-63 (2007) and Bouyoucos (1927)
 author: "Zacharias Steinmetz"
-date: "2023-09-11"
+date: "2023-09-17"
 output:
   html_document:
     keep_md: yes
@@ -12,7 +12,6 @@ vignette: >
   %\VignetteIndexEntry{Particle size estimation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  %\usepackage[utf8]{inputenc}
 ---
 
 
@@ -97,7 +96,7 @@ end of the measurement by reinserting the hydrometer at the previous position.
 The following table may serve as a sample template to record the data
 
 | Sample data | Time [min] | Hydrometer reading | Correction | Temperature [°C] |
-| ----------- | ---------- | ------------------ | ---------- | ---------------- |
+| :---------- | ---------: | -----------------: | ---------: | ---------------: |
 | S1          |  0.66      | 39                 | 2          | 23               |
 | S1          |  2.00      | 33                 | 2          | 23               |
 | S1          |  5.00      | 29                 | 2          | 23               |
@@ -122,7 +121,7 @@ After loading **envalysis**, the `texture()` function is applied to the
 library(envalysis)
 
 data(clayloam)
-clayloam
+print(clayloam)
 ```
 
 ```
@@ -174,7 +173,7 @@ print(tex)
 plot(tex)
 ```
 
-![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png)<!-- -->
+<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png" style="display: block; margin: auto;" />
 
 Further soil classification and plotting may be performed using the
 **soiltexture** package.
@@ -225,7 +224,7 @@ plotted as follows.
 TT.plot(class.sys = "DE.BK94.TT", tri.data = germansoil)
 ```
 
-![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/soiltexture_plot-1.png)<!-- -->
+<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/soiltexture_plot-1.png" style="display: block; margin: auto;" />
 
 For further details, see the **soiltexture** package vignette on
 [CRAN](https://cran.r-project.org/package=soiltexture).
@@ -240,7 +239,7 @@ Science and Plant Analysis* **32**, 633-642. DOI:
 ASTM D422-63 (2007). *Standard Test Method for Particle-Size Analysis of Soils*.
 Technical standard. ASTM International, West Conshohocken, PA.
 
-Bouyoucos, G.J., (1927). The hydrometer as a new method for the mechanical
+Bouyoucos, G.J. (1927). The hydrometer as a new method for the mechanical
 analysis of soils. Soil Science 23, 343–354.
 
 Moeys, J., Shangguan, W., Petzold, R., Minasny, B., Rosca, B., Jelinski, N.,

@@ -1,7 +1,7 @@
 ---
 title: "ggplot2 theme for scientific publications"
 author: "Zacharias Steinmetz"
-date: "2023-09-11"
+date: "2023-09-17"
 output:
   html_document:
     keep_md: yes
@@ -11,10 +11,11 @@ vignette: >
   %\VignetteIndexEntry{ggplot2 theme for scientific publications}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  \usepackage[utf8]{inputenc}
 ---
 
 
+
+## Packages
 
 First, load **ggplot2** alongside **envalysis**.
 
@@ -23,6 +24,8 @@ First, load **ggplot2** alongside **envalysis**.
 library(envalysis)
 library(ggplot2)
 ```
+
+## Default theme
 
 The following code chunk plots the **ggplot2** `mtcars` sample data set with the
 default **ggplot2** theme.
@@ -46,7 +49,9 @@ p <- ggplot(mtcars) +
 p
 ```
 
-![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/default_theme-1.png)<!-- -->
+<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/default_theme-1.png" style="display: block; margin: auto;" />
+
+## `theme_publish()`
 
 Adding `theme_publish()` applies the custom theme.
 
@@ -55,7 +60,7 @@ Adding `theme_publish()` applies the custom theme.
 p + theme_publish()
 ```
 
-![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_publish-1.png)<!-- -->
+<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_publish-1.png" style="display: block; margin: auto;" />
 
 `theme_publish()` allows for changing the base font face, font size, and
 line widths. More arguments may be passed to **ggplot2**'s `theme_bw()`
@@ -65,4 +70,4 @@ line widths. More arguments may be passed to **ggplot2**'s `theme_bw()`
 p + theme_publish(base_size = 16, base_family = "Times", base_linewidth = 0.7)
 ```
 
-![](/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_arguments-1.png)<!-- -->
+<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_arguments-1.png" style="display: block; margin: auto;" />

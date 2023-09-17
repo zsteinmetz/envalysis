@@ -11,7 +11,6 @@ vignette: >
   %\VignetteIndexEntry{ggplot2 theme for scientific publications}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  \usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
@@ -23,6 +22,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Packages
+
 First, load **ggplot2** alongside **envalysis**.
 
 ```{r packages}
@@ -30,10 +31,12 @@ library(envalysis)
 library(ggplot2)
 ```
 
+## Default theme
+
 The following code chunk plots the **ggplot2** `mtcars` sample data set with the
 default **ggplot2** theme.
 
-```{r default_theme}
+```{r default_theme, fig.align="center"}
 data("mtcars")
 
 p <- ggplot(mtcars) +
@@ -51,15 +54,17 @@ p <- ggplot(mtcars) +
 p
 ```
 
+## `theme_publish()`
+
 Adding `theme_publish()` applies the custom theme.
 
-```{r theme_publish}
+```{r theme_publish, fig.align="center"}
 p + theme_publish()
 ```
 
 `theme_publish()` allows for changing the base font face, font size, and
 line widths. More arguments may be passed to **ggplot2**'s `theme_bw()`
 
-```{r theme_arguments}
+```{r theme_arguments, fig.align="center"}
 p + theme_publish(base_size = 16, base_family = "Times", base_linewidth = 0.7)
 ```

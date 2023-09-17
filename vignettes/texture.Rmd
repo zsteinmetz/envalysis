@@ -12,7 +12,6 @@ vignette: >
   %\VignetteIndexEntry{Particle size estimation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  %\usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
@@ -104,7 +103,7 @@ end of the measurement by reinserting the hydrometer at the previous position.
 The following table may serve as a sample template to record the data
 
 | Sample data | Time [min] | Hydrometer reading | Correction | Temperature [°C] |
-| ----------- | ---------- | ------------------ | ---------- | ---------------- |
+| :---------- | ---------: | -----------------: | ---------: | ---------------: |
 | S1          |  0.66      | 39                 | 2          | 23               |
 | S1          |  2.00      | 33                 | 2          | 23               |
 | S1          |  5.00      | 29                 | 2          | 23               |
@@ -124,11 +123,11 @@ using the `texture()` function.
 After loading **envalysis**, the `texture()` function is applied to the
 `clayloam` sample data set coming with this package.
 
-```{r texture}
+```{r texture, fig.align="center"}
 library(envalysis)
 
 data(clayloam)
-clayloam
+print(clayloam)
 
 tex <- texture(reading ~ blank + time + temperature, data = clayloam)
 
@@ -162,7 +161,7 @@ TT.points.in.classes(ussoil, class.sys = "USDA.TT")
 The analyzed soil is a clay loam (German: "Toniger Lehm", Lt2), which may be
 plotted as follows.
 
-```{r soiltexture_plot, echo = -1}
+```{r soiltexture_plot, echo = -1, fig.align="center"}
 par(cex = 0.75, cex.lab = 0.5, cex.axis = 0.5, cex.main = 1)
 TT.plot(class.sys = "DE.BK94.TT", tri.data = germansoil)
 ```
@@ -180,7 +179,7 @@ Science and Plant Analysis* **32**, 633-642. DOI:
 ASTM D422-63 (2007). *Standard Test Method for Particle-Size Analysis of Soils*.
 Technical standard. ASTM International, West Conshohocken, PA.
 
-Bouyoucos, G.J., (1927). The hydrometer as a new method for the mechanical
+Bouyoucos, G.J. (1927). The hydrometer as a new method for the mechanical
 analysis of soils. Soil Science 23, 343–354.
 
 Moeys, J., Shangguan, W., Petzold, R., Minasny, B., Rosca, B., Jelinski, N.,
