@@ -15,8 +15,8 @@
 #' The sample table describes the samples' origin from a 29-day degradation
 #' experiment, in which the phenolic compounds were either degraded in the dark
 #' by the native soil microbial community or photooxidized under UV irradiation.
-#' The samples were processed in threefold replication. Their weight \[g\], the
-#' volume \[mL\] of extract solution, and the dilution factor were recorded.
+#' The samples were processed in threefold replication. Their weight [g], the
+#' volume [mL] of extract solution, and the dilution factor were recorded.
 #' 
 #' @format
 #' A list containing two data.frames.
