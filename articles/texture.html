@@ -41,6 +41,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/calibration.html">Calibration workflow</a>
     <a class="dropdown-item" href="../articles/texture.html">Particle size estimation</a>
     <a class="dropdown-item" href="../articles/theme_publish.html">ggplot2 theme for scientific publications</a>
   </div>
@@ -79,7 +80,7 @@ hydrometer method by ASTM D422-63 (2007) and Bouyoucos (1927)</p>
                         <h4 data-toc-skip class="author">Zacharias
 Steinmetz</h4>
             
-            <h4 data-toc-skip class="date">2023-09-12</h4>
+            <h4 data-toc-skip class="date">2023-09-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/zsteinmetz/envalysis/blob/HEAD/vignettes/texture.Rmd" class="external-link"><code>vignettes/texture.Rmd</code></a></small>
       <div class="d-none name"><code>texture.Rmd</code></div>
@@ -192,68 +193,68 @@ data</p>
 <col width="24%">
 </colgroup>
 <thead><tr class="header">
-<th>Sample data</th>
-<th>Time [min]</th>
-<th>Hydrometer reading</th>
-<th>Correction</th>
-<th>Temperature [°C]</th>
+<th align="left">Sample data</th>
+<th align="right">Time [min]</th>
+<th align="right">Hydrometer reading</th>
+<th align="right">Correction</th>
+<th align="right">Temperature [°C]</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>S1</td>
-<td>0.66</td>
-<td>39</td>
-<td>2</td>
-<td>23</td>
+<td align="left">S1</td>
+<td align="right">0.66</td>
+<td align="right">39</td>
+<td align="right">2</td>
+<td align="right">23</td>
 </tr>
 <tr class="even">
-<td>S1</td>
-<td>2.00</td>
-<td>33</td>
-<td>2</td>
-<td>23</td>
+<td align="left">S1</td>
+<td align="right">2.00</td>
+<td align="right">33</td>
+<td align="right">2</td>
+<td align="right">23</td>
 </tr>
 <tr class="odd">
-<td>S1</td>
-<td>5.00</td>
-<td>29</td>
-<td>2</td>
-<td>23</td>
+<td align="left">S1</td>
+<td align="right">5.00</td>
+<td align="right">29</td>
+<td align="right">2</td>
+<td align="right">23</td>
 </tr>
 <tr class="even">
-<td>S1</td>
-<td>15.00</td>
-<td>23</td>
-<td>2</td>
-<td>23</td>
+<td align="left">S1</td>
+<td align="right">15.00</td>
+<td align="right">23</td>
+<td align="right">2</td>
+<td align="right">23</td>
 </tr>
 <tr class="odd">
-<td>S1</td>
-<td>30.00</td>
-<td>22</td>
-<td>2</td>
-<td>23</td>
+<td align="left">S1</td>
+<td align="right">30.00</td>
+<td align="right">22</td>
+<td align="right">2</td>
+<td align="right">23</td>
 </tr>
 <tr class="even">
-<td>S1</td>
-<td>60.00</td>
-<td>20</td>
-<td>2</td>
-<td>23</td>
+<td align="left">S1</td>
+<td align="right">60.00</td>
+<td align="right">20</td>
+<td align="right">2</td>
+<td align="right">23</td>
 </tr>
 <tr class="odd">
-<td>S1</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
+<td align="left">S1</td>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
 </tr>
 <tr class="even">
-<td>S2</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
+<td align="left">S2</td>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
+<td align="right">…</td>
 </tr>
 </tbody>
 </table>
@@ -273,7 +274,7 @@ with this package.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zsteinmetz/envalysis" class="external-link">envalysis</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">clayloam</span><span class="op">)</span></span>
-<span><span class="va">clayloam</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">clayloam</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co"># &gt;     time temperature reading blank</span></span>
 <span><span class="co"># &gt; 1   0.66          23      39     2</span></span>
 <span><span class="co"># &gt; 2   2.00          23      33     2</span></span>
@@ -313,7 +314,7 @@ with this package.</p>
 <span><span class="co"># &gt; Std. Error 0.0131 0.0226 0.00954</span></span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tex</span><span class="op">)</span></span></code></pre></div>
-<p><img src="texture_files/figure-html/texture-1.png" width="700"></p>
+<p><img src="texture_files/figure-html/texture-1.png" width="700" style="display: block; margin: auto;"></p>
 <p>Further soil classification and plotting may be performed using the
 <strong>soiltexture</strong> package.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -339,7 +340,7 @@ the German “Bodenartendiagramm” (DE.BK94.TT) or USDA (USDA.TT).</p>
 may be plotted as follows.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/soiltexture/man/TT.plot.html" class="external-link">TT.plot</a></span><span class="op">(</span>class.sys <span class="op">=</span> <span class="st">"DE.BK94.TT"</span>, tri.data <span class="op">=</span> <span class="va">germansoil</span><span class="op">)</span></span></code></pre></div>
-<p><img src="texture_files/figure-html/soiltexture_plot-1.png" width="700"></p>
+<p><img src="texture_files/figure-html/soiltexture_plot-1.png" width="700" style="display: block; margin: auto;"></p>
 <p>For further details, see the <strong>soiltexture</strong> package
 vignette on <a href="https://cran.r-project.org/package=soiltexture" class="external-link">CRAN</a>.</p>
 </div>
@@ -354,7 +355,7 @@ Procedure in the Hydrometer Method for Particle Size Analysis.
 <p>ASTM D422-63 (2007). <em>Standard Test Method for Particle-Size
 Analysis of Soils</em>. Technical standard. ASTM International, West
 Conshohocken, PA.</p>
-<p>Bouyoucos, G.J., (1927). The hydrometer as a new method for the
+<p>Bouyoucos, G.J. (1927). The hydrometer as a new method for the
 mechanical analysis of soils. Soil Science 23, 343–354.</p>
 <p>Moeys, J., Shangguan, W., Petzold, R., Minasny, B., Rosca, B.,
 Jelinski, N., Zelazny, W., Souza, R.M.S., Safanelli, J.L., &amp; ten

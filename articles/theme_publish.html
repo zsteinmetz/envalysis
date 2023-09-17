@@ -41,6 +41,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/calibration.html">Calibration workflow</a>
     <a class="dropdown-item" href="../articles/texture.html">Particle size estimation</a>
     <a class="dropdown-item" href="../articles/theme_publish.html">ggplot2 theme for scientific publications</a>
   </div>
@@ -76,7 +77,7 @@
                         <h4 data-toc-skip class="author">Zacharias
 Steinmetz</h4>
             
-            <h4 data-toc-skip class="date">2023-09-12</h4>
+            <h4 data-toc-skip class="date">2023-09-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/zsteinmetz/envalysis/blob/HEAD/vignettes/theme_publish.Rmd" class="external-link"><code>vignettes/theme_publish.Rmd</code></a></small>
       <div class="d-none name"><code>theme_publish.Rmd</code></div>
@@ -84,11 +85,18 @@ Steinmetz</h4>
 
     
     
+<div class="section level2">
+<h2 id="packages">Packages<a class="anchor" aria-label="anchor" href="#packages"></a>
+</h2>
 <p>First, load <strong>ggplot2</strong> alongside
 <strong>envalysis</strong>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zsteinmetz/envalysis" class="external-link">envalysis</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="default-theme">Default theme<a class="anchor" aria-label="anchor" href="#default-theme"></a>
+</h2>
 <p>The following code chunk plots the <strong>ggplot2</strong>
 <code>mtcars</code> sample data set with the default
 <strong>ggplot2</strong> theme.</p>
@@ -108,17 +116,23 @@ Steinmetz</h4>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">am</span>, labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html" class="external-link">labeller</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0"</span> <span class="op">=</span> <span class="st">"Automatic"</span>,</span>
 <span>                                               <span class="st">"1"</span> <span class="op">=</span> <span class="st">"Manual"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">p</span></span></code></pre></div>
-<p><img src="theme_publish_files/figure-html/default_theme-1.png" width="700"></p>
+<p><img src="theme_publish_files/figure-html/default_theme-1.png" width="700" style="display: block; margin: auto;"></p>
+</div>
+<div class="section level2">
+<h2 id="theme_publish">
+<code>theme_publish()</code><a class="anchor" aria-label="anchor" href="#theme_publish"></a>
+</h2>
 <p>Adding <code><a href="../reference/theme_publish.html">theme_publish()</a></code> applies the custom theme.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="../reference/theme_publish.html">theme_publish</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="theme_publish_files/figure-html/theme_publish-1.png" width="700"></p>
+<p><img src="theme_publish_files/figure-html/theme_publish-1.png" width="700" style="display: block; margin: auto;"></p>
 <p><code><a href="../reference/theme_publish.html">theme_publish()</a></code> allows for changing the base font face,
 font size, and line widths. More arguments may be passed to
 <strong>ggplot2</strong>’s <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="../reference/theme_publish.html">theme_publish</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span>, base_family <span class="op">=</span> <span class="st">"Times"</span>, base_linewidth <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span></code></pre></div>
-<p><img src="theme_publish_files/figure-html/theme_arguments-1.png" width="700"></p>
+<p><img src="theme_publish_files/figure-html/theme_arguments-1.png" width="700" style="display: block; margin: auto;"></p>
+</div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
 </div>
