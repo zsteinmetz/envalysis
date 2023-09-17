@@ -5,7 +5,7 @@
                     linreg = FALSE, icfct = AIC) {
   sorted <- match.arg(sorted)
   if (!is.logical(nested))
-    stop("'nested' argument takes only the values: FALSE, TRUE")
+    stop("'nested' argument takes only the values: FALSE, TRUE", call. = F)
   
   contData <- identical(object$type, "continuous")
   nestedInd <- 3 + contData + nested

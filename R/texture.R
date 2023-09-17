@@ -73,7 +73,7 @@ texture <- function(reading, ...) {
 texture.formula <- function(formula, data = NULL, ...) {
   if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]), 
                                                                   "term.labels")) != 3L))
-    stop("'formula' missing or incorrect")
+    stop("'formula' missing or incorrect", call. = F)
   
   mf <- model.frame(formula, data)
   lst <- as.list(mf)
@@ -92,9 +92,9 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
   temp <- as.integer(round(temp))
   
   # Error handling
-  if (length(Gs) != 1L) stop("'Gs' must be a single number")
+  if (length(Gs) != 1L) stop("'Gs' must be a single number", call. = F)
   if (any(is.na(c(reading - blank, time, temp))))
-    warning("input data contains NAs")
+    warning("Input data contains NAs", call. = F)
   
   if (hydrometer == "auto") {
     if (all(reading == round(reading), na.rm = T) & all(reading %in% c(0:60, NA))) {
@@ -103,7 +103,7 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
           all(reading %in% c(seq(1, 1.038, by = 0.001), NA))) {
         hydrometer <- "151H"
       } else {
-        stop("automatic detection failed; specify the hydrometer used")
+        stop("automatic detection failed; specify the hydrometer used", call. = F)
       }
   }
   if (hydrometer == "152H") {
@@ -143,8 +143,8 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
   usda <- .textureclass(c(0.002, 0.05), fit)             
   
   out <- list(meta = c(Hydrometer = hydrometer, Gs = Gs, Conc = conc),
-              distribution = distr, model = fit, din = din, usda = usda)
-  class(out) <- c("texture", class(out))
+              distribution = distr, model = fit, din = din, usda = usda) |> 
+    structure(class = "texture")
   
   if (plot) plot(out)
   return(out)
@@ -203,9 +203,9 @@ as_tridata.default <- function(x, ...) {
 #' 
 #' @export
 as_tridata.texture <- function(x, which = NULL, ...) {
-  if(length(which) != 1L) stop("'which' must be a single character value")
+  if(length(which) != 1L) stop("'which' must be a single character value", call. = F)
   if(!(which %in% c("din", "usda")))
-    stop("'which' needs to be either 'din' or 'usda'")
+    stop("'which' needs to be either 'din' or 'usda'", call. = F)
   
   df <- data.frame(t(x[[which]]["Estimate",] * 100))
   names(df) <- toupper(names(df))

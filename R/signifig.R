@@ -37,11 +37,11 @@ signifig <- function(mean, error, data, style = "pm", na.digit = 2, ...) {
     error <- data[, deparse(substitute(error))]
   }
   if (length(mean) != length(error))
-    stop("mean and error terms of unequal size")
+    stop("mean and error terms of unequal size", call. = F)
   if (any(error[!is.na(error)] < 0))
-    stop("error term contains one or more negative values")
+    stop("error term contains one or more negative values", call. = F)
   if (!style %in% c("pm", "par", "siunitx")) {
-    warning("style unknown, use 'pm' instead")
+    warning("Style unknown, use 'pm' instead", call. = F)
     style <- "pm"
   }
   

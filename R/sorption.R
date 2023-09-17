@@ -37,9 +37,9 @@ sorption <- function(conc, pars, type = "freundlich") {
                 langmuir = 2,
                 redlich = 2,
                 BET = 3,
-                { stop("Sorption isotherm (type) unknown") })
+                { stop("sorption isotherm (type) unknown", call. = F) })
   if (!inherits(pars, "numeric") | length(pars) != len)
-    stop(paste("pars requires a numeric vector of length =", len))
+    stop(paste("'pars' requires a numeric vector of length =", len), call. = F)
   
   eqn <- switch(type, 
          linear = conc * pars[1],

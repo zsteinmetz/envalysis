@@ -92,7 +92,7 @@ calibration <- function(formula, data = NULL, blanks = NULL, weights = NULL,
                         model = "lm", check_assumptions = TRUE, ...) {
   if (missing(formula) || (length(formula) != 3L) || 
       (length(attr(terms(formula[-2L]), "term.labels")) != 1L))
-    stop("'formula' missing or incorrect")
+    stop("'formula' missing or incorrect", call. = F)
   
   # Collate data
   mf <- model.frame(formula, data)
@@ -106,7 +106,7 @@ calibration <- function(formula, data = NULL, blanks = NULL, weights = NULL,
       newweights <- weights
     } else {
       stop("'weights' needs to be a single character value or a numeric vector ",
-           "of the same length as non-zero concentration data (without blanks)")
+           "of the same length as non-zero concentration data (without blanks)", call. = F)
     }
   }
 
@@ -134,8 +134,8 @@ calibration <- function(formula, data = NULL, blanks = NULL, weights = NULL,
     cal$bptest$data.name <- deparse(formula)
     
     if (cal$shapiro.test$p.value < 0.05 || cal$bptest$p.value < 0.05)
-      warning("model assumptions may not be met; double check graphically and ",
-              "consider using a weighted model instead")
+      warning("Model assumptions may not be met; double check graphically and ",
+              "consider using a weighted model instead", call. = F)
   }
   
   return(cal)
@@ -250,9 +250,9 @@ lod.calibration <- function(object, blanks = NULL, alpha = 0.01, level = 0.05,
   m <- mean(table(conc))
   digs <- max(nchar(gsub("(.*\\.)|([0]*$)", "", as.character(conc)))) + 1
 
-  if(m != round(m)) warning("measurement replicates of unequal size; ",
-                             "LOD estimation might be incorrect")
-  if(n <= model$rank) stop("data points less than degrees of freedom")
+  if(m != round(m)) warning("Measurement replicates of unequal size; ",
+                            "LOD estimation might be incorrect", call. = F)
+  if(n <= model$rank) stop("data points less than degrees of freedom", call. = F)
 
   b <- coef(model)[2]
 
@@ -273,7 +273,8 @@ lod.calibration <- function(object, blanks = NULL, alpha = 0.01, level = 0.05,
                                                      Qx)
   }
   res <- c(val, .conf(n, level) * val)
-  matrix(round(res, digs), nrow = 1, dimnames = list("LOD", names(res)))
+  
+  return(matrix(round(res, digs), nrow = 1, dimnames = list("LOD", names(res))))
 }
 
 #' @rdname calibration
@@ -308,9 +309,10 @@ loq.calibration <- function(object, blanks = NULL, alpha = 0.01, k = 3,
   m <- mean(table(conc))
   digs <- max(nchar(gsub("(.*\\.)|([0]*$)", "", as.character(conc)))) + 1
   
-  if (m != round(m)) warning("measurement replicates of unequal size; ",
-                             "LOQ estimation might be incorrect")
-  if (n <= model$rank) stop("data points less than degrees of freedom")
+  if (m != round(m)) warning("Measurement replicates of unequal size; ",
+                             "LOQ estimation might be incorrect", call. = F)
+  if (n <= model$rank) stop("data points less than degrees of freedom",
+                            call. = F)
   
   b <- coef(model)[2]
   
