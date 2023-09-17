@@ -58,8 +58,8 @@ knitr::kable(phenolics$samples[c(1:2,4,41:42),], "simple",
              row.names = F)
 ```
 
-In **envalsis**, the sample data is stored in a two-item list called `phenolics`.
-The list items are named `$seq` and `$samples`.
+In **envalysis**, the sample data is stored in a two-item list called `phenolics`.
+The list items are named `seq` and `samples`.
 
 ```{r data}
 data("phenolics")

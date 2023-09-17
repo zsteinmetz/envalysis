@@ -66,8 +66,8 @@ ZS-019      0  dark       non-sterilized   Biodegradation            1   2.5001 
 ZS-164     29  dark       non-sterilized   Biodegradation            2   2.4992      12.5          1
 ZS-165     29  dark       non-sterilized   Biodegradation            3   2.5000      12.5          1
 
-In **envalsis**, the sample data is stored in a two-item list called `phenolics`.
-The list items are named `$seq` and `$samples`.
+In **envalysis**, the sample data is stored in a two-item list called `phenolics`.
+The list items are named `seq` and `samples`.
 
 
 ```r
