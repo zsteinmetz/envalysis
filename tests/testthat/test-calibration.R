@@ -1,3 +1,5 @@
+library(investr)
+
 # Helper function for expect_snapshot_file()
 save_png <- function(code, width = 600, height = 400) {
   path <- tempfile(fileext = ".png")
@@ -105,9 +107,15 @@ test_that("lod() and loq() are calculated correctly", {
 test_that("inv_predict() works as expected", {
   inv_predict(1) |> expect_error()
   inv_predict(din) |> expect_error()
-  ip <- inv_predict(din, 5210) |> expect_silent()
+
+  ipa <- inv_predict(din, c(4986, 6210)) |> expect_silent()
+  inv_predict(din, c(1000, 6020)) |> expect_warning()
+  inv_predict(din, c(4900, 8500)) |> expect_warning()
+  inv_predict(din, c(1000, 6020), method = "invest") |> expect_warning()
+  inv_predict(din, c(4900, 8500), method = "invest") |> expect_warning()
   
-  round(ip$estimate, 3) |> expect_equal(0.282)
+  round(ipa, 3) |> expect_equal(c(0.259, 0.386))
+  inv_predict(din, c(4986, 6210), method = "invest") |> expect_equal(ipa)
 })
 
 test_that("as.list() works as expected", {

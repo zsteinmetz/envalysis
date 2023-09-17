@@ -50,7 +50,7 @@ loq(object, ...)
 
 inv_predict(object, ...)
 
-\method{inv_predict}{calibration}(object, y0, ...)
+\method{inv_predict}{calibration}(object, y, below_lod = NULL, method = "analytic", ...)
 }
 \arguments{
 \item{formula}{model formula providing the recorded signal intensities with
@@ -102,7 +102,14 @@ to \code{c("coef", "Radj", "lod", "loq", "blanks")}.}
 \item{maxiter}{a positive integer specifying the maximum number of iterations
 to calculate the LOQ.}
 
-\item{y0}{numeric; the value to inverse predict.}
+\item{y}{numeric; the value to inverse predict.}
+
+\item{below_lod}{value to be assigned if inverse prediction is below LOD;
+defaults to \code{"NULL"} which keeps predicted values untouched. Other
+options may be \code{NA} or \code{0}.}
+
+\item{method}{character indicating the method used for inverse prediction;
+defaults to \code{"analytic"}.}
 }
 \value{
 \code{calibration} returns an object of \code{\link[base]{class}}

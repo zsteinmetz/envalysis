@@ -335,7 +335,12 @@ loq.calibration <- function(object, blanks = NULL, alpha = 0.01, k = 3,
 
 #' @rdname calibration
 #' 
-#' @param y0 numeric; the value to inverse predict.
+#' @param y numeric; the value to inverse predict.
+#' @param below_lod value to be assigned if inverse prediction is below LOD;
+#' defaults to \code{"NULL"} which keeps predicted values untouched. Other
+#' options may be \code{NA} or \code{0}.
+#' @param method character indicating the method used for inverse prediction;
+#' defaults to \code{"analytic"}.
 #' 
 #' @seealso
 #' \code{\link[investr]{invest}()}
@@ -350,10 +355,36 @@ inv_predict <- function(object, ...) {
 
 #' @rdname calibration
 #' 
-#' @importFrom investr invest
 #' @export
-inv_predict.calibration <- function(object, y0, ...) {
-  invest(object$model, y0, ...)
+inv_predict.calibration <- function(object, y, below_lod = NULL,
+                                    method = "analytic", ...) {
+  mf <- object$model$model
+
+  if(method == "analytic") {
+    if(!inherits(object$model, "lm"))
+      stop("calibration model needs to be of type 'lm'; try method = 'invest' ",
+           "instead (requires investr)", call. = F)
+    xprd <- (y - coef(object$model)[[1]]) / coef(object$model)[[2]]
+  } else if(method == "invest") {
+    xprd <- sapply(y, function(y) {
+      do.call(method, list(object$model, y, ...))$estimate |> 
+        tryCatch(error = function(e) NA)
+    })
+  } else {
+    xprd <- do.call(method, list(object$model, y, ...))
+  }
+  
+  nm <- names(mf)[2L]
+  if(any(xprd > max(mf[2L]), na.rm = T) || any(xprd < min(mf[2L]), na.rm = T) ||
+     any(is.na(xprd))) {
+    warning(paste0("'", nm, "' out of calibration range"), call. = F)
+  } else if(any(xprd < object$lod[[1]], na.rm = T)) {
+    warning(paste0("'", nm, "' below LOD"), call. = F)
+  }
+  
+  if(!is.null(below_lod)) xprd[xprd < object$lod[[1]]] <- below_lod
+  
+  return(xprd)
 }
 
 # Auxiliary function for confidence intervals of LOD/LOQ
@@ -362,5 +393,3 @@ inv_predict.calibration <- function(object, y0, ...) {
   names(kappa) <- c('lwr', 'upr')
   return(kappa)
 }
-
-# TODO: Add "Erfassungsgrenze"
