@@ -68,7 +68,8 @@ Other calibration:
 \code{\link{din32645}},
 \code{\link{icp}},
 \code{\link{matrix_effect}()},
-\code{\link{neitzel2003}}
+\code{\link{neitzel2003}},
+\code{\link{phenolics}}
 }
 \author{
 Julius Albert, Kilian Kenngott, Zacharias Steinmetz

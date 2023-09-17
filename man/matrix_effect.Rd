@@ -52,6 +52,7 @@ Other calibration:
 \code{\link{din32645}},
 \code{\link{icp}},
 \code{\link{neitzel2003}},
+\code{\link{phenolics}},
 \code{\link{weight_select}()}
 }
 \author{

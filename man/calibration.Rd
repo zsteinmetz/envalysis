@@ -182,6 +182,7 @@ Other calibration:
 \code{\link{icp}},
 \code{\link{matrix_effect}()},
 \code{\link{neitzel2003}},
+\code{\link{phenolics}},
 \code{\link{weight_select}()}
 }
 \author{
