@@ -1,0 +1,187 @@
+---
+title: "Calibration workflow"
+author: "Zacharias Steinmetz"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    keep_md: yes
+    fig_width: 8
+vignette: >
+  %\VignetteIndexEntry{Calibration workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE, 
+  message = FALSE,
+  comment = "# >"
+)
+```
+
+## Packages
+
+For the complete workflow, **data.table** and **ggplot2** are required besides
+**envalysis**.
+
+```{r packages}
+library(envalysis)
+library(data.table)
+library(ggplot2)
+```
+
+## Sample data
+
+The sample data used stems from Steinmetz et al. (2019). It consists of two
+tables: a sequence table and a sample table.
+
+The sequence table contains gas-chromatography/mass spectrometry measurement
+data of two phenolic compounds, these are tyrosol and vanillin. Besides the
+samples, standard mixtures and extraction blanks were acquired in three separate
+analysis batches. Each measurement resulted in an integrated peak area.
+
+```{r, echo=F}
+knitr::kable(phenolics$seq[c(1:4,73:74,76,78,80,83:84),], "simple",
+             row.names = F)
+```
+
+The sample table describes the samples' origin from a 29-day degradation
+experiment, in which the phenolic compounds were either degraded in the dark by
+the native soil microbial community or photooxidized under UV irradiation. The
+samples were processed in threefold replication. Their weight [g], the volume
+[mL] of extract solution, and the dilution factor were recorded.
+
+```{r, echo=F}
+knitr::kable(phenolics$samples[c(1:2,4,41:42),], "simple",
+             row.names = F)
+```
+
+In **envalsis**, the sample data is stored in a two-item list called `phenolics`.
+The list items are named `$seq` and `$samples`.
+
+```{r data}
+data("phenolics")
+str(phenolics)
+
+phenolics$seq |> head()
+phenolics$samples |> head()
+```
+
+## Simple calibation
+
+Since the two phenolic compounds were analyzed in three different batches, six
+individual calibration curves are required for quantification. For better
+understanding, the calibration workflow is first shown for a subset of data,
+namely the first batch of tyrosol measurements. The subset is stored in
+`tyrosol_1`.
+
+Subsequently, the standards in this subset are used for calibration. The
+`'calibration'` object is stored as `cal_1`, which can be printed for additional
+information including limits of detection and quantification, the adjusted R^2^,
+blanks, and statistical checks of the underlying calibration model.
+
+```{r simple_calibration, fig.align="center"}
+tyrosol_1 <- subset(phenolics$seq, Compound == "Tyrosol" & Batch == 1)
+
+cal_1 <- calibration(Area ~ `Spec Conc`,
+                     data = subset(tyrosol_1, Type == "Standard"))
+
+print(cal_1)
+plot(cal_1)
+```
+
+Based on `cal_1`, the tyrosol concentrations can be calculated for all samples
+using `inv_predict()`. The argument `below_lod = 0` specifies that
+concentrations below limit of detection (LOD) should be set to zero.
+
+```{r simple_inv_predict}
+tyrosol_1$`Calc Conc` <- inv_predict(cal_1, tyrosol_1$Area, below_lod = 0)
+head(tyrosol_1)
+```
+
+## Working with `data.table`s
+
+To process all compounds and analysis batches together, the `phenolics` data is
+converted to `data.tables`s.
+
+```{r data.table}
+dt <- lapply(phenolics, as.data.table)
+```
+
+## Batch calibration
+
+Afterwards, the `calibration()` and `inv_predict()` are applied by compound and
+batch.
+
+```{r calibration}
+dt$seq[, `Calc Conc` := calibration(Area ~ `Spec Conc`, .SD[Type == "Standard"]) |> 
+         inv_predict(Area, below_lod = 0),
+       by = .(Compound, Batch)]
+head(dt$seq)
+```
+
+Calibration parameters like LODs, LOQs, or adjusted R^2^ may be stored in a
+separate list item for later use.
+
+```{r parameters}
+dt$cal <- dt$seq[Type == "Standard", as.list(calibration(Area ~ `Spec Conc`)),
+                 by = .(Compound, Batch)]
+print(dt$cal)
+```
+
+## Blank subtraction
+
+With the calculated concentrations at hand, the sample concentrations are
+subtracted by the extraction blanks to correct for potential lab-borne
+contamination.
+
+```{r blank_subtr}
+dt$seq[, `Clean Conc` := `Calc Conc` - mean(
+  `Calc Conc`[Type == "Extraction blank"], na.rm = T),
+  by = .(Batch, Compound)]
+```
+
+## Merging tables
+
+The sequence table is merged with the sample table and the contents of
+phenolic compounds are calculated from the extraction volume, sample weight, and
+dilution factor.
+
+```{r merging}
+dt$res <- merge(dt$seq, dt$samples, by = "Name")
+
+dt$res[, Content := `Clean Conc` * (Extract / Weight) * Dilution]
+head(dt$res)
+```
+
+## Plotting
+
+For plotting the data using **ggplot2**, the contents are summarized by mean and
+confidence interval (CI).
+
+```{r plotting, fig.align="center"}
+dt$sum <- dt$res[, .(Content = mean(Content, na.rm = T),
+                     CI = CI(Content, na.rm = T)),
+                 by = .(Compound, Treatment, Day)]
+
+ggplot(dt$sum, aes(x = Day, y = Content)) +
+  geom_errorbar(aes(ymin = Content - CI, ymax = Content + CI, group = Treatment),
+                width = 1, position = position_dodge(1)) +
+  geom_point(aes(shape = Treatment, fill = Treatment),
+             position = position_dodge(1)) +
+  xlab("Day of incubation") +
+  ylab(expression("Phenolic content"~"["*mg~kg^-1*"]")) +
+  facet_wrap(~ Compound, ncol = 2, scales = "free") +
+  scale_shape_manual(values = c(21,24)) +
+  scale_fill_manual(values = c("black", "white")) +
+  theme_publish()
+```
+
+## References
+
+Steinmetz, Z., Kurtz, M.P., Zubrod, J.P., Meyer, A.H., Elsner, M., Schaumann,
+G.E. (2019) Biodegradation and photooxidation of phenolic compounds in soil—A
+compound-specific stable isotope approach.
+*Chemosphere* **230**, 210-218. DOI: [10.1016/j.chemosphere.2019.05.030](https://doi.org/10.1016/j.chemosphere.2019.05.030).
