@@ -1,6 +1,8 @@
 library(tibble)
 library(data.table)
 
+data.table::setDTthreads(2)
+
 data(din32645)
 test_that("calibration() handles data.tables and tibbles well", {
   expect_silent(calibration(Area ~ Conc, data = as_tibble(din32645),

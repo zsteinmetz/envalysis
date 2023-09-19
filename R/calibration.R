@@ -393,3 +393,6 @@ inv_predict.calibration <- function(object, y, below_lod = NULL,
   names(kappa) <- c('lwr', 'upr')
   return(kappa)
 }
+
+# Avoid "object not found" errors when testing
+.datatable.aware <- TRUE

@@ -1,4 +1,7 @@
+library(data.table)
 library(investr)
+
+data.table::setDTthreads(2)
 
 # Helper function for expect_snapshot_file()
 save_png <- function(code, width = 600, height = 400) {
