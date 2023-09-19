@@ -202,15 +202,15 @@ plot.calibration <- function(x, interval = "conf", level = 0.95, ...) {
 #' @rdname calibration
 #' 
 #' @param which character vector indicating the parameters to export; defaults 
-#' to \code{c("coef", "Radj", "lod", "loq", "blanks")}.
+#' to \code{c("coef", "adj.r.squared", "lod", "loq", "blanks")}.
 #' 
 #' @export
-as.list.calibration <- function(x, which = c("coef", "Radj", "lod", "loq", 
-                                             "blanks"), ...) {
+as.list.calibration <- function(x, which = c("coef", "adj.r.squared", "lod",
+                                             "loq", "blanks"), ...) {
   res <- list()
   
   if("coef" %in% which) res <- c(res, as.list(x$model$coefficients))
-  if("Radj" %in% which) res <- c(res, Radj = x$adj.r.squared)
+  if("adj.r.squared" %in% which) res <- c(res, adj.r.squared = x$adj.r.squared)
   if("lod" %in% which) res <- c(res, lod = x$lod[1])
   if("loq" %in% which) res <- c(res, loq = x$loq[1])
   if("blanks" %in% which) res <- c(res, blank_mean = mean(x$blanks),

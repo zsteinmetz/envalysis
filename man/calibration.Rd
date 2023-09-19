@@ -30,7 +30,7 @@ calibration(
 
 \method{plot}{calibration}(x, interval = "conf", level = 0.95, ...)
 
-\method{as.list}{calibration}(x, which = c("coef", "Radj", "lod", "loq", "blanks"), ...)
+\method{as.list}{calibration}(x, which = c("coef", "adj.r.squared", "lod", "loq", "blanks"), ...)
 
 lod(object, ...)
 
@@ -92,7 +92,7 @@ as shown above.}
 and \code{\link[stats]{confint}()} for details.}
 
 \item{which}{character vector indicating the parameters to export; defaults 
-to \code{c("coef", "Radj", "lod", "loq", "blanks")}.}
+to \code{c("coef", "adj.r.squared", "lod", "loq", "blanks")}.}
 
 \item{alpha}{error tolerance for the detection limit (critical value).}
 

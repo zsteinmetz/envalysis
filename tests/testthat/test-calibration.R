@@ -127,3 +127,34 @@ test_that("as.list() works as expected", {
   expect_equal(lst$lod, din$lod[,1])
   expect_equal(lst$loq, din$loq[,1])
 })
+
+test_that("batch calibration works as expected", {
+  data("phenolics")
+  
+  tyrosol_1 <- subset(phenolics$seq, Compound == "Tyrosol" & Batch == 1)
+  cal_1 <- calibration(Area ~ `Spec Conc`,
+                       data = subset(tyrosol_1, Type == "Standard")) |> 
+    expect_silent()
+  expect_warning(
+    tyrosol_1$`Calc Conc` <- inv_predict(cal_1, tyrosol_1$Area, below_lod = 0)
+  )
+  
+  dt <- lapply(phenolics, as.data.table)
+  dt$cal <- dt$seq[Type == "Standard", calibration(Area ~ `Spec Conc`) |> 
+                     as.list(c("coef", "adj.r.squared", "lod", "loq")),
+                   by = .(Compound, Batch)] |> expect_silent()
+  cal_dt <- dt$cal[Compound == "Tyrosol" & Batch == 1]
+  expect_equal(cal_dt$adj.r.squared, cal_1$adj.r.squared)
+  expect_equal(cal_dt$lod, cal_1$lod[[1]])
+  expect_equal(cal_dt$loq, cal_1$loq[[1]])
+  
+  dt$seq[, `Calc Conc` := calibration(Area ~ `Spec Conc`,
+                                      .SD[Type == "Standard"]) |> 
+           inv_predict(Area, below_lod = 0),
+         by = .(Compound, Batch)] |>
+    expect_warning() |> expect_warning() |> expect_warning() |>
+    expect_warning() |> expect_warning() |> expect_warning()
+  
+  seq_dt <- dt$seq[Compound == "Tyrosol" & Batch == 1]
+  expect_equal(seq_dt$`Calc Conc`, tyrosol_1$`Calc Conc`)
+})
