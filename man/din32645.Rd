@@ -6,9 +6,10 @@
 \title{Calibration data from DIN 32645}
 \format{
 A data frame containing 20 rows and 2 columns with information on:
-\tabular{ll}{
-Conc: \tab nominal concentration in mg/L\cr
-Area: \tab measurement signal\cr
+
+\describe{
+  \item{Conc}{nominal concentration [mg/L]}
+  \item{Area}{measurement signal}
 }
 }
 \description{

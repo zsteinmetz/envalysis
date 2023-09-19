@@ -8,13 +8,14 @@
 #' 
 #' @format
 #' A data frame containing 16 rows and 6 columns with information on:
-#' \tabular{ll}{
-#' Label: \tab sample name\cr
-#' Element: \tab element name\cr
-#' Conc: \tab nominal concentration\cr
-#' Units: \tab concentration units\cr
-#' Signal: \tab signal intensity [cps]\cr
-#' Replicate: \tab number of the respective replicate\cr
+#' 
+#' \describe{
+#'   \item{Label}{sample name}
+#'   \item{Element}{element name}
+#'   \item{Conc}{nominal concentration}
+#'   \item{Units}{concentration units}
+#'   \item{Signal}{signal intensity [cps]}
+#'   \item{Replicate}{number of the respective replicate}
 #' }
 #' 
 #' @author

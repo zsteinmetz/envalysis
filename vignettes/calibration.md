@@ -230,13 +230,13 @@ print(dt$cal)
 ```
 
 ```
-# >    Compound Batch (Intercept) `Spec Conc`      Radj       lod       loq
-# > 1:  Tyrosol     1  3.76202803    7.508184 0.9997915 0.0143933  5.925273
-# > 2:  Tyrosol     2  3.07268449    7.601129 0.9992824 0.0092660 10.909912
-# > 3:  Tyrosol     3  0.05587782    7.309053 0.9999764 0.0000000  2.311322
-# > 4: Vanillin     1 25.17794786   51.529670 0.9998175 0.0040133  5.623778
-# > 5: Vanillin     2 24.44314369   51.774820 0.9992359 0.0003509 11.408191
-# > 6: Vanillin     3 10.62899985   50.819997 0.9999641 0.0000000  2.886073
+# >    Compound Batch (Intercept) `Spec Conc` adj.r.squared       lod       loq
+# > 1:  Tyrosol     1  3.76202803    7.508184     0.9997915 0.0143933  5.925273
+# > 2:  Tyrosol     2  3.07268449    7.601129     0.9992824 0.0092660 10.909912
+# > 3:  Tyrosol     3  0.05587782    7.309053     0.9999764 0.0000000  2.311322
+# > 4: Vanillin     1 25.17794786   51.529670     0.9998175 0.0040133  5.623778
+# > 5: Vanillin     2 24.44314369   51.774820     0.9992359 0.0003509 11.408191
+# > 6: Vanillin     3 10.62899985   50.819997     0.9999641 0.0000000  2.886073
 ```
 
 ## Blank subtraction
@@ -318,7 +318,7 @@ ggplot(dt$sum, aes(x = Day, y = Content)) +
 
 ## References
 
-Steinmetz, Z., Kurtz, M.P., Zubrod, J.P., Meyer, A.H., Elsner, M., Schaumann,
+Steinmetz, Z., Kurtz, M.P., Zubrod, J.P., Meyer, A.H., Elsner, M., & Schaumann,
 G.E. (2019) Biodegradation and photooxidation of phenolic compounds in soil—A
 compound-specific stable isotope approach.
 *Chemosphere* **230**, 210-218. DOI: [10.1016/j.chemosphere.2019.05.030](https://doi.org/10.1016/j.chemosphere.2019.05.030).

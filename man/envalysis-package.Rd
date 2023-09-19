@@ -9,7 +9,7 @@
 Small toolbox for data analyses in environmental chemistry and ecotoxicology. Provides, for example, calibration() to calculate calibration curves and corresponding limits of detection (LODs) and limits of quantification (LOQs) according to German DIN 32645 (2008). texture() makes it easy to estimate soil particle size distributions from hydrometer measurements (ASTM D422-63, 2007).
 }
 \references{
-Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
+Almeida, A.M.D., Castel-Branco, M.M., & Falcao, A.C. (2002). Linear
 regression for calibration lines revisited: weighting schemes for
 bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
 215-222. \doi{10.1016/S1570-0232(02)00244-1}.

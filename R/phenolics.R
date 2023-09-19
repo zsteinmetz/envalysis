@@ -3,8 +3,9 @@
 #' @title Degradation of phenolic compounds by Steinmetz et al. (2019)
 #' 
 #' @description
-#' The sample data is stored in a list. It consists of two \code{data.frame}s: a
-#' sequence table (\code{seq}) and a sample table (\code{samples}). 
+#' The sample data is stored in a list consisting of two
+#' \code{\link[base]{data.frame}}s: a sequence table (\code{seq}) and a sample
+#' table (\code{samples}).
 #' 
 #' The sequence table contains gas-chromatography/mass spectrometry measurement 
 #' data of two phenolic compounds, these are tyrosol and vanillin. Besides the
@@ -19,16 +20,43 @@
 #' volume [mL] of extract solution, and the dilution factor were recorded.
 #' 
 #' @format
-#' A list containing two data.frames.
+#' A list containing two \code{\link[base]{data.frame}}s.
+#' 
+#' \code{seq} is a data frame with 160 rows and 6 columns with information on:
+#' 
+#' \describe{
+#'   \item{Compound}{name of the phenolic compound}
+#'   \item{Type}{sample type}
+#'   \item{Batch}{number of the extraction batch}
+#'   \item{Name}{sample name}
+#'   \item{Area}{integrated peak area}
+#'   \item{Spec Conc}{specified/nominal concentration [mg/L] of standards}
+#' }
+#'
+#' \code{samples} is a data frame with 42 rows and 9 columns with information
+#' on:
+#' 
+#' \describe{
+#'   \item{Name}{sample name; same as in \code{seq}}
+#'   \item{Day}{day of the incubation experiment}
+#'   \item{Lighting}{lighting conditions of the sample (dark/UV)}
+#'   \item{Sterilization}{if the sample was sterilized prior incubation}
+#'   \item{Treatment}{treatment name (Biogradation/Photooxidation)}
+#'   \item{Replicate}{replicate number}
+#'   \item{Weight}{sample weight [g]}
+#'   \item{Extract}{extract volume [mL]}
+#'   \item{Dilution}{dilution factor}
+#' }
 #' 
 #' @author
 #' Zacharias Steinmetz
 #' 
 #' @references 
-#' Steinmetz, Z., Kurtz, M.P., Zubrod, J.P., Meyer, A.H., Elsner, M., Schaumann,
-#' G.E. (2019) Biodegradation and photooxidation of phenolic compounds in soil—A
-#' compound-specific stable isotope approach. \emph{Chemosphere} \bold{230},
-#' 210-218. DOI: \doi{10.1016/j.chemosphere.2019.05.030}.
+#' Steinmetz, Z., Kurtz, M.P., Zubrod, J.P., Meyer, A.H., Elsner, M., &
+#' Schaumann, G.E. (2019) Biodegradation and photooxidation of phenolic
+#' compounds in soil—A compound-specific stable isotope approach.
+#' \emph{Chemosphere} \bold{230}, 210-218. DOI:
+#' \doi{10.1016/j.chemosphere.2019.05.030}.
 #' 
 #' @docType data
 #' @keywords data

@@ -4,13 +4,13 @@
 \alias{sorption}
 \title{Sorption isotherms}
 \usage{
-sorption(conc, pars, type = "freundlich")
+sorption(x, par, type = "freundlich")
 }
 \arguments{
-\item{conc}{a numeric vector containing the concentration(s) of the dissolved
+\item{x}{a numeric vector containing the concentration(s) of the dissolved
 substance.}
 
-\item{pars}{a numeric vector specifying the function parameters, see examples
+\item{par}{a numeric vector specifying the function parameters, see examples
 for details and correct order.}
 
 \item{type}{a character string indicating the type of sorption isotherm to be used:
@@ -21,16 +21,16 @@ for details and correct order.}
 \code{"redlich"} for the Redlich-Peterson isotherm.}
 }
 \description{
-This function returns the concentration of a substance sorbed to a surface boundary
-after an equilibrium has established at constant temperature given the concentration(s)
-\code{conc} of the dissolved substance.
+This function returns the concentration of a substance sorbed to a surface
+boundary after an equilibrium has established at constant temperature given
+the concentration(s) \code{x} of the dissolved substance.
 }
 \examples{
-sorption(conc = 1:5, pars = c(Kd = 2.5), type = "linear")
-sorption(conc = 1:5, pars = c(K = 4, n = 0.6), type = "freundlich")
-sorption(conc = 1:5, pars = c(KL = 2, qmax = 10), type = "langmuir")
-sorption(conc = 1:5, pars = c(K = 50, qmax = 10, Csat = 10), type = "BET")
-sorption(conc = 1:5, pars = c(A = 30, B = 0.8), type = "redlich")
+sorption(1:5, par = c(Kd = 2.5), type = "linear")
+sorption(1:5, par = c(K = 4, n = 0.6), type = "freundlich")
+sorption(1:5, par = c(KL = 2, qmax = 10), type = "langmuir")
+sorption(1:5, par = c(K = 50, qmax = 10, Csat = 10), type = "BET")
+sorption(1:5, par = c(A = 30, B = 0.8), type = "redlich")
 
 }
 \references{

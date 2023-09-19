@@ -57,7 +57,7 @@ matrix_effect.calibration <- function(object, ...) {
   arg1 <- match.call()[2L]
   arg2 <- match.call(expand.dots = FALSE)$...
   
-  if (!all(sapply(fo, class) == "calibration"))
+  if(!all(sapply(fo, class) == "calibration"))
     stop("object needs to be of class 'calibration'")
   
   res <- unlist(sapply(fo, .slopedev, object))

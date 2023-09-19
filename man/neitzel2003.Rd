@@ -3,21 +3,22 @@
 \docType{data}
 \name{neitzel2003}
 \alias{neitzel2003}
-\title{Calibration data from Neitzel, 2003}
+\title{Calibration data from Neitzel (2003)}
 \format{
 A data frame containing 20 rows and 2 columns with information on:
-\tabular{ll}{
-Conc: \tab nominal concentration\cr
-Meas: \tab measurement signal\cr
+
+\describe{
+  \item{Conc}{nominal concentration}
+  \item{Meas}{measurement signal}
 }
 }
 \description{
 Artificial sample data for the verification of quantification limits.
 }
 \references{
-Neitzel, V. (2003). Kalibrierung bei Analysenverfahren - Bestimmungsgrenze ist
-nicht gleich Bestimmungsgrenze. \emph{CLB Chemie in Labor und Biotechnik},
-\bold{54}(7), 242-246
+Neitzel, V. (2003). Kalibrierung bei Analysenverfahren - Bestimmungsgrenze
+ist nicht gleich Bestimmungsgrenze. \emph{CLB Chemie in Labor und
+Biotechnik}, \bold{54}(7), 242-246
 }
 \seealso{
 Other calibration: 

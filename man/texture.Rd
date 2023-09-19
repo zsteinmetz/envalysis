@@ -85,13 +85,13 @@ soil texture classes and the particle size distribution, respectively.
 An object of class '\code{texture}' is a list containing the following
 components:
 
-\tabular{ll}{
-\code{meta} \tab Measurement meta data\cr
-\code{distribution} \tab data frame providing the particle size
-distribution\cr
-\code{model} \tab information on the fitted \code{\link[drc]{drm}} model\cr
-\code{din} \tab Main DIN texture classes\cr
-\code{usda} \tab Main USDA texture classes\cr
+\describe{
+  \item{\code{meta}}{Measurement meta data}
+  \item{\code{distribution}}{data frame providing the particle size
+  distribution}
+  \item{\code{model}}{information on the fitted \code{\link[drc]{drm}} model}
+  \item{\code{din}}{Main DIN texture classes}
+  \item{\code{usda}}{Main USDA texture classes}
 }
 
 \code{as_tridata} converts '\code{texture}' to data.frames of a specific

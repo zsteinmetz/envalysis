@@ -4,12 +4,12 @@
 \alias{rmse}
 \title{Root mean square error}
 \usage{
-rmse(obs, sim, rel = F, na.rm = T)
+rmse(x, y, rel = F, na.rm = T)
 }
 \arguments{
-\item{obs}{a numeric vector containing observed values.}
+\item{x}{a numeric vector containing observed values.}
 
-\item{sim}{a numeric vector containing simulated values.}
+\item{y}{a numeric vector containing simulated values.}
 
 \item{rel}{logical. If \code{TRUE}, the relative RMSE is calculated, if
 \code{FALSE} the absolute RMSE is returned.}
@@ -17,10 +17,11 @@ rmse(obs, sim, rel = F, na.rm = T)
 \item{na.rm}{logical. Should missing values be removed?}
 }
 \description{
-This function computes the root mean square error (RMSE) of the two vectors
-\code{obs} and \code{sim}. \code{rel = FALSE} returns the absolute RMSE,
-\code{rel = TRUE} the relative one. If \code{na.rm} is \code{TRUE}, missing
-values are omitted before the computation proceeds.
+This function computes the root mean square error (RMSE) between a vector of
+observed values \code{x} and simulated values \code{y}. \code{rel = FALSE}
+returns the absolute RMSE, \code{rel = TRUE} the relative one. If
+\code{na.rm} is \code{TRUE}, missing values are omitted before the
+computation proceeds.
 }
 \examples{
 rmse(c(0.12,0.59,NA), c(0.15,0.63,1.2))

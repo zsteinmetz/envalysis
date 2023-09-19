@@ -72,6 +72,6 @@ To install the development version of this package, paste the following code
 into your R console (requires **devtools**):
 
 ```r
-if (!require(devtools)) install.packages("devtools")
+if(!require(devtools)) install.packages("devtools")
 devtools::install_github("zsteinmetz/envalysis")
 ```

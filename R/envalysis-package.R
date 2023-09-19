@@ -1,6 +1,6 @@
 #' @keywords internal
 #' @references
-#' Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
+#' Almeida, A.M.D., Castel-Branco, M.M., & Falcao, A.C. (2002). Linear
 #' regression for calibration lines revisited: weighting schemes for
 #' bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
 #' 215-222. \doi{10.1016/S1570-0232(02)00244-1}.

@@ -186,7 +186,7 @@ ggplot(dt$sum, aes(x = Day, y = Content)) +
 
 ## References
 
-Steinmetz, Z., Kurtz, M.P., Zubrod, J.P., Meyer, A.H., Elsner, M., Schaumann,
+Steinmetz, Z., Kurtz, M.P., Zubrod, J.P., Meyer, A.H., Elsner, M., & Schaumann,
 G.E. (2019) Biodegradation and photooxidation of phenolic compounds in soil—A
 compound-specific stable isotope approach.
 *Chemosphere* **230**, 210-218. DOI: [10.1016/j.chemosphere.2019.05.030](https://doi.org/10.1016/j.chemosphere.2019.05.030).

@@ -35,13 +35,13 @@
 #' An object of class '\code{texture}' is a list containing the following
 #' components:
 #' 
-#' \tabular{ll}{
-#' \code{meta} \tab Measurement meta data\cr
-#' \code{distribution} \tab data frame providing the particle size
-#' distribution\cr
-#' \code{model} \tab information on the fitted \code{\link[drc]{drm}} model\cr
-#' \code{din} \tab Main DIN texture classes\cr
-#' \code{usda} \tab Main USDA texture classes\cr
+#' \describe{
+#'   \item{\code{meta}}{Measurement meta data}
+#'   \item{\code{distribution}}{data frame providing the particle size
+#'   distribution}
+#'   \item{\code{model}}{information on the fitted \code{\link[drc]{drm}} model}
+#'   \item{\code{din}}{Main DIN texture classes}
+#'   \item{\code{usda}}{Main USDA texture classes}
 #' }
 #' 
 #' \code{as_tridata} converts '\code{texture}' to data.frames of a specific
@@ -61,7 +61,8 @@
 #' 
 #' @importFrom stats terms predict na.omit
 #' @importFrom graphics plot
-#' @importFrom drc drm LL.2 LL.3 LL.3u LL.4 LL.5 W1.2 W1.3 W1.4 W2.2 W2.3 W2.4 BC.4 BC.5 LL2.2 LL2.3 LL2.3u LL2.4 LL2.5 MM.2 MM.3
+#' @importFrom drc drm LL.2 LL.3 LL.3u LL.4 LL.5 W1.2 W1.3 W1.4 W2.2 W2.3 W2.4
+#' @importFrom drc BC.4 BC.5 LL2.2 LL2.3 LL2.3u LL2.4 LL2.5 MM.2 MM.3
 #' @export
 texture <- function(reading, ...) {
   UseMethod("texture")
@@ -71,8 +72,8 @@ texture <- function(reading, ...) {
 #' 
 #' @export
 texture.formula <- function(formula, data = NULL, ...) {
-  if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]), 
-                                                                  "term.labels")) != 3L))
+  if(missing(formula) || (length(formula) != 3L) ||
+      (length(attr(terms(formula[-2L]), "term.labels")) != 3L))
     stop("'formula' missing or incorrect", call. = F)
   
   mf <- model.frame(formula, data)
@@ -92,25 +93,27 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
   temp <- as.integer(round(temp))
   
   # Error handling
-  if (length(Gs) != 1L) stop("'Gs' must be a single number", call. = F)
-  if (any(is.na(c(reading - blank, time, temp))))
+  if(length(Gs) != 1L) stop("'Gs' must be a single number", call. = F)
+  if(any(is.na(c(reading - blank, time, temp))))
     warning("Input data contains NAs", call. = F)
   
-  if (hydrometer == "auto") {
-    if (all(reading == round(reading), na.rm = T) & all(reading %in% c(0:60, NA))) {
+  if(hydrometer == "auto") {
+    if(all(reading == round(reading), na.rm = T) &
+        all(reading %in% c(0:60, NA))) {
       hydrometer <- "152H"
-    } else if (all(reading != round(reading), na.rm = T) &
+    } else if(all(reading != round(reading), na.rm = T) &
           all(reading %in% c(seq(1, 1.038, by = 0.001), NA))) {
         hydrometer <- "151H"
       } else {
-        stop("automatic detection failed; specify the hydrometer used", call. = F)
+        stop("automatic detection failed; specify the hydrometer used",
+             call. = F)
       }
   }
-  if (hydrometer == "152H") {
+  if(hydrometer == "152H") {
     int <- 10.5; sl <- 0.164
     alpha <- 1.53 - 0.2 * Gs
     }
-  if (hydrometer == "151H") {
+  if(hydrometer == "151H") {
     int <- 275.0161; sl <- 264.5161
     alpha <- 1
     }
@@ -126,7 +129,7 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
   distr <- data.frame(particle.size = diam, perc.passing = perc_pass)
 
   # Fit DRC
-  if (model == "auto") {
+  if(model == "auto") {
     init <- drm(perc.passing ~ particle.size, data = distr, fct = LL.2())
     fctList <- list(LL.2(), LL.3(), LL.3u(), LL.4(), LL.5(), W1.2(), W1.3(),
                     W1.4(), W2.2(), W2.3(), W2.4(), BC.4(), BC.5(), LL2.2(),
@@ -146,7 +149,7 @@ texture.default <- function(reading, blank, time, temp, conc = 50, Gs = 2.65,
               distribution = distr, model = fit, din = din, usda = usda) |> 
     structure(class = "texture")
   
-  if (plot) plot(out)
+  if(plot) plot(out)
   return(out)
 }
 
@@ -203,7 +206,8 @@ as_tridata.default <- function(x, ...) {
 #' 
 #' @export
 as_tridata.texture <- function(x, which = NULL, ...) {
-  if(length(which) != 1L) stop("'which' must be a single character value", call. = F)
+  if(length(which) != 1L) stop("'which' must be a single character value",
+                               call. = F)
   if(!(which %in% c("din", "usda")))
     stop("'which' needs to be either 'din' or 'usda'", call. = F)
   
@@ -215,9 +219,10 @@ as_tridata.texture <- function(x, which = NULL, ...) {
 
 # Auxiliary function for retrieving main texture classes
 .textureclass <- function(psize, object) {
-  bounds <- predict(object, newdata = data.frame(particle.size = psize), se.fit = T)
-  if (bounds[1, 1] < 0) bounds[1, 1] <- 0
-  if (bounds[2, 1] > 1) bounds[2, 1] <- 1
+  bounds <- predict(object, newdata = data.frame(particle.size = psize),
+                    se.fit = T)
+  if(bounds[1, 1] < 0) bounds[1, 1] <- 0
+  if(bounds[2, 1] > 1) bounds[2, 1] <- 1
   
   matrix(
     c(bounds[1, 1], bounds[2, 1] - bounds[1, 1], 1 - bounds[2, 1], bounds[1, 2],

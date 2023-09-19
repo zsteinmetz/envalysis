@@ -4,10 +4,10 @@
 \alias{bisdom}
 \title{Categorize water drop penetration times}
 \usage{
-bisdom(wdpt, ...)
+bisdom(x, ...)
 }
 \arguments{
-\item{wdpt}{a numeric vector containing WDPT measurement data in seconds.}
+\item{x}{a numeric vector containing WDPT measurement data [s].}
 
 \item{\dots}{arguments passed to \code{\link[base]{findInterval}()}.}
 }

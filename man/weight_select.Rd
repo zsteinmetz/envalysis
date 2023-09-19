@@ -7,18 +7,18 @@
 \alias{relerr.calibration}
 \title{Tools for weighted calibrations}
 \usage{
-weight_select(object, add_weights, ...)
+weight_select(x, weights, ...)
 
-\method{weight_select}{calibration}(object, add_weights = NULL, ...)
+\method{weight_select}{calibration}(x, weights = NULL, ...)
 
-relerr(object)
+relerr(x)
 
-\method{relerr}{calibration}(object)
+\method{relerr}{calibration}(x)
 }
 \arguments{
-\item{object}{an object of class '\code{\link{calibration}}'.}
+\item{x}{an object of class '\code{\link{calibration}}'.}
 
-\item{add_weights}{a list of weights to be added to the default weights to be
+\item{weights}{a list of weights to be added to the default weights to be
 checked. These are \code{1/concentration^0.5}, \code{1/concentration^1},
 \code{1/concentration^2}, \code{1/signal^0.5}, \code{1/signal^1}, and
 \code{1/signal^2}.}
@@ -26,14 +26,14 @@ checked. These are \code{1/concentration^0.5}, \code{1/concentration^1},
 \item{\dots}{further arguments passed to \code{\link{calibration}()}.}
 }
 \value{
-\code{weight_select} produces a matrix with differently weighted
-\code{calibration} models ordered by sum relative errors.
-\code{relerr} compares the nominal concentrations with those predicted by
+\code{weight_select()} produces a matrix with differently weighted
+'\code{calibration}' models ordered by sum relative errors.
+\code{relerr()} compares the nominal concentrations with those predicted by
 the \code{\link{calibration}} model.
 }
 \description{
-Selecting optimum model weights by comparing sum relative errors
-(\code{relerr()}) of weighted \code{\link{calibration}} models as
+Selecting optimum model weights by comparing sum relative errors, this is
+\code{relerr()}, of weighted \code{\link{calibration}()} models as
 suggested by Almeida et al. (2002).
 }
 \details{
@@ -45,7 +45,7 @@ accuracy at the lower end of the calibration curve (Almeida et al., 2002).
 find the best weight as suggested by Almeida et al. (2002). Predefined
 weights include \code{1/concentration^0.5}, \code{1/concentration^1},
 \code{1/concentration^2}, \code{1/signal^0.5}, \code{1/signal^1}, and
-\code{1/signal^2} (see \code{\link[envalysis]{calibration}} for details).
+\code{1/signal^2} (see \code{\link{calibration}()} for details).
 }
 \examples{
 data(din32645)
@@ -57,7 +57,7 @@ relerr(din)
 
 }
 \references{
-Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
+Almeida, A.M.D., Castel-Branco, M.M., & Falcao, A.C. (2002). Linear
 regression for calibration lines revisited: weighting schemes for
 bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
 215-222. \doi{10.1016/S1570-0232(02)00244-1}.

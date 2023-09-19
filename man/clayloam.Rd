@@ -6,12 +6,13 @@
 \title{Hydrometer readings for a clay loam}
 \format{
 A data frame containing 7 rows and 4 columns with information on:
-\tabular{ll}{
-time: \tab the measurement time in minutes\cr
-temperature: \tab the temperature of the soil suspension\cr
-reading: \tab the hydrometer reading at the bottom of the meniscus\cr
-blank: \tab a blank value obtained in 5 g/L sodium
-hexametaphosphate solution (composite correction)\cr
+
+\describe{
+  \item{time}{the measurement time [min]}
+  \item{temperature}{the temperature of the soil suspension [°C]}
+  \item{reading}{the hydrometer reading at the bottom of the meniscus}
+  \item{blank}{a blank value obtained in 5 g/L sodium hexametaphosphate
+  solution (composite correction)}
 }
 }
 \description{

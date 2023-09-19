@@ -4,7 +4,7 @@
 #' This wrapper function categorizes water drop penetration times (WDPT) in
 #' seconds according to the scale proposed by Bisdom et al. (1993).
 #' 
-#' @param wdpt a numeric vector containing WDPT measurement data in seconds.
+#' @param x a numeric vector containing WDPT measurement data [s].
 #' @param \dots arguments passed to \code{\link[base]{findInterval}()}.
 #' 
 #' @seealso
@@ -23,6 +23,6 @@
 #' \doi{10.1016/0016-7061(93)90103-R}
 #' 
 #' @export
-bisdom <- function(wdpt, ...) {
-  findInterval(wdpt, c(0,5,60,600,3600), ...)
+bisdom <- function(x, ...) {
+  findInterval(x, c(0,5,60,600,3600), ...)
 }

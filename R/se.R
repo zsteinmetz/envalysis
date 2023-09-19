@@ -23,7 +23,7 @@
 #' @importFrom stats qnorm sd
 #' @export
 se <- function(x, na.rm = FALSE) {
-  if (length(x) == 1) warning("Single value supplied; NA introduced", call. = F)
+  if(length(x) == 1) warning("Single value supplied; NA introduced", call. = F)
   sd(x, na.rm = na.rm) / sqrt(length(x))
 }
 

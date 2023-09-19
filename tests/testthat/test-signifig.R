@@ -15,7 +15,7 @@ test_that("signifig() produces correct output", {
     expect_equal(c("0.3 ± 0.7", "5.0 ± 0.8"))
   signifig(c(0.28, 5), c(0.688, 0.8), style = "par") |> 
     expect_equal(c("0.3 (0.7)", "5.0 (0.8)"))
-  signifig(mean = c(0.28, 5), error = c(0.688, 0.8), style = "siunitx") |> 
+  signifig(c(0.28, 5), c(0.688, 0.8), style = "siunitx") |> 
     expect_equal(c("0.3(7)", "5(8)"))
 })
 

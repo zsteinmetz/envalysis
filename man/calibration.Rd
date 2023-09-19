@@ -7,10 +7,13 @@
 \alias{plot.calibration}
 \alias{as.list.calibration}
 \alias{lod}
+\alias{lod.default}
 \alias{lod.calibration}
 \alias{loq}
+\alias{loq.default}
 \alias{loq.calibration}
 \alias{inv_predict}
+\alias{inv_predict.default}
 \alias{inv_predict.calibration}
 \title{Analytical calibration functions}
 \usage{
@@ -32,33 +35,29 @@ calibration(
 
 \method{as.list}{calibration}(x, which = c("coef", "adj.r.squared", "lod", "loq", "blanks"), ...)
 
-lod(object, ...)
+lod(x, ...)
 
-\method{lod}{calibration}(object, blanks = NULL, alpha = 0.01, level = 0.05, ...)
+\method{lod}{default}(x, ...)
 
-loq(object, ...)
+\method{lod}{calibration}(x, blanks = NULL, alpha = 0.01, level = 0.05, ...)
 
-\method{loq}{calibration}(
-  object,
-  blanks = NULL,
-  alpha = 0.01,
-  k = 3,
-  level = 0.05,
-  maxiter = 10,
-  ...
-)
+loq(x, ...)
 
-inv_predict(object, ...)
+\method{loq}{default}(x, ...)
 
-\method{inv_predict}{calibration}(object, y, below_lod = NULL, method = "analytic", ...)
+\method{loq}{calibration}(x, blanks = NULL, alpha = 0.01, k = 3, level = 0.05, maxiter = 10, ...)
+
+inv_predict(x, ...)
+
+\method{inv_predict}{default}(x, ...)
+
+\method{inv_predict}{calibration}(x, y, below_lod = NULL, method = "analytic", ...)
 }
 \arguments{
 \item{formula}{model formula providing the recorded signal intensities with
-respect to the nominal analyte concentrations in the form of
+respect to the nominal/specified analyte concentrations in the form of
 \code{signal ~ concentration} or \code{signal ~ concentration - 1}; model
-formulas are currently restricted to those forms, however, the possibility
-to use \code{log} or \code{sqrt} transformed data will be implemented in the
-future.}
+formulas are currently restricted to those forms.}
 
 \item{data}{an optional data frame containing the variables in the model.}
 
@@ -68,7 +67,8 @@ retrieved from calibration data.}
 \item{weights}{an optional character string containing one or more model
 variables, for example, in the form of "\code{1/concentration^0.5}" or
 "\code{1/signal}" which is internally converted to a numeric vector and
-passed to the fitting process of the selected model.}
+passed to the fitting process of the selected model; see also
+\code{\link{weight_select}()}}
 
 \item{model}{model class to be used for fitting; currently,
 \code{\link[stats]{lm}()} and \code{\link[MASS]{rlm}()} are supported.}
@@ -78,14 +78,14 @@ homoscedasticity of model residuals using \code{\link[stats]{shapiro.test}()}
 and \code{\link[lmtest]{bptest}()}, respectively; only executed if
 \code{weights == NULL}.}
 
-\item{\dots}{further arguments passed to the submethod, namely the
-respective model environment such as \code{lm}(), \code{plot}(), or
-\code{print}().}
+\item{\dots}{further arguments passed to submethods; for
+instance, the respective model environment such as \code{\link[stats]{lm}()},
+\code{\link[base]{print}()}, or \code{\link[graphics]{plot}()}.}
 
 \item{x, object}{an object of class '\code{calibration}' with a model formula
 as shown above.}
 
-\item{interval}{Type of interval calculation (can be abbreviated); see
+\item{interval}{type of interval plotted (can be abbreviated); see
 \code{\link[stats]{predict}()} for details.}
 
 \item{level}{tolerance/confidence level; see \code{\link[stats]{predict}()}
@@ -94,9 +94,10 @@ and \code{\link[stats]{confint}()} for details.}
 \item{which}{character vector indicating the parameters to export; defaults 
 to \code{c("coef", "adj.r.squared", "lod", "loq", "blanks")}.}
 
-\item{alpha}{error tolerance for the detection limit (critical value).}
+\item{alpha}{numeric; error tolerance for the detection limit (critical
+value).}
 
-\item{k}{relative uncertainty for the limit of quantification
+\item{k}{numeric; relative uncertainty for the limit of quantification
 (\code{1/beta}).}
 
 \item{maxiter}{a positive integer specifying the maximum number of iterations
@@ -113,51 +114,60 @@ defaults to \code{"analytic"}.}
 }
 \value{
 \code{calibration} returns an object of \code{\link[base]{class}}
-'\code{calibration}'. \code{print()} calls the function parameters together
-with the respective LOD and LOQ. \code{plot()} plots the respective
-calibration curve together with the measurement values. \code{inv_predict()}
-predicts analyte concentrations from signal intensities.
+'\code{calibration}'.
+
+\code{print()} calls the function parameters together with the respective LOD
+and LOQ.
 \code{summary()} may be used to retrieve the summary of the underlying model.
+\code{plot()} plots the respective calibration curve together with the
+measurement values.
+
 \code{as.list()} returns a named list.
+
+\code{lod()} and \code{loq()} return a named vector with the LOD and LOQ
+together with lower and upper confidence limits.
+
+\code{inv_predict()} predicts/calculates analyte concentrations from signal
+intensities.
 }
 \description{
-Defines a \code{calibration} object for the calculation of concentrations
+Defines a '\code{calibration}' object for the calculation of concentrations
 from measurement signals including estimations for the limit of detection
 (LOD) and limit of quantification (LOQ) in accordance with DIN 32645 (2008).
-
+}
+\details{
 The LOD is defined as the lowest quantity of a substance that can be
 distinguished from the absence of that substance (blank value) within a given
 confidence level (\code{alpha}). The LOQ is defined as the lowest quantity of
 a substance that can be quantified/distinguished from another sample given
 with respect to a defined confidence level (\code{k}).
-}
-\details{
+
 If the \code{data} supplied to \code{calibration} contain more than one blank
-value, namely measurements with a nominal concentration of or close to zero,
-the LOD and LOQ are calculated from the deviation of the blank samples. This
-method is called "blank method" according to DIN 32645 (2008) and supposed
-to be more accurate than the so-called "calibration method" which will be
-used for the estimation of LOD and LOQ when \code{data} does not contain zero
-concentration measurements.
+value, namely measurements with a nominal/specified concentration of or close
+to zero, the LOD and LOQ are calculated from the deviation of the blank
+samples. This method is called "blank method" according to DIN 32645 (2008)
+and supposed to be more accurate than the so-called "calibration method"
+which will be used for the estimation of LOD and LOQ when \code{data} does
+not contain zero concentration measurements.
 }
 \examples{
 data(din32645)
 din <- calibration(Area ~ Conc, data = din32645)
-din
 
-plot(din)
+print(din)
 summary(din)
+plot(din)
+
 as.list(din)
 
 lod(din)
-
 loq(din)
 
 inv_predict(din, 5000)
 
 }
 \references{
-Almeida, A. M. D., Castel-Branco, M. M., & Falcao, A. C. (2002). Linear
+Almeida, A.M.D., Castel-Branco, M.M., & Falcao, A.C. (2002). Linear
 regression for calibration lines revisited: weighting schemes for
 bioanalytical methods. \emph{Journal of Chromatography B}, \bold{774}(2),
 215-222. \doi{10.1016/S1570-0232(02)00244-1}.
@@ -175,7 +185,7 @@ Smeyers-Verbeke, J. (1997). \emph{Handbook of chemometrics and qualimetrics:
 Part A}. Elsevier Science Inc.
 }
 \seealso{
-\code{\link[investr]{invest}()}
+\code{\link[investr]{invest}()} for alternative inverse prediction methods;
 
 Other calibration: 
 \code{\link{din32645}},

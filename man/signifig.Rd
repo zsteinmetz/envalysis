@@ -4,17 +4,17 @@
 \alias{signifig}
 \title{Print significant figures}
 \usage{
-signifig(mean, error, data, style = "pm", na.digit = 2, ...)
+signifig(x, error, data, style = "pm", na.digit = 2, ...)
 }
 \arguments{
-\item{mean}{a numeric vector or data frame object containing the averaged
+\item{x}{a numeric vector or data frame object containing the averaged
 values.}
 
 \item{error}{a numeric vector or data frame object containing the respective
 error terms.}
 
-\item{data}{a data frame containing the specified columns. If empty,
-\code{mean} and \code{error} need to be given as numeric vectors.}
+\item{data}{a data frame containing the specified columns. If empty, \code{x}
+and \code{error} need to be given as numeric vectors.}
 
 \item{style}{a string specifying the output style to be used. The default
 style \code{"pm"} reports the results as "3 ± 6", while \code{"par"} results
@@ -32,8 +32,8 @@ with its respective \code{error} term (for instance confidence interval or
 standard deviation).
 }
 \examples{
-signifig(mean = c(0.28, 5, -31.6, 2.6, 2, NA, 27.1),
-         error = c(0.688, 0.8, 11.6, 9.6, NA, 1.6, 0))
+signifig(c(0.28, 5, -31.6, 2.6, 2, NA, 27.1),
+         c(0.688, 0.8, 11.6, 9.6, NA, 1.6, 0))
 
 }
 \references{
