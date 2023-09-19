@@ -41,8 +41,8 @@ tables: a sequence table and a sample table.
 
 The sequence table contains gas-chromatography/mass spectrometry measurement
 data of two phenolic compounds, these are tyrosol and vanillin. Besides the
-samples, standard mixtures and extraction blanks were acquired in three separate
-analysis batches. Each measurement resulted in an integrated peak area.
+samples, standard mixtures and extraction blanks (type) were acquired in three
+separate analysis batches. Each measurement resulted in an integrated peak area.
 
 ```{r, echo=F}
 knitr::kable(phenolics$seq[c(1:4,73:74,76,78,80,83:84),], "simple",
@@ -51,24 +51,22 @@ knitr::kable(phenolics$seq[c(1:4,73:74,76,78,80,83:84),], "simple",
 
 The sample table describes the samples' origin from a 29-day degradation
 experiment, in which the phenolic compounds were either degraded in the dark by
-the native soil microbial community or photooxidized under UV irradiation. The
-samples were processed in threefold replication. Their weight [g], the volume
-[mL] of extract solution, and the dilution factor were recorded.
+the native soil microbial community or photooxidized under UV irradiation after
+sterilizing the soil. The samples were processed in threefold replication. Their
+weight [g], the volume [mL] of extract solution, and the dilution factor were
+recorded.
 
 ```{r, echo=F}
 knitr::kable(phenolics$samples[c(1:2,4,41:42),], "simple",
              row.names = F)
 ```
 
-In **envalysis**, the sample data is stored in a two-item list called `phenolics`.
-The list items are named `seq` and `samples`.
+In **envalysis**, the sample data is stored in a two-item list called
+`phenolics`. The list items are named `seq` and `samples`.
 
 ```{r data}
 data("phenolics")
 str(phenolics)
-
-phenolics$seq |> head()
-phenolics$samples |> head()
 ```
 
 ## Simple calibation
@@ -79,10 +77,10 @@ understanding, the calibration workflow is first shown for a subset of data,
 namely the first batch of tyrosol measurements. The subset is stored in
 `tyrosol_1`.
 
-Subsequently, the standards in this subset are used for calibration. The
+All standards in the `tyrosol_1` subset are used for calibration. The
 `'calibration'` object is stored as `cal_1`, which can be printed for additional
-information including limits of detection and quantification, the adjusted R^2^,
-blanks, and statistical checks of the underlying calibration model.
+information including limits of detection and quantification, the adjusted
+*R*^2^, blanks, and statistical checks of the underlying calibration model.
 
 ```{r simple_calibration, fig.align="center"}
 tyrosol_1 <- subset(phenolics$seq, Compound == "Tyrosol" & Batch == 1)
@@ -106,15 +104,19 @@ head(tyrosol_1)
 ## Working with `data.table`s
 
 To process all compounds and analysis batches together, the `phenolics` data is
-converted to `data.tables`s.
+converted to `data.table`s.
 
 ```{r data.table}
 dt <- lapply(phenolics, as.data.table)
 ```
 
+To replicate the following steps, try to organize your data in the same way as
+shown before. If you want to read in your data directly as `data.table`, use
+their `fread()` function, for instance.
+
 ## Batch calibration
 
-Afterwards, the `calibration()` and `inv_predict()` are applied by compound and
+Subsequently, `calibration()` and `inv_predict()` are applied by compound and
 batch.
 
 ```{r calibration}
@@ -124,11 +126,12 @@ dt$seq[, `Calc Conc` := calibration(Area ~ `Spec Conc`, .SD[Type == "Standard"])
 head(dt$seq)
 ```
 
-Calibration parameters like LODs, LOQs, or adjusted R^2^ may be stored in a
+Calibration parameters like LODs, LOQs, or adjusted *R*^2^ may be stored in a
 separate list item for later use.
 
 ```{r parameters}
-dt$cal <- dt$seq[Type == "Standard", as.list(calibration(Area ~ `Spec Conc`)),
+dt$cal <- dt$seq[Type == "Standard", calibration(Area ~ `Spec Conc`) |> 
+                   as.list(c("coef", "adj.r.squared", "lod", "loq")),
                  by = .(Compound, Batch)]
 print(dt$cal)
 ```
@@ -163,7 +166,7 @@ head(dt$res)
 For plotting the data using **ggplot2**, the contents are summarized by mean and
 confidence interval (CI).
 
-```{r plotting, fig.align="center"}
+```{r plotting, fig.align="center", fig.height=3.5}
 dt$sum <- dt$res[, .(Content = mean(Content, na.rm = T),
                      CI = CI(Content, na.rm = T)),
                  by = .(Compound, Treatment, Day)]

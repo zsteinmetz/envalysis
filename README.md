@@ -28,7 +28,7 @@ The following functions are available:
 
 * Calculating limits of detection `lod()` and limits of quantification `loq()`
   as part of the `'calibration'` class to produce linear calibration curves
-  in accordance with German DIN 32645 (2008); ; see
+  in accordance with German DIN 32645 (2008); see
   [vignette](https://zsteinmetz.de/envalysis/articles/calibration.html) for
   details
 * Calculating concentrations from calibration curves using `inv_predict()`

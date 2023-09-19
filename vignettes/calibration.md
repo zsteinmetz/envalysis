@@ -1,7 +1,7 @@
 ---
 title: "Calibration workflow"
 author: "Zacharias Steinmetz"
-date: "2023-09-17"
+date: "2023-09-19"
 output:
   html_document:
     keep_md: yes
@@ -33,29 +33,30 @@ tables: a sequence table and a sample table.
 
 The sequence table contains gas-chromatography/mass spectrometry measurement
 data of two phenolic compounds, these are tyrosol and vanillin. Besides the
-samples, standard mixtures and extraction blanks were acquired in three separate
-analysis batches. Each measurement resulted in an integrated peak area.
+samples, standard mixtures and extraction blanks (type) were acquired in three
+separate analysis batches. Each measurement resulted in an integrated peak area.
 
 
-Compound   Type               Name               Area   Batch   Spec Conc
----------  -----------------  ---------  ------------  ------  ----------
-Tyrosol    Extraction blank   Blank 1        0.000000       1          NA
-Tyrosol    Extraction blank   Blank 2        0.000000       1          NA
-Tyrosol    Sample             ZS-001       328.343597       1          NA
-Tyrosol    Sample             ZS-002       282.930939       1          NA
-Tyrosol    Standard           0 mg/L         0.000000       3     0.00000
-Tyrosol    Standard           1 mg/L         7.628456       3     0.97755
-Tyrosol    Standard           5 mg/L        35.566628       3     4.88775
-Tyrosol    Standard           20 mg/L      141.898056       3    19.55100
-Tyrosol    Standard           100 mg/L     715.496338       3    97.75500
-Vanillin   Sample             ZS-001      1876.933716       1          NA
-Vanillin   Sample             ZS-002      1578.626099       1          NA
+Compound   Type                Batch  Name               Area   Spec Conc
+---------  -----------------  ------  ---------  ------------  ----------
+Tyrosol    Extraction blank        1  Blank 1        0.000000          NA
+Tyrosol    Extraction blank        1  Blank 2        0.000000          NA
+Tyrosol    Sample                  1  ZS-001       328.343597          NA
+Tyrosol    Sample                  1  ZS-002       282.930939          NA
+Tyrosol    Standard                3  0 mg/L         0.000000     0.00000
+Tyrosol    Standard                3  1 mg/L         7.628456     0.97755
+Tyrosol    Standard                3  5 mg/L        35.566628     4.88775
+Tyrosol    Standard                3  20 mg/L      141.898056    19.55100
+Tyrosol    Standard                3  100 mg/L     715.496338    97.75500
+Vanillin   Sample                  1  ZS-001      1876.933716          NA
+Vanillin   Sample                  1  ZS-002      1578.626099          NA
 
 The sample table describes the samples' origin from a 29-day degradation
 experiment, in which the phenolic compounds were either degraded in the dark by
-the native soil microbial community or photooxidized under UV irradiation. The
-samples were processed in threefold replication. Their weight [g], the volume
-[mL] of extract solution, and the dilution factor were recorded.
+the native soil microbial community or photooxidized under UV irradiation after
+sterilizing the soil. The samples were processed in threefold replication. Their
+weight [g], the volume [mL] of extract solution, and the dilution factor were
+recorded.
 
 
 Name      Day  Lighting   Sterilization    Treatment         Replicate   Weight   Extract   Dilution
@@ -66,8 +67,8 @@ ZS-019      0  dark       non-sterilized   Biodegradation            1   2.5001 
 ZS-164     29  dark       non-sterilized   Biodegradation            2   2.4992      12.5          1
 ZS-165     29  dark       non-sterilized   Biodegradation            3   2.5000      12.5          1
 
-In **envalysis**, the sample data is stored in a two-item list called `phenolics`.
-The list items are named `seq` and `samples`.
+In **envalysis**, the sample data is stored in a two-item list called
+`phenolics`. The list items are named `seq` and `samples`.
 
 
 ```r
@@ -80,9 +81,9 @@ str(phenolics)
 # >  $ seq    :'data.frame':	160 obs. of  6 variables:
 # >   ..$ Compound : Factor w/ 2 levels "Tyrosol","Vanillin": 1 1 1 1 1 1 1 1 1 1 ...
 # >   ..$ Type     : Factor w/ 3 levels "Extraction blank",..: 1 1 2 2 2 2 2 2 2 2 ...
+# >   ..$ Batch    : int [1:160] 1 1 1 1 1 1 1 1 1 1 ...
 # >   ..$ Name     : chr [1:160] "Blank 1" "Blank 2" "ZS-001" "ZS-002" ...
 # >   ..$ Area     : num [1:160] 0 0 328 283 296 ...
-# >   ..$ Batch    : int [1:160] 1 1 1 1 1 1 1 1 1 1 ...
 # >   ..$ Spec Conc: num [1:160] NA NA NA NA NA NA NA NA NA NA ...
 # >  $ samples:'data.frame':	42 obs. of  9 variables:
 # >   ..$ Name         : chr [1:42] "ZS-001" "ZS-002" "ZS-003" "ZS-019" ...
@@ -96,41 +97,6 @@ str(phenolics)
 # >   ..$ Dilution     : int [1:42] 5 5 5 5 5 5 2 2 2 2 ...
 ```
 
-```r
-phenolics$seq |> head()
-```
-
-```
-# >   Compound             Type    Name     Area Batch Spec Conc
-# > 1  Tyrosol Extraction blank Blank 1   0.0000     1        NA
-# > 2  Tyrosol Extraction blank Blank 2   0.0000     1        NA
-# > 3  Tyrosol           Sample  ZS-001 328.3436     1        NA
-# > 4  Tyrosol           Sample  ZS-002 282.9309     1        NA
-# > 5  Tyrosol           Sample  ZS-003 296.2863     1        NA
-# > 6  Tyrosol           Sample  ZS-019 243.0258     1        NA
-```
-
-```r
-phenolics$samples |> head()
-```
-
-```
-# >     Name Day Lighting  Sterilization      Treatment Replicate Weight Extract
-# > 1 ZS-001   0       UV     sterilized Photooxidation         1 2.5037    12.5
-# > 2 ZS-002   0       UV     sterilized Photooxidation         2 2.5018    12.5
-# > 3 ZS-003   0       UV     sterilized Photooxidation         3 2.5048    12.5
-# > 4 ZS-019   0     dark non-sterilized Biodegradation         1 2.5001    12.5
-# > 5 ZS-020   0     dark non-sterilized Biodegradation         2 2.4996    12.5
-# > 6 ZS-021   0     dark non-sterilized Biodegradation         3 2.5026    12.5
-# >   Dilution
-# > 1        5
-# > 2        5
-# > 3        5
-# > 4        5
-# > 5        5
-# > 6        5
-```
-
 ## Simple calibation
 
 Since the two phenolic compounds were analyzed in three different batches, six
@@ -139,10 +105,10 @@ understanding, the calibration workflow is first shown for a subset of data,
 namely the first batch of tyrosol measurements. The subset is stored in
 `tyrosol_1`.
 
-Subsequently, the standards in this subset are used for calibration. The
+All standards in the `tyrosol_1` subset are used for calibration. The
 `'calibration'` object is stored as `cal_1`, which can be printed for additional
-information including limits of detection and quantification, the adjusted R^2^,
-blanks, and statistical checks of the underlying calibration model.
+information including limits of detection and quantification, the adjusted
+*R*^2^, blanks, and statistical checks of the underlying calibration model.
 
 
 ```r
@@ -206,28 +172,32 @@ head(tyrosol_1)
 ```
 
 ```
-# >   Compound             Type    Name     Area Batch Spec Conc Calc Conc
-# > 1  Tyrosol Extraction blank Blank 1   0.0000     1        NA   0.00000
-# > 2  Tyrosol Extraction blank Blank 2   0.0000     1        NA   0.00000
-# > 3  Tyrosol           Sample  ZS-001 328.3436     1        NA  43.23037
-# > 4  Tyrosol           Sample  ZS-002 282.9309     1        NA  37.18195
-# > 5  Tyrosol           Sample  ZS-003 296.2863     1        NA  38.96072
-# > 6  Tyrosol           Sample  ZS-019 243.0258     1        NA  31.86707
+# >   Compound             Type Batch    Name     Area Spec Conc Calc Conc
+# > 1  Tyrosol Extraction blank     1 Blank 1   0.0000        NA   0.00000
+# > 2  Tyrosol Extraction blank     1 Blank 2   0.0000        NA   0.00000
+# > 3  Tyrosol           Sample     1  ZS-001 328.3436        NA  43.23037
+# > 4  Tyrosol           Sample     1  ZS-002 282.9309        NA  37.18195
+# > 5  Tyrosol           Sample     1  ZS-003 296.2863        NA  38.96072
+# > 6  Tyrosol           Sample     1  ZS-019 243.0258        NA  31.86707
 ```
 
 ## Working with `data.table`s
 
 To process all compounds and analysis batches together, the `phenolics` data is
-converted to `data.tables`s.
+converted to `data.table`s.
 
 
 ```r
 dt <- lapply(phenolics, as.data.table)
 ```
 
+To replicate the following steps, try to organize your data in the same way as
+shown before. If you want to read in your data directly as `data.table`, use
+their `fread()` function, for instance.
+
 ## Batch calibration
 
-Afterwards, the `calibration()` and `inv_predict()` are applied by compound and
+Subsequently, `calibration()` and `inv_predict()` are applied by compound and
 batch.
 
 
@@ -239,21 +209,22 @@ head(dt$seq)
 ```
 
 ```
-# >    Compound             Type    Name     Area Batch Spec Conc Calc Conc
-# > 1:  Tyrosol Extraction blank Blank 1   0.0000     1        NA   0.00000
-# > 2:  Tyrosol Extraction blank Blank 2   0.0000     1        NA   0.00000
-# > 3:  Tyrosol           Sample  ZS-001 328.3436     1        NA  43.23037
-# > 4:  Tyrosol           Sample  ZS-002 282.9309     1        NA  37.18195
-# > 5:  Tyrosol           Sample  ZS-003 296.2863     1        NA  38.96072
-# > 6:  Tyrosol           Sample  ZS-019 243.0258     1        NA  31.86707
+# >    Compound             Type Batch    Name     Area Spec Conc Calc Conc
+# > 1:  Tyrosol Extraction blank     1 Blank 1   0.0000        NA   0.00000
+# > 2:  Tyrosol Extraction blank     1 Blank 2   0.0000        NA   0.00000
+# > 3:  Tyrosol           Sample     1  ZS-001 328.3436        NA  43.23037
+# > 4:  Tyrosol           Sample     1  ZS-002 282.9309        NA  37.18195
+# > 5:  Tyrosol           Sample     1  ZS-003 296.2863        NA  38.96072
+# > 6:  Tyrosol           Sample     1  ZS-019 243.0258        NA  31.86707
 ```
 
-Calibration parameters like LODs, LOQs, or adjusted R^2^ may be stored in a
+Calibration parameters like LODs, LOQs, or adjusted *R*^2^ may be stored in a
 separate list item for later use.
 
 
 ```r
-dt$cal <- dt$seq[Type == "Standard", as.list(calibration(Area ~ `Spec Conc`)),
+dt$cal <- dt$seq[Type == "Standard", calibration(Area ~ `Spec Conc`) |> 
+                   as.list(c("coef", "adj.r.squared", "lod", "loq")),
                  by = .(Compound, Batch)]
 print(dt$cal)
 ```
@@ -266,13 +237,6 @@ print(dt$cal)
 # > 4: Vanillin     1 25.17794786   51.529670 0.9998175 0.0040133  5.623778
 # > 5: Vanillin     2 24.44314369   51.774820 0.9992359 0.0003509 11.408191
 # > 6: Vanillin     3 10.62899985   50.819997 0.9999641 0.0000000  2.886073
-# >    blank_mean    blank_sd
-# > 1: 0.05024649 0.033985647
-# > 2: 0.07946879 0.022149819
-# > 3: 0.00000000 0.000000000
-# > 4: 0.07709483 0.065037107
-# > 5: 0.08453879 0.005712943
-# > 6: 0.00000000 0.000000000
 ```
 
 ## Blank subtraction
@@ -303,13 +267,13 @@ head(dt$res)
 ```
 
 ```
-# >      Name Compound   Type      Area Batch Spec Conc Calc Conc Clean Conc Day
-# > 1: ZS-001  Tyrosol Sample  328.3436     1        NA  43.23037   43.23037   0
-# > 2: ZS-001 Vanillin Sample 1876.9337     1        NA  35.93572   35.93572   0
-# > 3: ZS-002  Tyrosol Sample  282.9309     1        NA  37.18195   37.18195   0
-# > 4: ZS-002 Vanillin Sample 1578.6261     1        NA  30.14667   30.14667   0
-# > 5: ZS-003  Tyrosol Sample  296.2863     1        NA  38.96072   38.96072   0
-# > 6: ZS-003 Vanillin Sample 1593.6272     1        NA  30.43779   30.43779   0
+# >      Name Compound   Type Batch      Area Spec Conc Calc Conc Clean Conc Day
+# > 1: ZS-001  Tyrosol Sample     1  328.3436        NA  43.23037   43.23037   0
+# > 2: ZS-001 Vanillin Sample     1 1876.9337        NA  35.93572   35.93572   0
+# > 3: ZS-002  Tyrosol Sample     1  282.9309        NA  37.18195   37.18195   0
+# > 4: ZS-002 Vanillin Sample     1 1578.6261        NA  30.14667   30.14667   0
+# > 5: ZS-003  Tyrosol Sample     1  296.2863        NA  38.96072   38.96072   0
+# > 6: ZS-003 Vanillin Sample     1 1593.6272        NA  30.43779   30.43779   0
 # >    Lighting Sterilization      Treatment Replicate Weight Extract Dilution
 # > 1:       UV    sterilized Photooxidation         1 2.5037    12.5        5
 # > 2:       UV    sterilized Photooxidation         1 2.5037    12.5        5
