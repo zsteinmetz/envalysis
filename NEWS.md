@@ -2,8 +2,7 @@
 
 ## New Features
 
-- Inverse predict concentrations from calibration curves using an `invest()`
-  wrapper
+- Inverse predict concentrations from calibration curves using `inv_predict()`
 - `as.list()` method for class '`calibration`'
 - pkgdown documentation
 

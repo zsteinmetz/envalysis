@@ -3,7 +3,7 @@ title: "Particle size estimation"
 subtitle: > 
   Based on the hydrometer method by ASTM D422-63 (2007) and Bouyoucos (1927)
 author: "Zacharias Steinmetz"
-date: "2023-09-17"
+date: "2023-09-20"
 output:
   html_document:
     keep_md: yes
@@ -173,7 +173,7 @@ print(tex)
 plot(tex)
 ```
 
-<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png" style="display: block; margin: auto;" />
+<img src="/home/steinmetz-z/Documents/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/texture-1.png" style="display: block; margin: auto;" />
 
 Further soil classification and plotting may be performed using the
 **soiltexture** package.
@@ -224,7 +224,7 @@ plotted as follows.
 TT.plot(class.sys = "DE.BK94.TT", tri.data = germansoil)
 ```
 
-<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/soiltexture_plot-1.png" style="display: block; margin: auto;" />
+<img src="/home/steinmetz-z/Documents/Seafile/Research/Code/envalysis/vignettes/texture_files/figure-html/soiltexture_plot-1.png" style="display: block; margin: auto;" />
 
 For further details, see the **soiltexture** package vignette on
 [CRAN](https://cran.r-project.org/package=soiltexture).

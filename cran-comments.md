@@ -10,7 +10,7 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 note
 
 
 ## revdepcheck results
@@ -21,8 +21,5 @@ Total time: <1 min
 
 
 ## Comments
-
-The maintainer's email address has changed from <steinmetz-z@uni-landau.de> to
-<z.steinmetz@rptu.de>.
 
 For further details, please see NEWS file.

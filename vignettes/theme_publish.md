@@ -1,7 +1,7 @@
 ---
 title: "ggplot2 theme for scientific publications"
 author: "Zacharias Steinmetz"
-date: "2023-09-17"
+date: "2023-09-20"
 output:
   html_document:
     keep_md: yes
@@ -49,7 +49,7 @@ p <- ggplot(mtcars) +
 p
 ```
 
-<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/default_theme-1.png" style="display: block; margin: auto;" />
+<img src="/home/steinmetz-z/Documents/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/default_theme-1.png" style="display: block; margin: auto;" />
 
 ## `theme_publish()`
 
@@ -60,7 +60,7 @@ Adding `theme_publish()` applies the custom theme.
 p + theme_publish()
 ```
 
-<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_publish-1.png" style="display: block; margin: auto;" />
+<img src="/home/steinmetz-z/Documents/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_publish-1.png" style="display: block; margin: auto;" />
 
 `theme_publish()` allows for changing the base font face, font size, and
 line widths. More arguments may be passed to **ggplot2**'s `theme_bw()`
@@ -70,4 +70,4 @@ line widths. More arguments may be passed to **ggplot2**'s `theme_bw()`
 p + theme_publish(base_size = 16, base_family = "Times", base_linewidth = 0.7)
 ```
 
-<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_arguments-1.png" style="display: block; margin: auto;" />
+<img src="/home/steinmetz-z/Documents/Seafile/Research/Code/envalysis/vignettes/theme_publish_files/figure-html/theme_arguments-1.png" style="display: block; margin: auto;" />

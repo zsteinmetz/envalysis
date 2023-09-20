@@ -1,7 +1,7 @@
 ---
 title: "Calibration workflow"
 author: "Zacharias Steinmetz"
-date: "2023-09-19"
+date: "2023-09-20"
 output:
   html_document:
     keep_md: yes
@@ -159,7 +159,7 @@ print(cal_1)
 plot(cal_1)
 ```
 
-<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/calibration_files/figure-html/simple_calibration-1.png" style="display: block; margin: auto;" />
+<img src="/home/steinmetz-z/Documents/Seafile/Research/Code/envalysis/vignettes/calibration_files/figure-html/simple_calibration-1.png" style="display: block; margin: auto;" />
 
 Based on `cal_1`, the tyrosol concentrations can be calculated for all samples
 using `inv_predict()`. The argument `below_lod = 0` specifies that
@@ -314,7 +314,7 @@ ggplot(dt$sum, aes(x = Day, y = Content)) +
   theme_publish()
 ```
 
-<img src="/home/zacharias/Dokumente/RPTU/Seafile/Research/Code/envalysis/vignettes/calibration_files/figure-html/plotting-1.png" style="display: block; margin: auto;" />
+<img src="/home/steinmetz-z/Documents/Seafile/Research/Code/envalysis/vignettes/calibration_files/figure-html/plotting-1.png" style="display: block; margin: auto;" />
 
 ## References
 
