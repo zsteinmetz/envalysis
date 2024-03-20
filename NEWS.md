@@ -1,3 +1,10 @@
+# envalysis 0.7.0
+
+## New Features
+
+- `predict()` method for class '`calibration`'
+
+
 # envalysis 0.6.0
 
 ## New Features

@@ -43,6 +43,9 @@
 #' @param below_lod value to be assigned if inverse prediction is below LOD;
 #' defaults to \code{"NULL"} which keeps predicted values untouched. Other
 #' options may be \code{NA} or \code{0}.
+#' @param newdata a data frame in which to look for variables with which to
+#' predict. If \code{NULL}, values are guessed; \code{\link[stats]{predict.lm}()}
+#' for details.
 #' @param method character indicating the method used for inverse prediction;
 #' defaults to \code{"analytic"}.
 #' @param \dots further arguments passed to submethods; for
@@ -195,16 +198,9 @@ summary.calibration <- function(object, ...) {
 #' 
 #' @export
 plot.calibration <- function(x, interval = "conf", level = 0.95, ...) {
-  model <- x$model
+  pred <- predict(x, interval = interval, level = level)
   
-  conc <- model$model[,2]
-  new <- data.frame(conc = seq(min(conc), max(conc),
-                               length.out = 100 * length(conc)))
-  names(new) <- all.vars(model$formula)[2]
-  pred <- data.frame(new, predict(x$model, new, interval = interval,
-                                  level = level))
-  
-  plot(model$formula, data = model$model, ...)
+  plot(x$model$formula, data = x$model$model, ...)
   lines(pred[, 2] ~ pred[, 1])
   
   tryCatch({
@@ -345,6 +341,28 @@ loq.calibration <- function(x, blanks = NULL, alpha = 0.01, k = 3, level = 0.05,
   
   res <- c(val, .conf(n, level) * val)
   matrix(round(res, digs), nrow = 1, dimnames = list("LOQ", names(res)))
+}
+
+#' @rdname calibration
+#' 
+#' @return
+#' \code{predict()} returns a \code{data.frame} of predictions.
+#' 
+#' @examples
+#' predict(din)
+#' 
+#' @export
+predict.calibration <- function(object, newdata = NULL, interval = "conf", ...) {
+  model <- object$model
+  conc <- model$model[,2]
+  
+  if(is.null(newdata)) {
+    newdata <- data.frame(conc = seq(min(conc), max(conc),
+                                     length.out = 100 * length(conc)))
+    names(newdata) <- all.vars(model$formula)[2]
+  }
+    
+  data.frame(newdata, predict(object$model, newdata, interval = interval, ...))
 }
 
 #' @rdname calibration

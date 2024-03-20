@@ -12,6 +12,7 @@
 \alias{loq}
 \alias{loq.default}
 \alias{loq.calibration}
+\alias{predict.calibration}
 \alias{inv_predict}
 \alias{inv_predict.default}
 \alias{inv_predict.calibration}
@@ -46,6 +47,8 @@ loq(x, ...)
 \method{loq}{default}(x, ...)
 
 \method{loq}{calibration}(x, blanks = NULL, alpha = 0.01, k = 3, level = 0.05, maxiter = 10, ...)
+
+\method{predict}{calibration}(object, newdata = NULL, interval = "conf", ...)
 
 inv_predict(x, ...)
 
@@ -103,6 +106,10 @@ value).}
 \item{maxiter}{a positive integer specifying the maximum number of iterations
 to calculate the LOQ.}
 
+\item{newdata}{a data frame in which to look for variables with which to
+predict. If \code{NULL}, values are guessed; \code{\link[stats]{predict.lm}()}
+for details.}
+
 \item{y}{numeric; the value to inverse predict.}
 
 \item{below_lod}{value to be assigned if inverse prediction is below LOD;
@@ -126,6 +133,8 @@ measurement values.
 
 \code{lod()} and \code{loq()} return a named vector with the LOD and LOQ
 together with lower and upper confidence limits.
+
+\code{predict()} returns a \code{data.frame} of predictions.
 
 \code{inv_predict()} predicts/calculates analyte concentrations from signal
 intensities.
@@ -162,6 +171,8 @@ as.list(din)
 
 lod(din)
 loq(din)
+
+predict(din)
 
 inv_predict(din, 5000)
 

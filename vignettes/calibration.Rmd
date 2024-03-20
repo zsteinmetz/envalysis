@@ -136,6 +136,16 @@ dt$cal <- dt$seq[Type == "Standard", calibration(Area ~ `Spec Conc`) |>
 print(dt$cal)
 ```
 
+Similarly, `predict()` may be used for plotting calibration curves independently
+of the `plot()` function.
+
+```{r predict}
+dt$pred <- dt$seq[Type == "Standard", calibration(Area ~ `Spec Conc`) |> 
+                    predict(),
+                 by = .(Compound, Batch)]
+head(dt$pred)
+```
+
 ## Blank subtraction
 
 With the calculated concentrations at hand, the sample concentrations are
