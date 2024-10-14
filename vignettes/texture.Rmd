@@ -29,6 +29,7 @@ knitr::opts_chunk$set(
 
 * Balance
 * Horizontal shaker
+* Stirring apparatus
 * 151H or 152H hydrometer
 * 1 L volumetric flask
 * 1 L volumetric cylinders for sedimentation
@@ -73,23 +74,25 @@ If the soil sample contains primarily clay or silt, weigh out 50 g of soil
 sample is sandy, take 100 g each. Add 125 mL SHMP solution to the soil. Agitate
 the mixture for 16 h (or overnight) in a horizontal shaker.
 
-Completely transfer the soil slurry into the 1 L sedimentation cylinder using a
-squirt bottle. Fill up to the 1 L mark with deionized water. Cap the cylinder
-with parafilm (ensure tightness). Agitate the slurry by turning the cylinder
-upside down and back 30 times during 1 min.
+Completely transfer the soil slurry into the dispersion cup of the stirring
+apparatus using deionized water from a squirt bottle. Add deionized water, if
+necessary, so that the cup is more than half full. Stir for 1 min. Transfer the
+slurry into a 1 L sedimentation cylinder. Fill up to the 1 L mark with deionized
+water. Cap the cylinder with a rubber stopper or Parafilm (ensure tightness).
+Agitate the slurry by manually turning the cylinder upside down and back 30
+times during 1 min.
 
 ### Measurement
 
 Place the sedimentation cylinder at a bench where it can stand
 undisturbed for the next 4–6 h.
 
-Insert the hydrometer into the soil solution as soon as possible and
-take the first reading the latest after 40 s.
-Measure the temperature of the slurry. Repeat this measurement at 2, 5,
-15, 30, 60, 120, 240, and 360 min. In any case, record the exact reading
-time. The measurements may be reduced to an initial reading after 40 s
-and a second one after 240 or 360 min (Ashworth et al., 2001).
-Remove the hydrometer after each measurement, in order not to disturb the 
+After at least 40 s and no more than 1 min, place the hydrometer in the soil
+solution and take the first reading. Measure the temperature of the slurry.
+Repeat these steps at 2, 5, 15, 30, 60, 120, 240, and 360 min. In any case,
+record the exact reading time. The measurements may be reduced to an initial
+reading after 1 min and a second one after 240 or 360 min (Ashworth et al.,
+2001). Remove the hydrometer after each measurement, in order not to disturb the
 sedimentation process, and rinse the hydrometer with deionized water.
 
 If the ambient temperature changes, recalibrate the hydrometer.
