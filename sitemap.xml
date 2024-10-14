@@ -1,81 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/404.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/articles/calibration.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/articles/texture.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/articles/theme_publish.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/index.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/bisdom.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/calibration.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/clayloam.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/din32645.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/envalysis-package.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/icp.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/matrix_effect.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/neitzel2003.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/phenolics.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/rmse.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/se.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/signifig.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/sorption.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/texture.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/theme_publish.html</loc>
-  </url>
-  <url>
-    <loc>https://zsteinmetz.de/envalysis/reference/weight_select.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://zsteinmetz.de/envalysis/404.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/LICENSE.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/articles/calibration.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/articles/index.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/articles/texture.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/articles/theme_publish.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/authors.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/index.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/news/index.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/bisdom.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/calibration.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/clayloam.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/din32645.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/envalysis-package.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/icp.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/index.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/matrix_effect.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/neitzel2003.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/phenolics.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/rmse.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/se.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/signifig.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/sorption.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/texture.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/theme_publish.html</loc></url>
+<url><loc>https://zsteinmetz.de/envalysis/reference/weight_select.html</loc></url>
 </urlset>
+
