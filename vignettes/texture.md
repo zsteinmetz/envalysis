@@ -3,7 +3,7 @@ title: "Particle size estimation"
 subtitle: > 
   Based on the hydrometer method by ASTM D422-63 (2007) and Bouyoucos (1927)
 author: "Zacharias Steinmetz"
-date: "2023-09-20"
+date: "2024-10-15"
 output:
   html_document:
     keep_md: yes
@@ -22,6 +22,7 @@ vignette: >
 
 * Balance
 * Horizontal shaker
+* Stirring apparatus
 * 151H or 152H hydrometer
 * 1 L volumetric flask
 * 1 L volumetric cylinders for sedimentation
@@ -54,10 +55,10 @@ Hydrometers are graduated to be read at the bottom of the meniscus. However,
 readings may need be taken at the top of the meniscus in opaque soil
 suspensions.
 
-Lower the hydrometer into a 1 L cylinder filled with 125 mL of SHMP solution and
-875 mL of deionized water. When stabilized (after about 20 s), record both the
-reading at the bottom (zero or composite correction factor) and at the top of
-the meniscus (meniscus correction factor).
+Mix 125 mL of SHMP solution and 875 mL of deionized water in a 1 L cylinder.
+Lower the hydrometer into the cylinder. When stabilized (after about 20 s),
+record both the reading at the bottom (zero or composite correction factor) and
+at the top of the meniscus (meniscus correction factor).
 
 ### Sample pretreatment
 
@@ -66,23 +67,25 @@ If the soil sample contains primarily clay or silt, weigh out 50 g of soil
 sample is sandy, take 100 g each. Add 125 mL SHMP solution to the soil. Agitate
 the mixture for 16 h (or overnight) in a horizontal shaker.
 
-Completely transfer the soil slurry into the 1 L sedimentation cylinder using a
-squirt bottle. Fill up to the 1 L mark with deionized water. Cap the cylinder
-with parafilm (ensure tightness). Agitate the slurry by turning the cylinder
-upside down and back 30 times during 1 min.
+Completely transfer the soil slurry into the dispersion cup of the stirring
+apparatus using deionized water from a squirt bottle. Add deionized water, if
+necessary, so that the cup is more than half full. Stir for 1 min. Transfer the
+slurry into a 1 L sedimentation cylinder. Fill up to the 1 L mark with deionized
+water. Cap the cylinder with a rubber stopper or Parafilm (ensure tightness).
+Agitate the slurry by manually turning the cylinder upside down and back 30
+times during 1 min.
 
 ### Measurement
 
 Place the sedimentation cylinder at a bench where it can stand
 undisturbed for the next 4–6 h.
 
-Insert the hydrometer into the soil solution as soon as possible and
-take the first reading the latest after 40 s.
-Measure the temperature of the slurry. Repeat this measurement at 2, 5,
-15, 30, 60, 120, 240, and 360 min. In any case, record the exact reading
-time. The measurements may be reduced to an initial reading after 40 s
-and a second one after 240 or 360 min (Ashworth et al., 2001).
-Remove the hydrometer after each measurement, in order not to disturb the 
+After at least 40 s and no more than 1 min, place the hydrometer in the soil
+solution and take the first reading. Measure the temperature of the slurry.
+Repeat these steps at 2, 5, 15, 30, 60, 120, 240, and 360 min. In any case,
+record the exact reading time. The measurements may be reduced to an initial
+reading after 1 min and a second one after 240 or 360 min (Ashworth et al.,
+2001). Remove the hydrometer after each measurement, in order not to disturb the
 sedimentation process, and rinse the hydrometer with deionized water.
 
 If the ambient temperature changes, recalibrate the hydrometer.
@@ -117,7 +120,7 @@ After loading **envalysis**, the `texture()` function is applied to the
 `clayloam` sample data set coming with this package.
 
 
-```r
+``` r
 library(envalysis)
 
 data(clayloam)
@@ -135,7 +138,7 @@ print(clayloam)
 # > 7 180.00          23      18     2
 ```
 
-```r
+``` r
 tex <- texture(reading ~ blank + time + temperature, data = clayloam)
 
 print(tex)
@@ -169,7 +172,7 @@ print(tex)
 # > Std. Error 0.0131 0.0226 0.00954
 ```
 
-```r
+``` r
 plot(tex)
 ```
 
@@ -179,7 +182,7 @@ Further soil classification and plotting may be performed using the
 **soiltexture** package.
 
 
-```r
+``` r
 library(soiltexture)
 ```
 
@@ -187,7 +190,7 @@ For that, the soil texture data needs to be converted into a special
 `data.frame`.
 
 
-```r
+``` r
 germansoil <- as_tridata(tex, which = "din")
 ussoil <- as_tridata(tex, which = "usda")
 ```
@@ -196,7 +199,7 @@ Now, texture classes are determined, for example, in accordance with the German
 "Bodenartendiagramm" (DE.BK94.TT) or USDA (USDA.TT).
 
 
-```r
+``` r
 TT.points.in.classes(germansoil, class.sys = "DE.BK94.TT")
 ```
 
@@ -207,7 +210,7 @@ TT.points.in.classes(germansoil, class.sys = "DE.BK94.TT")
 # > [1,]   0   0   0   0  0   0   0   0   0  0   0  0
 ```
 
-```r
+``` r
 TT.points.in.classes(ussoil, class.sys = "USDA.TT")
 ```
 
@@ -220,7 +223,7 @@ The analyzed soil is a clay loam (German: "Toniger Lehm", Lt2), which may be
 plotted as follows.
 
 
-```r
+``` r
 TT.plot(class.sys = "DE.BK94.TT", tri.data = germansoil)
 ```
 

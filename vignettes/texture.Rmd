@@ -62,10 +62,10 @@ Hydrometers are graduated to be read at the bottom of the meniscus. However,
 readings may need be taken at the top of the meniscus in opaque soil
 suspensions.
 
-Lower the hydrometer into a 1 L cylinder filled with 125 mL of SHMP solution and
-875 mL of deionized water. When stabilized (after about 20 s), record both the
-reading at the bottom (zero or composite correction factor) and at the top of
-the meniscus (meniscus correction factor).
+Mix 125 mL of SHMP solution and 875 mL of deionized water in a 1 L cylinder.
+Lower the hydrometer into the cylinder. When stabilized (after about 20 s),
+record both the reading at the bottom (zero or composite correction factor) and
+at the top of the meniscus (meniscus correction factor).
 
 ### Sample pretreatment
 
