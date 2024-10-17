@@ -3,7 +3,7 @@ title: "Particle size estimation"
 subtitle: > 
   Based on the hydrometer method by ASTM D422-63 (2007) and Bouyoucos (1927)
 author: "Zacharias Steinmetz"
-date: "2024-10-15"
+date: "2024-10-17"
 output:
   html_document:
     keep_md: yes
@@ -26,7 +26,7 @@ vignette: >
 * 151H or 152H hydrometer
 * 1 L volumetric flask
 * 1 L volumetric cylinders for sedimentation
-* 500 mL jars with a screw cap
+* 250 mL jars with a screw cap
 * Squirt bottle
 * Thermometer
 * Parafilm
@@ -63,7 +63,7 @@ at the top of the meniscus (meniscus correction factor).
 ### Sample pretreatment
 
 If the soil sample contains primarily clay or silt, weigh out 50 g of soil
-(accuracy ± 0.01 g) in a 500 mL screw bottle (in 3-fold replication). If the
+(accuracy ± 0.01 g) in a 250 mL screw bottle (in 3-fold replication). If the
 sample is sandy, take 100 g each. Add 125 mL SHMP solution to the soil. Agitate
 the mixture for 16 h (or overnight) in a horizontal shaker.
 
